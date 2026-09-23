@@ -66,7 +66,7 @@ export class WhaleWorld {
     if(this.state.playing&&time-(this.lastDraw||0)<32){this.invalidate();return;}this.lastDraw=time;
     const {reduced,theme,explosion}=this.state;
     const position=this.home?this.motion.advance(time,reduced):0,chapter=this.home?Math.min(lastChapter,Math.floor(position)):this.state.chapter,progress=this.home?position-chapter:this.state.progress;
-    const pose=this.home?scenePose(chapter,progress,{reduced,mobile:this.width<760,aspect:this.width/this.height}):null;if(pose&&chapter===0&&this.homeScene.reveal>0)pose.open+=(1-pose.open)*this.homeScene.reveal;
+    const pose=this.home?scenePose(chapter,progress,{reduced,mobile:this.width<760,aspect:this.width/this.height,side:this.width>=760&&innerWidth/innerHeight>=5/3}):null;if(pose&&chapter===0&&this.homeScene.reveal>0)pose.open+=(1-pose.open)*this.homeScene.reveal;
     let lessonFrame=null;
     const isLesson=this.home&&!!this.players[chapter];
     if(this.home){
