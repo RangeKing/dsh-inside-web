@@ -6,6 +6,7 @@ import { HomeScene } from './home-scene.js';
 import { LessonPlayer, lessonChapters } from './lessons.js';
 import { ScrollMotion } from './motion.js';
 import { prepareModel } from './prepare-model.js';
+import { refineMaterials } from './materials.js';
 import { scenePose, lastChapter } from './choreography.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { assetRegistry, moduleDefinitions, moduleForService } from './assets.js';
@@ -22,11 +23,12 @@ export class WhaleWorld {
     this.motion=new ScrollMotion();this.state={active:[],selected:null,chapter:0,progress:0,reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,theme:'dark',visible:true,explosion:.75};
     if(new URLSearchParams(location.search).get('graphics')==='off')throw new Error('Graphics disabled for fallback verification');
     this.renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance'});
-    this.renderer.setPixelRatio(Math.min(devicePixelRatio,innerWidth<700?1.25:1.5));this.renderer.outputColorSpace=THREE.SRGBColorSpace;this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.65;
-    this.scene=new THREE.Scene();if(home){const room=new RoomEnvironment();const pmrem=new THREE.PMREMGenerator(this.renderer);this.environment=pmrem.fromScene(room,.06);this.scene.environment=this.environment.texture;room.dispose();pmrem.dispose();this.renderer.toneMappingExposure=1.05;}this.camera=new THREE.PerspectiveCamera(38,1,.1,180);this.camera.position.set(28,18,34);
+    this.renderer.setPixelRatio(Math.min(devicePixelRatio,innerWidth<700?1.25:1.5));this.renderer.outputColorSpace=THREE.SRGBColorSpace;this.renderer.toneMapping=THREE.NeutralToneMapping;this.renderer.toneMappingExposure=home?1:1.15;
+    this.scene=new THREE.Scene();{const room=new RoomEnvironment();const pmrem=new THREE.PMREMGenerator(this.renderer);this.environment=pmrem.fromScene(room,.04);this.scene.environment=this.environment.texture;this.scene.environmentIntensity=home?.55:.7;room.dispose();pmrem.dispose();}this.camera=new THREE.PerspectiveCamera(38,1,.1,180);this.camera.position.set(28,18,34);
     this.controls=new OrbitControls(this.camera,canvas);this.controls.enableDamping=false;this.controls.minDistance=15;this.controls.maxDistance=65;this.controls.enablePan=false;this.controls.enabled=!home;canvas.style.touchAction=home?'pan-y':'none';
-    this.scene.add(new THREE.HemisphereLight(0xc6daf7,0x10131c,home?.65:3));
-    for(const [color,intensity,pos] of [[0xffecd0,5,[10,25,16]],[0x44d9dd,4,[-20,8,-10]],[0xa1bfff,3,[0,3,-25]]]){const l=new THREE.DirectionalLight(home?(color===0xffecd0?0xf5f5ff:0x9db9e3):color,home?intensity*.55:intensity);l.position.set(...pos);this.scene.add(l);}
+    // Product lighting: neutral key, soft fill, a cool rim that separates the dark hull from the background.
+    this.scene.add(new THREE.HemisphereLight(0xc6daf7,0x0b0e14,home?.35:1.2));
+    for(const [color,intensity,pos] of [[0xffffff,home?3:4,[14,22,18]],[0xa9bddb,home?.9:1.4,[-18,6,14]],[0x86ccff,home?3.2:2.4,[-8,12,-24]],[0xffffff,home?.8:1,[0,30,0]]]){const l=new THREE.DirectionalLight(color,intensity);l.position.set(...pos);this.scene.add(l);}
     this.group=new THREE.Group();this.scene.add(this.group);this.homeScene=home?new HomeScene(this.scene,this.loaded,moduleDefinitions):null;this.teaching=this.homeScene?.teaching;this.players=Object.fromEntries(lessonChapters.map(c=>[c,new LessonPlayer(c)]));this.providerIndex=1;
     this.draco=new DRACOLoader().setDecoderPath('build/draco/');this.loader=new GLTFLoader().setDRACOLoader(this.draco);
     this.raycaster=new THREE.Raycaster();this.pointer=new THREE.Vector2();this.labels=[];
@@ -47,7 +49,7 @@ export class WhaleWorld {
     try {
       const gltf=await this.loader.loadAsync(assetRegistry[id].path);
       if(this.disposed){disposeTree(gltf.scene);return;}
-      const root=prepareModel(gltf.scene,id);
+      const root=refineMaterials(prepareModel(gltf.scene,id));
       this.loaded.set(id,root);this.group.add(root);this.canvas.dataset.loaded=String(this.loaded.size);this.onLoad(id);this.invalidate();
     } catch(error){if(!this.disposed){this.canvas.dataset.assetError=id;this.onError(error,id);}}
     finally{this.pending.delete(id);}

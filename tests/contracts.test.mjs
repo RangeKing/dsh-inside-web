@@ -147,3 +147,12 @@ test('homepage footnotes cite audited rc.1 snapshots at valid lines; preset tabl
    if(note.lines){const [a,b=a]=note.lines.split('-').map(Number);assert.ok(a>=1&&b>=a&&b<=bytes.toString('utf8').split('\n').length,note.id);}}
  for(const row of PRESETS)assert.equal(row.length,5);
 });
+
+test('material refinement swaps named finishes to physical materials and keeps batching references',async()=>{
+ const THREE=await import('three');const {refineMaterials}=await import('../src/materials.js');
+ const hull=new THREE.MeshStandardMaterial({name:'MAT_HULL_DARK',color:0x112233}),other=new THREE.MeshStandardMaterial({name:'CUSTOM'});
+ const root=new THREE.Group();root.add(new THREE.Mesh(new THREE.BoxGeometry(),hull),new THREE.Mesh(new THREE.BoxGeometry(),hull),new THREE.Mesh(new THREE.BoxGeometry(),other));root.userData.materials=[hull,other];
+ refineMaterials(root);const [a,b,c]=root.children.map(m=>m.material);
+ assert.ok(a.isMeshPhysicalMaterial);assert.equal(a,b,'shared source stays shared');assert.equal(a.color.getHex(),0x112233);assert.equal(c,other);
+ assert.deepEqual(root.userData.materials,[a,other]);
+});
