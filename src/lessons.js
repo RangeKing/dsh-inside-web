@@ -24,7 +24,7 @@ export const loopSteps=[
 export const autoReview='@deepseek-ai/dsh-experimental-auto-review';
 export const installSteps=[
  ['查看包','Inspect','安装前先读包信息：名称、版本、是不是组合包。这一步什么都不装。','Before anything installs, read the package: name, version, and whether it declares a bundle.'],
- ['安装','Install','插件管理器调用 pnpm 把包装进 profile。新装的组合包默认启用。','Plugin Manager runs pnpm to add the package to the profile. A new bundle is enabled by default.'],
+ ['安装','Install','插件管理器先查它声明的 DSH 版本，不兼容就在下载前拒绝；兼容才调用 pnpm 装进 profile。新装的组合包默认启用。','Plugin Manager first checks the DSH version the package declares and refuses before downloading if it is incompatible; otherwise pnpm adds it to the profile. A new bundle is enabled by default.'],
  ['生效','Apply','开了 HMR，配置立即重载；没开，正在运行的组合要等重启才换。','With HMR on, the configuration reloads right away. Without it, the running composition changes on restart.'],
  ['选用','Choose it','装上只是多了一个选项。你在当前会话的权限选择器里选 Auto review，它才开始工作。','Installing only adds an option. It starts working once you pick Auto review in this session’s permission picker.'],
  ['自动审查','Review the call','还是那次 edit：执行前，当前模型先评估这次调用，获准后以 Full access 执行。','The same edit call: before it runs, the current model assesses it; an allowed call executes with Full access.'],

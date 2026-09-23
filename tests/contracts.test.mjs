@@ -140,10 +140,10 @@ test('install lesson separates inspect, install, apply, choose, review, disable,
  const rolled=state(7.999,'bundle').position;rolled.forEach((v,i)=>assert.ok(Math.abs(v-outside[i])<1e-3,'failed install returns to the pre-install state'));
 });
 
-test('homepage footnotes cite audited 0010283 snapshots at valid lines; preset table has four columns',async()=>{
- const {NOTES,PRESETS}=await import('../src/home-content.js');const registry=json('docs/upstream-0010283/registry.json');
- assert.equal(registry.commit,'00102833dfaee1da9f48a3a8eae9d34005a75218');
- for(const note of NOTES){const entry=registry.files.find(f=>f.path===note.path);assert.ok(entry,note.path);const bytes=readFileSync('docs/upstream-0010283/'+note.path);assert.equal(createHash('sha256').update(bytes).digest('hex'),entry.sha256);
+test('homepage footnotes cite audited rc.1 snapshots at valid lines; preset table has four columns',async()=>{
+ const {NOTES,PRESETS}=await import('../src/home-content.js');const registry=json('docs/upstream-0.1.7-rc.1/registry.json');
+ assert.equal(registry.commit,'46a7f68b0922371ce7144b668b90e377d8e799f4');
+ for(const note of NOTES){const entry=registry.files.find(f=>f.path===note.path);assert.ok(entry,note.path);const bytes=readFileSync('docs/upstream-0.1.7-rc.1/'+note.path);assert.equal(createHash('sha256').update(bytes).digest('hex'),entry.sha256);
    if(note.lines){const [a,b=a]=note.lines.split('-').map(Number);assert.ok(a>=1&&b>=a&&b<=bytes.toString('utf8').split('\n').length,note.id);}}
  for(const row of PRESETS)assert.equal(row.length,5);
 });

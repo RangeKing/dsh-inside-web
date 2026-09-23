@@ -60,3 +60,18 @@
 | 预设能力组合 | packages/bundle/web-app/presets/{minimal,standard,ptc,cordis}.patch.yml | 文件已迁移，四预设组成基本不变；Standard 的 plugin_manager 仍关闭，Creator 在存在 profile 上下文时开启。首页对照表按新路径引用。 |
 
 未迁移项：八案例 `reviewedCommit` 与服务表仍为 `ddefc45`；0010283 下 capability-seams、agent-loop、tools、session 等文件均有改动，本轮只核对上表所列行，没有逐行复核案例。
+
+## 2026-09-24 升级到 0.1.7-rc.1
+
+`dsh-v0.1.7-rc.1` 于 2026-09-23 发布，提交 `46a7f68b0922371ce7144b668b90e377d8e799f4`，比 `0010283` 新 156 个提交。首页引用的 28 份快照逐一对比：9 份有改动，其余内容相同，全部复制到 `upstream-0.1.7-rc.1/` 并重算哈希（`registry.json` 的 `changedSince0010283` 标出改动项）。首页脚注、预设对照表与插件章节改为锁定 rc.1。
+
+| 改动文件 | 对首页的影响 |
+|---|---|
+| plugin-manager/README.md、README.zh.md | 新增“版本兼容性与豁免”（README.md:61-67）：点名软件包的安装在 pnpm 运行前检查 DSH peer，不兼容时下载前拒绝。安装步骤加上这一句。其余主张仍成立，行号有移动：默认启用与停用保留依赖 :40，HMR :14，失败回滚与可选组合包不可卸载 :54，移除先卸载 :92，逐次审批与沙箱外运行 :31。 |
+| docs/capability-seams.md | `ctx.llm` 行移到 :579，三个提供方不变。 |
+| app-boot/src/profile.ts | 不兼容且未豁免的组合包在加载时跳过；OPTIONAL_BUNDLES 列表不变。 |
+| ui-plugin-manager README 与 locales | Beta 标签改名为 Experimental；新增 GitHub 不可达时改用国内镜像的提示。安装引导示例仍是 `@deepseek-ai/dsh-experimental-auto-review`。 |
+| ui-agent-preset locales | 选择器标签 Beta → Experimental；四个预设名称不变。 |
+| auto-review/package.json | 版本号 0.1.7-alpha.2 → 0.1.7-rc.1；README 未变。 |
+
+发布说明中与首页相关的条目（插件管理页支持安装、配置、启停和运行时卸载；实验性 Auto review；可选插件启动失败不影响其余插件）与上述源码一致，没有推翻现有表述。八个案例与服务表仍锁定 `ddefc45`，本次未迁移。

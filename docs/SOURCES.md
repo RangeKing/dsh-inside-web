@@ -11,15 +11,16 @@ Current teaching baseline: DeepSeek Harness `0.1.6-alpha.2`, commit `ddefc45fbc7
 - [File tools](https://github.com/deepseek-ai/deepseek-harness/blob/ddefc45fbc7f8e46dd73185e68295696d1297887/packages/fs/tool-fs/README.md)
 - [Compaction](https://github.com/deepseek-ai/deepseek-harness/blob/ddefc45fbc7f8e46dd73185e68295696d1297887/packages/compaction/compaction-basic/README.md)
 
-Homepage plugin lifecycle, request thread and preset table: rechecked at `0010283` (dsh-v0.1.7-alpha.2) on 2026-09-23; snapshots in `upstream-0010283/`.
+Homepage plugin lifecycle, request thread, preset table and footnotes: pinned to `dsh-v0.1.7-rc.1` (`46a7f68`), checked 2026-09-24; snapshots in `upstream-0.1.7-rc.1/` (the earlier 0010283 audit remains in `upstream-0010283/`).
 
-- [Plugin Manager (0010283)](https://github.com/deepseek-ai/deepseek-harness/blob/00102833dfaee1da9f48a3a8eae9d34005a75218/packages/boot/plugin-manager/README.md)
-- [Auto review (experimental)](https://github.com/deepseek-ai/deepseek-harness/blob/00102833dfaee1da9f48a3a8eae9d34005a75218/packages/experimental/auto-review/README.md)
-- [Plugin page](https://github.com/deepseek-ai/deepseek-harness/blob/00102833dfaee1da9f48a3a8eae9d34005a75218/packages/client/ui-plugin-manager/README.md)
-- [HMR](https://github.com/deepseek-ai/deepseek-harness/blob/00102833dfaee1da9f48a3a8eae9d34005a75218/packages/boot/hmr/README.md)
-- [Optional bundles](https://github.com/deepseek-ai/deepseek-harness/blob/00102833dfaee1da9f48a3a8eae9d34005a75218/packages/boot/app-boot/src/profile.ts)
-- [Presets (web-app bundle)](https://github.com/deepseek-ai/deepseek-harness/blob/00102833dfaee1da9f48a3a8eae9d34005a75218/packages/bundle/web-app/presets/standard.patch.yml)
-- [File tools (0010283)](https://github.com/deepseek-ai/deepseek-harness/blob/00102833dfaee1da9f48a3a8eae9d34005a75218/packages/fs/tool-fs/README.md)
+- [Plugin Manager (rc.1)](https://github.com/deepseek-ai/deepseek-harness/blob/46a7f68b0922371ce7144b668b90e377d8e799f4/packages/boot/plugin-manager/README.md)
+- [Auto review (experimental)](https://github.com/deepseek-ai/deepseek-harness/blob/46a7f68b0922371ce7144b668b90e377d8e799f4/packages/experimental/auto-review/README.md)
+- [Plugin page](https://github.com/deepseek-ai/deepseek-harness/blob/46a7f68b0922371ce7144b668b90e377d8e799f4/packages/client/ui-plugin-manager/README.md)
+- [HMR](https://github.com/deepseek-ai/deepseek-harness/blob/46a7f68b0922371ce7144b668b90e377d8e799f4/packages/boot/hmr/README.md)
+- [Optional bundles](https://github.com/deepseek-ai/deepseek-harness/blob/46a7f68b0922371ce7144b668b90e377d8e799f4/packages/boot/app-boot/src/profile.ts)
+- [Presets (web-app bundle)](https://github.com/deepseek-ai/deepseek-harness/blob/46a7f68b0922371ce7144b668b90e377d8e799f4/packages/bundle/web-app/presets/standard.patch.yml)
+- [File tools](https://github.com/deepseek-ai/deepseek-harness/blob/46a7f68b0922371ce7144b668b90e377d8e799f4/packages/fs/tool-fs/README.md)
+- [Release notes](https://github.com/deepseek-ai/deepseek-harness/releases/tag/dsh-v0.1.7-rc.1)
 
 The case-by-case audit and distinction between current package contracts and stale generated catalog descriptions are in `UPSTREAM_AUDIT.md`. Raw snapshots and hashes are in `upstream/registry.json`. Each teaching step records its source path and an actual line range.
 
