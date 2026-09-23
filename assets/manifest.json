@@ -4,8 +4,8 @@
       "id": "orca_hull",
       "path": "assets/models/orca_hull.glb",
       "source": "/Users/rangeking/Code/dsh-inside/assets/production/01-orca_hull/orca_hull.glb",
-      "sha256": "5dbec85c6cea482fa5fbf756392cf3e505ac24a8a5c80805afabeb472ef9330e",
-      "bytes": 11097068,
+      "sha256": "c6fd55ffcbc8752cfa5bf5c8c3e2811f5e49dd434e5e12631c28455ec08215fe",
+      "bytes": 585572,
       "licenseStatus": "external redistribution not yet verified; local reference reuse",
       "units": "meters",
       "axes": "X right, Y up, Z nose",
@@ -601,14 +601,23 @@
           },
           "independentLightBanks": 5
         }
+      },
+      "refinement": {
+        "date": "2026-09-24",
+        "script": "scripts/blender/refine_models.py",
+        "blender": "5.2.1 LTS",
+        "inputSha256": "5dbec85c6cea482fa5fbf756392cf3e505ac24a8a5c80805afabeb472ef9330e",
+        "bevelSegments": 3,
+        "triangles": 62584,
+        "notes": "Welded, smooth-by-angle normals, angle-limited bevel with weighted normals on hard-surface parts. Hull texture atlas replaced by MAT_HULL_DARK / MAT_IVORY face zones sampled from it; textures removed."
       }
     },
     {
       "id": "agent_loop",
       "path": "assets/models/agent_loop.glb",
       "source": "/Users/rangeking/Code/dsh-inside/assets/production/02-agent_loop/agent_loop.glb",
-      "sha256": "e8bdf6f012ae1b3e0ced8f7fde182bb0e707615e5122ecbb2091b46b89848b73",
-      "bytes": 30812,
+      "sha256": "1f320ccb75a9577d24641b4d4daac8650b980219113b0554500365a45833ff37",
+      "bytes": 45444,
       "licenseStatus": "external redistribution not yet verified; local reference reuse",
       "units": "meters",
       "axes": "X right, Y up, Z nose",
@@ -758,14 +767,23 @@
           "dciMetrology": "passed"
         },
         "sha256": "e8bdf6f012ae1b3e0ced8f7fde182bb0e707615e5122ecbb2091b46b89848b73"
+      },
+      "refinement": {
+        "date": "2026-09-24",
+        "script": "scripts/blender/refine_models.py",
+        "blender": "5.2.1 LTS",
+        "inputSha256": "e8bdf6f012ae1b3e0ced8f7fde182bb0e707615e5122ecbb2091b46b89848b73",
+        "bevelSegments": 3,
+        "triangles": 6552,
+        "notes": "Welded, smooth-by-angle normals, angle-limited bevel with weighted normals on hard-surface parts."
       }
     },
     {
       "id": "session_spine",
       "path": "assets/models/session_spine.glb",
       "source": "/Users/rangeking/Code/dsh-inside/assets/production/03-session_spine/session_spine.glb",
-      "sha256": "ec9574c73f090b8e996145079d765751dd8d520eff4b53a3095fb88590f684e8",
-      "bytes": 148648,
+      "sha256": "2700a464b6989a68373cd83556116c6dafd07608ed782397c222bcd18b45e574",
+      "bytes": 204988,
       "licenseStatus": "external redistribution not yet verified; local reference reuse",
       "units": "meters",
       "axes": "X right, Y up, Z nose",
@@ -985,6 +1003,15 @@
           "dciMetrology": "passed"
         },
         "sha256": "ec9574c73f090b8e996145079d765751dd8d520eff4b53a3095fb88590f684e8"
+      },
+      "refinement": {
+        "date": "2026-09-24",
+        "script": "scripts/blender/refine_models.py",
+        "blender": "5.2.1 LTS",
+        "inputSha256": "ec9574c73f090b8e996145079d765751dd8d520eff4b53a3095fb88590f684e8",
+        "bevelSegments": 2,
+        "triangles": 13292,
+        "notes": "Welded, smooth-by-angle normals, angle-limited bevel with weighted normals on hard-surface parts."
       }
     },
     {
@@ -1104,8 +1131,8 @@
       "id": "tool_registry",
       "path": "assets/models/tool_registry.glb",
       "source": "/Users/rangeking/Code/dsh-inside/assets/production/05-tool_registry/tool_registry.glb",
-      "sha256": "033a8c5a6505af47463e54809f5225acf9492a4f493dc0778a076f5bebd9ce17",
-      "bytes": 75300,
+      "sha256": "2004d11b29c9ec8e51e4a41dad81799736de2a6e71d8427eb3f53ddb63318463",
+      "bytes": 114412,
       "licenseStatus": "external redistribution not yet verified; local reference reuse",
       "units": "meters",
       "axes": "X right, Y up, Z nose",
@@ -1460,6 +1487,15 @@
           "dciMetrology": "passed"
         },
         "sha256": "033a8c5a6505af47463e54809f5225acf9492a4f493dc0778a076f5bebd9ce17"
+      },
+      "refinement": {
+        "date": "2026-09-24",
+        "script": "scripts/blender/refine_models.py",
+        "blender": "5.2.1 LTS",
+        "inputSha256": "033a8c5a6505af47463e54809f5225acf9492a4f493dc0778a076f5bebd9ce17",
+        "bevelSegments": 2,
+        "triangles": 10316,
+        "notes": "Welded, smooth-by-angle normals, angle-limited bevel with weighted normals on hard-surface parts."
       }
     },
     {
@@ -1899,8 +1935,8 @@
       "id": "capability_seam",
       "path": "assets/models/capability_seam.glb",
       "source": "/Users/rangeking/Code/dsh-inside/assets/production/08-capability_seam/capability_seam.glb",
-      "sha256": "f84c1f3915ae7c8ef56c6b92814ed7d842f7213459cacc80cf2b046dd227a680",
-      "bytes": 34892,
+      "sha256": "3641c1ed8accc27ea5de3fc7b1fdc4861ba100380771ddb6dca08a2982a59ee4",
+      "bytes": 53252,
       "licenseStatus": "external redistribution not yet verified; local reference reuse",
       "units": "meters",
       "axes": "X right, Y up, Z nose",
@@ -2110,14 +2146,23 @@
           "dciMetrology": "passed"
         },
         "sha256": "f84c1f3915ae7c8ef56c6b92814ed7d842f7213459cacc80cf2b046dd227a680"
+      },
+      "refinement": {
+        "date": "2026-09-24",
+        "script": "scripts/blender/refine_models.py",
+        "blender": "5.2.1 LTS",
+        "inputSha256": "f84c1f3915ae7c8ef56c6b92814ed7d842f7213459cacc80cf2b046dd227a680",
+        "bevelSegments": 3,
+        "triangles": 4944,
+        "notes": "Welded, smooth-by-angle normals, angle-limited bevel with weighted normals on hard-surface parts."
       }
     },
     {
       "id": "subagent_orca",
       "path": "assets/models/subagent_orca.glb",
       "source": "/Users/rangeking/Code/dsh-inside/assets/production/09-subagent_orca/subagent_orca.glb",
-      "sha256": "e168ca151f897c13069bd818a3491f7ff3141aa48fbcbb1c2e653edeffb5c3d7",
-      "bytes": 68268,
+      "sha256": "2fa1224b147481b46676fe3c016b37ee8b63777ea2308be50747e44ccf3c25df",
+      "bytes": 86592,
       "licenseStatus": "external redistribution not yet verified; local reference reuse",
       "units": "meters",
       "axes": "X right, Y up, Z nose",
@@ -2380,14 +2425,23 @@
           "dciMetrology": "passed"
         },
         "sha256": "e168ca151f897c13069bd818a3491f7ff3141aa48fbcbb1c2e653edeffb5c3d7"
+      },
+      "refinement": {
+        "date": "2026-09-24",
+        "script": "scripts/blender/refine_models.py",
+        "blender": "5.2.1 LTS",
+        "inputSha256": "e168ca151f897c13069bd818a3491f7ff3141aa48fbcbb1c2e653edeffb5c3d7",
+        "bevelSegments": 3,
+        "triangles": 12102,
+        "notes": "Welded, smooth-by-angle normals, angle-limited bevel with weighted normals on hard-surface parts."
       }
     },
     {
       "id": "cordis_extension",
       "path": "assets/models/cordis_extension.glb",
       "source": "/Users/rangeking/Code/dsh-inside/assets/production/10-cordis_extension/cordis_extension.glb",
-      "sha256": "e0feb02664499a199eeeb017ba610472ddc2e6bb6cbfb42421d8ca10b1e91210",
-      "bytes": 32716,
+      "sha256": "aa49dd9e53e7eddb8f678c0b8888992e478112436c4abd596b39aee3c7a52630",
+      "bytes": 50016,
       "licenseStatus": "external redistribution not yet verified; local reference reuse",
       "units": "meters",
       "axes": "X right, Y up, Z nose",
@@ -2566,14 +2620,23 @@
           "dciMetrology": "passed"
         },
         "sha256": "e0feb02664499a199eeeb017ba610472ddc2e6bb6cbfb42421d8ca10b1e91210"
+      },
+      "refinement": {
+        "date": "2026-09-24",
+        "script": "scripts/blender/refine_models.py",
+        "blender": "5.2.1 LTS",
+        "inputSha256": "e0feb02664499a199eeeb017ba610472ddc2e6bb6cbfb42421d8ca10b1e91210",
+        "bevelSegments": 3,
+        "triangles": 5336,
+        "notes": "Welded, smooth-by-angle normals, angle-limited bevel with weighted normals on hard-surface parts."
       }
     },
     {
       "id": "llm_core",
       "path": "assets/models/llm_core.glb",
       "source": "/Users/rangeking/Code/dsh-inside/assets/production/11-llm_core/llm_core.glb",
-      "sha256": "75a5e9b4f34b83284cd429fbe8094cdb17fe39917ae72994c44603280c036860",
-      "bytes": 37236,
+      "sha256": "241e9855c31e6c17602a2354b205b442e34b610ce4e7e432c42273617c343381",
+      "bytes": 48040,
       "licenseStatus": "external redistribution not yet verified; local reference reuse",
       "units": "meters",
       "axes": "X right, Y up, Z nose",
@@ -2785,6 +2848,15 @@
           "dciMetrology": "passed"
         },
         "sha256": "75a5e9b4f34b83284cd429fbe8094cdb17fe39917ae72994c44603280c036860"
+      },
+      "refinement": {
+        "date": "2026-09-24",
+        "script": "scripts/blender/refine_models.py",
+        "blender": "5.2.1 LTS",
+        "inputSha256": "75a5e9b4f34b83284cd429fbe8094cdb17fe39917ae72994c44603280c036860",
+        "bevelSegments": 3,
+        "triangles": 4604,
+        "notes": "Welded, smooth-by-angle normals, angle-limited bevel with weighted normals on hard-surface parts."
       }
     },
     {
@@ -2966,8 +3038,8 @@
       "id": "compaction_chamber",
       "path": "assets/models/compaction_chamber.glb",
       "source": "/Users/rangeking/Code/dsh-inside/assets/production/13-compaction_chamber/compaction_chamber.glb",
-      "sha256": "e58c61d654d6b9c5221738aac806caf9286d81e09baa7ec9bb309ecbcabb7f49",
-      "bytes": 41884,
+      "sha256": "5410fbeb83f0fb8112ea66b76f94443a3a9d7f1639ac3e1f6ada32db3f0bd91b",
+      "bytes": 63412,
       "licenseStatus": "external redistribution not yet verified; local reference reuse",
       "units": "meters",
       "axes": "X right, Y up, Z nose",
@@ -3123,6 +3195,15 @@
           "dciMetrology": "passed"
         },
         "sha256": "e58c61d654d6b9c5221738aac806caf9286d81e09baa7ec9bb309ecbcabb7f49"
+      },
+      "refinement": {
+        "date": "2026-09-24",
+        "script": "scripts/blender/refine_models.py",
+        "blender": "5.2.1 LTS",
+        "inputSha256": "e58c61d654d6b9c5221738aac806caf9286d81e09baa7ec9bb309ecbcabb7f49",
+        "bevelSegments": 3,
+        "triangles": 8368,
+        "notes": "Welded, smooth-by-angle normals, angle-limited bevel with weighted normals on hard-surface parts."
       }
     },
     {
@@ -4440,8 +4521,8 @@
       "id": "job_drone",
       "path": "assets/models/job_drone.glb",
       "source": "/Users/rangeking/Code/dsh-inside/assets/production/20-job_drone/job_drone.glb",
-      "sha256": "ac9c31aa5420201dfafee4c04bd0b1c33a5c0a6f0040bd3ee284504d81570e62",
-      "bytes": 14148,
+      "sha256": "2a7bb9654ebb55788ccb0dfdd797301cea2c88662b02844c87165a3cb15c24e3",
+      "bytes": 18044,
       "licenseStatus": "external redistribution not yet verified; local reference reuse",
       "units": "meters",
       "axes": "X right, Y up, Z nose",
@@ -4565,14 +4646,23 @@
           "dciMetrology": "passed"
         },
         "sha256": "ac9c31aa5420201dfafee4c04bd0b1c33a5c0a6f0040bd3ee284504d81570e62"
+      },
+      "refinement": {
+        "date": "2026-09-24",
+        "script": "scripts/blender/refine_models.py",
+        "blender": "5.2.1 LTS",
+        "inputSha256": "ac9c31aa5420201dfafee4c04bd0b1c33a5c0a6f0040bd3ee284504d81570e62",
+        "bevelSegments": 3,
+        "triangles": 1528,
+        "notes": "Welded, smooth-by-angle normals, angle-limited bevel with weighted normals on hard-surface parts."
       }
     },
     {
       "id": "approval_airlock",
       "path": "assets/models/approval_airlock.glb",
       "source": "/Users/rangeking/Code/dsh-inside/assets/production/21-approval_airlock/approval_airlock.glb",
-      "sha256": "752844071f2dc539b061e4eec62445aa476fb0ab5867e100e5f3c3152a1a3dc7",
-      "bytes": 36296,
+      "sha256": "989b7822b000ba98fe53f384577d5a4cb5a149fc90562486890be666db728af7",
+      "bytes": 54708,
       "licenseStatus": "external redistribution not yet verified; local reference reuse",
       "units": "meters",
       "axes": "X right, Y up, Z nose",
@@ -4741,6 +4831,15 @@
           "dciMetrology": "passed"
         },
         "sha256": "752844071f2dc539b061e4eec62445aa476fb0ab5867e100e5f3c3152a1a3dc7"
+      },
+      "refinement": {
+        "date": "2026-09-24",
+        "script": "scripts/blender/refine_models.py",
+        "blender": "5.2.1 LTS",
+        "inputSha256": "752844071f2dc539b061e4eec62445aa476fb0ab5867e100e5f3c3152a1a3dc7",
+        "bevelSegments": 3,
+        "triangles": 6540,
+        "notes": "Welded, smooth-by-angle normals, angle-limited bevel with weighted normals on hard-surface parts."
       }
     },
     {
@@ -5862,8 +5961,8 @@
       "id": "support_node",
       "path": "assets/models/support_node.glb",
       "source": "/Users/rangeking/Code/dsh-inside/assets/production/28-support_node/support_node.glb",
-      "sha256": "2cbae29d1e08ac197e8b3de69fbc7adb1480ef61b3f2da7d6a14cccf9df16531",
-      "bytes": 5832,
+      "sha256": "48b541c52ff38c28deaac20a86138faf55e0d2751db5af0fad38e1a8e9c9693c",
+      "bytes": 8528,
       "licenseStatus": "external redistribution not yet verified; local reference reuse",
       "units": "meters",
       "axes": "X right, Y up, Z nose",
@@ -5949,14 +6048,23 @@
           "dciMetrology": "passed"
         },
         "sha256": "2cbae29d1e08ac197e8b3de69fbc7adb1480ef61b3f2da7d6a14cccf9df16531"
+      },
+      "refinement": {
+        "date": "2026-09-24",
+        "script": "scripts/blender/refine_models.py",
+        "blender": "5.2.1 LTS",
+        "inputSha256": "2cbae29d1e08ac197e8b3de69fbc7adb1480ef61b3f2da7d6a14cccf9df16531",
+        "bevelSegments": 3,
+        "triangles": 768,
+        "notes": "Welded, smooth-by-angle normals, angle-limited bevel with weighted normals on hard-surface parts."
       }
     },
     {
       "id": "cordis_workshop",
       "path": "assets/models/cordis_workshop.glb",
       "source": "/Users/rangeking/Code/dsh-inside/assets/production/33-cordis_workshop/cordis_workshop.glb",
-      "sha256": "8193b493cc017fdf6f48410b4325c589863b87bea10a01a5d7dfbbb598896978",
-      "bytes": 94584,
+      "sha256": "87d480f3ade263e9620d7299552738f9b5a561e279c1b0d036c268a087204783",
+      "bytes": 138504,
       "licenseStatus": "external redistribution not yet verified; local reference reuse",
       "units": "meters",
       "axes": "X right, Y up, Z nose",
@@ -6355,6 +6463,15 @@
           "dciMetrology": "passed"
         },
         "sha256": "8193b493cc017fdf6f48410b4325c589863b87bea10a01a5d7dfbbb598896978"
+      },
+      "refinement": {
+        "date": "2026-09-24",
+        "script": "scripts/blender/refine_models.py",
+        "blender": "5.2.1 LTS",
+        "inputSha256": "8193b493cc017fdf6f48410b4325c589863b87bea10a01a5d7dfbbb598896978",
+        "bevelSegments": 3,
+        "triangles": 14136,
+        "notes": "Welded, smooth-by-angle normals, angle-limited bevel with weighted normals on hard-surface parts."
       }
     }
   ],

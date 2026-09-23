@@ -26,7 +26,7 @@ The case-by-case audit and distinction between current package contracts and sta
 
 The 82 service rows are parsed from the pinned official catalog. Their visual grouping and physical locations are original teaching design. Task scripts, sample outputs, pixel-office roles, and playback timing are illustrative, not measurements or recordings of a live run.
 
-Models: copied from the local dsh-inside production assets. See `../assets/manifest.json` for source paths, hashes and metadata. Public redistribution rights remain unverified.
+Models: copied from the local dsh-inside production assets. The hull and 12 homepage modules were then refined with `scripts/blender/refine_models.py` (2026-09-24): welded vertices, rebuilt smooth normals, angle-limited bevels on hard-surface parts, and the hull's baked texture atlas replaced by dark / ivory material zones sampled from it. `../assets/manifest.json` records each input hash, output hash, bevel segments and triangle count. Public redistribution rights remain unverified; refinement does not change that status.
 
 Pixel office: generated with the built-in imagegen tool for this project. `../assets/pixel-office.png` is illustration, not evidence of an official DSH interface. The website draws labels and state separately.
 
