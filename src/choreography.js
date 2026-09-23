@@ -1,9 +1,9 @@
 // Pure, seek-safe scene poses: the same scroll position always produces the same scene.
 const clamp=x=>Math.max(0,Math.min(1,x));
 const ease=x=>{x=clamp(x);return x*x*(3-2*x);};
-// m: mobile camera distance factor; lesson shots also fit the viewport aspect.
+// m / my: mobile camera distance factor and vertical offset; lesson shots also fit the viewport aspect.
 const shots=[
- {camera:[40,12.4,24.8],screen:[0,.03],yaw:-.20,open:0,m:1.95},
+ {camera:[40,12.4,24.8],screen:[0,.03],yaw:-.20,open:0,m:1.95,my:.03},
  {camera:[0,14,27],screen:[0,-.01],yaw:0,open:1,m:2.35,lesson:true},
  {camera:[0,16,29],screen:[0,-.01],yaw:0,open:1,m:1.95,lesson:true},
  {camera:[27,18,23],screen:[-.235,0],yaw:.32,open:1,m:1.55},
@@ -20,6 +20,6 @@ export function scenePose(chapter,progress,{reduced=false,mobile=false,aspect=.5
  const scale=shot=>!mobile?1:shot.m*(shot.lesson?Math.max(.55,Math.min(1,1/aspect/2.05)):1);
  const camera=a.camera.map((v,i)=>lerp(v*scale(a),b.camera[i]*scale(b)));
  const shift=shot=>side&&shot.lesson?[-.2,shot.screen[1]]:shot.screen,screen=shift(a).map((v,i)=>lerp(v,shift(b)[i]));
- if(mobile){screen[0]=0;screen[1]=-.055;}
+ if(mobile){screen[0]=0;screen[1]=lerp(a.my??-.055,b.my??-.055);}
  return {camera,screen,yaw:lerp(a.yaw,b.yaw),open:lerp(a.open,b.open),blend,index};
 }

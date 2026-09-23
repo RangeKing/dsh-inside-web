@@ -148,7 +148,7 @@ html[data-theme="light"] .lesson-package span{color:#9a5b00;border-color:#9a5b00
 /* ---- 2026-09-23 product-page polish: spacing, hierarchy and compact lesson controls. ---- */
 #ocean-home{--radius-l:28px;--radius-m:18px}
 .chapter-copy :is(h1,h2){text-wrap:balance}
-.hero-sub{position:absolute;left:50%;top:calc(11.5% + clamp(92px,8vw,124px));transform:translateX(-50%);width:min(620px,88%);margin:0;text-align:center;font-size:19px;line-height:1.55;letter-spacing:-.01em;color:var(--sea-muted);pointer-events:auto}
+.hero-sub{position:absolute;left:50%;top:var(--hero-sub-top,calc(11.5% + clamp(92px,8vw,124px)));transform:translateX(-50%);width:min(620px,88%);margin:0;text-align:center;font-size:19px;line-height:1.55;letter-spacing:-.01em;color:var(--sea-muted);pointer-events:auto}
 .chapter-0 .chapter-detail{bottom:5.5%;width:min(640px,92%)}
 .chapter-0 .request-bubble{margin-bottom:18px}
 .chapter-0 .ocean-actions{margin-top:0;gap:22px}
@@ -186,7 +186,7 @@ html[data-theme="light"] .lesson-package span{color:#9a5b00;border-color:#9a5b00
 .company-feature h2{line-height:1.08}
 @media(max-height:820px) and (min-width:761px){.hero-sub{font-size:16px}.chapter-0 .chapter-detail{bottom:4%}#ocean-home .lesson-current p{font-size:13px}}
 @media(max-width:760px){
- .hero-sub{top:calc(13% + 118px);font-size:14px;width:88%}
+ .hero-sub{font-size:14px;width:88%}
  .chapter-0 .chapter-detail{bottom:88px;width:92%}
  .chapter-0 .ocean-actions{flex-wrap:wrap;gap:10px 18px}.ocean-actions .hull-drag{order:3;width:100%;justify-content:center}
  .dive-button,html[data-theme="light"] .dive-button{font-size:14px;padding:10px 18px}
@@ -214,3 +214,5 @@ html[data-theme="light"] .lesson-package span{color:#9a5b00;border-color:#9a5b00
  :is(.chapter-1,.chapter-4) .chapter-sources{justify-content:flex-start}
  #ocean-home :is([data-lesson="1"],[data-lesson="4"]) .lesson-current{text-align:left}
 }
+.chapter-0 h1{font-size:clamp(56px,6.2vw,96px)}
+@media(max-width:760px){.chapter-0 h1,html[lang="en"] .chapter-0 h1{font-size:40px;letter-spacing:-1.5px}}

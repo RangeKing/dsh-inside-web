@@ -51,7 +51,8 @@
   "只定位日志能够支持的相关服务，不补画日志中没有的调用。": "Show only services supported by the log; do not invent unrecorded calls.",
   "全部": "All",
   "任务与资料": "Task & materials",
-  "小事一桩。": "Small tasks.",
-  "里面，大有文章。": "A whole world inside.",
-  "八个生活案例，从一句需求，到一件做完的事。跟着大肥鲸，看看每一步怎么发生。": "Eight everyday stories. From a simple request to a finished task. Follow the Big Whale, one step at a time."
+  "八件小事。": "Eight small jobs.",
+  "一步一步拆开看。": "Taken apart, step by step.",
+  "分账、整理照片、改共享采购单……每个案例都从一句话开始，逐步展示 DSH 读了什么、调了哪个工具、在哪里停下来等你。": "Splitting a bill, sorting photos, editing a shared shopping list: each case starts from one request and shows, step by step, what DSH read, which tool it called, and where it stopped to wait for you.",
+  "同一个模型，换一套预设，能用的工具就不一样。": "Same model, different preset, different tools."
 }
