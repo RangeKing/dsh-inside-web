@@ -17,3 +17,12 @@
 - Added a local, cents-accurate calculator preview for the dynamic-tool case; no dynamic DSH code runs in the page.
 - Preserved 70-service atlas, nine model families, arrows, moving payloads, offline local traces, language/theme preferences and 3D camera controls.
 - Added 151 unique acceptance checks bound to the delivered build hash.
+
+## 2026-09-24
+
+- Homepage follows one request ("check what's missing from my shopping list, and add it") from the hero to a final answer card.
+- New chapter 05 on installing and removing a plugin, using the experimental Auto review bundle; optional bundles can only be switched off.
+- Local nav, highlight cards, numbered source notes, preset comparison table, drag-to-open shell.
+- Copy rewritten in zh/en for the homepage, case library and case steps (steps: wording only, see docs/COPY_DIFF.md).
+- Homepage sources pinned to dsh-v0.1.7-rc.1.
+- Physical materials and new light rig; hull and 12 modules refined in Blender, hull texture atlas replaced by material zones.
