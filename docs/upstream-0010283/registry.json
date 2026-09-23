@@ -1,0 +1,174 @@
+{
+ "commit": "00102833dfaee1da9f48a3a8eae9d34005a75218",
+ "checkedAt": "2026-09-23",
+ "files": [
+  {
+   "path": "docs/architecture.md",
+   "status": "fetched",
+   "sha256": "9badc6e4472a985361bc20a5fcd5b5420c63f14a91ae03a204de424947bcc909",
+   "lines": 164
+  },
+  {
+   "path": "docs/capability-seams.md",
+   "status": "fetched",
+   "sha256": "40f1a1cb21b9920df60e01d921e5df6105ded92f53accd0ce8ded808e9e7ec65",
+   "lines": 660
+  },
+  {
+   "path": "docs/subsystems/session-projection.md",
+   "status": "fetched",
+   "sha256": "dac9f68590978614831fd43db91f726ee63ad90dd47c6a378e43fc159f9c610c",
+   "lines": 356
+  },
+  {
+   "path": "docs/subsystems/session.md",
+   "status": "fetched",
+   "sha256": "00d674bf076fbb4f968f0684ed5e2afd301c6333f24869d7887ea2b1c53f6ff1",
+   "lines": 1286
+  },
+  {
+   "path": "docs/subsystems/subagent.md",
+   "status": "fetched",
+   "sha256": "a7d2c32465e66ab64c59611846641850ae1285e8b4e20f480cd0f32f37f08d5b",
+   "lines": 764
+  },
+  {
+   "path": "docs/tool-execution-pipeline.md",
+   "status": "fetched",
+   "sha256": "c939f3f6e84e462b6bbcb10eecbff61345c2e693b2d321eebe8a98da9af3a07b",
+   "lines": 65
+  },
+  {
+   "path": "packages/boot/app-boot/src/profile.ts",
+   "status": "fetched",
+   "sha256": "5885f1b38be1bea3045a3ede4c3c4acacf14f85174c3fc4fc7c1895de7078a7a",
+   "lines": 717
+  },
+  {
+   "path": "packages/boot/hmr/README.md",
+   "status": "fetched",
+   "sha256": "dfaee392acdb4469bf6607253d3b65faa3db6e4c8c93a5173b5075a8a99ed148",
+   "lines": 95
+  },
+  {
+   "path": "packages/boot/plugin-manager/README.md",
+   "status": "fetched",
+   "sha256": "c0aaf856efa5087b6f9b18eaa72ce9fc30e5aa16d9704d9bc803d33659c396fe",
+   "lines": 145
+  },
+  {
+   "path": "packages/boot/plugin-manager/README.zh.md",
+   "status": "fetched",
+   "sha256": "13d1c1601d325febc73907486ff1e040188abfac6eeaaa55523c198db4452221",
+   "lines": 145
+  },
+  {
+   "path": "packages/bundle/web-app/cordis.patch.yml",
+   "status": "fetched",
+   "sha256": "e6acb583f603d60ea971b54cc3f30777e03f059542b81a81e129e8b34eb8869a",
+   "lines": 544
+  },
+  {
+   "path": "packages/bundle/web-app/presets/cordis.patch.yml",
+   "status": "fetched",
+   "sha256": "b74d71901b692f11111d02d20072735b2fe94b74744ee7e3bfdc5d972f1a3aa5",
+   "lines": 154
+  },
+  {
+   "path": "packages/bundle/web-app/presets/minimal.patch.yml",
+   "status": "fetched",
+   "sha256": "71ef887f43d8a37931ba3b014e5b116f79018af873d06625fb22e280a23c1dfc",
+   "lines": 61
+  },
+  {
+   "path": "packages/bundle/web-app/presets/ptc.patch.yml",
+   "status": "fetched",
+   "sha256": "8fcf6b04dce7c2c76fab925129f6ac9b05ebb546840508e6cde72aa2da991832",
+   "lines": 152
+  },
+  {
+   "path": "packages/bundle/web-app/presets/standard.patch.yml",
+   "status": "fetched",
+   "sha256": "6cd2f197737fc94a45e487d0bb57869461dd6f392d45f6429b576e75d973eda8",
+   "lines": 146
+  },
+  {
+   "path": "packages/client/ui-agent-preset/src/client/locales.ts",
+   "status": "fetched",
+   "sha256": "4f2468d945d5dafce5906b61787def38362a75c458dcbb45baf2f0819713c7ff",
+   "lines": 125
+  },
+  {
+   "path": "packages/client/ui-plugin-manager/README.md",
+   "status": "fetched",
+   "sha256": "ffd36395474024a9b37b4809c1a56b238ef6eeb08530fb1168d78f699b6bbbaf",
+   "lines": 158
+  },
+  {
+   "path": "packages/client/ui-plugin-manager/README.zh.md",
+   "status": "fetched",
+   "sha256": "2c49d85abe5952004cd3c2d46eb929d23baacd70fa39b915de14d36177b0e3b9",
+   "lines": 158
+  },
+  {
+   "path": "packages/client/ui-plugin-manager/src/client/locales.ts",
+   "status": "fetched",
+   "sha256": "827c7968235c1bf21f16ef96ee86b67313e9150df60f63ab1809dc151ff4023a",
+   "lines": 366
+  },
+  {
+   "path": "packages/compaction/compaction-basic/README.md",
+   "status": "fetched",
+   "sha256": "7873a3a3307b6c3fbfb41a32696390fdd1effc6a157285c111d6e011a242f075",
+   "lines": 261
+  },
+  {
+   "path": "packages/core/agent-loop/README.md",
+   "status": "fetched",
+   "sha256": "0e53217019667b7f2610f9afdab400d73666d6ff9b3f21ccbfd705ac97fe9459",
+   "lines": 212
+  },
+  {
+   "path": "packages/core/agent-loop/src/agent.ts",
+   "status": "fetched",
+   "sha256": "d77f9602338483bfaed22e3c897fab8933c7eac829d2ba944ae60b78deba7a12",
+   "lines": 647
+  },
+  {
+   "path": "packages/experimental/auto-review/README.md",
+   "status": "fetched",
+   "sha256": "7cacd509376d7476072a111aa3bb8fd0628c574b7e573594895197b91cda9c60",
+   "lines": 129
+  },
+  {
+   "path": "packages/experimental/auto-review/README.zh.md",
+   "status": "fetched",
+   "sha256": "cf7e048bca5c771ee292c58555bf7bb25962955803b4e24cc672afd4fb069f6e",
+   "lines": 129
+  },
+  {
+   "path": "packages/experimental/auto-review/package.json",
+   "status": "fetched",
+   "sha256": "6d40a14de1d3e8ec496bb41033e26ae592eefa9185b9dac3a7df7a0f7920000d",
+   "lines": 80
+  },
+  {
+   "path": "packages/extensions/tool-cordis/README.md",
+   "status": "fetched",
+   "sha256": "82e8ee08c273f9db5bcd992203f8b951936fe5e69fc1fcf07daca1ef352aedc3",
+   "lines": 77
+  },
+  {
+   "path": "packages/fs/tool-fs/README.md",
+   "status": "fetched",
+   "sha256": "6229b33ea2e35d56d00d73153e3289256b9c825623829fa134bfb60870dee28a",
+   "lines": 259
+  },
+  {
+   "path": "packages/preset/agent-preset-registry/src/display.ts",
+   "status": "fetched",
+   "sha256": "0233d9615cde02a8f86c19afd4ea6c4bd88789b733c18f8266aa04b5f81cace3",
+   "lines": 73
+  }
+ ]
+}
