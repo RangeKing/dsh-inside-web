@@ -3,10 +3,10 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { HomeScene } from './home-scene.js';
-import { LessonPlayer } from './lessons.js';
+import { LessonPlayer, lessonChapters } from './lessons.js';
 import { ScrollMotion } from './motion.js';
 import { prepareModel } from './prepare-model.js';
-import { scenePose } from './choreography.js';
+import { scenePose, lastChapter } from './choreography.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { assetRegistry, moduleDefinitions, moduleForService } from './assets.js';
 
@@ -27,7 +27,7 @@ export class WhaleWorld {
     this.controls=new OrbitControls(this.camera,canvas);this.controls.enableDamping=false;this.controls.minDistance=15;this.controls.maxDistance=65;this.controls.enablePan=false;this.controls.enabled=!home;canvas.style.touchAction=home?'pan-y':'none';
     this.scene.add(new THREE.HemisphereLight(0xc6daf7,0x10131c,home?.65:3));
     for(const [color,intensity,pos] of [[0xffecd0,5,[10,25,16]],[0x44d9dd,4,[-20,8,-10]],[0xa1bfff,3,[0,3,-25]]]){const l=new THREE.DirectionalLight(home?(color===0xffecd0?0xf5f5ff:0x9db9e3):color,home?intensity*.55:intensity);l.position.set(...pos);this.scene.add(l);}
-    this.group=new THREE.Group();this.scene.add(this.group);this.homeScene=home?new HomeScene(this.scene,this.loaded,moduleDefinitions):null;this.teaching=this.homeScene?.teaching;this.players={1:new LessonPlayer(1),2:new LessonPlayer(2)};this.providerIndex=1;
+    this.group=new THREE.Group();this.scene.add(this.group);this.homeScene=home?new HomeScene(this.scene,this.loaded,moduleDefinitions):null;this.teaching=this.homeScene?.teaching;this.players=Object.fromEntries(lessonChapters.map(c=>[c,new LessonPlayer(c)]));this.providerIndex=1;
     this.draco=new DRACOLoader().setDecoderPath('build/draco/');this.loader=new GLTFLoader().setDRACOLoader(this.draco);
     this.raycaster=new THREE.Raycaster();this.pointer=new THREE.Vector2();this.labels=[];
     this.flowLine=new THREE.Line(new THREE.BufferGeometry().setAttribute('position',new THREE.BufferAttribute(new Float32Array(6),3)),new THREE.LineBasicMaterial({color:0xf4bd8e,transparent:true,opacity:.6}));this.flowLine.visible=false;this.scene.add(this.flowLine);
@@ -54,7 +54,7 @@ export class WhaleWorld {
   }
   resize(){if(this.disposed)return;const rect=this.canvas.parentElement.getBoundingClientRect();if(!rect.width||!rect.height)return;this.width=rect.width;this.height=rect.height;this.renderer.setSize(rect.width,rect.height,false);this.camera.aspect=rect.width/rect.height;if(!this.home){const fit=Math.max(.72,.88/this.camera.aspect);this.camera.position.sub(this.controls.target).multiplyScalar(fit/(this.caseFit||1)).add(this.controls.target);this.caseFit=fit;this.controls.maxDistance=65*fit;this.controls.minDistance=15*fit;}this.camera.updateProjectionMatrix();this.invalidate();}
   setState(next){if(next.stepKey&&next.stepKey!==this.state.stepKey)this.stepStarted=performance.now();Object.assign(this.state,next);if(this.home&&next.chapter!==undefined)this.motion.set(next.chapter+(next.progress||0),!this.frames||this.state.reduced);if(this.state.visible){const ids=this.home?this.homeScene.required:[...new Set(this.state.active.map(moduleForService).concat(this.state.selected?moduleForService(this.state.selected):[]))];ids.forEach(id=>this.load(id));}this.invalidate();}
-  chapterAssets(chapter=this.state.chapter){return [[],['agent_loop','llm_core','session_spine','tool_registry','capability_seam'],['agent_loop','llm_core','tool_registry','session_spine'],['capability_seam','tool_registry','approval_airlock'],['session_spine','compaction_chamber'],['subagent_orca','job_drone','cordis_workshop'],['agent_loop','llm_core','tool_registry','subagent_orca','cordis_workshop']][chapter]||[];}
+  chapterAssets(chapter=this.state.chapter){return [[],['agent_loop','llm_core','session_spine','tool_registry','capability_seam'],['agent_loop','llm_core','tool_registry','session_spine'],['capability_seam','tool_registry','approval_airlock'],['cordis_workshop','cordis_extension','agent_loop','approval_airlock','tool_registry'],['session_spine','compaction_chamber'],['subagent_orca','job_drone','cordis_workshop'],['agent_loop','llm_core','tool_registry','subagent_orca','cordis_workshop']][chapter]||[];}
   lessonAction(action,step,provider){const player=this.players[this.state.chapter];if(!player)return;if(provider!==undefined){this.providerIndex=provider;player.seek(0);player.playing=true;}else if(action==='toggle')player.toggle();else if(action==='seek')player.seek(step);else if(action==='next')player.seek(Math.floor(player.position)+1);else if(action==='previous')player.seek(Math.floor(player.position)-1);this.invalidate();}
   setExplore(value){this.controls.enabled=value;this.canvas.style.touchAction=value?'none':'pan-y';if(!value)this.reset();}
   reset(){this.camera.position.set(28,18,34).multiplyScalar(this.caseFit||1);this.controls.target.set(0,0,0);this.controls.update();this.invalidate();}
@@ -64,16 +64,16 @@ export class WhaleWorld {
     if(this.disposed||!this.state.visible||document.hidden||!this.width)return;
     if(this.state.playing&&time-(this.lastDraw||0)<32){this.invalidate();return;}this.lastDraw=time;
     const {reduced,theme,explosion}=this.state;
-    const position=this.home?this.motion.advance(time,reduced):0,chapter=this.home?Math.min(6,Math.floor(position)):this.state.chapter,progress=this.home?position-chapter:this.state.progress;
+    const position=this.home?this.motion.advance(time,reduced):0,chapter=this.home?Math.min(lastChapter,Math.floor(position)):this.state.chapter,progress=this.home?position-chapter:this.state.progress;
     const pose=this.home?scenePose(chapter,progress,{reduced,mobile:this.width<760,aspect:this.width/this.height}):null;
     let lessonFrame=null;
-    const isLesson=this.home&&(chapter===1||chapter===2);
+    const isLesson=this.home&&!!this.players[chapter];
     if(this.home){
       if(!this.controls.enabled){this.camera.position.set(...pose.camera);this.camera.lookAt(0,0,0);this.camera.setViewOffset(this.width,this.height,-this.width*pose.screen[0],-this.height*pose.screen[1],this.width,this.height);}else this.camera.clearViewOffset();
       this.group.rotation.y=0;
       if(this.activeLesson!==chapter){for(const player of Object.values(this.players))player.time=null;this.activeLesson=chapter;}
       if(isLesson&&!this.controls.enabled)this.players[chapter].advance(time,reduced);
-      lessonFrame=this.homeScene.update(chapter,pose,{1:this.players[1].position,2:this.players[2].position},this.providerIndex,this.width<760);
+      lessonFrame=this.homeScene.update(chapter,pose,Object.fromEntries(Object.entries(this.players).map(([c,p])=>[c,p.position])),this.providerIndex,this.width<760);
     }else{
       const active=[...new Set(this.state.active.map(moduleForService).concat(this.state.selected?moduleForService(this.state.selected):[]))],open=Math.max(.35,explosion),hull=this.loaded.get('orca_hull');
       if(hull){hull.visible=true;

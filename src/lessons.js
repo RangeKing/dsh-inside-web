@@ -20,7 +20,21 @@ export const loopSteps=[
  ['再问一轮','Request again','模型带着文件内容再看一遍：缺番茄和鸡蛋，于是发起 edit。一次任务可以有多个 Step。','With the files in view, the model finds tomatoes and eggs missing and calls edit. One turn can hold several steps.'],
  ['输出答案','Deliver the answer','edit 那一轮往返和前面相同，这里略过。结果回来后，模型回复：已补上番茄和鸡蛋。','The edit round trip works like the read one and is skipped here. Then the model replies: tomatoes and eggs added.'],
 ];
-export const lessonFor=chapter=>chapter===1?pluginSteps:chapter===2?loopSteps:null;
+// Auto review is the upstream install-guide example: a published experimental bundle, installed explicitly.
+export const autoReview='@deepseek-ai/dsh-experimental-auto-review';
+export const installSteps=[
+ ['查看包','Inspect','安装前先读包信息：名称、版本、是不是组合包。这一步什么都不装。','Before anything installs, read the package: name, version, and whether it declares a bundle.'],
+ ['安装','Install','插件管理器调用 pnpm 把包装进 profile。新装的组合包默认启用。','Plugin Manager runs pnpm to add the package to the profile. A new bundle is enabled by default.'],
+ ['生效','Apply','开了 HMR，配置立即重载；没开，正在运行的组合要等重启才换。','With HMR on, the configuration reloads right away. Without it, the running composition changes on restart.'],
+ ['选用','Choose it','装上只是多了一个选项。你在当前会话的权限选择器里选 Auto review，它才开始工作。','Installing only adds an option. It starts working once you pick Auto review in this session’s permission picker.'],
+ ['自动审查','Review the call','还是那次 edit：执行前，当前模型先评估这次调用，获准后以 Full access 执行。','The same edit call: before it runs, the current model assesses it; an allowed call executes with Full access.'],
+ ['停用','Disable','关掉组合包，依赖仍留在 profile 里，这一层随之卸下。本例改回“写入前先问你”。','Switch the bundle off: the dependency stays in the profile, the layer unloads, and this example goes back to asking before writes.'],
+ ['移除','Remove','移除时先取消选中、卸载运行中的插件，再让 pnpm 删除依赖。','Removal deselects and unloads the bundle first, then pnpm removes the dependency.'],
+ ['装失败了','If install fails','安装失败或被取消，package.json 和 pnpm-lock.yaml 恢复成安装前的样子。','A failed or cancelled install puts package.json and pnpm-lock.yaml back as they were.'],
+];
+const lessons={1:pluginSteps,2:loopSteps,4:installSteps};
+export const lessonChapters=Object.keys(lessons).map(Number);
+export const lessonFor=chapter=>lessons[chapter]||null;
 export const stepDuration=2.2;
 export function lessonFrame(chapter,position){const steps=lessonFor(chapter);if(!steps)return null;const p=Math.max(0,Math.min(steps.length-.0001,position));return {step:Math.floor(p),t:p%1,steps};}
 export class LessonPlayer {

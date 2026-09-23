@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import vm from 'node:vm';
 import { Timer } from '../src/timer.js';
-import { scenePose } from '../src/choreography.js';
+import { scenePose, lastChapter } from '../src/choreography.js';
 
 const json=p=>JSON.parse(readFileSync(p,'utf8'));
 const catalog=json('data/catalog.json'),scenarios=json('data/scenarios.json'),assets=json('assets/manifest.json');
@@ -48,15 +48,16 @@ test('built inline scripts parse, use local resources, and expose no forbidden p
 
 // Boundaries matter more than a particular aesthetic camera coordinate.
 test('scroll choreography is continuous, reversible, and static with reduced motion',()=>{
-  for(let chapter=0;chapter<6;chapter++){
+  assert.equal(lastChapter,7);
+  for(let chapter=0;chapter<lastChapter;chapter++){
     const end=scenePose(chapter,1),start=scenePose(chapter+1,0);
     for(const key of ['camera','screen'])end[key].forEach((v,i)=>assert.ok(Math.abs(v-start[key][i])<1e-9));
     assert.ok(Math.abs(end.open-start.open)<1e-9);
   }
   const sample=scenePose(2,.83);scenePose(5,.9);assert.deepEqual(scenePose(2,.83),sample);
   assert.deepEqual(scenePose(3,0,{reduced:true}),scenePose(3,1,{reduced:true}));
-  for(let chapter=0;chapter<7;chapter++)assert.equal(scenePose(chapter,.9,{mobile:true}).screen[0],0);
-  assert.equal(scenePose(0,0).open,0);assert.equal(scenePose(6,1).open,0);
+  for(let chapter=0;chapter<=lastChapter;chapter++)assert.equal(scenePose(chapter,.9,{mobile:true}).screen[0],0);
+  assert.equal(scenePose(0,0).open,0);assert.equal(scenePose(lastChapter,1).open,0);
 });
 
 test('coarse wheel events produce intermediate frames and settle consistently at 60/120 Hz',async()=>{
@@ -102,14 +103,14 @@ test('plugin choices implement the actual model contract; replacement keeps cons
 
 test('every home scene morphs continuously and reversibly, with one identity per shared component',async()=>{
  const THREE=await import('three');const {HomeScene}=await import('../src/home-scene.js');
- const ids=['orca_hull','agent_loop','llm_core','session_spine','tool_registry','capability_seam','approval_airlock','compaction_chamber','subagent_orca','job_drone','cordis_workshop','support_node'];
+ const ids=['orca_hull','agent_loop','llm_core','session_spine','tool_registry','capability_seam','approval_airlock','compaction_chamber','subagent_orca','job_drone','cordis_workshop','cordis_extension','support_node'];
  const loaded=new Map(ids.map(id=>{const root=new THREE.Group();root.add(new THREE.Mesh(new THREE.BoxGeometry(2,2,2),new THREE.MeshStandardMaterial()));root.userData.panels=[];return [id,root];}));
  const definitions=ids.map((id,i)=>[id,id,id,'purpose','purpose',[],[i-5,1,i%3]]),home=new HomeScene(new THREE.Scene(),loaded,definitions);
- function sample(p,mobile=false){const chapter=Math.min(6,Math.floor(p)),pose=scenePose(chapter,p%1,{mobile,aspect:.6});home.update(chapter,pose,{1:0,2:0},1,mobile);return new Map([...home.states].map(([key,s])=>[key,{opacity:s.opacity,position:s.position.slice(),scale:s.scale,quaternion:s.quaternion.toArray(),root:s.root}]));}
+ function sample(p,mobile=false){const chapter=Math.min(lastChapter,Math.floor(p)),pose=scenePose(chapter,p%1,{mobile,aspect:.6});home.update(chapter,pose,{1:0,2:0,4:0},1,mobile);return new Map([...home.states].map(([key,s])=>[key,{opacity:s.opacity,position:s.position.slice(),scale:s.scale,quaternion:s.quaternion.toArray(),root:s.root}]));}
  function close(a,b,tolerance){for(const key of new Set([...a.keys(),...b.keys()])){const x=a.get(key),y=b.get(key);assert.ok(Math.abs((x?.opacity||0)-(y?.opacity||0))<tolerance,`opacity ${key}`);if(x?.opacity>.01&&y?.opacity>.01){assert.equal(x.root,y.root,`identity ${key}`);for(const prop of ['position','quaternion'])x[prop].forEach((v,i)=>assert.ok(Math.abs(v-y[prop][i])<tolerance,`${prop} ${key}`));assert.ok(Math.abs(x.scale-y.scale)<tolerance);}}}
- for(const mobile of [false,true])for(let chapter=0;chapter<6;chapter++){
+ for(const mobile of [false,true])for(let chapter=0;chapter<lastChapter;chapter++){
    // Check both the start of the dissolve and the chapter hand-off, including reversed seeks.
-   for(const p of [chapter+.66,chapter+1]){const a=sample(p-.00001,mobile),b=sample(p+.00001,mobile);close(a,b,.002);sample(6,mobile);close(a,sample(p-.00001,mobile),1e-10);}
+   for(const p of [chapter+.66,chapter+1]){const a=sample(p-.00001,mobile),b=sample(p+.00001,mobile);close(a,b,.002);sample(lastChapter,mobile);close(a,sample(p-.00001,mobile),1e-10);}
    const mid=sample(chapter+.83,mobile);assert.ok([...mid.values()].some(s=>s.opacity>.45),'no empty midpoint');
  }
  const plugins=sample(1),loop=sample(2);for(const id of ['agent_loop','llm_core','session_spine'])assert.equal(plugins.get(id).root,loop.get(id).root);
@@ -118,8 +119,23 @@ test('every home scene morphs continuously and reversibly, with one identity per
 });
 
 test('mobile camera scaling is interpolated before crossing into and out of teaching chapters',()=>{
- for(const aspect of [.46,.6,.95])for(let chapter=0;chapter<6;chapter++){
+ for(const aspect of [.46,.6,.95])for(let chapter=0;chapter<lastChapter;chapter++){
    const end=scenePose(chapter,1,{mobile:true,aspect}),start=scenePose(chapter+1,0,{mobile:true,aspect});
    end.camera.forEach((v,i)=>assert.ok(Math.abs(v-start.camera[i])<1e-10));
  }
+});
+
+test('install lesson separates inspect, install, apply, choose, review, disable, remove and rollback',async()=>{
+ const THREE=await import('three');const {TeachingScene}=await import('../src/teaching-scene.js');const {installSteps,autoReview}=await import('../src/lessons.js');
+ assert.equal(installSteps.length,8);assert.equal(autoReview,'@deepseek-ai/dsh-experimental-auto-review');
+ const loaded=new Map();for(const id of ['cordis_workshop','cordis_extension','agent_loop','approval_airlock','tool_registry']){const root=new THREE.Group();root.add(new THREE.Mesh(new THREE.BoxGeometry(),new THREE.MeshStandardMaterial()));loaded.set(id,root);}
+ const lesson=new TeachingScene(new THREE.Scene(),loaded),state=(p,role)=>lesson.sample(4,p).layout.get({bundle:'cordis_extension',airlock:'approval_airlock'}[role]);
+ const outside=state(0,'bundle').position,slot=state(3.5,'bundle').position;
+ assert.ok(Math.hypot(...outside.map((v,i)=>v-slot[i]))>8,'installed bundle sits in the harness, away from its package position');
+ assert.ok(state(0,'bundle').opacity<1&&state(3.5,'bundle').opacity===1&&state(3.5,'bundle').active,'inspection is not installation; choosing activates it');
+ lesson.update(4,4.5);assert.ok(lesson.paths[1].packet.visible||lesson.paths[2].packet.visible);assert.ok(!lesson.paths[3].packet.visible&&!lesson.paths[4].packet.visible,'reviewed call bypasses manual approval');
+ lesson.update(4,5.5);assert.ok(lesson.paths[3].packet.visible||lesson.paths[4].packet.visible);assert.ok(!lesson.paths[1].packet.visible,'disabled bundle no longer reviews');
+ assert.ok(state(5.5,'bundle').opacity>0&&state(5.5,'bundle').opacity<.5,'disabled bundle stays installed');
+ assert.ok(state(6.999,'bundle').opacity<.001,'removed bundle is gone');
+ const rolled=state(7.999,'bundle').position;rolled.forEach((v,i)=>assert.ok(Math.abs(v-outside[i])<1e-3,'failed install returns to the pre-install state'));
 });
