@@ -403,6 +403,63 @@ body[data-view="journey"] .stage{min-height:470px;height:clamp(470px,calc(100svh
 html[data-theme="light"] .lesson-package span{color:#9a5b00;border-color:#9a5b0066}
 .lesson-scrub{display:block;width:min(420px,100%);margin:0 auto 10px}
 .lesson-note{margin:8px auto 0;max-width:600px;font-size:11px;line-height:1.6;color:var(--sea-muted)}
+
+/* Local nav: appears once the hero hands over, like a product page sub-nav. */
+.local-nav{position:fixed;top:var(--header-height,64px);left:0;right:0;z-index:25;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 max(4vw,24px);background:var(--glass);border-bottom:1px solid var(--line);backdrop-filter:blur(22px) saturate(150%);opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .3s,transform .3s}
+.local-nav.shown{opacity:1;transform:none;pointer-events:auto}
+.local-title{font-size:17px;font-weight:600;letter-spacing:-.02em;color:var(--paper)}
+.local-links{display:flex;align-items:center;gap:18px}.local-links button{font-size:12px;color:var(--soft);padding:6px 0}.local-links button:hover{color:var(--paper)}
+.local-links .local-cta{background:var(--product-blue);color:#fff;padding:5px 13px;border-radius:20px}
+.exploring .local-nav{opacity:0;pointer-events:none}
+.chapter-0{height:260svh}
+.ocean-chapter:not(.chapter-0) .chapter-sticky{padding-top:0}
+/* Highlights sit over the hero model between the headline and the first camera move. */
+.hero-highlights{position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none;text-align:center}.hero-highlights ol{position:absolute;left:0;right:0;bottom:max(96px,11%);pointer-events:auto}
+.hero-highlights h2{position:absolute;left:0;right:0;top:9%;font-size:clamp(40px,4.4vw,68px);font-weight:650;letter-spacing:-.05em;margin:0;color:var(--paper)}
+.hero-highlights ol{list-style:none;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(4,minmax(0,250px));justify-content:center;gap:14px}
+.hero-highlights button{width:100%;height:100%;display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;padding:20px 20px 18px;border-radius:24px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(18px)}
+.hero-highlights button:hover{border-color:var(--soft)}
+.highlight-index{font:11px var(--mono);color:var(--sea-muted)}
+.hero-highlights strong{font-size:19px;letter-spacing:-.02em;color:var(--paper)}
+.hero-highlights button>span:not(.highlight-index){font-size:13px;line-height:1.55;color:var(--soft)}
+.hero-highlights em{margin-top:auto;font-style:normal;font-size:12px;color:var(--blue)}
+/* Footnote references and the notes list. */
+.chapter-sources{display:flex;align-items:center;gap:4px;margin:14px 0 0;font-size:11px;color:var(--sea-muted)}
+.chapter-1 .chapter-sources,.chapter-4 .chapter-sources,.chapter-6 .chapter-sources{justify-content:center}
+.chapter-sources button,.preset-foot button{min-width:18px;height:18px;border-radius:9px;font:10px var(--mono);line-height:18px;color:var(--soft);background:var(--study-raise);vertical-align:super;margin-left:3px}
+.chapter-sources button:hover,.preset-foot button:hover{color:var(--paper)}
+.home-notes{position:relative;padding:90px max(7vw,24px) 60px;background:var(--surface);border-top:1px solid var(--line)}
+.home-notes h2{font-size:21px;margin:0 0 20px;letter-spacing:-.02em}
+.home-notes ol{margin:0;padding-left:22px;display:grid;gap:10px;max-width:980px}
+.home-notes li{font-size:12px;line-height:1.7;color:var(--soft);border-radius:8px}
+.home-notes li:focus{outline:2px solid #2997ff;outline-offset:4px}
+.home-notes a{font:11px var(--mono);color:var(--blue);overflow-wrap:anywhere}
+.note-back{font-size:11px;color:var(--muted);margin-left:6px}
+.home-notes>p{font-size:11px;color:var(--muted);margin:22px 0 0;max-width:760px}
+/* Preset comparison table. */
+.preset-compare{position:relative;padding:130px max(7vw,24px) 110px;background:var(--bg);text-align:center}
+.preset-compare h2{font-size:clamp(40px,4.6vw,68px);font-weight:650;letter-spacing:-.05em;line-height:1.1;margin:12px 0 18px}
+.preset-lead{max-width:620px;margin:0 auto 48px;font-size:17px;line-height:1.65;color:var(--soft)}
+.preset-scroll{overflow-x:auto;max-width:980px;margin:0 auto;-webkit-overflow-scrolling:touch}
+.preset-compare table{width:100%;min-width:620px;border-collapse:collapse;font-size:14px}
+.preset-compare th,.preset-compare td{padding:14px 12px;border-bottom:1px solid var(--line);text-align:center}
+.preset-compare thead th{font-size:17px;font-weight:600;color:var(--paper);padding-bottom:18px}
+.preset-compare tbody th{text-align:left;font-weight:500;color:var(--soft)}
+.preset-compare td{color:var(--soft);font-size:12px}.preset-compare .yes{color:var(--paper);font-size:10px}.preset-compare .no{color:var(--muted)}
+.preset-foot{font-size:12px;color:var(--muted);margin:22px auto 0;max-width:640px}
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media(max-width:760px){
+ .local-nav{top:58px;height:44px;padding:0 16px}.local-title{font-size:14px}.local-links{gap:12px}.local-links button:not(.local-cta):not([data-jump="highlights"]){display:none}
+ .chapter-0{height:250svh}
+ .hero-highlights h2{font-size:36px;top:8%}.hero-highlights ol{bottom:96px}
+ .hero-highlights ol{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;justify-content:flex-start;padding:0 16px 6px;gap:10px}
+ .hero-highlights li{flex:0 0 74%;scroll-snap-align:center}.hero-highlights button{padding:16px}
+ .preset-compare{padding:90px 16px 70px}.preset-lead{font-size:14px;margin-bottom:30px}.preset-compare table{font-size:12px}.preset-compare th,.preset-compare td{padding:11px 8px}
+ .home-notes{padding:60px 16px 40px}
+}
+.hull-drag{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 auto 18px;font-size:12px;color:var(--sea-muted)}
+.hull-drag input{width:180px;margin:0}
+.model-unavailable .hull-drag,[data-graphics="off"] .hull-drag{display:none}
 </style></head>
 <body>
 <a class="skip-link" href="#inspector">跳到文字说明</a>
@@ -613,7 +670,7 @@ html[data-theme="light"] .lesson-package span{color:#9a5b00;border-color:#9a5b00
  function draw(ctx,id,x,y,size,color){const info=resolve(id);ctx.save();ctx.translate(x-size/2,y-size/2);ctx.scale(size/24,size/24);ctx.strokeStyle=color;ctx.lineWidth=1.65;ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke(paths[info.glyph]);ctx.restore();}
  window.DSHIdentity={resolve,svg,draw,specs};
 })();
-</script><script src="build/experience.js?v=367de5e66a70"></script><script>/* Learning paths and preset comparison, original UI. No external dependencies. */
+</script><script src="build/experience.js?v=c9948b6e3ef7"></script><script>/* Learning paths and preset comparison, original UI. No external dependencies. */
 (() => {
  'use strict';
  const E=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

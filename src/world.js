@@ -56,6 +56,7 @@ export class WhaleWorld {
   setState(next){if(next.stepKey&&next.stepKey!==this.state.stepKey)this.stepStarted=performance.now();Object.assign(this.state,next);if(this.home&&next.chapter!==undefined)this.motion.set(next.chapter+(next.progress||0),!this.frames||this.state.reduced);if(this.state.visible){const ids=this.home?this.homeScene.required:[...new Set(this.state.active.map(moduleForService).concat(this.state.selected?moduleForService(this.state.selected):[]))];ids.forEach(id=>this.load(id));}this.invalidate();}
   chapterAssets(chapter=this.state.chapter){return [[],['agent_loop','llm_core','session_spine','tool_registry','capability_seam'],['agent_loop','llm_core','tool_registry','session_spine'],['capability_seam','tool_registry','approval_airlock'],['cordis_workshop','cordis_extension','agent_loop','approval_airlock','tool_registry'],['session_spine','compaction_chamber'],['subagent_orca','job_drone','cordis_workshop'],['agent_loop','llm_core','tool_registry','subagent_orca','cordis_workshop']][chapter]||[];}
   lessonAction(action,step,provider){const player=this.players[this.state.chapter];if(!player)return;if(provider!==undefined){this.providerIndex=provider;player.seek(0);player.playing=true;}else if(action==='toggle')player.toggle();else if(action==='seek')player.seek(step);else if(action==='next')player.seek(Math.floor(player.position)+1);else if(action==='previous')player.seek(Math.floor(player.position)-1);this.invalidate();}
+  setReveal(value){if(!this.homeScene)return;this.homeScene.reveal=Math.max(0,Math.min(1,value));this.invalidate();}
   setExplore(value){this.controls.enabled=value;this.canvas.style.touchAction=value?'none':'pan-y';if(!value)this.reset();}
   reset(){this.camera.position.set(28,18,34).multiplyScalar(this.caseFit||1);this.controls.target.set(0,0,0);this.controls.update();this.invalidate();}
   top(){this.camera.position.set(.01,43,.01).multiplyScalar(this.caseFit||1);this.controls.target.set(0,0,0);this.controls.update();this.invalidate();}
@@ -65,7 +66,7 @@ export class WhaleWorld {
     if(this.state.playing&&time-(this.lastDraw||0)<32){this.invalidate();return;}this.lastDraw=time;
     const {reduced,theme,explosion}=this.state;
     const position=this.home?this.motion.advance(time,reduced):0,chapter=this.home?Math.min(lastChapter,Math.floor(position)):this.state.chapter,progress=this.home?position-chapter:this.state.progress;
-    const pose=this.home?scenePose(chapter,progress,{reduced,mobile:this.width<760,aspect:this.width/this.height}):null;
+    const pose=this.home?scenePose(chapter,progress,{reduced,mobile:this.width<760,aspect:this.width/this.height}):null;if(pose&&chapter===0&&this.homeScene.reveal>0)pose.open+=(1-pose.open)*this.homeScene.reveal;
     let lessonFrame=null;
     const isLesson=this.home&&!!this.players[chapter];
     if(this.home){
