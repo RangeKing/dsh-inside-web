@@ -12,13 +12,13 @@ export const pluginSteps=[
  ['继续调用','Call again','请求走相同接口；实现它的插件已经换了。','Requests use the same contract through the replacement provider.'],
 ];
 export const loopSteps=[
- ['接到输入','Receive input','用户：请读取采购单，告诉我还缺什么。','User: read the shopping list and tell me what is missing.'],
+ ['接到输入','Receive input','你：帮我看看采购单还缺什么，顺便把缺的补进去。','You: check what’s missing from my shopping list, and add it.'],
  ['准备上下文','Prepare context','读取会话记录，准备模型本轮能看到的消息。','Project the session record into messages for this model step.'],
- ['请求模型','Request the model','模型收到任务和上下文，返回一个工具调用。','The model receives the task and context, then returns a tool call.'],
- ['调用工具','Call a tool','先做策略检查；需要审批时先确认，再读取采购单。','Policy checks come first, including approval when required, before reading the list.'],
- ['结果回来','Return the result','工具结果写回会话，再交给执行循环。','The tool result is recorded and returned to the loop.'],
- ['再问一轮','Request again','携带新结果，再次请求模型。任务可以有多个 Step。','Request the model again with the new result. A turn may have several steps.'],
- ['输出答案','Deliver the answer','模型给出最终回复；这次任务才算完成。','The model gives its final answer, completing this turn.'],
+ ['请求模型','Request the model','模型还没看过文件，回复里不是答案，而是一个 read 调用。','The model has not seen the files, so it replies with a read call instead of an answer.'],
+ ['调用工具','Call a tool','工具先过策略检查，再读出采购单和周末菜单。','The call passes policy checks, then reads the shopping list and the weekend menu.'],
+ ['结果回来','Return the result','文件内容写进会话记录，交回执行循环。','The file contents are recorded in the session log and handed back to the loop.'],
+ ['再问一轮','Request again','模型带着文件内容再看一遍：缺番茄和鸡蛋，于是发起 edit。一次任务可以有多个 Step。','With the files in view, the model finds tomatoes and eggs missing and calls edit. One turn can hold several steps.'],
+ ['输出答案','Deliver the answer','edit 那一轮往返和前面相同，这里略过。结果回来后，模型回复：已补上番茄和鸡蛋。','The edit round trip works like the read one and is skipped here. Then the model replies: tomatoes and eggs added.'],
 ];
 export const lessonFor=chapter=>chapter===1?pluginSteps:chapter===2?loopSteps:null;
 export const stepDuration=2.2;

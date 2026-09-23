@@ -8,12 +8,12 @@ const definitions={
  old:{asset:'llm_core',size:3,label:['原模型适配插件','Original model adapter'],note:['提供方 A','Provider A']},
  next:{asset:'llm_core',size:3,label:['新模型适配插件','Replacement adapter'],note:['提供方 B','Provider B']},
  record:{asset:'session_spine',size:4,label:['会话记录插件','Session log plugin'],note:['保留输入与执行结果','Keeps inputs and results']},
- input:{asset:'support_node',size:1.3,label:['用户输入','User input'],note:['读取采购单','Read the shopping list']},
+ input:{asset:'support_node',size:1.3,label:['用户输入','User input'],note:['采购单还缺什么？','What’s missing from the list?']},
  loop:{asset:'agent_loop',size:3,label:['执行循环','Agent loop'],note:['组织下一步','Coordinates the next step']},
  model:{asset:'llm_core',size:3,label:['模型适配插件','Model adapter'],note:['发送请求，接收回复','Sends requests, receives replies']},
  tool:{asset:'tool_registry',size:3,label:['工具与检查','Tools & checks'],note:['通过必要检查后执行','Executes after required checks']},
  memory:{asset:'session_spine',size:3.4,label:['会话记录','Session log'],note:['上下文与工具结果','Context and tool results']},
- output:{asset:'support_node',size:1.3,label:['最终输出','Final answer'],note:['把结果交给用户','Delivers the result']},
+ output:{asset:'support_node',size:1.3,label:['最终输出','Final answer'],note:['已补上番茄和鸡蛋','Tomatoes and eggs added']},
 };
 const pluginPositions={consumer:[-7,0,0],port:[0,0,0],old:[3.2,0,0],next:[7,0,-6],record:[-7,0,-5]};
 const loopPositions={input:[-10,0,0],loop:[-4,0,0],memory:[-4,0,5],model:[3.5,0,-3.8],tool:[3.5,0,3.8],output:[10,0,0]};
