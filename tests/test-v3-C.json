@@ -1,0 +1,185 @@
+{
+  "version": "3.0.0",
+  "generated_at": "2026-09-05T05:36:44Z",
+  "build_sha256": "0b214c8e65946b71cde8ebba80f73c5c1891e32bb1d1c4131539f0cd9bd9d6fc",
+  "environment": {
+    "browser": "Chromium",
+    "loading": "set_content of exact standalone HTML",
+    "backend": "Canvas software 3D",
+    "live_DSH": false,
+    "model_calls": false
+  },
+  "summary": {
+    "passed": 39,
+    "failed": 0,
+    "total": 39
+  },
+  "not_tested": [
+    "hardware WebGL",
+    "Safari",
+    "Firefox",
+    "real DSH backend or live model execution"
+  ],
+  "checks": [
+    {
+      "name": "8 cases form ordered beginner-to-advanced curriculum",
+      "passed": true
+    },
+    {
+      "name": "Every case introduces materials, features, a question and an answer",
+      "passed": true
+    },
+    {
+      "name": "Old opaque price and discount examples removed from active cases",
+      "passed": true
+    },
+    {
+      "name": "Source identifiers retain the official role counts",
+      "passed": true
+    },
+    {
+      "name": "Every base and alternative stage has known services and valid animated endpoints",
+      "passed": true
+    },
+    {
+      "name": "Every teaching stage includes specific input, output and provenance",
+      "passed": true
+    },
+    {
+      "name": "Four independent meal routes are actually different",
+      "passed": true
+    },
+    {
+      "name": "Registration fixtures support 12 rows / 9 people / 3 duplicate IDs",
+      "passed": true
+    },
+    {
+      "name": "Venue and cost example arithmetic is internally consistent",
+      "passed": true
+    },
+    {
+      "name": "Lost and retained summary branches contain different evidence",
+      "passed": true
+    },
+    {
+      "name": "70 glyph identities retained",
+      "passed": true
+    },
+    {
+      "name": "9 distinct model-shape families retained",
+      "passed": true
+    },
+    {
+      "name": "All 70 top-plane icons render",
+      "passed": true
+    },
+    {
+      "name": "Teaching segment uses one arrow with explicit endpoints",
+      "passed": true
+    },
+    {
+      "name": "Packet moves on the actual 3D route during playback",
+      "passed": true,
+      "detail": {
+        "from": "0.120",
+        "to": "0.246"
+      }
+    },
+    {
+      "name": "Pause freezes the packet",
+      "passed": true
+    },
+    {
+      "name": "Reduced motion fixes the packet position",
+      "passed": true
+    },
+    {
+      "name": "Drag still orbits the 3D camera",
+      "passed": true
+    },
+    {
+      "name": "Wheel still zooms the 3D camera",
+      "passed": true
+    },
+    {
+      "name": "Layer separation still changes the renderer",
+      "passed": true
+    },
+    {
+      "name": "Language/theme preserve case, mode and position: en/light",
+      "passed": true
+    },
+    {
+      "name": "Language/theme preserve case, mode and position: zh/dark",
+      "passed": true
+    },
+    {
+      "name": "Language/theme preserve case, mode and position: en/dark",
+      "passed": true
+    },
+    {
+      "name": "Language/theme preserve case, mode and position: zh/light",
+      "passed": true
+    },
+    {
+      "name": "Changing language preserves active playback",
+      "passed": true
+    },
+    {
+      "name": "Seam focus retains declaration and call arrows",
+      "passed": true
+    },
+    {
+      "name": "Service filter preserved: seam",
+      "passed": true
+    },
+    {
+      "name": "Service filter preserved: core",
+      "passed": true
+    },
+    {
+      "name": "Service filter preserved: bundle",
+      "passed": true
+    },
+    {
+      "name": "Service filter preserved: all",
+      "passed": true
+    },
+    {
+      "name": "Chinese atlas search preserved",
+      "passed": true
+    },
+    {
+      "name": "English atlas search preserved",
+      "passed": true
+    },
+    {
+      "name": "Implementation selection remains diagram-only",
+      "passed": true
+    },
+    {
+      "name": "User trace imports without dropping unknown records",
+      "passed": true
+    },
+    {
+      "name": "Secret fields are redacted from the visible record",
+      "passed": true
+    },
+    {
+      "name": "Imported HTML stays inert text",
+      "passed": true
+    },
+    {
+      "name": "Trace mode does not invent full service call paths",
+      "passed": true
+    },
+    {
+      "name": "Unknown event remains visible",
+      "passed": true
+    },
+    {
+      "name": "Clear really removes trace data from page state",
+      "passed": true
+    }
+  ]
+}

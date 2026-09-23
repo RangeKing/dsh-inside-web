@@ -1,0 +1,49 @@
+{
+  "pass": true,
+  "viewport": "mobile",
+  "epsilon": 0.0001,
+  "boundaries": [
+    {
+      "boundary": 1,
+      "opacity": 2.594646855147431e-07,
+      "transform": 3.113576225732828e-07,
+      "camera": 1.7053992693761435e-05,
+      "reverseError": 0
+    },
+    {
+      "boundary": 2,
+      "opacity": 2.594646855147431e-07,
+      "transform": 2.594646854703342e-06,
+      "camera": 1.4990593705685677e-06,
+      "reverseError": 0
+    },
+    {
+      "boundary": 3,
+      "opacity": 2.594646855147431e-07,
+      "transform": 9.442211004184742e-07,
+      "camera": 1.1203535538380212e-05,
+      "reverseError": 0
+    },
+    {
+      "boundary": 4,
+      "opacity": 2.594646855147431e-07,
+      "transform": 3.113576225732828e-07,
+      "camera": 6.930876805927586e-06,
+      "reverseError": 0
+    },
+    {
+      "boundary": 5,
+      "opacity": 2.594646855147431e-07,
+      "transform": 3.113576225732828e-07,
+      "camera": 5.055201813513258e-06,
+      "reverseError": 0
+    },
+    {
+      "boundary": 6,
+      "opacity": 2.4389680441938566e-07,
+      "transform": 7.783940565442293e-07,
+      "camera": 6.528567825383283e-06,
+      "reverseError": 0
+    }
+  ]
+}

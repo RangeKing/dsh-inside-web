@@ -1,0 +1,13 @@
+{
+  "scenario": "Continuous cross-chapter composition; 10-Hz input",
+  "updates": 60,
+  "frames": 397,
+  "frameGapP50": 16.700000000000728,
+  "frameGapP95": 18.399999999999636,
+  "maxCameraVectorStep": 0.05446885133670144,
+  "drawCalls": 49,
+  "triangles": 12116,
+  "reducedIdleFrames": 0,
+  "hiddenFrames": 0,
+  "lifecyclePass": true
+}

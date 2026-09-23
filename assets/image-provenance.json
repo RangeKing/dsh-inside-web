@@ -1,0 +1,20 @@
+{
+  "assets": [
+    {
+      "path": "assets/pixel-office.png",
+      "kind": "generated educational illustration",
+      "generator": "OpenAI built-in imagegen tool",
+      "createdFor": "dsh-inside-web pixel AI company case",
+      "originalOutput": "/Users/rangeking/.codex/generated_images/01a0b4ef-8b5d-7aa2-a571-044eac1c380c/exec-abe9ec84-887f-454b-8816-312ac55a7ead.png",
+      "note": "Isometric underwater pixel office; HTML supplies characters, labels and teaching state. Not an official DSH screenshot.",
+      "sha256": "9b6c4a4213b1a083fe3a996502cdb36f777754e8376a2d46130eeb41fdee1f89"
+    },
+    {
+      "path": "assets/whale-poster.png",
+      "kind": "copied reference preview",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/01-orca_hull/preview_iso.png",
+      "note": "Exact byte copy; same external redistribution boundary as the GLB assets.",
+      "sha256": "c84f35c5810b981742a4a03d495d1aed8ca67f8ebd9ed12390551053579c9c8e"
+    }
+  ]
+}

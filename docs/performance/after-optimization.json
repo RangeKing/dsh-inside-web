@@ -1,0 +1,10 @@
+{
+  "scenario": "Same pre-lesson scene and 6-second 10-Hz input as before.json; measured before educational layout changes",
+  "updates": 60,
+  "frames": 391,
+  "frameGapP50": 16.7,
+  "frameGapP95": 18.6,
+  "maxCameraStep": 0.07679494144002774,
+  "drawCalls": 30,
+  "triangles": 59896
+}

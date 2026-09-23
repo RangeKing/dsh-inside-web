@@ -1,0 +1,1575 @@
+{
+  "meta": {
+    "name": "DSH Inside",
+    "repository": "deepseek-ai/deepseek-harness",
+    "commit": "ddefc45fbc7f8e46dd73185e68295696d1297887",
+    "version": "0.1.6-alpha.2",
+    "commitDate": "2026-09-17T13:19:19Z",
+    "reviewedAt": "2026-09-18",
+    "provenance": "官方 capability-seams 服务表逐项解析；八个案例对照当前包文档、预设配置与执行管线。空间位置、任务数据和动画为教学编排。"
+  },
+  "groups": [
+    {
+      "id": 0,
+      "name": "交互与入口",
+      "en": "INTERACTION",
+      "color": "#79a9ff",
+      "subtitle": "任务从哪里进入"
+    },
+    {
+      "id": 1,
+      "name": "上下文与记忆",
+      "en": "CONTEXT",
+      "color": "#b29bff",
+      "subtitle": "模型能看到什么"
+    },
+    {
+      "id": 2,
+      "name": "调度与模型",
+      "en": "ORCHESTRATION",
+      "color": "#6de3e0",
+      "subtitle": "决定下一步做什么"
+    },
+    {
+      "id": 3,
+      "name": "权限与边界",
+      "en": "BOUNDARIES",
+      "color": "#f2be7a",
+      "subtitle": "哪些操作可以执行"
+    },
+    {
+      "id": 4,
+      "name": "工具与执行",
+      "en": "EXECUTION",
+      "color": "#83d5ad",
+      "subtitle": "让动作真正发生"
+    },
+    {
+      "id": 5,
+      "name": "记录与扩展",
+      "en": "STATE & EXTENSIONS",
+      "color": "#93a6cf",
+      "subtitle": "保存过程，支持扩展"
+    }
+  ],
+  "services": [
+    {
+      "id": "hmr",
+      "role": "core",
+      "owner": "hmr",
+      "path": "packages/boot/hmr",
+      "implementations": [],
+      "consumers": [
+        "app-boot"
+      ],
+      "sourceLine": 540,
+      "docIndex": 68,
+      "upstreamNote": "Owns module and exact configuration watchers; application mutations share its queue and automatic reloads await the application file lock.",
+      "title": "配置热更新",
+      "group": 5,
+      "description": "由 hmr 插件提供的服务。具体接口与边界见官方说明。",
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。"
+    },
+    {
+      "id": "pluginManager",
+      "role": "core",
+      "owner": "plugin-manager",
+      "path": "packages/boot/plugin-manager",
+      "implementations": [],
+      "consumers": [
+        "plugin-manager",
+        "ui-settings-plugin-inventory"
+      ],
+      "sourceLine": 541,
+      "docIndex": 69,
+      "upstreamNote": "Shares profile package operations with the CLI and reports persisted and running state to Web and agent callers.",
+      "title": "插件管理",
+      "group": 5,
+      "description": "由 plugin-manager 插件提供的服务。具体接口与边界见官方说明。",
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。"
+    },
+    {
+      "id": "profileContext",
+      "role": "core",
+      "owner": "app-boot",
+      "path": "packages/boot/app-boot",
+      "implementations": [],
+      "consumers": [
+        "plugin-manager"
+      ],
+      "sourceLine": 542,
+      "docIndex": 70,
+      "upstreamNote": "The dsh launcher supplies data-only profile locations and composition inputs; reload scheduling belongs to dsh-hmr.",
+      "title": "启动配置",
+      "group": 5,
+      "description": "由 app-boot 插件提供的服务。具体接口与边界见官方说明。",
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。"
+    },
+    {
+      "id": "connection",
+      "role": "core",
+      "owner": "client-connection",
+      "path": "packages/client/connection",
+      "implementations": [],
+      "consumers": [
+        "api-gateway",
+        "host-frontend-static"
+      ],
+      "sourceLine": 543,
+      "docIndex": 71,
+      "upstreamNote": "Owns browser authentication and shared HTTP request dispatch; API adapters register endpoints and streams.",
+      "title": "浏览器连接",
+      "group": 5,
+      "description": "由 client-connection 插件提供的服务。具体接口与边界见官方说明。",
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。"
+    },
+    {
+      "id": "mcpResources",
+      "role": "seam",
+      "owner": "mcp-resources",
+      "path": "packages/mcp/mcp-resources",
+      "implementations": [
+        "mcp-client"
+      ],
+      "consumers": [
+        "mcp-resources"
+      ],
+      "sourceLine": 544,
+      "docIndex": 72,
+      "upstreamNote": "Connection-owned providers serve shared resource tools in the calling agent scope.",
+      "title": "MCP 资源",
+      "group": 5,
+      "description": "由 mcp-resources 插件提供的服务。具体接口与边界见官方说明。",
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。"
+    },
+    {
+      "id": "browserUse",
+      "role": "seam",
+      "owner": "browser-use",
+      "path": "packages/browser-use/browser-use",
+      "implementations": [
+        "experimental-browser-use-playwright-mcp",
+        "experimental-browser-use-chrome-devtools-mcp",
+        "experimental-browser-use-stagehand-native"
+      ],
+      "consumers": [
+        "experimental-browser-use-playwright-mcp",
+        "experimental-browser-use-chrome-devtools-mcp",
+        "experimental-browser-use-stagehand-native"
+      ],
+      "sourceLine": 545,
+      "docIndex": 73,
+      "upstreamNote": "One provider-owned name per service instance. Providers own their tools and browser resources per live Session; the shared service has no browser operation API.",
+      "title": "浏览器操作接口",
+      "group": 4,
+      "description": "由 browser-use 插件提供的服务。具体接口与边界见官方说明。",
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。"
+    },
+    {
+      "id": "computerUse",
+      "role": "seam",
+      "owner": "computer-use",
+      "path": "packages/computer-use/computer-use",
+      "implementations": [
+        "experimental-computer-use-cua-driver-mcp",
+        "experimental-computer-use-cua-driver-native"
+      ],
+      "consumers": [
+        "experimental-computer-use-cua-driver-mcp",
+        "experimental-computer-use-cua-driver-native"
+      ],
+      "sourceLine": 546,
+      "docIndex": 74,
+      "upstreamNote": "One provider-owned name per service instance. Each provider also owns its model tools; the service has no common action API, runtime selection, or Session workflow lock.",
+      "title": "电脑操作接口",
+      "group": 4,
+      "description": "由 computer-use 插件提供的服务。具体接口与边界见官方说明。",
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。"
+    },
+    {
+      "id": "officeToPdf",
+      "role": "core",
+      "owner": "office-to-pdf",
+      "path": "packages/document/office-to-pdf",
+      "implementations": [],
+      "consumers": [
+        "client-ui-sidebar-documentpreview"
+      ],
+      "sourceLine": 547,
+      "docIndex": 75,
+      "upstreamNote": "Authorized Office bytes are converted on the Host using the declared native target engine, or Node WASM when no native target is declared.",
+      "title": "文档转 PDF",
+      "group": 5,
+      "description": "由 office-to-pdf 插件提供的服务。具体接口与边界见官方说明。",
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。"
+    },
+    {
+      "id": "attachments",
+      "role": "seam",
+      "group": 1,
+      "title": "附件存储",
+      "path": "packages/attachment/attachment",
+      "implementations": [
+        "attachment-local"
+      ],
+      "consumers": [
+        "api-session-controller",
+        "tool-fs",
+        "llm-pi-ai",
+        "llm-deepseek"
+      ],
+      "description": "保存图片等二进制附件。模型适配器把已授权的文件引用转换为对应模型能接收的内容。",
+      "owner": "attachment",
+      "docIndex": 76,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 548,
+      "upstreamNote": "The host commits accepted images before session events; provider adapters resolve authorized durable references into provider-native content."
+    },
+    {
+      "id": "fileUploads",
+      "role": "core",
+      "group": 0,
+      "title": "文件上传",
+      "path": "packages/client/file-upload",
+      "implementations": [],
+      "consumers": [
+        "api-session-controller"
+      ],
+      "description": "接收上传流并管理暂存凭据；会话控制器在接受提交时绑定这些凭据。",
+      "owner": "client-file-upload",
+      "docIndex": 77,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 549,
+      "upstreamNote": "Owns streaming intake, durable storage, and staged receipt lifetime; the Session controller binds receipts to accepted submissions."
+    },
+    {
+      "id": "llm",
+      "role": "seam",
+      "group": 2,
+      "title": "模型接口",
+      "path": "packages/llm/llm",
+      "implementations": [
+        "llm-deepseek",
+        "llm-pi-ai",
+        "llm-replay"
+      ],
+      "consumers": [
+        "agent-loop",
+        "compaction-basic"
+      ],
+      "description": "用统一的流式请求接口连接不同模型。模型适配器负责把请求和回复转换成各家协议。",
+      "owner": "llm",
+      "docIndex": 78,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 550,
+      "upstreamNote": "Adapters register provider implementations; the loop and compaction call the provider-neutral stream service."
+    },
+    {
+      "id": "deepseekLlmApiExtensions",
+      "role": "seam",
+      "group": 2,
+      "title": "请求扩展",
+      "path": "packages/llm/deepseek-llm-api-extensions",
+      "implementations": [
+        "session-log-deepseek",
+        "plugin-package-inventory-deepseek"
+      ],
+      "consumers": [
+        "llm-deepseek"
+      ],
+      "description": "插件分别准备 DeepSeek 请求的扩展字段，官方适配器合并，并在 HTTP 请求被接受后提交交付状态。",
+      "owner": "deepseek-llm-api-extensions",
+      "docIndex": 79,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 551,
+      "upstreamNote": "Plugins prepare independent top-level fields; the official adapter merges them and commits their delivery state after HTTP acceptance."
+    },
+    {
+      "id": "tokenMeter",
+      "role": "core",
+      "group": 1,
+      "title": "上下文计量",
+      "path": "packages/llm/token-meter",
+      "implementations": [],
+      "consumers": [
+        "compaction-basic"
+      ],
+      "description": "按会话维护独立的重放计量，向压力判断提供带版本的只读测量结果。",
+      "owner": "token-meter",
+      "docIndex": 80,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 552,
+      "upstreamNote": "Owns isolated per-session replay folds; pressure consumers share immutable revisioned measurements."
+    },
+    {
+      "id": "toolResultPruner",
+      "role": "core",
+      "group": 1,
+      "title": "工具结果裁剪",
+      "path": "packages/compaction/compaction-tool-result-pruner",
+      "implementations": [],
+      "consumers": [
+        "compaction-basic"
+      ],
+      "description": "先替换当前上下文中过大的工具结果，再考虑摘要压缩；替换过程可以重放。",
+      "owner": "compaction-tool-result-pruner",
+      "docIndex": 81,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 553,
+      "upstreamNote": "Rewrites oversized current tool results through replayable single-node surface replacements before summary compaction."
+    },
+    {
+      "id": "sessions",
+      "role": "core",
+      "group": 5,
+      "title": "会话日志",
+      "path": "packages/core/session",
+      "implementations": [],
+      "consumers": [
+        "agent-loop",
+        "agent",
+        "session-persistence",
+        "session-query",
+        "session-query-sqlite",
+        "subagent-in-process-driver",
+        "invariants",
+        "message-feedback"
+      ],
+      "description": "保存只追加的会话事件，并从事件派生模型当前可见的消息。写入日志和模型可见内容有不同职责。",
+      "owner": "session",
+      "docIndex": 82,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 554,
+      "upstreamNote": "Owns append-only Session instances and emits the durable session event feed."
+    },
+    {
+      "id": "sessionController",
+      "role": "core",
+      "group": 0,
+      "title": "会话入口",
+      "path": "packages/api/session-controller",
+      "implementations": [],
+      "consumers": [],
+      "description": "处理会话命令、历史读取和实时控制，并决定何时激活 Agent。",
+      "owner": "api-session-controller",
+      "docIndex": 83,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 555,
+      "upstreamNote": "Owns Session commands, cold reads, durable-event following, live control state, model catalogs, workspace opening, and Agent activation policy."
+    },
+    {
+      "id": "sessionFileReferences",
+      "role": "core",
+      "group": 0,
+      "title": "会话文件候选",
+      "path": "packages/api/session-controller",
+      "implementations": [],
+      "consumers": [],
+      "description": "沿会话控制器既有的 Agent 查找规则，提供文件引用发现。",
+      "owner": "api-session-controller",
+      "docIndex": 84,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 556,
+      "upstreamNote": "Delegates file-reference discovery through the Session Controller's established Agent lookup policy."
+    },
+    {
+      "id": "sessionSkillCatalog",
+      "role": "core",
+      "group": 0,
+      "title": "会话技能目录",
+      "path": "packages/api/session-controller",
+      "implementations": [],
+      "consumers": [],
+      "description": "列出此会话配置中可由用户触发的技能，无需激活尚未运行的 Agent。",
+      "owner": "api-session-controller",
+      "docIndex": 85,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 557,
+      "upstreamNote": "Lists the Session composition's user-invocable skills without activating a cold Agent."
+    },
+    {
+      "id": "credentialsController",
+      "role": "core",
+      "group": 0,
+      "title": "凭据管理入口",
+      "path": "packages/api/settings-controller",
+      "implementations": [],
+      "consumers": [],
+      "description": "把凭据服务映射到远程接口，负责批量分发、展示结果和拒绝原因。",
+      "owner": "api-settings-controller",
+      "docIndex": 86,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 558,
+      "upstreamNote": "Projects the credential-reference seam onto the generated Remote namespace: batch fan-out, view projection, and refusal mapping live here, not on the seam Definition."
+    },
+    {
+      "id": "settingsController",
+      "role": "core",
+      "group": 0,
+      "title": "设置管理入口",
+      "path": "packages/api/settings-controller",
+      "implementations": [],
+      "consumers": [],
+      "description": "向界面提供经过脱敏的分层设置，并将修改写入用户层。",
+      "owner": "api-settings-controller",
+      "docIndex": 87,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 559,
+      "upstreamNote": "Projects the user-settings seam onto the generated Remote namespace: the read is always redacted and every refusal is classified here, not on the seam Definition."
+    },
+    {
+      "id": "workspaceFiles",
+      "role": "core",
+      "owner": "api-workspace-files",
+      "path": "packages/api/workspace-files",
+      "implementations": [],
+      "consumers": [],
+      "sourceLine": 560,
+      "docIndex": 88,
+      "upstreamNote": "Serves stat, paged text, byte windows, directory listings, and the change feed for files inside a Session's workspace root, confined by lstat, containment, and a stat re-check.",
+      "title": "工作区文件入口",
+      "group": 5,
+      "description": "由 api-workspace-files 插件提供的服务。具体接口与边界见官方说明。",
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。"
+    },
+    {
+      "id": "workspaceChanges",
+      "role": "core",
+      "owner": "workspace-changes",
+      "path": "packages/deliverables/workspace-changes",
+      "implementations": [],
+      "consumers": [],
+      "sourceLine": 561,
+      "docIndex": 89,
+      "upstreamNote": "Serves the summary each workspace/changes event announced and each listed file's turn-start and turn-end comparison, by Session and event sequence, until that Session is disposed; the log carries only the turn.",
+      "title": "工作区改动",
+      "group": 5,
+      "description": "由 workspace-changes 插件提供的服务。具体接口与边界见官方说明。",
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。"
+    },
+    {
+      "id": "terminalController",
+      "role": "core",
+      "owner": "api-terminal-controller",
+      "path": "packages/api/terminal-controller",
+      "implementations": [],
+      "consumers": [],
+      "sourceLine": 562,
+      "docIndex": 90,
+      "upstreamNote": "Owns user terminal processes, default shell resolution and bounded screen recovery through the subprocess provider and typed Remote transport.",
+      "title": "交互终端入口",
+      "group": 5,
+      "description": "由 api-terminal-controller 插件提供的服务。具体接口与边界见官方说明。",
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。"
+    },
+    {
+      "id": "workspaceController",
+      "role": "core",
+      "group": 0,
+      "title": "工作区入口",
+      "path": "packages/api/workspace-controller",
+      "implementations": [],
+      "consumers": [],
+      "description": "处理工作区命令，连接恢复后仍可向客户端交付工作区状态。",
+      "owner": "api-workspace-controller",
+      "docIndex": 91,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 563,
+      "upstreamNote": "Owns Workspace commands and reconnect-safe Workspace state delivery through the generated Remote namespace."
+    },
+    {
+      "id": "directoryPickerController",
+      "role": "core",
+      "group": 0,
+      "title": "目录选择入口",
+      "path": "packages/api/workspace-controller",
+      "implementations": [],
+      "consumers": [],
+      "description": "将目录选择能力暴露给客户端，处理取消、能力检查和结构化错误。",
+      "owner": "api-workspace-controller",
+      "docIndex": 92,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 564,
+      "upstreamNote": "Carries the picking seam onto the wire: capability gating, cancellation, and the seam-coded failures a browser directory flow discriminates on."
+    },
+    {
+      "id": "invariants",
+      "role": "core",
+      "group": 5,
+      "title": "运行规则检查",
+      "path": "packages/runtime-diagnostics/invariants",
+      "implementations": [],
+      "consumers": [
+        "session",
+        "agent",
+        "scope",
+        "agent-loop"
+      ],
+      "description": "集中管理由各个包声明的运行规则检查，保留失败所属的包和执行范围。",
+      "owner": "invariants",
+      "docIndex": 93,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 565,
+      "upstreamNote": "Companion subpaths register owner-local checks; the service owns selection, uniqueness, child fibers, and package-attributed failures."
+    },
+    {
+      "id": "typert",
+      "role": "core",
+      "group": 0,
+      "title": "运行时类型目录",
+      "path": "packages/typert/registry",
+      "implementations": [],
+      "consumers": [
+        "typert-loader",
+        "api-gateway"
+      ],
+      "description": "插件登记类型与反射信息，网关在调用边界读取描述符和对应服务。",
+      "owner": "typert-registry",
+      "docIndex": 94,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 566,
+      "upstreamNote": "Plugins register live zod contributions directly or through dsh-typert-loader; the API gateway consumes invocation descriptors and providers, while other runtime consumers query schemas and reflection metadata at their own edges."
+    },
+    {
+      "id": "typertGateway",
+      "role": "core",
+      "group": 0,
+      "title": "远程调用网关",
+      "path": "packages/api/gateway",
+      "implementations": [],
+      "consumers": [],
+      "description": "把生成的远程接口描述与运行中的 Cordis 服务关联，分发单次远程调用。",
+      "owner": "api-gateway",
+      "docIndex": 95,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 567,
+      "upstreamNote": "Associates generated Remote descriptors with live Cordis services, resolves registered identities, and exposes unary calls through the shared Connection RPC carrier."
+    },
+    {
+      "id": "sessionPersistence",
+      "role": "seam",
+      "group": 5,
+      "title": "会话持久化",
+      "path": "packages/session/session-persistence",
+      "implementations": [
+        "session-persistence-jsonl"
+      ],
+      "consumers": [
+        "agent-loop",
+        "tool-bash",
+        "hooks-claude-code",
+        "hooks-codex",
+        "session-query",
+        "session-query-sqlite",
+        "message-feedback"
+      ],
+      "description": "把会话事件交给持久化后端。JSONL 实现按会话保存记录；内存中提交和磁盘刷写有各自边界。",
+      "owner": "session-persistence",
+      "docIndex": 96,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 568,
+      "upstreamNote": "The JSONL backend persists the SessionEvent vocabulary as one artifact per Session."
+    },
+    {
+      "id": "settings",
+      "role": "seam",
+      "group": 3,
+      "title": "分层设置",
+      "path": "packages/settings/settings",
+      "implementations": [
+        "settings-file"
+      ],
+      "consumers": [
+        "api-settings-controller",
+        "llm-deepseek",
+        "llm-pi-ai"
+      ],
+      "description": "插件注册设置结构并解析分层配置，具体提供方负责保存原始文档。",
+      "owner": "settings",
+      "docIndex": 97,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 569,
+      "upstreamNote": "Plugins register namespace schemas and resolve layered values; providers store the raw document. The LLM adapters register their entry config as the composition base under the user section; the settings controller serves redacted layered descriptors and writes the user layer."
+    },
+    {
+      "id": "subagentModelSelection",
+      "role": "core",
+      "group": 2,
+      "title": "子任务模型偏好",
+      "path": "packages/subagent/tool-subagent",
+      "implementations": [],
+      "consumers": [
+        "tool-subagent"
+      ],
+      "description": "维护默认关闭的模型选择设置；委派工具创建新顶层会话时读取它。",
+      "owner": "tool-subagent",
+      "docIndex": 98,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 570,
+      "upstreamNote": "Owns the default-off settings namespace that Agent-scoped delegation tools sample when composing a new top-level Session."
+    },
+    {
+      "id": "credentials",
+      "role": "seam",
+      "group": 3,
+      "title": "凭据读取",
+      "path": "packages/credentials/credentials",
+      "implementations": [
+        "credentials-local"
+      ],
+      "consumers": [
+        "api-settings-controller",
+        "llm-deepseek",
+        "llm-pi-ai"
+      ],
+      "description": "配置保存密钥引用，提供方保管密钥值。消费者每次操作重新解析，让轮换后的凭据用于下一次请求。",
+      "owner": "credentials",
+      "docIndex": 99,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 571,
+      "upstreamNote": "Configuration carries references to secrets; providers own the values. Consumers resolve per operation, so a rotated credential reaches the very next request; the settings controller exposes value-free views and write-only storage."
+    },
+    {
+      "id": "authorization",
+      "role": "seam",
+      "group": 3,
+      "title": "凭据授权流程",
+      "path": "packages/credentials/authorization",
+      "implementations": [],
+      "consumers": [
+        "llm-pi-ai"
+      ],
+      "description": "插件登记获取凭据的授权流程；接口管理交互过程与同一键的一次尝试生命周期。",
+      "owner": "authorization",
+      "docIndex": 100,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 572,
+      "upstreamNote": "Flows are registered by the plugin that knows how to obtain one credential and keyed by the record they write; the seam owns the conversation and the one-attempt-per-key lifecycle, never the protocol."
+    },
+    {
+      "id": "sessionTelemetry",
+      "role": "seam",
+      "group": 5,
+      "title": "会话遥测",
+      "path": "packages/session/session-telemetry",
+      "implementations": [
+        "session-telemetry-otel"
+      ],
+      "consumers": [],
+      "description": "捕获并脱敏会话记录，再交给一个遥测后端，输出会离开当前进程。",
+      "owner": "session-telemetry",
+      "docIndex": 101,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 573,
+      "upstreamNote": "The seam captures, redacts, and hands session records to one backend; nothing else consumes the service — its output leaves the process."
+    },
+    {
+      "id": "storage",
+      "role": "seam",
+      "group": 5,
+      "title": "通用存储",
+      "path": "packages/storage/storage",
+      "implementations": [
+        "storage-json",
+        "storage-sqlite"
+      ],
+      "consumers": [
+        "storage-domain"
+      ],
+      "description": "按名称注册多个存储后端，为非会话数据提供底层存储单元。",
+      "owner": "storage",
+      "docIndex": 102,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 574,
+      "upstreamNote": "Backends register side by side under names; data forms (domain first) mount on the hub and translate typed operations into opaque KV-unit primitives."
+    },
+    {
+      "id": "storageDomain",
+      "role": "core",
+      "group": 5,
+      "title": "业务数据存储",
+      "path": "packages/storage/storage-domain",
+      "implementations": [],
+      "consumers": [
+        "workspace"
+      ],
+      "description": "等待配置的存储后端就绪，再提供带类型的持久化业务数据服务。",
+      "owner": "storage-domain",
+      "docIndex": 103,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 575,
+      "upstreamNote": "Waits for every configured backend, then publishes the domain form as one lifecycle-bound service for typed durable state."
+    },
+    {
+      "id": "messageFeedback",
+      "role": "core",
+      "group": 5,
+      "title": "回复反馈",
+      "path": "packages/feedback/message-feedback",
+      "implementations": [],
+      "consumers": [],
+      "description": "保存针对助手消息的本地反馈，校验目标和生命周期；不把反馈写进会话历史或遥测。",
+      "owner": "message-feedback",
+      "docIndex": 104,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 576,
+      "upstreamNote": "Owns per-assistant-message feedback in the canonical Session log, target validation, per-item compare-and-set, and the Host unary Remote contract. Feedback stays outside model history; log export follows the consumer policy."
+    },
+    {
+      "id": "sessionFeedback",
+      "role": "core",
+      "owner": "command-feedback",
+      "path": "packages/feedback/command-feedback",
+      "implementations": [],
+      "consumers": [],
+      "sourceLine": 577,
+      "docIndex": 105,
+      "upstreamNote": "Records one Session-level remark with its category as a log-only feedback/record event on a live Session through the Host unary Remote contract; the /feedback command shares the same producer.",
+      "title": "会话反馈",
+      "group": 5,
+      "description": "由 command-feedback 插件提供的服务。具体接口与边界见官方说明。",
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。"
+    },
+    {
+      "id": "workspaceRegistry",
+      "role": "core",
+      "group": 0,
+      "title": "工作区目录",
+      "path": "packages/workspace/workspace",
+      "implementations": [],
+      "consumers": [
+        "api-workspace-controller",
+        "api-session-controller"
+      ],
+      "description": "基于业务存储管理工作区实体，使用稳定的会话编号关联远程调用与界面。",
+      "owner": "workspace",
+      "docIndex": 106,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 578,
+      "upstreamNote": "Owns WorkspaceId-branded records over the domain facility; stable sessionIds accounts drive Host RPC and GUI projections."
+    },
+    {
+      "id": "sessionQuery",
+      "role": "seam",
+      "group": 5,
+      "title": "会话检索",
+      "path": "packages/session-query/session-query",
+      "implementations": [
+        "session-query-sqlite"
+      ],
+      "consumers": [
+        "session-reference",
+        "tool-session-query"
+      ],
+      "description": "读取历史、过滤、追踪和搜索。具体后端还负责全文检索、排序、摘要片段与游标。",
+      "owner": "session-query",
+      "docIndex": 107,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 579,
+      "upstreamNote": "The interface supplies exact reads, filters, and traces; its concrete backend adds full-text reconciliation, ranking, snippets, and cursor generations, while the model consumer owns workspace authority and cursor-free rendering."
+    },
+    {
+      "id": "fileReferences",
+      "role": "seam",
+      "group": 1,
+      "title": "文件引用发现",
+      "path": "packages/context/file-reference",
+      "implementations": [
+        "file-reference-local"
+      ],
+      "consumers": [
+        "api-session-controller"
+      ],
+      "description": "只返回 Agent 工作目录中的候选路径，不读取文件内容；提供方负责路径访问与排序。",
+      "owner": "file-reference",
+      "docIndex": 108,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 580,
+      "upstreamNote": "The interface returns path-only completion candidates within an Agent cwd; providers own namespace access and ranking without reading file contents."
+    },
+    {
+      "id": "sessionReferenceResolver",
+      "role": "core",
+      "group": 1,
+      "title": "跨会话引用",
+      "path": "packages/context/session-reference",
+      "implementations": [],
+      "consumers": [],
+      "description": "把其他会话当前可见的对话整理为有大小限制的快照，以不可信消息上下文的形式保存。",
+      "owner": "session-reference",
+      "docIndex": 109,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 581,
+      "upstreamNote": "Projects bounded current-surface conversation snapshots into durable untrusted message context; host adapters own mention syntax."
+    },
+    {
+      "id": "sessionTitle",
+      "role": "seam",
+      "group": 5,
+      "title": "会话标题",
+      "path": "packages/session/session-title",
+      "implementations": [
+        "session-title-first-prompt-llm",
+        "session-title-all-prompts-llm"
+      ],
+      "consumers": [],
+      "description": "提供确定性的备用标题，并可接入一个异步标题生成提供方。",
+      "owner": "session-title",
+      "docIndex": 110,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 582,
+      "upstreamNote": "Owns the deterministic fallback, latest-title fold, and sole optional asynchronous provider registration."
+    },
+    {
+      "id": "systemPrompt",
+      "role": "core",
+      "group": 1,
+      "title": "提示词组装",
+      "path": "packages/core/system-prompt",
+      "implementations": [],
+      "consumers": [
+        "agent-loop",
+        "tools",
+        "tool-fs",
+        "tool-terminal",
+        "tool-web"
+      ],
+      "description": "在每一步收集提示词片段和模型可见的工具定义。新的工具或限制变化可影响下一次组装。",
+      "owner": "system-prompt",
+      "docIndex": 111,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 583,
+      "upstreamNote": "Collects prompt sections and model-facing tool schemas for each step."
+    },
+    {
+      "id": "tools",
+      "role": "core",
+      "group": 2,
+      "title": "工具执行管线",
+      "path": "packages/core/tools",
+      "implementations": [],
+      "consumers": [
+        "agent-loop",
+        "tool-ask-user",
+        "tool-bash",
+        "tool-cordis",
+        "tool-fs",
+        "tool-terminal",
+        "tool-skill",
+        "tool-subagent",
+        "tool-todo",
+        "tool-web"
+      ],
+      "description": "登记工具、决定模型看到的调用形式，并依次处理前置策略、守卫、执行包装、后置策略和最终结果观察。",
+      "owner": "tools",
+      "docIndex": 112,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 584,
+      "upstreamNote": "Registers capabilities, owns PTC mode transport, and routes calls through pre-policy, monotonic guards, around dispatch, post-policy, and final-result observation."
+    },
+    {
+      "id": "userQuestions",
+      "role": "seam",
+      "group": 0,
+      "title": "向用户提问",
+      "path": "packages/interaction/user-questions",
+      "implementations": [],
+      "consumers": [
+        "tool-ask-user"
+      ],
+      "description": "工具通过统一的 ask() 等待用户回答，实际交互由界面侧提供方负责。",
+      "owner": "user-questions",
+      "docIndex": 113,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 585,
+      "upstreamNote": "UI front ends provide the active human-answer provider; tool-ask-user pauses a tool call on the provider-neutral ask() promise."
+    },
+    {
+      "id": "planMode",
+      "role": "core",
+      "group": 1,
+      "title": "计划模式",
+      "path": "packages/plan/plan-mode",
+      "implementations": [],
+      "consumers": [],
+      "description": "从日志还原计划模式，在轮次边界应用用户选择，并保持退出计划的工具结构稳定。",
+      "owner": "plan-mode",
+      "docIndex": 114,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 586,
+      "upstreamNote": "Folds logged plan/mode state, flushes user selections at turn boundaries, renders deployment-owned guidance, registers /plan, and keeps the plan-exit schema stable across transitions."
+    },
+    {
+      "id": "agentPresets",
+      "role": "core",
+      "group": 2,
+      "title": "Agent 预设",
+      "path": "packages/preset/agent-presets",
+      "implementations": [],
+      "consumers": [],
+      "description": "发现预设目录，在创建 Agent 时将一份 cordis.yml 挂载到该 Agent 的作用域。",
+      "owner": "agent-presets",
+      "docIndex": 115,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 587,
+      "upstreamNote": "Discovers preset directories over trusted and user-authored roots and mounts one preset cordis.yml under an agent scope during creation, rejecting a row that never activates or that publishes into the root service realm."
+    },
+    {
+      "id": "commands",
+      "role": "core",
+      "group": 0,
+      "title": "用户命令",
+      "path": "packages/interaction/commands",
+      "implementations": [],
+      "consumers": [],
+      "description": "登记由人直接调用的命令；这些命令调用无需先发送给模型。",
+      "owner": "commands",
+      "docIndex": 116,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 588,
+      "upstreamNote": "Plugins register direct human commands without sending invocations to the model."
+    },
+    {
+      "id": "sessionProjections",
+      "role": "core",
+      "group": 5,
+      "title": "会话状态投影",
+      "path": "packages/session/session-projection",
+      "implementations": [],
+      "consumers": [
+        "api-session-controller",
+        "tool-todo",
+        "session-title"
+      ],
+      "description": "从事件折叠出界面需要的状态，按会话维护进度，并推送变化。",
+      "owner": "session-projection",
+      "docIndex": 117,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 589,
+      "upstreamNote": "Domains register state-driven fold units; the eager drive keeps per-session watermark states and the Session controller serves baselines and pushes changed values."
+    },
+    {
+      "id": "sessionProjectionCache",
+      "role": "core",
+      "group": 5,
+      "title": "会话状态缓存",
+      "path": "packages/session/session-projection-cache",
+      "implementations": [],
+      "consumers": [
+        "api-session-controller",
+        "session-query",
+        "session-reference",
+        "subagent"
+      ],
+      "description": "定期保存状态投影；冷读取使用缓存加后续日志，避免每次列出会话都载入完整历史。",
+      "owner": "session-projection-cache",
+      "docIndex": 118,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 590,
+      "upstreamNote": "Durably checkpoints projection unit states per session (throttled + turn/end/detach mandatory points) and serves the cold-read ladder: cache row + persistence tail replay, so listings never load full logs."
+    },
+    {
+      "id": "skills",
+      "role": "seam",
+      "group": 1,
+      "title": "技能目录",
+      "path": "packages/skill/skill",
+      "implementations": [
+        "skill-badge",
+        "skill-filesystem",
+        "skill-office"
+      ],
+      "consumers": [
+        "tool-skill"
+      ],
+      "description": "合并多个提供方的技能目录，由工具展示目录并按需载入完整技能正文。",
+      "owner": "skill",
+      "docIndex": 119,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 591,
+      "upstreamNote": "Merges provider skill catalogs; tool-skill renders the session-prefix catalog and loads complete skill bodies."
+    },
+    {
+      "id": "agents",
+      "role": "core",
+      "group": 2,
+      "title": "Agent 生命周期",
+      "path": "packages/core/agent",
+      "implementations": [],
+      "consumers": [
+        "agent-loop",
+        "acp",
+        "subagent-in-process-driver"
+      ],
+      "description": "管理运行中的 Agent、创建与恢复入口，以及进程内的调用发起者身份。",
+      "owner": "agent",
+      "docIndex": 120,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 592,
+      "upstreamNote": "Owns live Agent handles, the create/resume factory seam, and process-local initiator propagation."
+    },
+    {
+      "id": "agentDefaultModel",
+      "role": "core",
+      "group": 2,
+      "title": "默认模型",
+      "path": "packages/core/agent-default-model",
+      "implementations": [],
+      "consumers": [
+        "api-session-controller",
+        "headless"
+      ],
+      "description": "通过分层设置统一默认模型，让直接调用和主机入口共享同一状态来源。",
+      "owner": "agent-default-model",
+      "docIndex": 121,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 593,
+      "upstreamNote": "Layers the default ModelSelection through settings so direct and Host-backed Agent entry points share one state owner."
+    },
+    {
+      "id": "agentLoop",
+      "role": "bundle",
+      "group": 2,
+      "title": "主执行循环",
+      "path": "packages/core/agent-loop",
+      "implementations": [],
+      "consumers": [
+        "base",
+        "sdk-minimal"
+      ],
+      "description": "组装具体的执行循环。扩展包依赖 Agent 的事件与服务，无需依赖这个循环实现包。",
+      "owner": "agent-loop",
+      "docIndex": 122,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 594,
+      "upstreamNote": "The one concrete loop plugin; extension packages depend on dsh-agent events and services, not on this package."
+    },
+    {
+      "id": "goals",
+      "role": "core",
+      "group": 2,
+      "title": "持续目标",
+      "path": "packages/goal/goal",
+      "implementations": [],
+      "consumers": [],
+      "description": "从会话日志还原带版本的目标；持续执行的激活状态保留在当前进程。",
+      "owner": "goal",
+      "docIndex": 123,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 595,
+      "upstreamNote": "Folds revisioned objective state from the session log and keeps live continuation activation process-local."
+    },
+    {
+      "id": "ssh",
+      "role": "core",
+      "owner": "ssh",
+      "path": "packages/ssh/ssh",
+      "implementations": [],
+      "consumers": [
+        "fs-ssh",
+        "subprocess-ssh",
+        "sandbox-ssh"
+      ],
+      "sourceLine": 596,
+      "docIndex": 124,
+      "upstreamNote": "Owns one authenticated OpenSSH connection, installed helper identity, independent program streams and disconnect cleanup for the paired remote providers.",
+      "title": "SSH 执行连接",
+      "group": 4,
+      "description": "由 ssh 插件提供的服务。具体接口与边界见官方说明。",
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。"
+    },
+    {
+      "id": "subprocess",
+      "role": "seam",
+      "group": 4,
+      "title": "进程启动",
+      "path": "packages/subprocess/subprocess",
+      "implementations": [
+        "subprocess-local",
+        "subprocess-ssh"
+      ],
+      "consumers": [
+        "bash-local",
+        "bash-sandbox",
+        "terminal-bash",
+        "lsp-stdio",
+        "subagent-acp",
+        "subagent-codex",
+        "subagent-claude-code"
+      ],
+      "description": "统一管理进程位置、输入输出、进程树生命周期、终端机制与终止升级。",
+      "owner": "subprocess",
+      "docIndex": 125,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 597,
+      "upstreamNote": "The bash executors, the PTY shell backend, the LSP host, and the out-of-process ACP, Codex, and Claude Code subagent backends spawn through ctx.subprocess; the service owns process coordinates, tree/session lifetime, stdio dispositions, terminal mechanics, and kill escalation."
+    },
+    {
+      "id": "shell",
+      "role": "seam",
+      "group": 4,
+      "title": "命令执行",
+      "path": "packages/shell/shell",
+      "implementations": [
+        "bash-local",
+        "bash-sandbox",
+        "pwsh-local"
+      ],
+      "consumers": [
+        "tool-bash",
+        "tool-pwsh",
+        "hooks-claude-code",
+        "hooks-codex"
+      ],
+      "description": "上层工具提交命令，执行器决定如何运行。可在本地 Bash、受限 Bash 和 PowerShell 实现间选择。",
+      "owner": "shell",
+      "docIndex": 126,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 598,
+      "upstreamNote": "The model-facing shell tools and hook bridges consume this seam; sandboxed, remote, or PowerShell executors replace bash-local without touching them."
+    },
+    {
+      "id": "shellEnv",
+      "role": "core",
+      "group": 4,
+      "title": "命令环境",
+      "path": "packages/shell/shell-env",
+      "implementations": [],
+      "consumers": [
+        "tool-bash",
+        "tool-pwsh"
+      ],
+      "description": "收集一次执行所需的可信 DSH_* 环境信息，由执行器重建这组环境变量。",
+      "owner": "shell-env",
+      "docIndex": 127,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 599,
+      "upstreamNote": "Plugins declare effect-scoped DSH_* facts; each shell tool collects one trusted snapshot per execution and its executor rebuilds the namespace."
+    },
+    {
+      "id": "terminals",
+      "role": "seam",
+      "group": 4,
+      "title": "持续终端",
+      "path": "packages/terminal/terminal",
+      "implementations": [
+        "terminal-bash"
+      ],
+      "consumers": [
+        "tool-terminal"
+      ],
+      "description": "按 Agent 管理持续存在的终端会话及清理，后端负责具体终端机制。",
+      "owner": "terminal",
+      "docIndex": 128,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 600,
+      "upstreamNote": "The registry owns exact-Agent session identity and cleanup; backends own terminal mechanics, while tool-terminal exposes the owner-scoped model tools."
+    },
+    {
+      "id": "sandbox",
+      "role": "seam",
+      "group": 3,
+      "title": "进程隔离",
+      "path": "packages/sandbox/sandbox",
+      "implementations": [
+        "sandbox-local",
+        "sandbox-ssh"
+      ],
+      "consumers": [
+        "bash-sandbox",
+        "terminal-bash"
+      ],
+      "description": "接收即将执行的准确 argv，按本次策略包装命令并报告隔离是否真正生效。",
+      "owner": "sandbox",
+      "docIndex": 129,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 601,
+      "upstreamNote": "Consumers hand over the exact argv they are about to spawn; same-world backends wrap it under a per-call policy and report enforcement."
+    },
+    {
+      "id": "sandboxPolicy",
+      "role": "core",
+      "group": 3,
+      "title": "隔离策略",
+      "path": "packages/sandbox/sandbox-policy",
+      "implementations": [],
+      "consumers": [
+        "bash-sandbox",
+        "fs-sandbox",
+        "terminal-bash"
+      ],
+      "description": "统一保存默认隔离模式和工作区根目录，让文件与命令执行使用一致的限制边界。",
+      "owner": "sandbox-policy",
+      "docIndex": 130,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 602,
+      "upstreamNote": "The one home for the deployment default mode + workspace root; only the sandboxed executor and provider read the service (the tool layers use the pure `sandbox/mode` fold it also exports). Both enforcing families read it so bash and fs cannot confine to different roots."
+    },
+    {
+      "id": "approval",
+      "role": "seam",
+      "group": 3,
+      "title": "人工批准",
+      "path": "packages/interaction/user-approval",
+      "implementations": [],
+      "consumers": [
+        "tools",
+        "tool-bash",
+        "acp"
+      ],
+      "description": "通过 approval/request 依次寻找答复者，处理单次权限决定；没有答复者时返回 unavailable。",
+      "owner": "user-approval",
+      "docIndex": 131,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 603,
+      "upstreamNote": "One-shot permission decisions dispatched over the `approval/request` waterfall; answerers are listeners (the ACP bridge for its own agents), absence fails closed to `unavailable`."
+    },
+    {
+      "id": "permissionPresets",
+      "role": "core",
+      "group": 3,
+      "title": "权限预设",
+      "path": "packages/interaction/permission-presets",
+      "implementations": [],
+      "consumers": [],
+      "description": "将隔离模式和批准策略组合为用户可选的权限预设，切换时写入相关事件。",
+      "owner": "permission-presets",
+      "docIndex": 132,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 604,
+      "upstreamNote": "User-facing preset table (`workspace-write`/`danger-full-access`) bundling the sandbox-mode and approval-policy knobs; a switch writes one `permission/preset` event through to both knob events."
+    },
+    {
+      "id": "ptcRuntime",
+      "role": "seam",
+      "owner": "ptc-runtime",
+      "path": "packages/ptc-runtime/ptc-runtime",
+      "implementations": [
+        "ptc-runtime-node",
+        "experimental-ptc-runtime-python"
+      ],
+      "consumers": [
+        "tools",
+        "workflow-ptc"
+      ],
+      "sourceLine": 605,
+      "docIndex": 133,
+      "upstreamNote": "Runs programs against host-provided async bindings; tools owns PTC presentation and workflow-ptc owns workflow orchestration.",
+      "title": "程序化工具运行时",
+      "group": 4,
+      "description": "运行程序并连接宿主提供的异步工具绑定。工具呈现由 tools 负责，工作流编排由 workflow-ptc 负责。",
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。"
+    },
+    {
+      "id": "fs",
+      "role": "seam",
+      "group": 4,
+      "title": "文件系统",
+      "path": "packages/fs/fs",
+      "implementations": [
+        "fs-local",
+        "fs-sandbox",
+        "fs-ssh"
+      ],
+      "consumers": [
+        "tool-fs"
+      ],
+      "description": "工具通过统一接口读、写、编辑文件。提供方决定访问本地、受限文件系统或云端文件系统。",
+      "owner": "fs",
+      "docIndex": 134,
+      "companions": [
+        "fs-observation-policy"
+      ],
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 606,
+      "upstreamNote": "tool-fs executes read/write/edit through ctx.fs; fs-sandbox fences mutations by the shared sandbox mode; fs-observation-policy contributes observed-state checks through the fs/* event gate."
+    },
+    {
+      "id": "compaction",
+      "role": "seam",
+      "group": 1,
+      "title": "上下文压缩",
+      "path": "packages/compaction/compaction",
+      "implementations": [
+        "compaction-basic"
+      ],
+      "consumers": [
+        "compaction-basic"
+      ],
+      "description": "基础实现可在 agent/pre-step 检查压力，先裁剪工具结果、再按需摘要；也支持命令触发和溢出恢复。",
+      "owner": "compaction",
+      "docIndex": 135,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 607,
+      "upstreamNote": "The basic backend consumes post-step pressure and request-error recovery events; there is no model-facing compact tool."
+    },
+    {
+      "id": "subagents",
+      "role": "seam",
+      "group": 2,
+      "title": "子任务委派",
+      "path": "packages/subagent/subagent",
+      "implementations": [
+        "subagent-spawn-in-process",
+        "subagent-fork-in-process",
+        "subagent-acp",
+        "subagent-codex",
+        "subagent-claude-code",
+        "subagent-dsh-sdk"
+      ],
+      "consumers": [
+        "tool-subagent",
+        "tool-subagent-control",
+        "tool-ralph"
+      ],
+      "description": "提供方负责不同委派通道，服务还管理可选的持续子任务；一次委派和可继续对话有各自生命周期。",
+      "owner": "subagent",
+      "docIndex": 136,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 608,
+      "upstreamNote": "Providers implement transports; the service also owns optional Activation-based continuation orchestration, tool-subagent selects one-shot or continuable delegation, tool-subagent-control delivers follow-ups, and tool-ralph requires one fresh structured-output route."
+    },
+    {
+      "id": "agentTeams",
+      "role": "core",
+      "group": 2,
+      "title": "多 Agent 协作",
+      "path": "packages/experimental/agent-team",
+      "implementations": [],
+      "consumers": [
+        "experimental-tool-agent-team",
+        "experimental-client-ui-agent-team"
+      ],
+      "description": "实验功能：管理成员、持久化消息、共享任务依赖图及可继续运行的子 Agent。",
+      "owner": "experimental-agent-team",
+      "docIndex": 137,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 609,
+      "upstreamNote": "Owns the implicit-root roster, durable peer mailbox, shared task DAG, continuable-child lifecycle, and generated Team Remote methods; tool-agent-team contributes model controls and client-ui-agent-team mounts the browser contribution."
+    },
+    {
+      "id": "inspector",
+      "role": "core",
+      "group": 5,
+      "title": "运行时检查",
+      "path": "packages/experimental/inspector",
+      "implementations": [],
+      "consumers": [],
+      "description": "提供运行时观察、Cordis 树查询和 Worker 承载的 CDP 目标。官方表中 owner 未附路径链接；这里仅保留文档入口。",
+      "owner": "inspector",
+      "docIndex": 138,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 610,
+      "upstreamNote": "Owns the Worker-hosted CDP target and the transport-independent Host and Client observation and Cordis-tree query API."
+    },
+    {
+      "id": "jobs",
+      "role": "seam",
+      "group": 4,
+      "title": "后台任务",
+      "path": "packages/jobs/jobs",
+      "implementations": [
+        "jobs-local"
+      ],
+      "consumers": [
+        "tool-bash",
+        "tool-terminal",
+        "tool-subagent",
+        "tool-jobs"
+      ],
+      "description": "登记后台命令、终端发送和子任务委派等运行工作，模型可通过控制工具查看和终止。",
+      "owner": "jobs",
+      "docIndex": 139,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 611,
+      "upstreamNote": "Producers (background bash, PTY sends, and subagent delegations) register running work; tool-jobs is the model-facing controller that reads, lists, and kills it; jobs-local is the process-local registry."
+    },
+    {
+      "id": "web",
+      "role": "seam",
+      "group": 4,
+      "title": "网页搜索与读取",
+      "path": "packages/web/web",
+      "implementations": [
+        "web-search-exa",
+        "web-search-perplexity",
+        "web-search-deepseek",
+        "web-fetch-http"
+      ],
+      "consumers": [
+        "tool-web"
+      ],
+      "description": "在同一个接口中登记搜索与网页读取提供方，上层工具保持稳定的模型调用名称。",
+      "owner": "web",
+      "docIndex": 140,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 612,
+      "upstreamNote": "Search and fetch providers register into one ctx.web seam; tool-web owns the stable model-facing names."
+    },
+    {
+      "id": "spillStore",
+      "role": "seam",
+      "group": 5,
+      "title": "长结果外存",
+      "path": "packages/spill/spill",
+      "implementations": [
+        "spill-local"
+      ],
+      "consumers": [
+        "spill-policy"
+      ],
+      "description": "保存过长的工具文本并返回定位符和读取提示；是否外存由 tools/post-execute 阶段的策略决定。",
+      "owner": "spill",
+      "docIndex": 141,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 613,
+      "upstreamNote": "The backend saves oversized tool text and returns a model-facing locator plus retrieval hint; spill-policy is the tools/post-execute consumer that decides when to spill."
+    },
+    {
+      "id": "directoryPicker",
+      "role": "seam",
+      "group": 0,
+      "title": "选择工作目录",
+      "path": "packages/host/directory-picker",
+      "implementations": [
+        "host-directory-picker-native",
+        "host-directory-picker-browse"
+      ],
+      "consumers": [
+        "api-workspace-controller"
+      ],
+      "description": "可调用主机的系统目录选择器，也可提供应用内浏览所需的列目录和创建目录能力。",
+      "owner": "host-directory-picker",
+      "docIndex": 142,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 614,
+      "upstreamNote": "Discriminated interaction capability: the native backend opens one OS chooser on the host display, the browse backend serves listing/creation primitives for the in-app browser; dual-face backends fill ui-workspace directory-flow slots from their browser halves (no wire advertisement)."
+    },
+    {
+      "id": "webServer",
+      "role": "core",
+      "group": 0,
+      "title": "网页服务",
+      "path": "packages/host/webserver",
+      "implementations": [],
+      "consumers": [
+        "client-connection",
+        "client-modules",
+        "client-hmr"
+      ],
+      "description": "提供 HTTP 路由登记、页面转换及静态页面回退，传输插件自行注册路由。",
+      "owner": "host-webserver",
+      "docIndex": 143,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 615,
+      "upstreamNote": "Plain node:http carrier: named-route registry, index transform taps, and the static dist fallback; web-transport plugins register their own routes."
+    },
+    {
+      "id": "clientModules",
+      "role": "core",
+      "group": 0,
+      "title": "客户端插件",
+      "path": "packages/client/modules",
+      "implementations": [],
+      "consumers": [
+        "client-hmr"
+      ],
+      "description": "扫描并组装客户端插件入口图，提供插件包并通知重新构建或依赖变化。",
+      "owner": "client-modules",
+      "docIndex": 144,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 616,
+      "upstreamNote": "Composes the __DSH_BOOT__ entry graph from an incremental dsh.client scan, serves plugin bundles, and notifies rebuilt/graph-changed subscribers."
+    },
+    {
+      "id": "workflowEngine",
+      "role": "seam",
+      "group": 2,
+      "title": "工作流引擎",
+      "path": "packages/workflow/workflow",
+      "implementations": [
+        "workflow-ptc"
+      ],
+      "consumers": [
+        "tool-workflow",
+        "tool-ralph"
+      ],
+      "description": "运行工作流脚本，脚本中的 agent() 通过子任务服务分发；每个上下文使用一个引擎。",
+      "owner": "workflow",
+      "docIndex": 145,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 617,
+      "upstreamNote": "One engine per context, as in bash, with no named-provider registry; the general workflow and fixed Ralph consumers start runs whose agent() calls fan out through ctx.subagents."
+    },
+    {
+      "id": "webhookRuntime",
+      "role": "core",
+      "group": 0,
+      "title": "外部事件入口",
+      "path": "packages/webhook/webhook",
+      "implementations": [],
+      "consumers": [
+        "webhook-github"
+      ],
+      "description": "接收已验证的外部事件，执行可信插件规则，并将结果转换为关联工作区的普通会话。",
+      "owner": "webhook",
+      "docIndex": 146,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 618,
+      "upstreamNote": "Provider adapters dispatch authenticated deliveries; trusted plugins register independent process-local rules, and the runtime turns non-null results into ordinary Workspace-backed Sessions without delivery or completion state."
+    },
+    {
+      "id": "lsp",
+      "role": "seam",
+      "group": 4,
+      "title": "代码导航",
+      "path": "packages/lsp/lsp",
+      "implementations": [
+        "lsp-stdio"
+      ],
+      "consumers": [
+        "tool-lsp"
+      ],
+      "description": "提供四类标准化代码导航操作，后端将请求转换到具体语言服务器协议。",
+      "owner": "lsp",
+      "docIndex": 147,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 619,
+      "upstreamNote": "Provider registration and selection plus normalized query execution over exactly four operations; the seam offers no protocol escape hatch, so a backend translates into the normalized request and result."
+    },
+    {
+      "id": "dynamicCordisRunner",
+      "role": "core",
+      "group": 5,
+      "title": "动态插件运行",
+      "path": "packages/extensions/cordis-host-runner",
+      "implementations": [],
+      "consumers": [
+        "tool-cordis"
+      ],
+      "description": "上游生成服务表仍列出的内部服务；当前 Creator 的公开工具只做只读检查，持久插件变更由 Plugin Manager 管理。",
+      "owner": "cordis-host-runner",
+      "docIndex": 148,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 620,
+      "upstreamNote": "Owns the in-memory definition registry, the vm sandbox for host halves, and the request-run round trip; browser pages reach the same service over the wire through its remote namespace."
+    },
+    {
+      "id": "cordisInspect",
+      "role": "core",
+      "group": 5,
+      "title": "动态插件检查",
+      "path": "packages/extensions/cordis-host-runner",
+      "implementations": [],
+      "consumers": [
+        "tool-cordis"
+      ],
+      "description": "登记主机检查提供方，镜像客户端检查目录，并路由客户端查询。",
+      "owner": "cordis-host-runner",
+      "docIndex": 149,
+      "detail": "本图列出锁定版本的静态服务关系。是否调用取决于配置和任务；这些连线不是实测轨迹。",
+      "sourceLine": 621,
+      "upstreamNote": "Registers host inspect providers, mirrors the client provider manifest, and routes client queries through the dynamic Cordis transport."
+    }
+  ]
+}

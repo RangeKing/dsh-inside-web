@@ -1,0 +1,175 @@
+{
+  "version": "3.0.0",
+  "generated_at": "2026-09-05T05:35:52Z",
+  "build_sha256": "0b214c8e65946b71cde8ebba80f73c5c1891e32bb1d1c4131539f0cd9bd9d6fc",
+  "environment": {
+    "browser": "Chromium",
+    "loading": "set_content of exact standalone HTML",
+    "backend": "Canvas software 3D",
+    "live_DSH": false,
+    "model_calls": false
+  },
+  "summary": {
+    "passed": 34,
+    "failed": 0,
+    "total": 34
+  },
+  "not_tested": [
+    "hardware WebGL",
+    "Safari",
+    "Firefox",
+    "real DSH backend or live model execution"
+  ],
+  "checks": [
+    {
+      "name": "8 cases form ordered beginner-to-advanced curriculum",
+      "passed": true
+    },
+    {
+      "name": "Every case introduces materials, features, a question and an answer",
+      "passed": true
+    },
+    {
+      "name": "Old opaque price and discount examples removed from active cases",
+      "passed": true
+    },
+    {
+      "name": "Source identifiers retain the official role counts",
+      "passed": true
+    },
+    {
+      "name": "Every base and alternative stage has known services and valid animated endpoints",
+      "passed": true
+    },
+    {
+      "name": "Every teaching stage includes specific input, output and provenance",
+      "passed": true
+    },
+    {
+      "name": "Four independent meal routes are actually different",
+      "passed": true
+    },
+    {
+      "name": "Registration fixtures support 12 rows / 9 people / 3 duplicate IDs",
+      "passed": true
+    },
+    {
+      "name": "Venue and cost example arithmetic is internally consistent",
+      "passed": true
+    },
+    {
+      "name": "Lost and retained summary branches contain different evidence",
+      "passed": true
+    },
+    {
+      "name": "English mode matrix and library navigation are translated",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 390 / library",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 390 / modes",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 390 / journey",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 390 / atlas",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 390 / trace",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 768 / library",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 768 / modes",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 768 / journey",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 768 / atlas",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 768 / trace",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 1280 / library",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 1280 / modes",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 1280 / journey",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 1280 / atlas",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 1280 / trace",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 1600 / library",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 1600 / modes",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 1600 / journey",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 1600 / atlas",
+      "passed": true
+    },
+    {
+      "name": "No horizontal body overflow: 1600 / trace",
+      "passed": true
+    },
+    {
+      "name": "No automatic network requests made",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "No uncaught browser errors",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "A tested 3D backend remains active",
+      "passed": true,
+      "detail": {
+        "services": 70,
+        "seams": 29,
+        "webgl": false,
+        "backend": "canvas-3d",
+        "error": null,
+        "frames": 55,
+        "glyphs": 70,
+        "arrows": 1,
+        "language": "zh",
+        "theme": "dark"
+      }
+    }
+  ]
+}

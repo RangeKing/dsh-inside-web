@@ -1,0 +1,333 @@
+{
+  "version": "3.0.0",
+  "generated_at": "2026-09-05T05:36:19Z",
+  "build_sha256": "0b214c8e65946b71cde8ebba80f73c5c1891e32bb1d1c4131539f0cd9bd9d6fc",
+  "environment": {
+    "browser": "Chromium",
+    "loading": "set_content of exact standalone HTML",
+    "backend": "Canvas software 3D",
+    "live_DSH": false,
+    "model_calls": false
+  },
+  "summary": {
+    "passed": 77,
+    "failed": 0,
+    "total": 77
+  },
+  "not_tested": [
+    "hardware WebGL",
+    "Safari",
+    "Firefox",
+    "real DSH backend or live model execution"
+  ],
+  "checks": [
+    {
+      "name": "8 cases form ordered beginner-to-advanced curriculum",
+      "passed": true
+    },
+    {
+      "name": "Every case introduces materials, features, a question and an answer",
+      "passed": true
+    },
+    {
+      "name": "Old opaque price and discount examples removed from active cases",
+      "passed": true
+    },
+    {
+      "name": "Source identifiers retain the official role counts",
+      "passed": true
+    },
+    {
+      "name": "Every base and alternative stage has known services and valid animated endpoints",
+      "passed": true
+    },
+    {
+      "name": "Every teaching stage includes specific input, output and provenance",
+      "passed": true
+    },
+    {
+      "name": "Four independent meal routes are actually different",
+      "passed": true
+    },
+    {
+      "name": "Registration fixtures support 12 rows / 9 people / 3 duplicate IDs",
+      "passed": true
+    },
+    {
+      "name": "Venue and cost example arithmetic is internally consistent",
+      "passed": true
+    },
+    {
+      "name": "Lost and retained summary branches contain different evidence",
+      "passed": true
+    },
+    {
+      "name": "V3 opens the case library",
+      "passed": true
+    },
+    {
+      "name": "Landing shows eight case cards and four preset shortcuts",
+      "passed": true
+    },
+    {
+      "name": "Hidden 3D workbench does not obstruct the library",
+      "passed": true
+    },
+    {
+      "name": "Recommended-preset library filter: minimal",
+      "passed": true
+    },
+    {
+      "name": "Recommended-preset library filter: standard",
+      "passed": true
+    },
+    {
+      "name": "Recommended-preset library filter: ptc",
+      "passed": true
+    },
+    {
+      "name": "Recommended-preset library filter: cordis",
+      "passed": true
+    },
+    {
+      "name": "Recommended-preset library filter: all",
+      "passed": true
+    },
+    {
+      "name": "All four comparison cards stay visible: minimal",
+      "passed": true
+    },
+    {
+      "name": "Capability matrix retains all modes: minimal",
+      "passed": true
+    },
+    {
+      "name": "Selected preset links to exact pinned configuration: minimal",
+      "passed": true
+    },
+    {
+      "name": "All four comparison cards stay visible: standard",
+      "passed": true
+    },
+    {
+      "name": "Capability matrix retains all modes: standard",
+      "passed": true
+    },
+    {
+      "name": "Selected preset links to exact pinned configuration: standard",
+      "passed": true
+    },
+    {
+      "name": "All four comparison cards stay visible: ptc",
+      "passed": true
+    },
+    {
+      "name": "Capability matrix retains all modes: ptc",
+      "passed": true
+    },
+    {
+      "name": "Selected preset links to exact pinned configuration: ptc",
+      "passed": true
+    },
+    {
+      "name": "All four comparison cards stay visible: cordis",
+      "passed": true
+    },
+    {
+      "name": "Capability matrix retains all modes: cordis",
+      "passed": true
+    },
+    {
+      "name": "Selected preset links to exact pinned configuration: cordis",
+      "passed": true
+    },
+    {
+      "name": "Minimal calls out omitted compaction and different filesystem scope",
+      "passed": true
+    },
+    {
+      "name": "PTC points out disabled workflow tool while retaining engine",
+      "passed": true
+    },
+    {
+      "name": "Follow-in-3D opens PTC meal route",
+      "passed": true
+    },
+    {
+      "name": "Route switch resets an independent demo: minimal",
+      "passed": true
+    },
+    {
+      "name": "Same meal outcome on route: minimal",
+      "passed": true
+    },
+    {
+      "name": "Final-answer button follows route-specific length: minimal",
+      "passed": true
+    },
+    {
+      "name": "Route switch resets an independent demo: standard",
+      "passed": true
+    },
+    {
+      "name": "Same meal outcome on route: standard",
+      "passed": true
+    },
+    {
+      "name": "Final-answer button follows route-specific length: standard",
+      "passed": true
+    },
+    {
+      "name": "Route switch resets an independent demo: ptc",
+      "passed": true
+    },
+    {
+      "name": "Same meal outcome on route: ptc",
+      "passed": true
+    },
+    {
+      "name": "Final-answer button follows route-specific length: ptc",
+      "passed": true
+    },
+    {
+      "name": "Route switch resets an independent demo: cordis",
+      "passed": true
+    },
+    {
+      "name": "Same meal outcome on route: cordis",
+      "passed": true
+    },
+    {
+      "name": "Final-answer button follows route-specific length: cordis",
+      "passed": true
+    },
+    {
+      "name": "Question and features visible before coding: meet-dsh",
+      "passed": true
+    },
+    {
+      "name": "Materials are available in-page: meet-dsh",
+      "passed": true
+    },
+    {
+      "name": "Every stage renders through its own final answer: meet-dsh",
+      "passed": true
+    },
+    {
+      "name": "Source inspector remains pinned: meet-dsh",
+      "passed": true
+    },
+    {
+      "name": "Question and features visible before coding: dinner",
+      "passed": true
+    },
+    {
+      "name": "Materials are available in-page: dinner",
+      "passed": true
+    },
+    {
+      "name": "Every stage renders through its own final answer: dinner",
+      "passed": true
+    },
+    {
+      "name": "Source inspector remains pinned: dinner",
+      "passed": true
+    },
+    {
+      "name": "Question and features visible before coding: photos",
+      "passed": true
+    },
+    {
+      "name": "Materials are available in-page: photos",
+      "passed": true
+    },
+    {
+      "name": "Every stage renders through its own final answer: photos",
+      "passed": true
+    },
+    {
+      "name": "Source inspector remains pinned: photos",
+      "passed": true
+    },
+    {
+      "name": "Question and features visible before coding: shopping",
+      "passed": true
+    },
+    {
+      "name": "Materials are available in-page: shopping",
+      "passed": true
+    },
+    {
+      "name": "Every stage renders through its own final answer: shopping",
+      "passed": true
+    },
+    {
+      "name": "Source inspector remains pinned: shopping",
+      "passed": true
+    },
+    {
+      "name": "Question and features visible before coding: registration",
+      "passed": true
+    },
+    {
+      "name": "Materials are available in-page: registration",
+      "passed": true
+    },
+    {
+      "name": "Every stage renders through its own final answer: registration",
+      "passed": true
+    },
+    {
+      "name": "Source inspector remains pinned: registration",
+      "passed": true
+    },
+    {
+      "name": "Question and features visible before coding: welcome-event",
+      "passed": true
+    },
+    {
+      "name": "Materials are available in-page: welcome-event",
+      "passed": true
+    },
+    {
+      "name": "Every stage renders through its own final answer: welcome-event",
+      "passed": true
+    },
+    {
+      "name": "Source inspector remains pinned: welcome-event",
+      "passed": true
+    },
+    {
+      "name": "Question and features visible before coding: voyage",
+      "passed": true
+    },
+    {
+      "name": "Materials are available in-page: voyage",
+      "passed": true
+    },
+    {
+      "name": "Every stage renders through its own final answer: voyage",
+      "passed": true
+    },
+    {
+      "name": "Source inspector remains pinned: voyage",
+      "passed": true
+    },
+    {
+      "name": "Question and features visible before coding: make-tool",
+      "passed": true
+    },
+    {
+      "name": "Materials are available in-page: make-tool",
+      "passed": true
+    },
+    {
+      "name": "Every stage renders through its own final answer: make-tool",
+      "passed": true
+    },
+    {
+      "name": "Source inspector remains pinned: make-tool",
+      "passed": true
+    }
+  ]
+}

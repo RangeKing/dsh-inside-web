@@ -1,0 +1,49 @@
+{
+  "pass": true,
+  "viewport": "desktop",
+  "epsilon": 0.0001,
+  "boundaries": [
+    {
+      "boundary": 1,
+      "opacity": 2.594646855147431e-07,
+      "transform": 3.113576225732828e-07,
+      "camera": 8.779496713065051e-06,
+      "reverseError": 0
+    },
+    {
+      "boundary": 2,
+      "opacity": 2.594646855147431e-07,
+      "transform": 2.594646854703342e-06,
+      "camera": 7.338769550516763e-07,
+      "reverseError": 0
+    },
+    {
+      "boundary": 3,
+      "opacity": 2.594646855147431e-07,
+      "transform": 8.144887573280357e-07,
+      "camera": 7.195176077796305e-06,
+      "reverseError": 0
+    },
+    {
+      "boundary": 4,
+      "opacity": 2.594646855147431e-07,
+      "transform": 3.113576225732828e-07,
+      "camera": 4.471533422168291e-06,
+      "reverseError": 0
+    },
+    {
+      "boundary": 5,
+      "opacity": 2.594646855147431e-07,
+      "transform": 3.113576225732828e-07,
+      "camera": 3.26142052652486e-06,
+      "reverseError": 0
+    },
+    {
+      "boundary": 6,
+      "opacity": 2.4389680441938566e-07,
+      "transform": 7.783940565442293e-07,
+      "camera": 3.1145490663304825e-06,
+      "reverseError": 0
+    }
+  ]
+}

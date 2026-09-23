@@ -1,0 +1,4180 @@
+[
+  {
+    "id": "meet-dsh",
+    "rank": 1,
+    "name": "DSH 是怎么完成一项任务的？",
+    "label": "从官方介绍出发，用一个完整任务认识模型、工具、执行循环和会话记录。",
+    "task": "从官方介绍出发，用一个完整任务认识模型、工具、执行循环和会话记录。",
+    "prompt": "我不会编程。请读 DSH 的官方介绍，用“接收任务 → 读取资料 → 执行动作 → 汇报结果”解释它怎样完成一项任务。再告诉我每一步主要由哪个源码包负责。不要修改文件。",
+    "environment": "资料已放在本页：先点“看资料”，无需懂代码。",
+    "preset": "standard",
+    "difficulty": "入门",
+    "story": "从官方介绍出发，用一个完整任务认识模型、工具、执行循环和会话记录。",
+    "features": [
+      "模型与工具如何配合",
+      "一次任务如何循环推进",
+      "源码结构与通俗概念对照"
+    ],
+    "learn": "理解 DSH 的基本分工：模型决定下一步，工具执行具体动作，Agent Loop 负责推进任务，会话保存过程与结果。",
+    "files": [
+      {
+        "path": "source-reading-map.txt",
+        "origin": "original",
+        "content": "Harness 基于 Cordis 的插件组合。\nSession 保存事件；Agent Loop 推进任务；tools 管理工具与执行管线。\n所有空间位置与动画均为本站教学设计。",
+        "contentEn": "The harness is a Cordis plugin composition.\nSession records events; Agent Loop advances tasks; tools owns the tool registry and execution pipeline.\nSpatial layouts and animations are this site’s teaching design.",
+        "sourceUrl": "https://github.com/deepseek-ai/deepseek-harness/blob/ddefc45fbc7f8e46dd73185e68295696d1297887/docs/architecture.md"
+      }
+    ],
+    "steps": [
+      {
+        "title": "接收任务并建立会话",
+        "description": "收到任务后，会话记录与 Agent 执行负责不同的事。这里使用预先编排的任务，不会读取你的文件。",
+        "nodes": [
+          "sessionController",
+          "agents",
+          "sessions"
+        ],
+        "kind": "input",
+        "event": "Session command",
+        "source": "docs/architecture.md",
+        "lines": [
+          84,
+          89
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "我不会编程。请读 DSH 的官方介绍，用“接收任务 → 读取资料 → 执行动作 → 汇报结果”解释它怎样完成一项任务。再告诉我每一步主要由哪个源码包负责。不要修改文件。",
+          "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。"
+        },
+        "runtime": {
+          "status": "收到你的任务",
+          "input": "我不会编程。请读 DSH 的官方介绍，用“接收任务 → 读取资料 → 执行动作 → 汇报结果”解释它怎样完成一项任务。再告诉我每一步主要由哪个源码包负责。不要修改文件。",
+          "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。",
+          "packet": "USER → AGENT",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 1
+        },
+        "flow": {
+          "from": "sessionController",
+          "to": "agents",
+          "label": "USER → AGENT"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "组装模型可用的工具与提示词",
+        "description": "提示词和工具声明由插件组合。模型只能使用本次请求暴露的工具，不能凭空调用能力。",
+        "nodes": [
+          "agentPresets",
+          "systemPrompt",
+          "tools"
+        ],
+        "kind": "context",
+        "event": "systemPrompt.assemble",
+        "source": "docs/architecture.md",
+        "lines": [
+          84,
+          89
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "选择 Standard；模型和工作区由宿主提供。",
+          "output": "本轮工具目录包括读取、搜索、命令等工具；工具是否可执行还需经过策略。"
+        },
+        "runtime": {
+          "status": "Standard 预设已装配",
+          "input": "选择 Standard；模型和工作区由宿主提供。",
+          "output": "本轮工具目录包括读取、搜索、命令等工具；工具是否可执行还需经过策略。",
+          "packet": "CATALOG",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 2
+        },
+        "flow": {
+          "from": "systemPrompt",
+          "to": "tools",
+          "label": "CATALOG"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "读取官方资料作为依据",
+        "description": "工具调用先经过策略和守卫，再由文件工具读取资料。工具结果进入后续模型步骤。",
+        "nodes": [
+          "tools",
+          "fs"
+        ],
+        "kind": "tool",
+        "event": "tools/execute → read",
+        "source": "docs/architecture.md",
+        "lines": [
+          84,
+          89
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "read → README.md\nread → docs/capability-seams.md",
+          "output": "资料写明：Everything is a plugin。服务表分别列出声明包、实现方和消费者。"
+        },
+        "runtime": {
+          "status": "正在读官方说明",
+          "input": "read → README.md\nread → docs/capability-seams.md",
+          "output": "资料写明：Everything is a plugin。服务表分别列出声明包、实现方和消费者。",
+          "packet": "README + SERVICES",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 3
+        },
+        "flow": {
+          "from": "tools",
+          "to": "fs",
+          "label": "README + SERVICES"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "把核心概念翻译成通俗说明",
+        "description": "模型依据已读取资料组织答复。页面展示结果与工具交接，不展示隐藏思考。",
+        "nodes": [
+          "agentLoop",
+          "llm"
+        ],
+        "kind": "model",
+        "event": "llm.stream",
+        "source": "docs/architecture.md",
+        "lines": [
+          84,
+          89
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "上下文：任务要求 + 官方节选 + 源码阅读地图。",
+          "output": "Agent：处理任务的助手。\nTool：它能调用的具体动作。\nSeam：能力与具体实现之间的接口。\nSession：这次任务留下的记录。"
+        },
+        "runtime": {
+          "status": "模型正在组织解释",
+          "input": "上下文：任务要求 + 官方节选 + 源码阅读地图。",
+          "output": "Agent：处理任务的助手。\nTool：它能调用的具体动作。\nSeam：能力与具体实现之间的接口。\nSession：这次任务留下的记录。",
+          "packet": "EXPLAIN",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 4
+        },
+        "flow": {
+          "from": "agentLoop",
+          "to": "llm",
+          "label": "EXPLAIN"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "记录结果并完成本轮任务",
+        "description": "工具结果和助手输出是会话中的持久事实。没有待处理工作时，本轮结束；持久化由相应插件处理。",
+        "nodes": [
+          "sessions",
+          "sessionPersistence"
+        ],
+        "kind": "log",
+        "event": "session/event · turn/end",
+        "source": "docs/architecture.md",
+        "lines": [
+          11,
+          16
+        ],
+        "code": "",
+        "insight": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+        "payload": {
+          "example": "synthetic",
+          "input": "汇总已确认的结果，等待会话记录刷写。",
+          "output": "DSH 像一个能调用工具的任务执行系统。\n\n1. 接收你的任务：会话入口找到 Agent。\n2. 准备资料：system-prompt 组装说明与工具目录。\n3. 模型提出动作：llm 对接模型；tools 调度工具。\n4. 完成后汇报：agent-loop 继续循环或结束；session 留下记录。\n\n源码入口：packages/core/{agent-loop,system-prompt,tools,session}。\n读取文件会用到 tool-fs 与 ctx.fs；具体存储实现可替换。"
+        },
+        "runtime": {
+          "status": "任务完成",
+          "input": "汇总已确认的结果，等待会话记录刷写。",
+          "output": "DSH 像一个能调用工具的任务执行系统。\n\n1. 接收你的任务：会话入口找到 Agent。\n2. 准备资料：system-prompt 组装说明与工具目录。\n3. 模型提出动作：llm 对接模型；tools 调度工具。\n4. 完成后汇报：agent-loop 继续循环或结束；session 留下记录。\n\n源码入口：packages/core/{agent-loop,system-prompt,tools,session}。\n读取文件会用到 tool-fs 与 ctx.fs；具体存储实现可替换。",
+          "packet": "CHECKPOINT",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 5
+        },
+        "flow": {
+          "from": "sessions",
+          "to": "sessionPersistence",
+          "label": "CHECKPOINT"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      }
+    ],
+    "output": "DSH 像一个能调用工具的任务执行系统。\n\n1. 接收你的任务：会话入口找到 Agent。\n2. 准备资料：system-prompt 组装说明与工具目录。\n3. 模型提出动作：llm 对接模型；tools 调度工具。\n4. 完成后汇报：agent-loop 继续循环或结束；session 留下记录。\n\n源码入口：packages/core/{agent-loop,system-prompt,tools,session}。\n读取文件会用到 tool-fs 与 ctx.fs；具体存储实现可替换。",
+    "resultIndex": 4,
+    "synthetic": true,
+    "chapterCount": 5,
+    "reviewedAt": "2026-09-18",
+    "reviewedCommit": "ddefc45fbc7f8e46dd73185e68295696d1297887"
+  },
+  {
+    "id": "dinner",
+    "rank": 2,
+    "name": "三人聚餐后，怎样算清转账？",
+    "label": "读取三张小票，计算均摊金额，再生成一份可以直接照着转账的结果。",
+    "task": "读取三张小票，计算均摊金额，再生成一份可以直接照着转账的结果。",
+    "prompt": "周末聚餐，安安付了 96 元，波波付了 54 元，晨晨付了 30 元。三人平摊。请读取三张小票，算出总额、每人应付金额和最终转账方案。请直接给出结果和核对过程，无需展示代码。",
+    "environment": "资料已放在本页：先点“看资料”，无需懂代码。",
+    "preset": "minimal",
+    "difficulty": "入门",
+    "story": "读取三张小票，计算均摊金额，再生成一份可以直接照着转账的结果。",
+    "features": [
+      "Minimal 的精简工具集",
+      "持久 Shell 如何参与计算",
+      "同一任务对比四种预设"
+    ],
+    "learn": "Minimal 只向模型提供两种工具，但仍能完成读取资料和简单计算；这个案例还可用来横向比较四种预设。",
+    "files": [
+      {
+        "path": "小票-安安.txt",
+        "content": "付款人：安安\n金额：96 元\n用途：周末聚餐",
+        "origin": "original",
+        "contentEn": "Paid by: An\nAmount: CNY 96\nPurpose: weekend dinner"
+      },
+      {
+        "path": "小票-波波.txt",
+        "content": "付款人：波波\n金额：54 元\n用途：周末聚餐",
+        "origin": "original",
+        "contentEn": "Paid by: Bo\nAmount: CNY 54\nPurpose: weekend dinner"
+      },
+      {
+        "path": "小票-晨晨.txt",
+        "content": "付款人：晨晨\n金额：30 元\n用途：周末聚餐",
+        "origin": "original",
+        "contentEn": "Paid by: Chen\nAmount: CNY 30\nPurpose: weekend dinner"
+      }
+    ],
+    "steps": [
+      {
+        "title": "接收任务并建立会话",
+        "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+        "nodes": [
+          "sessionController",
+          "agents",
+          "sessions"
+        ],
+        "kind": "input",
+        "event": "Session command",
+        "source": "packages/preset/agent-presets/presets/minimal/agent.cordis.yml",
+        "lines": [
+          10,
+          15
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "周末聚餐，安安付了 96 元，波波付了 54 元，晨晨付了 30 元。三人平摊。请读取三张小票，算出总额、每人应付金额和最终转账方案。请直接给出结果和核对过程，无需展示代码。",
+          "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。"
+        },
+        "runtime": {
+          "status": "收到你的任务",
+          "input": "周末聚餐，安安付了 96 元，波波付了 54 元，晨晨付了 30 元。三人平摊。请读取三张小票，算出总额、每人应付金额和最终转账方案。请直接给出结果和核对过程，无需展示代码。",
+          "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。",
+          "packet": "USER → AGENT",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 1
+        },
+        "flow": {
+          "from": "sessionController",
+          "to": "agents",
+          "label": "USER → AGENT"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "Minimal 只提供两种模型可见工具",
+        "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+        "nodes": [
+          "agentPresets",
+          "systemPrompt",
+          "tools"
+        ],
+        "kind": "context",
+        "event": "complete: true · includeRuntimeContext: false",
+        "source": "packages/preset/agent-presets/presets/minimal/agent.cordis.yml",
+        "lines": [
+          10,
+          15
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "固定提示词：You are a helpful software engineer assistant.",
+          "output": "两个模型可见工具：持久 shell（POSIX 是 bash，Windows 是 pwsh）与 str_replace_editor。本预设没有自动压缩。"
+        },
+        "runtime": {
+          "status": "Minimal 已装配",
+          "input": "固定提示词：You are a helpful software engineer assistant.",
+          "output": "两个模型可见工具：持久 shell（POSIX 是 bash，Windows 是 pwsh）与 str_replace_editor。本预设没有自动压缩。",
+          "packet": "2 TOOLS",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 2
+        },
+        "flow": {
+          "from": "agentPresets",
+          "to": "tools",
+          "label": "2 TOOLS"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "读取三张小票",
+        "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+        "nodes": [
+          "tools",
+          "fs"
+        ],
+        "kind": "tool",
+        "event": "str_replace_editor / view",
+        "source": "packages/preset/agent-presets/presets/minimal/agent.cordis.yml",
+        "lines": [
+          10,
+          15
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "str_replace_editor：查看三张小票，暂不编辑。",
+          "output": "安安 96 元；波波 54 元；晨晨 30 元。"
+        },
+        "runtime": {
+          "status": "正在查看小票",
+          "input": "str_replace_editor：查看三张小票，暂不编辑。",
+          "output": "安安 96 元；波波 54 元；晨晨 30 元。",
+          "packet": "96 + 54 + 30",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 3
+        },
+        "flow": {
+          "from": "tools",
+          "to": "fs",
+          "label": "96 + 54 + 30"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "在持久 Shell 中计算均摊",
+        "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+        "nodes": [
+          "tools",
+          "terminals",
+          "subprocess"
+        ],
+        "kind": "tool",
+        "event": "persistent bash / pwsh",
+        "source": "packages/preset/agent-presets/presets/minimal/agent.cordis.yml",
+        "lines": [
+          10,
+          15
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "通过 bash / pwsh 执行简单计算。\n总额 = 96 + 54 + 30；每人 = 总额 ÷ 3。",
+          "output": "总额 180；均摊 60；差额为 +36、−6、−30。\n不会修改小票。"
+        },
+        "runtime": {
+          "status": "计算完成",
+          "input": "通过 bash / pwsh 执行简单计算。\n总额 = 96 + 54 + 30；每人 = 总额 ÷ 3。",
+          "output": "总额 180；均摊 60；差额为 +36、−6、−30。\n不会修改小票。",
+          "packet": "180 / 3 = 60",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 4
+        },
+        "flow": {
+          "from": "tools",
+          "to": "terminals",
+          "label": "180 / 3 = 60"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "生成可核对的转账方案",
+        "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+        "nodes": [
+          "agentLoop",
+          "llm"
+        ],
+        "kind": "model",
+        "event": "assistant/message",
+        "source": "packages/preset/agent-presets/presets/minimal/agent.cordis.yml",
+        "lines": [
+          10,
+          15
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "总額与差额已经核对。",
+          "output": "这顿饭总共 180 元，每人应付 60 元。\n\n波波 → 安安：6 元\n晨晨 → 安安：30 元\n\n核对：安安最终支出 96 − 36 = 60；波波 54 + 6 = 60；晨晨 30 + 30 = 60。"
+        },
+        "runtime": {
+          "status": "最终答复已生成",
+          "input": "总額与差额已经核对。",
+          "output": "这顿饭总共 180 元，每人应付 60 元。\n\n波波 → 安安：6 元\n晨晨 → 安安：30 元\n\n核对：安安最终支出 96 − 36 = 60；波波 54 + 6 = 60；晨晨 30 + 30 = 60。",
+          "packet": "2 TRANSFERS",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 5
+        },
+        "flow": {
+          "from": "llm",
+          "to": "agentLoop",
+          "label": "2 TRANSFERS"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "记录结果并完成本轮任务",
+        "description": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+        "nodes": [
+          "sessions",
+          "sessionPersistence"
+        ],
+        "kind": "log",
+        "event": "session/event · turn/end",
+        "source": "docs/architecture.md",
+        "lines": [
+          11,
+          16
+        ],
+        "code": "",
+        "insight": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+        "payload": {
+          "example": "synthetic",
+          "input": "汇总已确认的结果，等待会话记录刷写。",
+          "output": "这顿饭总共 180 元，每人应付 60 元。\n\n波波 → 安安：6 元\n晨晨 → 安安：30 元\n\n核对：安安最终支出 96 − 36 = 60；波波 54 + 6 = 60；晨晨 30 + 30 = 60。"
+        },
+        "runtime": {
+          "status": "任务完成",
+          "input": "汇总已确认的结果，等待会话记录刷写。",
+          "output": "这顿饭总共 180 元，每人应付 60 元。\n\n波波 → 安安：6 元\n晨晨 → 安安：30 元\n\n核对：安安最终支出 96 − 36 = 60；波波 54 + 6 = 60；晨晨 30 + 30 = 60。",
+          "packet": "CHECKPOINT",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 6
+        },
+        "flow": {
+          "from": "sessions",
+          "to": "sessionPersistence",
+          "label": "CHECKPOINT"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      }
+    ],
+    "output": "这顿饭总共 180 元，每人应付 60 元。\n\n波波 → 安安：6 元\n晨晨 → 安安：30 元\n\n核对：安安最终支出 96 − 36 = 60；波波 54 + 6 = 60；晨晨 30 + 30 = 60。",
+    "resultIndex": 5,
+    "synthetic": true,
+    "presetRoutes": {
+      "minimal": [
+        {
+          "title": "接收任务并建立会话",
+          "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+          "nodes": [
+            "sessionController",
+            "agents",
+            "sessions"
+          ],
+          "kind": "input",
+          "event": "Session command",
+          "source": "packages/preset/agent-presets/presets/minimal/agent.cordis.yml",
+          "lines": [
+            10,
+            15
+          ],
+          "code": "",
+          "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+          "payload": {
+            "example": "synthetic",
+            "input": "周末聚餐，安安付了 96 元，波波付了 54 元，晨晨付了 30 元。三人平摊。请读取三张小票，算出总额、每人应付金额和最终转账方案。请直接给出结果和核对过程，无需展示代码。",
+            "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。"
+          },
+          "runtime": {
+            "status": "收到你的任务",
+            "input": "周末聚餐，安安付了 96 元，波波付了 54 元，晨晨付了 30 元。三人平摊。请读取三张小票，算出总额、每人应付金额和最终转账方案。请直接给出结果和核对过程，无需展示代码。",
+            "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。",
+            "packet": "USER → AGENT",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 1
+          },
+          "flow": {
+            "from": "sessionController",
+            "to": "agents",
+            "label": "USER → AGENT"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        },
+        {
+          "title": "Minimal 只提供两种模型可见工具",
+          "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+          "nodes": [
+            "agentPresets",
+            "systemPrompt",
+            "tools"
+          ],
+          "kind": "context",
+          "event": "complete: true · includeRuntimeContext: false",
+          "source": "packages/preset/agent-presets/presets/minimal/agent.cordis.yml",
+          "lines": [
+            10,
+            15
+          ],
+          "code": "",
+          "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+          "payload": {
+            "example": "synthetic",
+            "input": "固定提示词：You are a helpful software engineer assistant.",
+            "output": "两个模型可见工具：持久 shell（POSIX 是 bash，Windows 是 pwsh）与 str_replace_editor。本预设没有自动压缩。"
+          },
+          "runtime": {
+            "status": "Minimal 已装配",
+            "input": "固定提示词：You are a helpful software engineer assistant.",
+            "output": "两个模型可见工具：持久 shell（POSIX 是 bash，Windows 是 pwsh）与 str_replace_editor。本预设没有自动压缩。",
+            "packet": "2 TOOLS",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 2
+          },
+          "flow": {
+            "from": "agentPresets",
+            "to": "tools",
+            "label": "2 TOOLS"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        },
+        {
+          "title": "读取三张小票",
+          "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+          "nodes": [
+            "tools",
+            "fs"
+          ],
+          "kind": "tool",
+          "event": "str_replace_editor / view",
+          "source": "packages/preset/agent-presets/presets/minimal/agent.cordis.yml",
+          "lines": [
+            10,
+            15
+          ],
+          "code": "",
+          "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+          "payload": {
+            "example": "synthetic",
+            "input": "str_replace_editor：查看三张小票，暂不编辑。",
+            "output": "安安 96 元；波波 54 元；晨晨 30 元。"
+          },
+          "runtime": {
+            "status": "正在查看小票",
+            "input": "str_replace_editor：查看三张小票，暂不编辑。",
+            "output": "安安 96 元；波波 54 元；晨晨 30 元。",
+            "packet": "96 + 54 + 30",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 3
+          },
+          "flow": {
+            "from": "tools",
+            "to": "fs",
+            "label": "96 + 54 + 30"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        },
+        {
+          "title": "在持久 Shell 中计算均摊",
+          "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+          "nodes": [
+            "tools",
+            "terminals",
+            "subprocess"
+          ],
+          "kind": "tool",
+          "event": "persistent bash / pwsh",
+          "source": "packages/preset/agent-presets/presets/minimal/agent.cordis.yml",
+          "lines": [
+            10,
+            15
+          ],
+          "code": "",
+          "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+          "payload": {
+            "example": "synthetic",
+            "input": "通过 bash / pwsh 执行简单计算。\n总额 = 96 + 54 + 30；每人 = 总额 ÷ 3。",
+            "output": "总额 180；均摊 60；差额为 +36、−6、−30。\n不会修改小票。"
+          },
+          "runtime": {
+            "status": "计算完成",
+            "input": "通过 bash / pwsh 执行简单计算。\n总额 = 96 + 54 + 30；每人 = 总额 ÷ 3。",
+            "output": "总额 180；均摊 60；差额为 +36、−6、−30。\n不会修改小票。",
+            "packet": "180 / 3 = 60",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 4
+          },
+          "flow": {
+            "from": "tools",
+            "to": "terminals",
+            "label": "180 / 3 = 60"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        },
+        {
+          "title": "生成可核对的转账方案",
+          "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+          "nodes": [
+            "agentLoop",
+            "llm"
+          ],
+          "kind": "model",
+          "event": "assistant/message",
+          "source": "packages/preset/agent-presets/presets/minimal/agent.cordis.yml",
+          "lines": [
+            10,
+            15
+          ],
+          "code": "",
+          "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+          "payload": {
+            "example": "synthetic",
+            "input": "总額与差额已经核对。",
+            "output": "这顿饭总共 180 元，每人应付 60 元。\n\n波波 → 安安：6 元\n晨晨 → 安安：30 元\n\n核对：安安最终支出 96 − 36 = 60；波波 54 + 6 = 60；晨晨 30 + 30 = 60。"
+          },
+          "runtime": {
+            "status": "最终答复已生成",
+            "input": "总額与差额已经核对。",
+            "output": "这顿饭总共 180 元，每人应付 60 元。\n\n波波 → 安安：6 元\n晨晨 → 安安：30 元\n\n核对：安安最终支出 96 − 36 = 60；波波 54 + 6 = 60；晨晨 30 + 30 = 60。",
+            "packet": "2 TRANSFERS",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 5
+          },
+          "flow": {
+            "from": "llm",
+            "to": "agentLoop",
+            "label": "2 TRANSFERS"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        },
+        {
+          "title": "记录结果并完成本轮任务",
+          "description": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+          "nodes": [
+            "sessions",
+            "sessionPersistence"
+          ],
+          "kind": "log",
+          "event": "session/event · turn/end",
+          "source": "packages/preset/agent-presets/presets/minimal/agent.cordis.yml",
+          "lines": [
+            10,
+            15
+          ],
+          "code": "",
+          "insight": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+          "payload": {
+            "example": "synthetic",
+            "input": "汇总已确认的结果，等待会话记录刷写。",
+            "output": "这顿饭总共 180 元，每人应付 60 元。\n\n波波 → 安安：6 元\n晨晨 → 安安：30 元\n\n核对：安安最终支出 96 − 36 = 60；波波 54 + 6 = 60；晨晨 30 + 30 = 60。"
+          },
+          "runtime": {
+            "status": "任务完成",
+            "input": "汇总已确认的结果，等待会话记录刷写。",
+            "output": "这顿饭总共 180 元，每人应付 60 元。\n\n波波 → 安安：6 元\n晨晨 → 安安：30 元\n\n核对：安安最终支出 96 − 36 = 60；波波 54 + 6 = 60；晨晨 30 + 30 = 60。",
+            "packet": "CHECKPOINT",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 6
+          },
+          "flow": {
+            "from": "sessions",
+            "to": "sessionPersistence",
+            "label": "CHECKPOINT"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        }
+      ],
+      "standard": [
+        {
+          "title": "接收任务并建立会话",
+          "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+          "nodes": [
+            "sessionController",
+            "agents",
+            "sessions"
+          ],
+          "kind": "input",
+          "event": "Session command",
+          "source": "packages/preset/agent-presets/presets/standard/agent.cordis.yml",
+          "lines": [
+            25,
+            30
+          ],
+          "code": "",
+          "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+          "payload": {
+            "example": "synthetic",
+            "input": "周末聚餐，安安付了 96 元，波波付了 54 元，晨晨付了 30 元。三人平摊。请读取三张小票，算出总额、每人应付金额和最终转账方案。请直接给出结果和核对过程，无需展示代码。",
+            "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。"
+          },
+          "runtime": {
+            "status": "收到你的任务",
+            "input": "周末聚餐，安安付了 96 元，波波付了 54 元，晨晨付了 30 元。三人平摊。请读取三张小票，算出总额、每人应付金额和最终转账方案。请直接给出结果和核对过程，无需展示代码。",
+            "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。",
+            "packet": "USER → AGENT",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 1
+          },
+          "flow": {
+            "from": "sessionController",
+            "to": "agents",
+            "label": "USER → AGENT"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        },
+        {
+          "title": "Standard 提供完整的原生工具集",
+          "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+          "nodes": [
+            "agentPresets",
+            "systemPrompt",
+            "tools"
+          ],
+          "kind": "context",
+          "event": "native tool schemas",
+          "source": "packages/preset/agent-presets/presets/standard/agent.cordis.yml",
+          "lines": [
+            25,
+            30
+          ],
+          "code": "",
+          "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+          "payload": {
+            "example": "synthetic",
+            "input": "模型看到读取、搜索、shell 等原生工具。",
+            "output": "本例只用读取与简单计算，不会为了展示功能强行调用子任务。"
+          },
+          "runtime": {
+            "status": "Standard 已装配",
+            "input": "模型看到读取、搜索、shell 等原生工具。",
+            "output": "本例只用读取与简单计算，不会为了展示功能强行调用子任务。",
+            "packet": "NATIVE TOOLS",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 2
+          },
+          "flow": {
+            "from": "agentPresets",
+            "to": "tools",
+            "label": "NATIVE TOOLS"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        },
+        {
+          "title": "用原生 read 工具读取三张小票",
+          "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+          "nodes": [
+            "tools",
+            "fs"
+          ],
+          "kind": "tool",
+          "event": "read",
+          "source": "packages/preset/agent-presets/presets/standard/agent.cordis.yml",
+          "lines": [
+            25,
+            30
+          ],
+          "code": "",
+          "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+          "payload": {
+            "example": "synthetic",
+            "input": "read：安安、波波、晨晨的小票。",
+            "output": "付款额：96、54、30 元。"
+          },
+          "runtime": {
+            "status": "读取完成",
+            "input": "read：安安、波波、晨晨的小票。",
+            "output": "付款额：96、54、30 元。",
+            "packet": "3 READS",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 3
+          },
+          "flow": {
+            "from": "tools",
+            "to": "fs",
+            "label": "3 READS"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        },
+        {
+          "title": "用 Shell 核对均摊计算",
+          "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+          "nodes": [
+            "tools",
+            "shell"
+          ],
+          "kind": "tool",
+          "event": "bash / pwsh",
+          "source": "packages/preset/agent-presets/presets/standard/agent.cordis.yml",
+          "lines": [
+            25,
+            30
+          ],
+          "code": "",
+          "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+          "payload": {
+            "example": "synthetic",
+            "input": "bash / pwsh：汇总付款额并除以 3。",
+            "output": "总额 180 元；每人 60 元；差额 +36、−6、−30。"
+          },
+          "runtime": {
+            "status": "计算完成",
+            "input": "bash / pwsh：汇总付款额并除以 3。",
+            "output": "总额 180 元；每人 60 元；差额 +36、−6、−30。",
+            "packet": "CALCULATE",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 4
+          },
+          "flow": {
+            "from": "tools",
+            "to": "shell",
+            "label": "CALCULATE"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        },
+        {
+          "title": "记录结果并完成本轮任务",
+          "description": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+          "nodes": [
+            "sessions",
+            "sessionPersistence"
+          ],
+          "kind": "log",
+          "event": "session/event · turn/end",
+          "source": "packages/preset/agent-presets/presets/standard/agent.cordis.yml",
+          "lines": [
+            25,
+            30
+          ],
+          "code": "",
+          "insight": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+          "payload": {
+            "example": "synthetic",
+            "input": "汇总已确认的结果，等待会话记录刷写。",
+            "output": "这顿饭总共 180 元，每人应付 60 元。\n\n波波 → 安安：6 元\n晨晨 → 安安：30 元\n\n核对：安安最终支出 96 − 36 = 60；波波 54 + 6 = 60；晨晨 30 + 30 = 60。"
+          },
+          "runtime": {
+            "status": "任务完成",
+            "input": "汇总已确认的结果，等待会话记录刷写。",
+            "output": "这顿饭总共 180 元，每人应付 60 元。\n\n波波 → 安安：6 元\n晨晨 → 安安：30 元\n\n核对：安安最终支出 96 − 36 = 60；波波 54 + 6 = 60；晨晨 30 + 30 = 60。",
+            "packet": "CHECKPOINT",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 5
+          },
+          "flow": {
+            "from": "sessions",
+            "to": "sessionPersistence",
+            "label": "CHECKPOINT"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        }
+      ],
+      "ptc": [
+        {
+          "title": "接收任务并建立会话",
+          "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+          "nodes": [
+            "sessionController",
+            "agents",
+            "sessions"
+          ],
+          "kind": "input",
+          "event": "Session command",
+          "source": "packages/preset/agent-presets/presets/ptc/agent.cordis.yml",
+          "lines": [
+            32,
+            37
+          ],
+          "code": "",
+          "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+          "payload": {
+            "example": "synthetic",
+            "input": "周末聚餐，安安付了 96 元，波波付了 54 元，晨晨付了 30 元。三人平摊。请读取三张小票，算出总额、每人应付金额和最终转账方案。请直接给出结果和核对过程，无需展示代码。",
+            "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。"
+          },
+          "runtime": {
+            "status": "收到你的任务",
+            "input": "周末聚餐，安安付了 96 元，波波付了 54 元，晨晨付了 30 元。三人平摊。请读取三张小票，算出总额、每人应付金额和最终转账方案。请直接给出结果和核对过程，无需展示代码。",
+            "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。",
+            "packet": "USER → AGENT",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 1
+          },
+          "flow": {
+            "from": "sessionController",
+            "to": "agents",
+            "label": "USER → AGENT"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        },
+        {
+          "title": "PTC 通过 run_code 组织底层工具",
+          "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+          "nodes": [
+            "tools",
+            "ptcRuntime"
+          ],
+          "kind": "context",
+          "event": "run_code",
+          "source": "packages/preset/agent-presets/presets/ptc/agent.cordis.yml",
+          "lines": [
+            32,
+            37
+          ],
+          "code": "",
+          "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+          "payload": {
+            "example": "synthetic",
+            "input": "模型原生目录：run_code。",
+            "output": "读取与计算流程编排在一段程序内；依然使用受控 SDK 工具。"
+          },
+          "runtime": {
+            "status": "PTC 已装配",
+            "input": "模型原生目录：run_code。",
+            "output": "读取与计算流程编排在一段程序内；依然使用受控 SDK 工具。",
+            "packet": "ONE PROGRAM",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 2
+          },
+          "flow": {
+            "from": "tools",
+            "to": "ptcRuntime",
+            "label": "ONE PROGRAM"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        },
+        {
+          "title": "程序内部完成读取与计算",
+          "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+          "nodes": [
+            "ptcRuntime",
+            "tools",
+            "fs"
+          ],
+          "kind": "tool",
+          "event": "tool/ptc-dispatch",
+          "source": "packages/preset/agent-presets/presets/ptc/agent.cordis.yml",
+          "lines": [
+            32,
+            37
+          ],
+          "code": "",
+          "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+          "payload": {
+            "example": "synthetic",
+            "input": "SDK 读取三张小票，然后在程序内计算均摊。",
+            "output": "只输出必要结果：total=180, share=60, transfers=[6,30]。"
+          },
+          "runtime": {
+            "status": "内部处理完成",
+            "input": "SDK 读取三张小票，然后在程序内计算均摊。",
+            "output": "只输出必要结果：total=180, share=60, transfers=[6,30]。",
+            "packet": "SDK READS",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 3
+          },
+          "flow": {
+            "from": "tools",
+            "to": "fs",
+            "label": "SDK READS"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        },
+        {
+          "title": "记录结果并完成本轮任务",
+          "description": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+          "nodes": [
+            "sessions",
+            "sessionPersistence"
+          ],
+          "kind": "log",
+          "event": "session/event · turn/end",
+          "source": "packages/preset/agent-presets/presets/ptc/agent.cordis.yml",
+          "lines": [
+            32,
+            37
+          ],
+          "code": "",
+          "insight": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+          "payload": {
+            "example": "synthetic",
+            "input": "汇总已确认的结果，等待会话记录刷写。",
+            "output": "这顿饭总共 180 元，每人应付 60 元。\n\n波波 → 安安：6 元\n晨晨 → 安安：30 元\n\n核对：安安最终支出 96 − 36 = 60；波波 54 + 6 = 60；晨晨 30 + 30 = 60。"
+          },
+          "runtime": {
+            "status": "任务完成",
+            "input": "汇总已确认的结果，等待会话记录刷写。",
+            "output": "这顿饭总共 180 元，每人应付 60 元。\n\n波波 → 安安：6 元\n晨晨 → 安安：30 元\n\n核对：安安最终支出 96 − 36 = 60；波波 54 + 6 = 60；晨晨 30 + 30 = 60。",
+            "packet": "CHECKPOINT",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 4
+          },
+          "flow": {
+            "from": "sessions",
+            "to": "sessionPersistence",
+            "label": "CHECKPOINT"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        }
+      ],
+      "cordis": [
+        {
+          "title": "接收任务并建立会话",
+          "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+          "nodes": [
+            "sessionController",
+            "agents",
+            "sessions"
+          ],
+          "kind": "input",
+          "event": "Session command",
+          "source": "packages/preset/agent-presets/presets/cordis/agent.cordis.yml",
+          "lines": [
+            16,
+            21
+          ],
+          "code": "",
+          "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+          "payload": {
+            "example": "synthetic",
+            "input": "周末聚餐，安安付了 96 元，波波付了 54 元，晨晨付了 30 元。三人平摊。请读取三张小票，算出总额、每人应付金额和最终转账方案。请直接给出结果和核对过程，无需展示代码。",
+            "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。"
+          },
+          "runtime": {
+            "status": "收到你的任务",
+            "input": "周末聚餐，安安付了 96 元，波波付了 54 元，晨晨付了 30 元。三人平摊。请读取三张小票，算出总额、每人应付金额和最终转账方案。请直接给出结果和核对过程，无需展示代码。",
+            "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。",
+            "packet": "USER → AGENT",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 1
+          },
+          "flow": {
+            "from": "sessionController",
+            "to": "agents",
+            "label": "USER → AGENT"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        },
+        {
+          "title": "Standard 提供完整的原生工具集",
+          "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+          "nodes": [
+            "agentPresets",
+            "systemPrompt",
+            "tools"
+          ],
+          "kind": "context",
+          "event": "native tool schemas",
+          "source": "packages/preset/agent-presets/presets/cordis/agent.cordis.yml",
+          "lines": [
+            16,
+            21
+          ],
+          "code": "",
+          "insight": "Creator 也能直接使用现有工具。算一顿饭无需安装插件；有重复需求时再扩展。",
+          "payload": {
+            "example": "synthetic",
+            "input": "模型看到读取、搜索、shell 等原生工具。",
+            "output": "本例只用读取与简单计算，不会为了展示功能强行调用子任务。"
+          },
+          "runtime": {
+            "status": "Standard 已装配",
+            "input": "模型看到读取、搜索、shell 等原生工具。",
+            "output": "本例只用读取与简单计算，不会为了展示功能强行调用子任务。",
+            "packet": "NATIVE TOOLS",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 2
+          },
+          "flow": {
+            "from": "agentPresets",
+            "to": "tools",
+            "label": "NATIVE TOOLS"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        },
+        {
+          "title": "用原生 read 工具读取三张小票",
+          "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+          "nodes": [
+            "tools",
+            "fs"
+          ],
+          "kind": "tool",
+          "event": "read",
+          "source": "packages/preset/agent-presets/presets/cordis/agent.cordis.yml",
+          "lines": [
+            16,
+            21
+          ],
+          "code": "",
+          "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+          "payload": {
+            "example": "synthetic",
+            "input": "read：安安、波波、晨晨的小票。",
+            "output": "付款额：96、54、30 元。"
+          },
+          "runtime": {
+            "status": "读取完成",
+            "input": "read：安安、波波、晨晨的小票。",
+            "output": "付款额：96、54、30 元。",
+            "packet": "3 READS",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 3
+          },
+          "flow": {
+            "from": "tools",
+            "to": "fs",
+            "label": "3 READS"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        },
+        {
+          "title": "用 Shell 核对均摊计算",
+          "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+          "nodes": [
+            "tools",
+            "shell"
+          ],
+          "kind": "tool",
+          "event": "bash / pwsh",
+          "source": "packages/preset/agent-presets/presets/cordis/agent.cordis.yml",
+          "lines": [
+            16,
+            21
+          ],
+          "code": "",
+          "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+          "payload": {
+            "example": "synthetic",
+            "input": "bash / pwsh：汇总付款额并除以 3。",
+            "output": "总额 180 元；每人 60 元；差额 +36、−6、−30。"
+          },
+          "runtime": {
+            "status": "计算完成",
+            "input": "bash / pwsh：汇总付款额并除以 3。",
+            "output": "总额 180 元；每人 60 元；差额 +36、−6、−30。",
+            "packet": "CALCULATE",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 4
+          },
+          "flow": {
+            "from": "tools",
+            "to": "shell",
+            "label": "CALCULATE"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        },
+        {
+          "title": "记录结果并完成本轮任务",
+          "description": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+          "nodes": [
+            "sessions",
+            "sessionPersistence"
+          ],
+          "kind": "log",
+          "event": "session/event · turn/end",
+          "source": "packages/preset/agent-presets/presets/cordis/agent.cordis.yml",
+          "lines": [
+            16,
+            21
+          ],
+          "code": "",
+          "insight": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+          "payload": {
+            "example": "synthetic",
+            "input": "汇总已确认的结果，等待会话记录刷写。",
+            "output": "这顿饭总共 180 元，每人应付 60 元。\n\n波波 → 安安：6 元\n晨晨 → 安安：30 元\n\n核对：安安最终支出 96 − 36 = 60；波波 54 + 6 = 60；晨晨 30 + 30 = 60。"
+          },
+          "runtime": {
+            "status": "任务完成",
+            "input": "汇总已确认的结果，等待会话记录刷写。",
+            "output": "这顿饭总共 180 元，每人应付 60 元。\n\n波波 → 安安：6 元\n晨晨 → 安安：30 元\n\n核对：安安最终支出 96 − 36 = 60；波波 54 + 6 = 60；晨晨 30 + 30 = 60。",
+            "packet": "CHECKPOINT",
+            "synthetic": true,
+            "turn": 1,
+            "phase": 5
+          },
+          "flow": {
+            "from": "sessions",
+            "to": "sessionPersistence",
+            "label": "CHECKPOINT"
+          },
+          "reviewedAt": "2026-09-18",
+          "evidence": "source-backed teaching sequence"
+        }
+      ]
+    },
+    "chapterCount": 6,
+    "reviewedAt": "2026-09-18",
+    "reviewedCommit": "ddefc45fbc7f8e46dd73185e68295696d1297887"
+  },
+  {
+    "id": "photos",
+    "rank": 3,
+    "name": "整理照片前先确认：用户拒绝后会发生什么？",
+    "label": "系统先列出移动方案并请求批准；用户拒绝后，文件操作停止在真正执行之前。",
+    "task": "系统先列出移动方案并请求批准；用户拒绝后，文件操作停止在真正执行之前。",
+    "prompt": "请把三张旅行照片按拍摄月份整理到对应文件夹。先列出移动方案，等我明确同意后再执行。不要删除照片，也不要修改照片内容。",
+    "environment": "资料已放在本页：先点“看资料”，无需懂代码。",
+    "preset": "standard",
+    "difficulty": "基础",
+    "story": "系统先列出移动方案并请求批准；用户拒绝后，文件操作停止在真正执行之前。",
+    "features": [
+      "用户审批如何进入工具管线",
+      "拒绝结果如何返回主循环",
+      "工具执行前的安全边界"
+    ],
+    "learn": "提示词中的“先征求确认”需要由实际审批策略落实。本例把文件移动配置为必须先获批准，因此拒绝会在文件操作真正执行前生效。",
+    "files": [
+      {
+        "path": "照片清单.txt",
+        "content": "海边.jpg｜2026-06-02\n山顶.jpg｜2026-07-16\n合影.jpg｜2026-07-17\n说明：这是照片元数据样本，未附带真实照片。",
+        "origin": "original",
+        "contentEn": "beach.jpg | 2026-06-02\nsummit.jpg | 2026-07-16\ngroup.jpg | 2026-07-17\nThis is synthetic photo metadata, not real image files."
+      }
+    ],
+    "steps": [
+      {
+        "title": "接收任务并建立会话",
+        "description": "本例明确假设已配置“移动前询问”的执行策略。自然语言提示本身不等于强制审批。",
+        "nodes": [
+          "sessionController",
+          "agents",
+          "sessions"
+        ],
+        "kind": "input",
+        "event": "Session command",
+        "source": "docs/tool-execution-pipeline.md",
+        "lines": [
+          6,
+          11
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "请把三张旅行照片按拍摄月份整理到对应文件夹。先列出移动方案，等我明确同意后再执行。不要删除照片，也不要修改照片内容。",
+          "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。"
+        },
+        "runtime": {
+          "status": "收到你的任务",
+          "input": "请把三张旅行照片按拍摄月份整理到对应文件夹。先列出移动方案，等我明确同意后再执行。不要删除照片，也不要修改照片内容。",
+          "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。",
+          "packet": "USER → AGENT",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 1
+        },
+        "flow": {
+          "from": "sessionController",
+          "to": "agents",
+          "label": "USER → AGENT"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "读取照片清单并生成归档方案",
+        "description": "先读取原创照片清单，提出归档方案。此时尚未移动任何文件。",
+        "nodes": [
+          "tools",
+          "fs"
+        ],
+        "kind": "tool",
+        "event": "read",
+        "source": "docs/tool-execution-pipeline.md",
+        "lines": [
+          6,
+          11
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "3 张照片的文件名与拍摄月份。",
+          "output": "计划：海边.jpg → 2026-06/\n山顶.jpg、合影.jpg → 2026-07/\n此刻尚未移动任何文件。"
+        },
+        "runtime": {
+          "status": "只读查看",
+          "input": "3 张照片的文件名与拍摄月份。",
+          "output": "计划：海边.jpg → 2026-06/\n山顶.jpg、合影.jpg → 2026-07/\n此刻尚未移动任何文件。",
+          "packet": "3 PHOTOS",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 2
+        },
+        "flow": {
+          "from": "tools",
+          "to": "fs",
+          "label": "3 PHOTOS"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "移动操作进入审批流程",
+        "description": "策略在 tools/pre-execute 阶段要求一次性确认。用户答复到来前，工具本体尚未执行。",
+        "nodes": [
+          "tools",
+          "approval"
+        ],
+        "kind": "guard",
+        "event": "tools/pre-execute · approval/request",
+        "source": "docs/tool-execution-pipeline.md",
+        "lines": [
+          15,
+          20
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "移动命令已准备好；示例策略要求先批准。",
+          "output": "tools/pre-execute 返回 ask；审批请求交给 ctx.approval。工具本体尚未调用。"
+        },
+        "runtime": {
+          "status": "等待你的批准",
+          "input": "移动命令已准备好；示例策略要求先批准。",
+          "output": "tools/pre-execute 返回 ask；审批请求交给 ctx.approval。工具本体尚未调用。",
+          "packet": "ASK",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 3
+        },
+        "flow": {
+          "from": "tools",
+          "to": "approval",
+          "label": "ASK"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "用户拒绝本次移动操作",
+        "description": "拒绝、取消或无法获得答复都会阻止这次工具本体运行。这里演示用户拒绝。",
+        "nodes": [
+          "approval",
+          "tools"
+        ],
+        "kind": "blocked",
+        "event": "approval/request → deny",
+        "source": "docs/tool-execution-pipeline.md",
+        "lines": [
+          15,
+          20
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "用户回复：先不要移动，我要把方案发给朋友确认。",
+          "output": "拒绝结果返回工具管线。没有 shell 执行，也没有文件写入。"
+        },
+        "runtime": {
+          "status": "用户已拒绝",
+          "input": "用户回复：先不要移动，我要把方案发给朋友确认。",
+          "output": "拒绝结果返回工具管线。没有 shell 执行，也没有文件写入。",
+          "packet": "DENIED",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 4
+        },
+        "flow": {
+          "from": "approval",
+          "to": "tools",
+          "label": "DENIED"
+        },
+        "ribbon": "用户拒绝 · 未执行文件移动",
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "记录拒绝结果并返回主循环",
+        "description": "拒绝结果仍会经过结果处理并形成 tool/result。它不是“文件移动成功”。",
+        "nodes": [
+          "tools",
+          "sessions"
+        ],
+        "kind": "log",
+        "event": "tool/result",
+        "source": "docs/architecture.md",
+        "lines": [
+          11,
+          16
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "工具调用结果：未获批准。",
+          "output": "会话留下拒绝结果，模型据此解释任务为何没有执行。"
+        },
+        "runtime": {
+          "status": "记录拒绝结果",
+          "input": "工具调用结果：未获批准。",
+          "output": "会话留下拒绝结果，模型据此解释任务为何没有执行。",
+          "packet": "DENIAL RECORDED",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 5
+        },
+        "flow": {
+          "from": "tools",
+          "to": "sessions",
+          "label": "DENIAL RECORDED"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "记录结果并完成本轮任务",
+        "description": "助手说明操作未执行，并保留已有文件。教学时间线结束不代表真实 DSH 执行完成。",
+        "nodes": [
+          "sessions",
+          "sessionPersistence"
+        ],
+        "kind": "log",
+        "event": "session/event · turn/end",
+        "source": "docs/architecture.md",
+        "lines": [
+          11,
+          16
+        ],
+        "code": "",
+        "insight": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+        "payload": {
+          "example": "synthetic",
+          "input": "汇总已确认的结果，等待会话记录刷写。",
+          "output": "本次照片整理已取消，3 张照片仍保留在原来的位置。\n移动：0 张；删除：0 张；内容修改：0。\n\n如果之后决定继续，可以重新确认移动方案并发起操作。"
+        },
+        "runtime": {
+          "status": "任务完成",
+          "input": "汇总已确认的结果，等待会话记录刷写。",
+          "output": "本次照片整理已取消，3 张照片仍保留在原来的位置。\n移动：0 张；删除：0 张；内容修改：0。\n\n如果之后决定继续，可以重新确认移动方案并发起操作。",
+          "packet": "CHECKPOINT",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 6
+        },
+        "flow": {
+          "from": "sessions",
+          "to": "sessionPersistence",
+          "label": "CHECKPOINT"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      }
+    ],
+    "output": "本次照片整理已取消，3 张照片仍保留在原来的位置。\n移动：0 张；删除：0 张；内容修改：0。\n\n如果之后决定继续，可以重新确认移动方案并发起操作。",
+    "resultIndex": 5,
+    "synthetic": true,
+    "chapterCount": 6,
+    "reviewedAt": "2026-09-18",
+    "reviewedCommit": "ddefc45fbc7f8e46dd73185e68295696d1297887"
+  },
+  {
+    "id": "shopping",
+    "rank": 4,
+    "name": "修改共享采购单时，怎样保留家人的更新？",
+    "label": "任务只要求把牛奶改成 4 盒，但家人同时加入了鸡蛋。系统需要先发现版本冲突，再基于最新内容重试。",
+    "task": "任务只要求把牛奶改成 4 盒，但家人同时加入了鸡蛋。系统需要先发现版本冲突，再基于最新内容重试。",
+    "prompt": "这是一份家里的共享采购单。请把牛奶从 2 盒改成 4 盒。家人可能同时修改它，请保留其他人的更新。",
+    "environment": "资料已放在本页：先点“看资料”，无需懂代码。",
+    "preset": "standard",
+    "difficulty": "进阶",
+    "story": "任务只要求把牛奶改成 4 盒，但家人同时加入了鸡蛋。系统需要先发现版本冲突，再基于最新内容重试。",
+    "features": [
+      "先读后改的文件观察",
+      "并发修改导致版本冲突",
+      "重新读取后安全重试"
+    ],
+    "learn": "展示文件观察策略与文件系统实现如何配合：先读取版本，写入前重新校验，发现变化后要求重新读取。",
+    "files": [
+      {
+        "path": "采购单-v1.txt",
+        "content": "牛奶：2 盒\n大米：1 袋",
+        "origin": "original",
+        "contentEn": "Milk: 2 cartons\nRice: 1 bag"
+      },
+      {
+        "path": "家人更新后的-v2.txt",
+        "content": "牛奶：2 盒\n大米：1 袋\n鸡蛋：12 个",
+        "origin": "original",
+        "contentEn": "Milk: 2 cartons\nRice: 1 bag\nEggs: 12"
+      },
+      {
+        "path": "预期-v3.txt",
+        "content": "牛奶：4 盒\n大米：1 袋\n鸡蛋：12 个",
+        "origin": "original",
+        "contentEn": "Milk: 4 cartons\nRice: 1 bag\nEggs: 12"
+      }
+    ],
+    "steps": [
+      {
+        "title": "接收任务并建立会话",
+        "description": "任务是修改共享采购单。这里明确启用文件观察策略，避免把保护机制说成所有配置都必然具备。",
+        "nodes": [
+          "sessionController",
+          "agents",
+          "sessions"
+        ],
+        "kind": "input",
+        "event": "Session command",
+        "source": "packages/fs/tool-fs/README.md",
+        "lines": [
+          12,
+          17
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "这是一份家里的共享采购单。请把牛奶从 2 盒改成 4 盒。家人可能同时修改它，请保留其他人的更新。",
+          "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。"
+        },
+        "runtime": {
+          "status": "收到你的任务",
+          "input": "这是一份家里的共享采购单。请把牛奶从 2 盒改成 4 盒。家人可能同时修改它，请保留其他人的更新。",
+          "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。",
+          "packet": "USER → AGENT",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 1
+        },
+        "flow": {
+          "from": "sessionController",
+          "to": "agents",
+          "label": "USER → AGENT"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "读取采购单并记录当前版本",
+        "description": "read 成功后记录已观察版本；后续修改针对这个版本进行检查。",
+        "nodes": [
+          "tools",
+          "fs"
+        ],
+        "kind": "tool",
+        "event": "read · fs/observed",
+        "source": "packages/fs/tool-fs/README.md",
+        "lines": [
+          12,
+          17
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "牛奶：2 盒\n大米：1 袋",
+          "output": "read 成功后产生 fs/observed，记录当时的文件版本。"
+        },
+        "runtime": {
+          "status": "已观察版本 v1",
+          "input": "牛奶：2 盒\n大米：1 袋",
+          "output": "read 成功后产生 fs/observed，记录当时的文件版本。",
+          "packet": "READ v1",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 2
+        },
+        "flow": {
+          "from": "tools",
+          "to": "fs",
+          "label": "READ v1"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "文件在写入前被其他人更新",
+        "description": "另一位家人添加了鸡蛋。这是教学中编排的外部更新，不是当前 Agent 的写入。",
+        "nodes": [
+          "fs"
+        ],
+        "kind": "runtime",
+        "event": "External file edit (teaching interleaving)",
+        "source": "packages/fs/tool-fs/README.md",
+        "lines": [
+          70,
+          75
+        ],
+        "code": "",
+        "insight": "这里模拟另一位用户同时更新采购单。当前 Agent 还持有旧版本，因此下一次写入需要重新校验。",
+        "payload": {
+          "example": "synthetic",
+          "input": "家人把“鸡蛋：12 个”加入同一份采购单。",
+          "output": "牛奶：2 盒\n大米：1 袋\n鸡蛋：12 个"
+        },
+        "runtime": {
+          "status": "检测到外部更新",
+          "input": "家人把“鸡蛋：12 个”加入同一份采购单。",
+          "output": "牛奶：2 盒\n大米：1 袋\n鸡蛋：12 个",
+          "packet": "家人在你动手前加了一项",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 3
+        },
+        "flow": null,
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "检测到版本变化，阻止旧版本写入",
+        "description": "当前文件与已观察版本不同，写入被拒绝并返回 FS_STALE_VERSION，提示先重新读取。",
+        "nodes": [
+          "tools",
+          "fs"
+        ],
+        "kind": "guard",
+        "event": "fs/edit-intent → FS_STALE_VERSION",
+        "source": "packages/fs/tool-fs/README.md",
+        "lines": [
+          70,
+          75
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "edit：将“牛奶：2 盒”替换为“牛奶：4 盒”；携带旧的观察状态。",
+          "output": "FS_STALE_VERSION\n请重新读取文件，再重试。\n此次没有写入。"
+        },
+        "runtime": {
+          "status": "发现版本冲突",
+          "input": "edit：将“牛奶：2 盒”替换为“牛奶：4 盒”；携带旧的观察状态。",
+          "output": "FS_STALE_VERSION\n请重新读取文件，再重试。\n此次没有写入。",
+          "packet": "STALE VERSION",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 4
+        },
+        "flow": {
+          "from": "fs",
+          "to": "tools",
+          "label": "STALE VERSION"
+        },
+        "ribbon": "检测到版本冲突 · 重新读取最新文件",
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "重新读取最新版本，保留新增内容",
+        "description": "重新读取确认新增的鸡蛋仍在，再基于当前内容构造修改。",
+        "nodes": [
+          "tools",
+          "fs"
+        ],
+        "kind": "tool",
+        "event": "read · fs/observed",
+        "source": "packages/fs/tool-fs/README.md",
+        "lines": [
+          70,
+          75
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "按错误提示重新读取采购单。",
+          "output": "牛奶：2 盒\n大米：1 袋\n鸡蛋：12 个"
+        },
+        "runtime": {
+          "status": "已观察版本 v2",
+          "input": "按错误提示重新读取采购单。",
+          "output": "牛奶：2 盒\n大米：1 袋\n鸡蛋：12 个",
+          "packet": "READ v2",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 5
+        },
+        "flow": {
+          "from": "tools",
+          "to": "fs",
+          "label": "READ v2"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "基于最新版本只修改牛奶数量",
+        "description": "只修改目标行。文件工具的受保护修改不等于任意 Shell 写文件也有相同保证。",
+        "nodes": [
+          "tools",
+          "fs"
+        ],
+        "kind": "tool",
+        "event": "edit → atomic mutation",
+        "source": "packages/fs/tool-fs/README.md",
+        "lines": [
+          70,
+          75
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "基于 v2，把牛奶 2 盒改成 4 盒。",
+          "output": "牛奶：4 盒\n大米：1 袋\n鸡蛋：12 个"
+        },
+        "runtime": {
+          "status": "编辑成功",
+          "input": "基于 v2，把牛奶 2 盒改成 4 盒。",
+          "output": "牛奶：4 盒\n大米：1 袋\n鸡蛋：12 个",
+          "packet": "MILK 2 → 4",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 6
+        },
+        "flow": {
+          "from": "tools",
+          "to": "fs",
+          "label": "MILK 2 → 4"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "记录结果并完成本轮任务",
+        "description": "汇报牛奶数量已更新，鸡蛋保留。这里的具体文本来自可核对的教学资料。",
+        "nodes": [
+          "sessions",
+          "sessionPersistence"
+        ],
+        "kind": "log",
+        "event": "session/event · turn/end",
+        "source": "docs/architecture.md",
+        "lines": [
+          11,
+          16
+        ],
+        "code": "",
+        "insight": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+        "payload": {
+          "example": "synthetic",
+          "input": "汇总已确认的结果，等待会话记录刷写。",
+          "output": "牛奶已改为 4 盒。\n\n牛奶：4 盒\n大米：1 袋\n鸡蛋：12 个\n\n第一次编辑遇到版本冲突后，我重新读取，再应用修改；家人新增的鸡蛋仍然保留。"
+        },
+        "runtime": {
+          "status": "任务完成",
+          "input": "汇总已确认的结果，等待会话记录刷写。",
+          "output": "牛奶已改为 4 盒。\n\n牛奶：4 盒\n大米：1 袋\n鸡蛋：12 个\n\n第一次编辑遇到版本冲突后，我重新读取，再应用修改；家人新增的鸡蛋仍然保留。",
+          "packet": "CHECKPOINT",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 7
+        },
+        "flow": {
+          "from": "sessions",
+          "to": "sessionPersistence",
+          "label": "CHECKPOINT"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      }
+    ],
+    "output": "牛奶已改为 4 盒。\n\n牛奶：4 盒\n大米：1 袋\n鸡蛋：12 个\n\n第一次编辑遇到版本冲突后，我重新读取，再应用修改；家人新增的鸡蛋仍然保留。",
+    "resultIndex": 6,
+    "synthetic": true,
+    "chapterCount": 7,
+    "reviewedAt": "2026-09-18",
+    "reviewedCommit": "ddefc45fbc7f8e46dd73185e68295696d1297887"
+  },
+  {
+    "id": "registration",
+    "rank": 5,
+    "name": "合并三张报名表，找出重复报名的人",
+    "label": "让一段程序连续读取、合并和去重三张表，只把最终统计结果交回主模型。",
+    "task": "让一段程序连续读取、合并和去重三张表，只把最终统计结果交回主模型。",
+    "prompt": "三个班分别发来了迎新活动报名表。请合并它们，用学号识别重复报名，告诉我总记录数、实际人数，以及哪些同学重复报名。表格已放在本页，不需要联网。",
+    "environment": "资料已放在本页：先点“看资料”，无需懂代码。",
+    "preset": "ptc",
+    "difficulty": "进阶",
+    "story": "让一段程序连续读取、合并和去重三张表，只把最终统计结果交回主模型。",
+    "features": [
+      "PTC 程序化工具调用",
+      "程序内部的多次子调用",
+      "减少返回给主模型的中间数据"
+    ],
+    "learn": "PTC 让模型通过 run_code 组织多个工具调用；程序可以在内部处理大量中间数据，再返回精简结果。",
+    "files": [
+      {
+        "path": "班级-1-报名.csv",
+        "content": "student_id,name\nS01,林青\nS02,周宁\nS03,许禾\nS04,赵海",
+        "origin": "original"
+      },
+      {
+        "path": "班级-2-报名.csv",
+        "content": "student_id,name\nS03,许禾\nS05,陈星\nS06,吴月\nS07,叶雨",
+        "origin": "original"
+      },
+      {
+        "path": "班级-3-报名.csv",
+        "content": "student_id,name\nS02,周宁\nS07,叶雨\nS08,方林\nS09,罗川",
+        "origin": "original"
+      }
+    ],
+    "steps": [
+      {
+        "title": "接收任务并建立会话",
+        "description": "三张表共 12 条报名记录，去重键是学号。先确定规则，再动数据。",
+        "nodes": [
+          "sessionController",
+          "agents",
+          "sessions"
+        ],
+        "kind": "input",
+        "event": "Session command",
+        "source": "docs/tool-execution-pipeline.md",
+        "lines": [
+          60,
+          62
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "三个班分别发来了迎新活动报名表。请合并它们，用学号识别重复报名，告诉我总记录数、实际人数，以及哪些同学重复报名。表格已放在本页，不需要联网。",
+          "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。"
+        },
+        "runtime": {
+          "status": "收到你的任务",
+          "input": "三个班分别发来了迎新活动报名表。请合并它们，用学号识别重复报名，告诉我总记录数、实际人数，以及哪些同学重复报名。表格已放在本页，不需要联网。",
+          "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。",
+          "packet": "USER → AGENT",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 1
+        },
+        "flow": {
+          "from": "sessionController",
+          "to": "agents",
+          "label": "USER → AGENT"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "PTC 只向模型暴露 run_code",
+        "description": "PTC 把工具呈现为 run_code；内部工具仍存在，只是通过程序中的 SDK 绑定调用。",
+        "nodes": [
+          "agentPresets",
+          "tools",
+          "ptcRuntime"
+        ],
+        "kind": "context",
+        "event": "agent-tool-presentation / ptc",
+        "source": "docs/tool-execution-pipeline.md",
+        "lines": [
+          60,
+          62
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "该预设加载工具呈现插件，mode: ptc。",
+          "output": "原生工具目录：run_code。\n原来的读取等能力以生成的 SDK 供程序调用。"
+        },
+        "runtime": {
+          "status": "PTC 预设已装配",
+          "input": "该预设加载工具呈现插件，mode: ptc。",
+          "output": "原生工具目录：run_code。\n原来的读取等能力以生成的 SDK 供程序调用。",
+          "packet": "GENERATED SDK",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 2
+        },
+        "flow": {
+          "from": "tools",
+          "to": "ptcRuntime",
+          "label": "GENERATED SDK"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "模型生成批处理程序",
+        "description": "模型提供程序；PTC 运行时执行程序并连接异步工具绑定。这不等于绕过工具权限。",
+        "nodes": [
+          "tools",
+          "ptcRuntime"
+        ],
+        "kind": "model",
+        "event": "run_code",
+        "source": "docs/tool-execution-pipeline.md",
+        "lines": [
+          60,
+          62
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "伪代码：读取三表 → 按学号分组 → 统计次数 → 只输出合并摘要。",
+          "output": "run_code 开始执行。它可以调用 SDK 中的工具；不会直接拿到无限制的宿主权限。"
+        },
+        "runtime": {
+          "status": "程序已提交",
+          "input": "伪代码：读取三表 → 按学号分组 → 统计次数 → 只输出合并摘要。",
+          "output": "run_code 开始执行。它可以调用 SDK 中的工具；不会直接拿到无限制的宿主权限。",
+          "packet": "READ → GROUP → COUNT",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 3
+        },
+        "flow": {
+          "from": "tools",
+          "to": "ptcRuntime",
+          "label": "READ → GROUP → COUNT"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "程序通过工具 SDK 读取三张表",
+        "description": "顶层 run_code 与内部子调用都经过工具管线，子调用使用 tool/ptc-dispatch 记录。",
+        "nodes": [
+          "ptcRuntime",
+          "tools",
+          "fs"
+        ],
+        "kind": "tool",
+        "event": "tool/ptc-dispatch · read",
+        "source": "docs/tool-execution-pipeline.md",
+        "lines": [
+          60,
+          62
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "通过 SDK 读取班级 1、2、3 的 CSV。",
+          "output": "各表 4 行，共 12 条原始报名。内部工具调用照常经过工具管线。"
+        },
+        "runtime": {
+          "status": "3 次内部读取",
+          "input": "通过 SDK 读取班级 1、2、3 的 CSV。",
+          "output": "各表 4 行，共 12 条原始报名。内部工具调用照常经过工具管线。",
+          "packet": "3 CSV / 12 ROWS",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 4
+        },
+        "flow": {
+          "from": "tools",
+          "to": "fs",
+          "label": "3 CSV / 12 ROWS"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "在程序内合并并按学号去重",
+        "description": "程序汇总得到 9 个不同学号，S02、S03、S07 重复。Standard 也能用 Shell 脚本计算，不声称 PTC 必然更快。",
+        "nodes": [
+          "ptcRuntime"
+        ],
+        "kind": "tool",
+        "event": "program-local aggregation",
+        "source": "docs/tool-execution-pipeline.md",
+        "lines": [
+          60,
+          62
+        ],
+        "code": "",
+        "insight": "去重在程序内部完成，主模型只接收汇总结果。Standard 也能通过 Shell 执行脚本；PTC 的重点是模型通过 run_code 和工具 SDK 组织数据流。",
+        "payload": {
+          "example": "synthetic",
+          "input": "12 条报名记录；以 student_id 为键。",
+          "output": "计数：S02=2，S03=2，S07=2；其他学号各 1 次。\n唯一学号总数：9。"
+        },
+        "runtime": {
+          "status": "统计完成",
+          "input": "12 条报名记录；以 student_id 为键。",
+          "output": "计数：S02=2，S03=2，S07=2；其他学号各 1 次。\n唯一学号总数：9。",
+          "packet": "在程序里完成去重",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 5
+        },
+        "flow": null,
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "只返回汇总结果，再生成答复",
+        "description": "程序把需要的汇总返回模型，再组织最终说明。示例数据可以在资料面板核算。",
+        "nodes": [
+          "ptcRuntime",
+          "tools",
+          "llm"
+        ],
+        "kind": "model",
+        "event": "tool/result → next model step",
+        "source": "docs/tool-execution-pipeline.md",
+        "lines": [
+          60,
+          62
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "程序只返回计数与重复者列表。",
+          "output": "报名记录：12 条\n实际人数：9 人\n多余报名：3 条\n\n重复报名者：\nS02 周宁：2 次\nS03 许禾：2 次\nS07 叶雨：2 次\n\n去重依据是学号。没有删除原表。"
+        },
+        "runtime": {
+          "status": "汇总结果返回主循环",
+          "input": "程序只返回计数与重复者列表。",
+          "output": "报名记录：12 条\n实际人数：9 人\n多余报名：3 条\n\n重复报名者：\nS02 周宁：2 次\nS03 许禾：2 次\nS07 叶雨：2 次\n\n去重依据是学号。没有删除原表。",
+          "packet": "9 UNIQUE / 3 DUPLICATES",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 6
+        },
+        "flow": {
+          "from": "ptcRuntime",
+          "to": "tools",
+          "label": "9 UNIQUE / 3 DUPLICATES"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "记录结果并完成本轮任务",
+        "description": "结果被记录，任务结束。网页里的去重演示不调用真实模型。",
+        "nodes": [
+          "sessions",
+          "sessionPersistence"
+        ],
+        "kind": "log",
+        "event": "session/event · turn/end",
+        "source": "docs/architecture.md",
+        "lines": [
+          11,
+          16
+        ],
+        "code": "",
+        "insight": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+        "payload": {
+          "example": "synthetic",
+          "input": "汇总已确认的结果，等待会话记录刷写。",
+          "output": "报名记录：12 条\n实际人数：9 人\n多余报名：3 条\n\n重复报名者：\nS02 周宁：2 次\nS03 许禾：2 次\nS07 叶雨：2 次\n\n去重依据是学号。没有删除原表。"
+        },
+        "runtime": {
+          "status": "任务完成",
+          "input": "汇总已确认的结果，等待会话记录刷写。",
+          "output": "报名记录：12 条\n实际人数：9 人\n多余报名：3 条\n\n重复报名者：\nS02 周宁：2 次\nS03 许禾：2 次\nS07 叶雨：2 次\n\n去重依据是学号。没有删除原表。",
+          "packet": "CHECKPOINT",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 7
+        },
+        "flow": {
+          "from": "sessions",
+          "to": "sessionPersistence",
+          "label": "CHECKPOINT"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      }
+    ],
+    "output": "报名记录：12 条\n实际人数：9 人\n多余报名：3 条\n\n重复报名者：\nS02 周宁：2 次\nS03 许禾：2 次\nS07 叶雨：2 次\n\n去重依据是学号。没有删除原表。",
+    "resultIndex": 6,
+    "synthetic": true,
+    "programSketch": "流程示意（用于说明处理步骤，不能直接作为 SDK 程序运行）：\n读取 3 张报名表\n按 student_id 分组\n输出记录数、实际人数和重复学号",
+    "chapterCount": 7,
+    "reviewedAt": "2026-09-18",
+    "reviewedCommit": "ddefc45fbc7f8e46dd73185e68295696d1297887"
+  },
+  {
+    "id": "welcome-event",
+    "rank": 6,
+    "name": "迎新活动能否按计划举办？让两个子 Agent 分别核对",
+    "label": "一个子 Agent 核对场地容量，另一个核对预算，主 Agent 最后汇总两份证据。",
+    "task": "一个子 Agent 核对场地容量，另一个核对预算，主 Agent 最后汇总两份证据。",
+    "prompt": "我们计划办一场 120 人的迎新活动，预算 1500 元。请让两个子助手分工：一个检查场地容量，一个检查费用，最后告诉我活动能否按原计划举行。只读资料，不订场地、不付款。",
+    "environment": "资料已放在本页：先点“看资料”，无需懂代码。",
+    "preset": "standard",
+    "difficulty": "进阶",
+    "story": "一个子 Agent 核对场地容量，另一个核对预算，主 Agent 最后汇总两份证据。",
+    "features": [
+      "子 Agent 分工协作",
+      "独立子会话",
+      "主 Agent 汇总多路结果"
+    ],
+    "learn": "主任务与子任务拥有各自的会话记录。任务描述可以要求子 Agent 只读，真正的权限限制仍由实际策略配置决定。",
+    "files": [
+      {
+        "path": "活动方案.txt",
+        "content": "预计人数：120\n预算：1500 元",
+        "origin": "original",
+        "contentEn": "Expected attendance: 120\nBudget: CNY 1,500"
+      },
+      {
+        "path": "场地确认.txt",
+        "content": "小礼堂核定容量：80 人\n未预订",
+        "origin": "original",
+        "contentEn": "Hall capacity: 80\nNot booked"
+      },
+      {
+        "path": "费用报价.txt",
+        "content": "餐费：12 元/人\n物料：120 元固定费用",
+        "origin": "original",
+        "contentEn": "Meals: CNY 12/person\nMaterials: CNY 120 fixed"
+      }
+    ],
+    "steps": [
+      {
+        "title": "接收任务并建立会话",
+        "description": "同一个活动需要检查场地与预算，两个子问题的资料和目标都先界定。",
+        "nodes": [
+          "sessionController",
+          "agents",
+          "sessions"
+        ],
+        "kind": "input",
+        "event": "Session command",
+        "source": "packages/preset/agent-presets/README.md",
+        "lines": [
+          34,
+          39
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "我们计划办一场 120 人的迎新活动，预算 1500 元。请让两个子助手分工：一个检查场地容量，一个检查费用，最后告诉我活动能否按原计划举行。只读资料，不订场地、不付款。",
+          "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。"
+        },
+        "runtime": {
+          "status": "收到你的任务",
+          "input": "我们计划办一场 120 人的迎新活动，预算 1500 元。请让两个子助手分工：一个检查场地容量，一个检查费用，最后告诉我活动能否按原计划举行。只读资料，不订场地、不付款。",
+          "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。",
+          "packet": "USER → AGENT",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 1
+        },
+        "flow": {
+          "from": "sessionController",
+          "to": "agents",
+          "label": "USER → AGENT"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "把任务拆成场地与预算两个子问题",
+        "description": "主 Agent 通过已配置的 subagents 提供方委派。本例选择内置进程内子 Agent，不代表所有提供方相同。",
+        "nodes": [
+          "agentLoop",
+          "tools",
+          "subagents"
+        ],
+        "kind": "delegate",
+        "event": "subagent / provider: spawn",
+        "source": "packages/preset/agent-presets/README.md",
+        "lines": [
+          34,
+          39
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "我们计划办一场 120 人的迎新活动，预算 1500 元。请让两个子助手分工：一个检查场地容量，一个检查费用，最后告诉我活动能否按原计划举行。只读资料，不订场地、不付款。",
+          "output": "子任务 venue：人数是否超容量？\n子任务 budget：总价是否超预算？"
+        },
+        "runtime": {
+          "status": "已拆分子任务",
+          "input": "我们计划办一场 120 人的迎新活动，预算 1500 元。请让两个子助手分工：一个检查场地容量，一个检查费用，最后告诉我活动能否按原计划举行。只读资料，不订场地、不付款。",
+          "output": "子任务 venue：人数是否超容量？\n子任务 budget：总价是否超预算？",
+          "packet": "2 CHECKS",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 2
+        },
+        "flow": {
+          "from": "tools",
+          "to": "subagents",
+          "label": "2 CHECKS"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "分别启动两个子 Agent 会话",
+        "description": "子 Agent 加入父级预设组合，同时有各自会话状态。画面中的两个岗位是教学角色。",
+        "nodes": [
+          "subagents",
+          "agents",
+          "sessions"
+        ],
+        "kind": "delegate",
+        "event": "subagent → agent creation",
+        "source": "packages/preset/agent-presets/README.md",
+        "lines": [
+          34,
+          39
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "新建 venue-01 和 budget-01。",
+          "output": "spawn 示例建立新的子会话。fork 则可以继承一段历史，二者用途不同。"
+        },
+        "runtime": {
+          "status": "子任务已建立",
+          "input": "新建 venue-01 和 budget-01。",
+          "output": "spawn 示例建立新的子会话。fork 则可以继承一段历史，二者用途不同。",
+          "packet": "SPAWN CHILDREN",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 3
+        },
+        "flow": {
+          "from": "subagents",
+          "to": "agents",
+          "label": "SPAWN CHILDREN"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "子 Agent 1 核对场地容量",
+        "description": "场地只能容纳 80 人，而计划有 120 人：缺少 40 个位置。",
+        "nodes": [
+          "tools",
+          "fs"
+        ],
+        "kind": "tool",
+        "event": "child read",
+        "source": "packages/preset/agent-presets/README.md",
+        "lines": [
+          34,
+          39
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "计划 120 人；场地最多 80 人。",
+          "output": "venue-01：容量不足，缺 40 个名额。依据：场地确认.txt。"
+        },
+        "runtime": {
+          "status": "场地检查完成",
+          "input": "计划 120 人；场地最多 80 人。",
+          "output": "venue-01：容量不足，缺 40 个名额。依据：场地确认.txt。",
+          "packet": "120 > 80",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 4
+        },
+        "flow": {
+          "from": "tools",
+          "to": "fs",
+          "label": "120 > 80"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "子 Agent 2 核对活动预算",
+        "description": "餐费 120 × 12 元，加 120 元材料费，共 1560 元，超出 1500 元预算 60 元。",
+        "nodes": [
+          "tools",
+          "fs",
+          "llm"
+        ],
+        "kind": "tool",
+        "event": "child tool/result",
+        "source": "packages/preset/agent-presets/README.md",
+        "lines": [
+          34,
+          39
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "餐费 12 元 × 120 人；固定物料费 120 元；预算 1500 元。",
+          "output": "budget-01：总额 1560 元，超出 60 元。依据：费用报价.txt。"
+        },
+        "runtime": {
+          "status": "预算检查完成",
+          "input": "餐费 12 元 × 120 人；固定物料费 120 元；预算 1500 元。",
+          "output": "budget-01：总额 1560 元，超出 60 元。依据：费用报价.txt。",
+          "packet": "1560 > 1500",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 5
+        },
+        "flow": {
+          "from": "fs",
+          "to": "tools",
+          "label": "1560 > 1500"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "主 Agent 汇总两份子任务结果",
+        "description": "主 Agent 汇总两个结果。不能仅凭两个动画同时亮起，就声称真实调用并行发生。",
+        "nodes": [
+          "subagents",
+          "tools",
+          "agentLoop"
+        ],
+        "kind": "delegate",
+        "event": "subagent result / continuation",
+        "source": "packages/preset/agent-presets/README.md",
+        "lines": [
+          34,
+          39
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "venue-01 与 budget-01 的结论和引用。",
+          "output": "主任务保留两个约束：容量不足；预算超额。不能只看其中一个就宣布可行。"
+        },
+        "runtime": {
+          "status": "主任务收到子任务结果",
+          "input": "venue-01 与 budget-01 的结论和引用。",
+          "output": "主任务保留两个约束：容量不足；预算超额。不能只看其中一个就宣布可行。",
+          "packet": "2 FINDINGS",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 6
+        },
+        "flow": {
+          "from": "subagents",
+          "to": "tools",
+          "label": "2 FINDINGS"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "记录结果并完成本轮任务",
+        "description": "交付容量和预算问题，并提出调整建议；不把未解决的问题标为成功举办。",
+        "nodes": [
+          "sessions",
+          "sessionPersistence"
+        ],
+        "kind": "log",
+        "event": "session/event · turn/end",
+        "source": "docs/architecture.md",
+        "lines": [
+          11,
+          16
+        ],
+        "code": "",
+        "insight": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+        "payload": {
+          "example": "synthetic",
+          "input": "汇总已确认的结果，等待会话记录刷写。",
+          "output": "按目前资料，原计划需要调整。\n\n场地：最多 80 人，比计划少 40 个名额。\n费用：120 × 12 元餐费 + 120 元物料 = 1560 元，超预算 60 元。\n\n建议：先确认是换更大场地还是缩小规模，再按新人数核算预算。\n没有预订场地，也没有付款。"
+        },
+        "runtime": {
+          "status": "任务完成",
+          "input": "汇总已确认的结果，等待会话记录刷写。",
+          "output": "按目前资料，原计划需要调整。\n\n场地：最多 80 人，比计划少 40 个名额。\n费用：120 × 12 元餐费 + 120 元物料 = 1560 元，超预算 60 元。\n\n建议：先确认是换更大场地还是缩小规模，再按新人数核算预算。\n没有预订场地，也没有付款。",
+          "packet": "CHECKPOINT",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 7
+        },
+        "flow": {
+          "from": "sessions",
+          "to": "sessionPersistence",
+          "label": "CHECKPOINT"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      }
+    ],
+    "output": "按目前资料，原计划需要调整。\n\n场地：最多 80 人，比计划少 40 个名额。\n费用：120 × 12 元餐费 + 120 元物料 = 1560 元，超预算 60 元。\n\n建议：先确认是换更大场地还是缩小规模，再按新人数核算预算。\n没有预订场地，也没有付款。",
+    "resultIndex": 6,
+    "synthetic": true,
+    "chapterCount": 7,
+    "reviewedAt": "2026-09-18",
+    "reviewedCommit": "ddefc45fbc7f8e46dd73185e68295696d1297887"
+  },
+  {
+    "id": "voyage",
+    "rank": 7,
+    "name": "从 1200 份航行档案中找出三条关键线索",
+    "label": "在大量记录中找到改道目的地、批准人和原因；当摘要漏掉细节时，回到原始记录重新核对。",
+    "task": "在大量记录中找到改道目的地、批准人和原因；当摘要漏掉细节时，回到原始记录重新核对。",
+    "prompt": "从本页 1200 份《远星号航行档案》中查清：D-17 改道把目的地改成了哪里、谁批准、为什么改？请引用记录编号与原句。可能遇到很长的历史；即使做了摘要，也不要猜测漏掉的细节。",
+    "environment": "资料已放在本页：先点“看资料”，无需懂代码。",
+    "preset": "standard",
+    "difficulty": "挑战",
+    "story": "在大量记录中找到改道目的地、批准人和原因；当摘要漏掉细节时，回到原始记录重新核对。",
+    "features": [
+      "超长多轮上下文",
+      "工具结果裁剪与上下文压缩",
+      "摘要缺失细节后的原文回查"
+    ],
+    "learn": "长文检索与上下文压缩是两类问题。本例先分批查阅原创档案，再展示会话历史接近窗口上限时的裁剪、摘要替换和原文回查。",
+    "files": [
+      {
+        "path": "档案说明.txt",
+        "content": "这是一套原创、确定性生成的 1200 份航行记录。\n在“档案阅览室”中可查看或下载全文。\n关键记录：0187、0674、1109。干扰记录：0675。\n未使用《三体》或其他受版权保护的小说全文。",
+        "origin": "original",
+        "contentEn": "An original, deterministically generated set of 1,200 voyage records.\nRead or download it in the Archive Room.\nKey records: 0187, 0674, 1109. Distractor: 0675.\nNo copyrighted novel text is included."
+      }
+    ],
+    "steps": [
+      {
+        "title": "接收任务并建立会话",
+        "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+        "nodes": [
+          "sessionController",
+          "agents",
+          "sessions"
+        ],
+        "kind": "input",
+        "event": "Session command",
+        "source": "packages/compaction/compaction-basic/README.md",
+        "lines": [
+          16,
+          21
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "从本页 1200 份《远星号航行档案》中查清：D-17 改道把目的地改成了哪里、谁批准、为什么改？请引用记录编号与原句。可能遇到很长的历史；即使做了摘要，也不要猜测漏掉的细节。",
+          "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。"
+        },
+        "runtime": {
+          "status": "收到你的任务",
+          "input": "从本页 1200 份《远星号航行档案》中查清：D-17 改道把目的地改成了哪里、谁批准、为什么改？请引用记录编号与原句。可能遇到很长的历史；即使做了摘要，也不要猜测漏掉的细节。",
+          "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。",
+          "packet": "USER → AGENT",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 1
+        },
+        "flow": {
+          "from": "sessionController",
+          "to": "agents",
+          "label": "USER → AGENT"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "先搜索相关编号，缩小查阅范围",
+        "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+        "nodes": [
+          "tools",
+          "fs"
+        ],
+        "kind": "tool",
+        "event": "search → bounded read",
+        "source": "packages/compaction/compaction-basic/README.md",
+        "lines": [
+          16,
+          21
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "档案有 1200 份。以 D-17 为目标，分批检索并读取上下文。",
+          "output": "#0187：D-17 拟改道去白鹭港；原因是海棠港航道封闭。"
+        },
+        "runtime": {
+          "status": "正在分批查阅",
+          "input": "档案有 1200 份。以 D-17 为目标，分批检索并读取上下文。",
+          "output": "#0187：D-17 拟改道去白鹭港；原因是海棠港航道封闭。",
+          "packet": "#0187 / REQUEST",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 2
+        },
+        "flow": {
+          "from": "tools",
+          "to": "fs",
+          "label": "#0187 / REQUEST"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "读取审批记录并保存证据位置",
+        "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+        "nodes": [
+          "tools",
+          "fs"
+        ],
+        "kind": "tool",
+        "event": "read",
+        "source": "packages/compaction/compaction-basic/README.md",
+        "lines": [
+          16,
+          21
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "#0674、#0675 相邻，但事件编号不同。",
+          "output": "#0674：D-17 批准人林岚，目的地白鹭港。\n#0675：R-17 批准人孟舟，目的地青石港。"
+        },
+        "runtime": {
+          "status": "已发现审批证据",
+          "input": "#0674、#0675 相邻，但事件编号不同。",
+          "output": "#0674：D-17 批准人林岚，目的地白鹭港。\n#0675：R-17 批准人孟舟，目的地青石港。",
+          "packet": "#0674 / APPROVAL",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 3
+        },
+        "flow": {
+          "from": "fs",
+          "to": "tools",
+          "label": "#0674 / APPROVAL"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "多轮历史接近上下文窗口上限",
+        "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+        "nodes": [
+          "tokenMeter",
+          "compaction"
+        ],
+        "kind": "context",
+        "event": "agent/pre-step → pressure",
+        "source": "packages/compaction/compaction-basic/README.md",
+        "lines": [
+          10,
+          15
+        ],
+        "code": "",
+        "insight": "上下文压力百分比是讲解用数值；压缩阈值依配置与模型窗口而定。可选 pruner 可能让摘要调用不再必要。",
+        "payload": {
+          "example": "synthetic",
+          "input": "历次请求、工具结果和新问题逐渐累积。",
+          "output": "示意压力：86%。演示沿用 0.8 的压缩触发比例。\n这里只演示阈值，不把字符数当作 Token 数。"
+        },
+        "runtime": {
+          "status": "达到演示压力阈值",
+          "input": "历次请求、工具结果和新问题逐渐累积。",
+          "output": "示意压力：86%。演示沿用 0.8 的压缩触发比例。\n这里只演示阈值，不把字符数当作 Token 数。",
+          "packet": "86% / ILLUSTRATIVE",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 4
+        },
+        "flow": {
+          "from": "tokenMeter",
+          "to": "compaction",
+          "label": "86% / ILLUSTRATIVE"
+        },
+        "ribbon": "演示压力 86% · 默认触发比例 80%",
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "先裁剪过长工具结果",
+        "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+        "nodes": [
+          "compaction",
+          "toolResultPruner",
+          "tokenMeter"
+        ],
+        "kind": "context",
+        "event": "tool-result pruning",
+        "source": "packages/compaction/compaction-basic/README.md",
+        "lines": [
+          32,
+          37
+        ],
+        "code": "",
+        "insight": "上下文压力百分比是讲解用数值；压缩阈值依配置与模型窗口而定。可选 pruner 可能让摘要调用不再必要。",
+        "payload": {
+          "example": "synthetic",
+          "input": "可用的 toolResultPruner 先缩短过长工具结果。",
+          "output": "示意压力：86% → 82%。仍需摘要。\n若裁剪后已足够小，真实后端可以跳过摘要模型调用。"
+        },
+        "runtime": {
+          "status": "裁剪后仍高于阈值",
+          "input": "可用的 toolResultPruner 先缩短过长工具结果。",
+          "output": "示意压力：86% → 82%。仍需摘要。\n若裁剪后已足够小，真实后端可以跳过摘要模型调用。",
+          "packet": "PRUNE FIRST",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 5
+        },
+        "flow": {
+          "from": "compaction",
+          "to": "toolResultPruner",
+          "label": "PRUNE FIRST"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "压缩较早的会话历史",
+        "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+        "nodes": [
+          "compaction",
+          "llm"
+        ],
+        "kind": "model",
+        "event": "purpose: compaction",
+        "source": "packages/compaction/compaction-basic/README.md",
+        "lines": [
+          10,
+          15
+        ],
+        "code": "",
+        "insight": "上下文压力百分比是讲解用数值；压缩阈值依配置与模型窗口而定。可选 pruner 可能让摘要调用不再必要。",
+        "payload": {
+          "example": "synthetic",
+          "input": "选取可安全替换的旧历史区间；保留近期内容。",
+          "output": "D-17 因原港航道封闭而改道；申请见 #0187，审批见 #0674。继续检查后续执行记录。"
+        },
+        "runtime": {
+          "status": "生成摘要",
+          "input": "选取可安全替换的旧历史区间；保留近期内容。",
+          "output": "D-17 因原港航道封闭而改道；申请见 #0187，审批见 #0674。继续检查后续执行记录。",
+          "packet": "SUMMARIZE",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 6
+        },
+        "flow": {
+          "from": "compaction",
+          "to": "llm",
+          "label": "SUMMARIZE"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "用压缩后的上下文继续任务",
+        "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+        "nodes": [
+          "compaction",
+          "sessions"
+        ],
+        "kind": "context",
+        "event": "compaction/summary · user/message surfaceOp: replace",
+        "source": "packages/compaction/compaction-basic/README.md",
+        "lines": [
+          10,
+          15
+        ],
+        "code": "",
+        "insight": "上下文压力百分比是讲解用数值；压缩阈值依配置与模型窗口而定。可选 pruner 可能让摘要调用不再必要。",
+        "payload": {
+          "example": "synthetic",
+          "input": "D-17 因原港航道封闭而改道；申请见 #0187，审批见 #0674。继续检查后续执行记录。",
+          "output": "旧区间由摘要消息替代；原始日志继续保留。示意压力降至 29%。\n摘要是有损信息，不能保证保留每一个姓名。"
+        },
+        "runtime": {
+          "status": "当前上下文已替换",
+          "input": "D-17 因原港航道封闭而改道；申请见 #0187，审批见 #0674。继续检查后续执行记录。",
+          "output": "旧区间由摘要消息替代；原始日志继续保留。示意压力降至 29%。\n摘要是有损信息，不能保证保留每一个姓名。",
+          "packet": "SUMMARY / 29%",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 7
+        },
+        "flow": {
+          "from": "compaction",
+          "to": "sessions",
+          "label": "SUMMARY / 29%"
+        },
+        "ribbon": "完整会话日志保留 · 模型当前上下文已压缩",
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "读取后续记录，确认改道已经执行",
+        "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+        "nodes": [
+          "tools",
+          "fs"
+        ],
+        "kind": "tool",
+        "event": "read",
+        "source": "packages/compaction/compaction-basic/README.md",
+        "lines": [
+          16,
+          21
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "继续查 #0801–#1200；重点验证申请是否已执行。",
+          "output": "#1109：D-17 已生效，远星号最终驶向白鹭港。"
+        },
+        "runtime": {
+          "status": "执行记录已找到",
+          "input": "继续查 #0801–#1200；重点验证申请是否已执行。",
+          "output": "#1109：D-17 已生效，远星号最终驶向白鹭港。",
+          "packet": "#1109 / CONFIRMED",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 8
+        },
+        "flow": {
+          "from": "tools",
+          "to": "fs",
+          "label": "#1109 / CONFIRMED"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "摘要缺少批准人姓名，暂停推断",
+        "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+        "nodes": [
+          "agentLoop",
+          "llm"
+        ],
+        "kind": "model",
+        "event": "evidence check (teaching branch)",
+        "source": "packages/compaction/compaction-basic/README.md",
+        "lines": [
+          16,
+          21
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "已有目的地与原因；摘要没有保留批准人姓名。",
+          "output": "不能借用旁边 R-17 的“孟舟”。先回到摘要保留的位置 #0674。"
+        },
+        "runtime": {
+          "status": "发现证据缺口",
+          "input": "已有目的地与原因；摘要没有保留批准人姓名。",
+          "output": "不能借用旁边 R-17 的“孟舟”。先回到摘要保留的位置 #0674。",
+          "packet": "NAME MISSING",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 9
+        },
+        "flow": {
+          "from": "agentLoop",
+          "to": "llm",
+          "label": "NAME MISSING"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "按记录编号回查原文",
+        "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+        "nodes": [
+          "tools",
+          "fs"
+        ],
+        "kind": "tool",
+        "event": "read / evidence recovery",
+        "source": "packages/compaction/compaction-basic/README.md",
+        "lines": [
+          16,
+          21
+        ],
+        "code": "",
+        "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+        "payload": {
+          "example": "synthetic",
+          "input": "再次读取 #0674 的审批句及上下文。",
+          "output": "D-17 审批完成；批准人：林岚；批准目的地：白鹭港。"
+        },
+        "runtime": {
+          "status": "重新核对并补全证据",
+          "input": "再次读取 #0674 的审批句及上下文。",
+          "output": "D-17 审批完成；批准人：林岚；批准目的地：白鹭港。",
+          "packet": "#0674 / REREAD",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 10
+        },
+        "flow": {
+          "from": "tools",
+          "to": "fs",
+          "label": "#0674 / REREAD"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "记录结果并完成本轮任务",
+        "description": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+        "nodes": [
+          "sessions",
+          "sessionPersistence"
+        ],
+        "kind": "log",
+        "event": "session/event · turn/end",
+        "source": "docs/architecture.md",
+        "lines": [
+          11,
+          16
+        ],
+        "code": "",
+        "insight": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+        "payload": {
+          "example": "synthetic",
+          "input": "汇总已确认的结果，等待会话记录刷写。",
+          "output": "D-17 的最终目的地是白鹭港，批准人是林岚，原因是海棠港航道封闭。\n\n#0187：申请编号 D-17；原因：海棠港航道封闭；拟改目的地：白鹭港。\n#0674：D-17 审批完成；批准人：林岚；批准目的地：白鹭港。\n#1109：执行确认：D-17 已生效；远星号最终驶向白鹭港。\n\n#0675 属于 R-17，其批准人和目的地不能用于回答 D-17。\n摘要漏掉的姓名已通过重新读取 #0674 确认。"
+        },
+        "runtime": {
+          "status": "任务完成",
+          "input": "汇总已确认的结果，等待会话记录刷写。",
+          "output": "D-17 的最终目的地是白鹭港，批准人是林岚，原因是海棠港航道封闭。\n\n#0187：申请编号 D-17；原因：海棠港航道封闭；拟改目的地：白鹭港。\n#0674：D-17 审批完成；批准人：林岚；批准目的地：白鹭港。\n#1109：执行确认：D-17 已生效；远星号最终驶向白鹭港。\n\n#0675 属于 R-17，其批准人和目的地不能用于回答 D-17。\n摘要漏掉的姓名已通过重新读取 #0674 确认。",
+          "packet": "CHECKPOINT",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 11
+        },
+        "flow": {
+          "from": "sessions",
+          "to": "sessionPersistence",
+          "label": "CHECKPOINT"
+        },
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      }
+    ],
+    "output": "D-17 的最终目的地是白鹭港，批准人是林岚，原因是海棠港航道封闭。\n\n#0187：申请编号 D-17；原因：海棠港航道封闭；拟改目的地：白鹭港。\n#0674：D-17 审批完成；批准人：林岚；批准目的地：白鹭港。\n#1109：执行确认：D-17 已生效；远星号最终驶向白鹭港。\n\n#0675 属于 R-17，其批准人和目的地不能用于回答 D-17。\n摘要漏掉的姓名已通过重新读取 #0674 确认。",
+    "resultIndex": 10,
+    "synthetic": true,
+    "archive": true,
+    "defaultVariant": "lost",
+    "variants": {
+      "lost": {
+        "name": "摘要漏掉姓名",
+        "steps": [
+          {
+            "title": "接收任务并建立会话",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "sessionController",
+              "agents",
+              "sessions"
+            ],
+            "kind": "input",
+            "event": "Session command",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              16,
+              21
+            ],
+            "code": "",
+            "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+            "payload": {
+              "example": "synthetic",
+              "input": "从本页 1200 份《远星号航行档案》中查清：D-17 改道把目的地改成了哪里、谁批准、为什么改？请引用记录编号与原句。可能遇到很长的历史；即使做了摘要，也不要猜测漏掉的细节。",
+              "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。"
+            },
+            "runtime": {
+              "status": "收到你的任务",
+              "input": "从本页 1200 份《远星号航行档案》中查清：D-17 改道把目的地改成了哪里、谁批准、为什么改？请引用记录编号与原句。可能遇到很长的历史；即使做了摘要，也不要猜测漏掉的细节。",
+              "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。",
+              "packet": "USER → AGENT",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 1
+            },
+            "flow": {
+              "from": "sessionController",
+              "to": "agents",
+              "label": "USER → AGENT"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "先搜索相关编号，缩小查阅范围",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "tools",
+              "fs"
+            ],
+            "kind": "tool",
+            "event": "search → bounded read",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              16,
+              21
+            ],
+            "code": "",
+            "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+            "payload": {
+              "example": "synthetic",
+              "input": "档案有 1200 份。以 D-17 为目标，分批检索并读取上下文。",
+              "output": "#0187：D-17 拟改道去白鹭港；原因是海棠港航道封闭。"
+            },
+            "runtime": {
+              "status": "正在分批查阅",
+              "input": "档案有 1200 份。以 D-17 为目标，分批检索并读取上下文。",
+              "output": "#0187：D-17 拟改道去白鹭港；原因是海棠港航道封闭。",
+              "packet": "#0187 / REQUEST",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 2
+            },
+            "flow": {
+              "from": "tools",
+              "to": "fs",
+              "label": "#0187 / REQUEST"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "读取审批记录并保存证据位置",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "tools",
+              "fs"
+            ],
+            "kind": "tool",
+            "event": "read",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              16,
+              21
+            ],
+            "code": "",
+            "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+            "payload": {
+              "example": "synthetic",
+              "input": "#0674、#0675 相邻，但事件编号不同。",
+              "output": "#0674：D-17 批准人林岚，目的地白鹭港。\n#0675：R-17 批准人孟舟，目的地青石港。"
+            },
+            "runtime": {
+              "status": "已发现审批证据",
+              "input": "#0674、#0675 相邻，但事件编号不同。",
+              "output": "#0674：D-17 批准人林岚，目的地白鹭港。\n#0675：R-17 批准人孟舟，目的地青石港。",
+              "packet": "#0674 / APPROVAL",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 3
+            },
+            "flow": {
+              "from": "fs",
+              "to": "tools",
+              "label": "#0674 / APPROVAL"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "多轮历史接近上下文窗口上限",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "tokenMeter",
+              "compaction"
+            ],
+            "kind": "context",
+            "event": "agent/pre-step → pressure",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              10,
+              15
+            ],
+            "code": "",
+            "insight": "上下文压力百分比是讲解用数值；压缩阈值依配置与模型窗口而定。可选 pruner 可能让摘要调用不再必要。",
+            "payload": {
+              "example": "synthetic",
+              "input": "历次请求、工具结果和新问题逐渐累积。",
+              "output": "示意压力：86%。演示沿用 0.8 的压缩触发比例。\n这里只演示阈值，不把字符数当作 Token 数。"
+            },
+            "runtime": {
+              "status": "达到演示压力阈值",
+              "input": "历次请求、工具结果和新问题逐渐累积。",
+              "output": "示意压力：86%。演示沿用 0.8 的压缩触发比例。\n这里只演示阈值，不把字符数当作 Token 数。",
+              "packet": "86% / ILLUSTRATIVE",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 4
+            },
+            "flow": {
+              "from": "tokenMeter",
+              "to": "compaction",
+              "label": "86% / ILLUSTRATIVE"
+            },
+            "ribbon": "演示压力 86% · 默认触发比例 80%",
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "先裁剪过长工具结果",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "compaction",
+              "toolResultPruner",
+              "tokenMeter"
+            ],
+            "kind": "context",
+            "event": "tool-result pruning",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              32,
+              37
+            ],
+            "code": "",
+            "insight": "上下文压力百分比是讲解用数值；压缩阈值依配置与模型窗口而定。可选 pruner 可能让摘要调用不再必要。",
+            "payload": {
+              "example": "synthetic",
+              "input": "可用的 toolResultPruner 先缩短过长工具结果。",
+              "output": "示意压力：86% → 82%。仍需摘要。\n若裁剪后已足够小，真实后端可以跳过摘要模型调用。"
+            },
+            "runtime": {
+              "status": "裁剪后仍高于阈值",
+              "input": "可用的 toolResultPruner 先缩短过长工具结果。",
+              "output": "示意压力：86% → 82%。仍需摘要。\n若裁剪后已足够小，真实后端可以跳过摘要模型调用。",
+              "packet": "PRUNE FIRST",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 5
+            },
+            "flow": {
+              "from": "compaction",
+              "to": "toolResultPruner",
+              "label": "PRUNE FIRST"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "压缩较早的会话历史",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "compaction",
+              "llm"
+            ],
+            "kind": "model",
+            "event": "purpose: compaction",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              10,
+              15
+            ],
+            "code": "",
+            "insight": "上下文压力百分比是讲解用数值；压缩阈值依配置与模型窗口而定。可选 pruner 可能让摘要调用不再必要。",
+            "payload": {
+              "example": "synthetic",
+              "input": "选取可安全替换的旧历史区间；保留近期内容。",
+              "output": "D-17 因原港航道封闭而改道；申请见 #0187，审批见 #0674。继续检查后续执行记录。"
+            },
+            "runtime": {
+              "status": "生成摘要",
+              "input": "选取可安全替换的旧历史区间；保留近期内容。",
+              "output": "D-17 因原港航道封闭而改道；申请见 #0187，审批见 #0674。继续检查后续执行记录。",
+              "packet": "SUMMARIZE",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 6
+            },
+            "flow": {
+              "from": "compaction",
+              "to": "llm",
+              "label": "SUMMARIZE"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "用压缩后的上下文继续任务",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "compaction",
+              "sessions"
+            ],
+            "kind": "context",
+            "event": "compaction/summary · user/message surfaceOp: replace",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              10,
+              15
+            ],
+            "code": "",
+            "insight": "上下文压力百分比是讲解用数值；压缩阈值依配置与模型窗口而定。可选 pruner 可能让摘要调用不再必要。",
+            "payload": {
+              "example": "synthetic",
+              "input": "D-17 因原港航道封闭而改道；申请见 #0187，审批见 #0674。继续检查后续执行记录。",
+              "output": "旧区间由摘要消息替代；原始日志继续保留。示意压力降至 29%。\n摘要是有损信息，不能保证保留每一个姓名。"
+            },
+            "runtime": {
+              "status": "当前上下文已替换",
+              "input": "D-17 因原港航道封闭而改道；申请见 #0187，审批见 #0674。继续检查后续执行记录。",
+              "output": "旧区间由摘要消息替代；原始日志继续保留。示意压力降至 29%。\n摘要是有损信息，不能保证保留每一个姓名。",
+              "packet": "SUMMARY / 29%",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 7
+            },
+            "flow": {
+              "from": "compaction",
+              "to": "sessions",
+              "label": "SUMMARY / 29%"
+            },
+            "ribbon": "完整会话日志保留 · 模型当前上下文已压缩",
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "读取后续记录，确认改道已经执行",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "tools",
+              "fs"
+            ],
+            "kind": "tool",
+            "event": "read",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              16,
+              21
+            ],
+            "code": "",
+            "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+            "payload": {
+              "example": "synthetic",
+              "input": "继续查 #0801–#1200；重点验证申请是否已执行。",
+              "output": "#1109：D-17 已生效，远星号最终驶向白鹭港。"
+            },
+            "runtime": {
+              "status": "执行记录已找到",
+              "input": "继续查 #0801–#1200；重点验证申请是否已执行。",
+              "output": "#1109：D-17 已生效，远星号最终驶向白鹭港。",
+              "packet": "#1109 / CONFIRMED",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 8
+            },
+            "flow": {
+              "from": "tools",
+              "to": "fs",
+              "label": "#1109 / CONFIRMED"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "摘要缺少批准人姓名，暂停推断",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "agentLoop",
+              "llm"
+            ],
+            "kind": "model",
+            "event": "evidence check (teaching branch)",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              16,
+              21
+            ],
+            "code": "",
+            "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+            "payload": {
+              "example": "synthetic",
+              "input": "已有目的地与原因；摘要没有保留批准人姓名。",
+              "output": "不能借用旁边 R-17 的“孟舟”。先回到摘要保留的位置 #0674。"
+            },
+            "runtime": {
+              "status": "发现证据缺口",
+              "input": "已有目的地与原因；摘要没有保留批准人姓名。",
+              "output": "不能借用旁边 R-17 的“孟舟”。先回到摘要保留的位置 #0674。",
+              "packet": "NAME MISSING",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 9
+            },
+            "flow": {
+              "from": "agentLoop",
+              "to": "llm",
+              "label": "NAME MISSING"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "按记录编号回查原文",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "tools",
+              "fs"
+            ],
+            "kind": "tool",
+            "event": "read / evidence recovery",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              16,
+              21
+            ],
+            "code": "",
+            "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+            "payload": {
+              "example": "synthetic",
+              "input": "再次读取 #0674 的审批句及上下文。",
+              "output": "D-17 审批完成；批准人：林岚；批准目的地：白鹭港。"
+            },
+            "runtime": {
+              "status": "重新核对并补全证据",
+              "input": "再次读取 #0674 的审批句及上下文。",
+              "output": "D-17 审批完成；批准人：林岚；批准目的地：白鹭港。",
+              "packet": "#0674 / REREAD",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 10
+            },
+            "flow": {
+              "from": "tools",
+              "to": "fs",
+              "label": "#0674 / REREAD"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "记录结果并完成本轮任务",
+            "description": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+            "nodes": [
+              "sessions",
+              "sessionPersistence"
+            ],
+            "kind": "log",
+            "event": "session/event · turn/end",
+            "source": "docs/architecture.md",
+            "lines": [
+              11,
+              16
+            ],
+            "code": "",
+            "insight": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+            "payload": {
+              "example": "synthetic",
+              "input": "汇总已确认的结果，等待会话记录刷写。",
+              "output": "D-17 的最终目的地是白鹭港，批准人是林岚，原因是海棠港航道封闭。\n\n#0187：申请编号 D-17；原因：海棠港航道封闭；拟改目的地：白鹭港。\n#0674：D-17 审批完成；批准人：林岚；批准目的地：白鹭港。\n#1109：执行确认：D-17 已生效；远星号最终驶向白鹭港。\n\n#0675 属于 R-17，其批准人和目的地不能用于回答 D-17。\n摘要漏掉的姓名已通过重新读取 #0674 确认。"
+            },
+            "runtime": {
+              "status": "任务完成",
+              "input": "汇总已确认的结果，等待会话记录刷写。",
+              "output": "D-17 的最终目的地是白鹭港，批准人是林岚，原因是海棠港航道封闭。\n\n#0187：申请编号 D-17；原因：海棠港航道封闭；拟改目的地：白鹭港。\n#0674：D-17 审批完成；批准人：林岚；批准目的地：白鹭港。\n#1109：执行确认：D-17 已生效；远星号最终驶向白鹭港。\n\n#0675 属于 R-17，其批准人和目的地不能用于回答 D-17。\n摘要漏掉的姓名已通过重新读取 #0674 确认。",
+              "packet": "CHECKPOINT",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 11
+            },
+            "flow": {
+              "from": "sessions",
+              "to": "sessionPersistence",
+              "label": "CHECKPOINT"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          }
+        ]
+      },
+      "kept": {
+        "name": "摘要保留关键线索",
+        "steps": [
+          {
+            "title": "接收任务并建立会话",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "sessionController",
+              "agents",
+              "sessions"
+            ],
+            "kind": "input",
+            "event": "Session command",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              16,
+              21
+            ],
+            "code": "",
+            "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+            "payload": {
+              "example": "synthetic",
+              "input": "从本页 1200 份《远星号航行档案》中查清：D-17 改道把目的地改成了哪里、谁批准、为什么改？请引用记录编号与原句。可能遇到很长的历史；即使做了摘要，也不要猜测漏掉的细节。",
+              "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。"
+            },
+            "runtime": {
+              "status": "收到你的任务",
+              "input": "从本页 1200 份《远星号航行档案》中查清：D-17 改道把目的地改成了哪里、谁批准、为什么改？请引用记录编号与原句。可能遇到很长的历史；即使做了摘要，也不要猜测漏掉的细节。",
+              "output": "本页已准备好教学资料。接下来逐步展示处理过程，不会操作你的文件。",
+              "packet": "USER → AGENT",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 1
+            },
+            "flow": {
+              "from": "sessionController",
+              "to": "agents",
+              "label": "USER → AGENT"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "先搜索相关编号，缩小查阅范围",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "tools",
+              "fs"
+            ],
+            "kind": "tool",
+            "event": "search → bounded read",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              16,
+              21
+            ],
+            "code": "",
+            "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+            "payload": {
+              "example": "synthetic",
+              "input": "档案有 1200 份。以 D-17 为目标，分批检索并读取上下文。",
+              "output": "#0187：D-17 拟改道去白鹭港；原因是海棠港航道封闭。"
+            },
+            "runtime": {
+              "status": "正在分批查阅",
+              "input": "档案有 1200 份。以 D-17 为目标，分批检索并读取上下文。",
+              "output": "#0187：D-17 拟改道去白鹭港；原因是海棠港航道封闭。",
+              "packet": "#0187 / REQUEST",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 2
+            },
+            "flow": {
+              "from": "tools",
+              "to": "fs",
+              "label": "#0187 / REQUEST"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "读取审批记录并保存证据位置",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "tools",
+              "fs"
+            ],
+            "kind": "tool",
+            "event": "read",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              16,
+              21
+            ],
+            "code": "",
+            "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+            "payload": {
+              "example": "synthetic",
+              "input": "#0674、#0675 相邻，但事件编号不同。",
+              "output": "#0674：D-17 批准人林岚，目的地白鹭港。\n#0675：R-17 批准人孟舟，目的地青石港。"
+            },
+            "runtime": {
+              "status": "已发现审批证据",
+              "input": "#0674、#0675 相邻，但事件编号不同。",
+              "output": "#0674：D-17 批准人林岚，目的地白鹭港。\n#0675：R-17 批准人孟舟，目的地青石港。",
+              "packet": "#0674 / APPROVAL",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 3
+            },
+            "flow": {
+              "from": "fs",
+              "to": "tools",
+              "label": "#0674 / APPROVAL"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "多轮历史接近上下文窗口上限",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "tokenMeter",
+              "compaction"
+            ],
+            "kind": "context",
+            "event": "agent/pre-step → pressure",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              10,
+              15
+            ],
+            "code": "",
+            "insight": "上下文压力百分比是讲解用数值；压缩阈值依配置与模型窗口而定。可选 pruner 可能让摘要调用不再必要。",
+            "payload": {
+              "example": "synthetic",
+              "input": "历次请求、工具结果和新问题逐渐累积。",
+              "output": "示意压力：86%。演示沿用 0.8 的压缩触发比例。\n这里只演示阈值，不把字符数当作 Token 数。"
+            },
+            "runtime": {
+              "status": "达到演示压力阈值",
+              "input": "历次请求、工具结果和新问题逐渐累积。",
+              "output": "示意压力：86%。演示沿用 0.8 的压缩触发比例。\n这里只演示阈值，不把字符数当作 Token 数。",
+              "packet": "86% / ILLUSTRATIVE",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 4
+            },
+            "flow": {
+              "from": "tokenMeter",
+              "to": "compaction",
+              "label": "86% / ILLUSTRATIVE"
+            },
+            "ribbon": "演示压力 86% · 默认触发比例 80%",
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "先裁剪过长工具结果",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "compaction",
+              "toolResultPruner",
+              "tokenMeter"
+            ],
+            "kind": "context",
+            "event": "tool-result pruning",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              32,
+              37
+            ],
+            "code": "",
+            "insight": "上下文压力百分比是讲解用数值；压缩阈值依配置与模型窗口而定。可选 pruner 可能让摘要调用不再必要。",
+            "payload": {
+              "example": "synthetic",
+              "input": "可用的 toolResultPruner 先缩短过长工具结果。",
+              "output": "示意压力：86% → 82%。仍需摘要。\n若裁剪后已足够小，真实后端可以跳过摘要模型调用。"
+            },
+            "runtime": {
+              "status": "裁剪后仍高于阈值",
+              "input": "可用的 toolResultPruner 先缩短过长工具结果。",
+              "output": "示意压力：86% → 82%。仍需摘要。\n若裁剪后已足够小，真实后端可以跳过摘要模型调用。",
+              "packet": "PRUNE FIRST",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 5
+            },
+            "flow": {
+              "from": "compaction",
+              "to": "toolResultPruner",
+              "label": "PRUNE FIRST"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "压缩较早的会话历史",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "compaction",
+              "llm"
+            ],
+            "kind": "model",
+            "event": "purpose: compaction",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              10,
+              15
+            ],
+            "code": "",
+            "insight": "上下文压力百分比是讲解用数值；压缩阈值依配置与模型窗口而定。可选 pruner 可能让摘要调用不再必要。",
+            "payload": {
+              "example": "synthetic",
+              "input": "选取可安全替换的旧历史区间；保留近期内容。",
+              "output": "D-17 因海棠港航道封闭拟改到白鹭港；#0674 的批准人是林岚。保留原句和记录编号，继续查执行记录。"
+            },
+            "runtime": {
+              "status": "生成摘要",
+              "input": "选取可安全替换的旧历史区间；保留近期内容。",
+              "output": "D-17 因海棠港航道封闭拟改到白鹭港；#0674 的批准人是林岚。保留原句和记录编号，继续查执行记录。",
+              "packet": "SUMMARIZE",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 6
+            },
+            "flow": {
+              "from": "compaction",
+              "to": "llm",
+              "label": "SUMMARIZE"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "用压缩后的上下文继续任务",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "compaction",
+              "sessions"
+            ],
+            "kind": "context",
+            "event": "compaction/summary · user/message surfaceOp: replace",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              10,
+              15
+            ],
+            "code": "",
+            "insight": "上下文压力百分比是讲解用数值；压缩阈值依配置与模型窗口而定。可选 pruner 可能让摘要调用不再必要。",
+            "payload": {
+              "example": "synthetic",
+              "input": "D-17 因海棠港航道封闭拟改到白鹭港；#0674 的批准人是林岚。保留原句和记录编号，继续查执行记录。",
+              "output": "旧区间由摘要消息替代；原始日志继续保留。示意压力降至 29%。\n摘要是有损信息，不能保证保留每一个姓名。"
+            },
+            "runtime": {
+              "status": "当前上下文已替换",
+              "input": "D-17 因海棠港航道封闭拟改到白鹭港；#0674 的批准人是林岚。保留原句和记录编号，继续查执行记录。",
+              "output": "旧区间由摘要消息替代；原始日志继续保留。示意压力降至 29%。\n摘要是有损信息，不能保证保留每一个姓名。",
+              "packet": "SUMMARY / 29%",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 7
+            },
+            "flow": {
+              "from": "compaction",
+              "to": "sessions",
+              "label": "SUMMARY / 29%"
+            },
+            "ribbon": "完整会话日志保留 · 模型当前上下文已压缩",
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "读取后续记录，确认改道已经执行",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "tools",
+              "fs"
+            ],
+            "kind": "tool",
+            "event": "read",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              16,
+              21
+            ],
+            "code": "",
+            "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+            "payload": {
+              "example": "synthetic",
+              "input": "继续查 #0801–#1200；重点验证申请是否已执行。",
+              "output": "#1109：D-17 已生效，远星号最终驶向白鹭港。"
+            },
+            "runtime": {
+              "status": "执行记录已找到",
+              "input": "继续查 #0801–#1200；重点验证申请是否已执行。",
+              "output": "#1109：D-17 已生效，远星号最终驶向白鹭港。",
+              "packet": "#1109 / CONFIRMED",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 8
+            },
+            "flow": {
+              "from": "tools",
+              "to": "fs",
+              "label": "#1109 / CONFIRMED"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "摘要保留关键信息，最终引用仍回查原文",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "agentLoop",
+              "llm"
+            ],
+            "kind": "model",
+            "event": "evidence check (teaching branch)",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              16,
+              21
+            ],
+            "code": "",
+            "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+            "payload": {
+              "example": "synthetic",
+              "input": "摘要保留：林岚、白鹭港、#0674。",
+              "output": "三个字段都有来源。最终引用前，用 #0674 原句核对一次。"
+            },
+            "runtime": {
+              "status": "关键字段保留",
+              "input": "摘要保留：林岚、白鹭港、#0674。",
+              "output": "三个字段都有来源。最终引用前，用 #0674 原句核对一次。",
+              "packet": "VERIFY QUOTE",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 9
+            },
+            "flow": {
+              "from": "agentLoop",
+              "to": "llm",
+              "label": "VERIFY QUOTE"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "按记录编号回查原文",
+            "description": "当前步骤只突出参与这次交接的服务，并展示它们之间传递的数据。",
+            "nodes": [
+              "tools",
+              "fs"
+            ],
+            "kind": "tool",
+            "event": "read / evidence recovery",
+            "source": "packages/compaction/compaction-basic/README.md",
+            "lines": [
+              16,
+              21
+            ],
+            "code": "",
+            "insight": "高亮组件参与当前步骤；方向箭头表示这一次教学数据的传递方向。",
+            "payload": {
+              "example": "synthetic",
+              "input": "再次读取 #0674 的审批句及上下文。",
+              "output": "D-17 审批完成；批准人：林岚；批准目的地：白鹭港。"
+            },
+            "runtime": {
+              "status": "重新核对并补全证据",
+              "input": "再次读取 #0674 的审批句及上下文。",
+              "output": "D-17 审批完成；批准人：林岚；批准目的地：白鹭港。",
+              "packet": "#0674 / REREAD",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 10
+            },
+            "flow": {
+              "from": "tools",
+              "to": "fs",
+              "label": "#0674 / REREAD"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          },
+          {
+            "title": "记录结果并完成本轮任务",
+            "description": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+            "nodes": [
+              "sessions",
+              "sessionPersistence"
+            ],
+            "kind": "log",
+            "event": "session/event · turn/end",
+            "source": "docs/architecture.md",
+            "lines": [
+              11,
+              16
+            ],
+            "code": "",
+            "insight": "会话会持续记录任务过程；持久化插件负责把记录写入存储。本页仅在浏览器内播放教学数据。",
+            "payload": {
+              "example": "synthetic",
+              "input": "汇总已确认的结果，等待会话记录刷写。",
+              "output": "D-17 的最终目的地是白鹭港，批准人是林岚，原因是海棠港航道封闭。\n\n#0187：申请编号 D-17；原因：海棠港航道封闭；拟改目的地：白鹭港。\n#0674：D-17 审批完成；批准人：林岚；批准目的地：白鹭港。\n#1109：执行确认：D-17 已生效；远星号最终驶向白鹭港。\n\n#0675 属于 R-17，其批准人和目的地不能用于回答 D-17。\n摘要保留了关键字段，最终答复仍核对原句。"
+            },
+            "runtime": {
+              "status": "任务完成",
+              "input": "汇总已确认的结果，等待会话记录刷写。",
+              "output": "D-17 的最终目的地是白鹭港，批准人是林岚，原因是海棠港航道封闭。\n\n#0187：申请编号 D-17；原因：海棠港航道封闭；拟改目的地：白鹭港。\n#0674：D-17 审批完成；批准人：林岚；批准目的地：白鹭港。\n#1109：执行确认：D-17 已生效；远星号最终驶向白鹭港。\n\n#0675 属于 R-17，其批准人和目的地不能用于回答 D-17。\n摘要保留了关键字段，最终答复仍核对原句。",
+              "packet": "CHECKPOINT",
+              "synthetic": true,
+              "turn": 1,
+              "phase": 11
+            },
+            "flow": {
+              "from": "sessions",
+              "to": "sessionPersistence",
+              "label": "CHECKPOINT"
+            },
+            "reviewedAt": "2026-09-18",
+            "evidence": "source-backed teaching sequence"
+          }
+        ]
+      }
+    },
+    "chapterCount": 11,
+    "reviewedAt": "2026-09-18",
+    "reviewedCommit": "ddefc45fbc7f8e46dd73185e68295696d1297887"
+  },
+  {
+    "id": "pixel-company",
+    "rank": 8,
+    "preset": "cordis",
+    "difficulty": "进阶",
+    "synthetic": true,
+    "reviewedAt": "2026-09-18",
+    "reviewedCommit": "ddefc45fbc7f8e46dd73185e68295696d1297887",
+    "company": true,
+    "name": "把 DSH 变成一家像素风 AI 公司",
+    "label": "大肥鲸开公司：办公室是插件，第一单是番茄钟。",
+    "task": "安装一个像素办公室插件，再用它讲清一项任务的分工与交付。",
+    "prompt": "请把 DSH 变成一家像素风 AI 公司。先检查接口，制作并安装办公室插件，确认生效。第一单：给大肥鲸做一个能开始、暂停和复位的番茄钟网页，并检查暂停后倒计时是否停止。",
+    "environment": "教学假设：Web Profile、Creator 预设、可用的 Plugin Manager 与客户端页面。所有安装和 Agent 状态均为编排示例。",
+    "story": "老板只带来一句需求，办公室却要忙起来。先把像素办公室装成插件，再让设计、开发、测试按任务板分工；发现一个暂停 bug，修好再交付。",
+    "features": [
+      "持久插件",
+      "岗位分工",
+      "检查与返工"
+    ],
+    "learn": "区分检查接口、安装保存、运行时生效与实际使用。像素员工是教学状态的可视化，不是独立运行的真实 Agent。",
+    "output": "示例办公室呈现任务分工；番茄钟示例支持开始、暂停、复位。实际 DSH 插件未在本网站安装。",
+    "files": [
+      {
+        "path": "office-brief.txt",
+        "origin": "original",
+        "content": "像素办公室：协调、设计、开发、测试。界面展示任务板与交付区。\n订单：25 分钟番茄钟，支持开始、暂停、复位；暂停后时间不得继续减少。",
+        "contentEn": "Pixel office: coordinator, designer, developer, tester. Show a task board and deliverables.\nOrder: a 25-minute Pomodoro timer with start, pause and reset. Time must not decrease while paused."
+      }
+    ],
+    "steps": [
+      {
+        "title": "接单：先开公司，再做番茄钟",
+        "description": "把插件安装与业务任务分成两段，避免“办公室出现了”等于“任务完成了”的误解。",
+        "nodes": [
+          "agents",
+          "sessions"
+        ],
+        "kind": "input",
+        "event": "Session command",
+        "insight": "区分检查接口、安装保存、运行时生效与实际使用。像素员工是教学状态的可视化，不是独立运行的真实 Agent。",
+        "payload": {
+          "example": "synthetic",
+          "phase": "queued"
+        },
+        "runtime": {
+          "status": "接单：先开公司，再做番茄钟",
+          "input": "安装一个像素办公室插件，再用它讲清一项任务的分工与交付。",
+          "output": "把插件安装与业务任务分成两段，避免“办公室出现了”等于“任务完成了”的误解。",
+          "packet": "Session command",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 1
+        },
+        "flow": {
+          "from": "agents",
+          "to": "sessions",
+          "label": "Session command"
+        },
+        "companyPhase": "queued",
+        "source": "docs/architecture.md",
+        "lines": [
+          15,
+          20
+        ],
+        "code": "",
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "检查当前 Host 与 Client 接口",
+        "description": "用只读检查发现实际可用接口；客户端查询需要已连接页面。不能靠猜测挂载槽位。",
+        "nodes": [
+          "cordisInspect",
+          "clientModules"
+        ],
+        "kind": "context",
+        "event": "cordis_inspect_list / cordis_inspect_query",
+        "insight": "区分检查接口、安装保存、运行时生效与实际使用。像素员工是教学状态的可视化，不是独立运行的真实 Agent。",
+        "payload": {
+          "example": "synthetic",
+          "phase": "inspect"
+        },
+        "runtime": {
+          "status": "检查当前 Host 与 Client 接口",
+          "input": "安装一个像素办公室插件，再用它讲清一项任务的分工与交付。",
+          "output": "用只读检查发现实际可用接口；客户端查询需要已连接页面。不能靠猜测挂载槽位。",
+          "packet": "cordis_inspect_list / cordis_inspect_query",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 2
+        },
+        "flow": {
+          "from": "cordisInspect",
+          "to": "clientModules",
+          "label": "cordis_inspect_list / cordis_inspect_query"
+        },
+        "companyPhase": "inspect",
+        "source": "packages/extensions/tool-cordis/README.md",
+        "lines": [
+          16,
+          21
+        ],
+        "code": "",
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "制作办公室插件包",
+        "description": "按检查到的接口制作客户端组件与 bundle 配置。此处的办公室图像是 AI 生成的教学素材，不是官方界面。",
+        "nodes": [
+          "pluginManager",
+          "fs",
+          "clientModules"
+        ],
+        "kind": "tool",
+        "event": "plugin authoring (teaching)",
+        "insight": "区分检查接口、安装保存、运行时生效与实际使用。像素员工是教学状态的可视化，不是独立运行的真实 Agent。",
+        "payload": {
+          "example": "synthetic",
+          "phase": "build"
+        },
+        "runtime": {
+          "status": "制作办公室插件包",
+          "input": "安装一个像素办公室插件，再用它讲清一项任务的分工与交付。",
+          "output": "按检查到的接口制作客户端组件与 bundle 配置。此处的办公室图像是 AI 生成的教学素材，不是官方界面。",
+          "packet": "plugin authoring (teaching)",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 3
+        },
+        "flow": {
+          "from": "pluginManager",
+          "to": "clientModules",
+          "label": "plugin authoring (teaching)"
+        },
+        "companyPhase": "build",
+        "source": "packages/boot/plugin-manager/README.md",
+        "lines": [
+          2,
+          7
+        ],
+        "code": "",
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "安装并检查应用状态",
+        "description": "Plugin Manager 安装持久 bundle。保存成功和运行时生效分别检查；restart-required 表示仍需重启。",
+        "nodes": [
+          "pluginManager",
+          "hmr"
+        ],
+        "kind": "tool",
+        "event": "plugin_manager / install_bundle",
+        "insight": "区分检查接口、安装保存、运行时生效与实际使用。像素员工是教学状态的可视化，不是独立运行的真实 Agent。",
+        "payload": {
+          "example": "synthetic",
+          "phase": "install"
+        },
+        "runtime": {
+          "status": "安装并检查应用状态",
+          "input": "安装一个像素办公室插件，再用它讲清一项任务的分工与交付。",
+          "output": "Plugin Manager 安装持久 bundle。保存成功和运行时生效分别检查；restart-required 表示仍需重启。",
+          "packet": "plugin_manager / install_bundle",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 4
+        },
+        "flow": {
+          "from": "pluginManager",
+          "to": "hmr",
+          "label": "plugin_manager / install_bundle"
+        },
+        "companyPhase": "install",
+        "source": "packages/boot/plugin-manager/README.md",
+        "lines": [
+          10,
+          15
+        ],
+        "code": "",
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "确认办公室可用，再分派订单",
+        "description": "本教学分支假设 application: applied，且浏览器组件已同步显示。主 Agent 再把设计、开发、测试的任务边界写清楚。",
+        "nodes": [
+          "pluginManager",
+          "clientModules",
+          "subagents"
+        ],
+        "kind": "runtime",
+        "event": "activation + visible client check",
+        "insight": "区分检查接口、安装保存、运行时生效与实际使用。像素员工是教学状态的可视化，不是独立运行的真实 Agent。",
+        "payload": {
+          "example": "synthetic",
+          "phase": "assign"
+        },
+        "runtime": {
+          "status": "确认办公室可用，再分派订单",
+          "input": "安装一个像素办公室插件，再用它讲清一项任务的分工与交付。",
+          "output": "本教学分支假设 application: applied，且浏览器组件已同步显示。主 Agent 再把设计、开发、测试的任务边界写清楚。",
+          "packet": "activation + visible client check",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 5
+        },
+        "flow": {
+          "from": "pluginManager",
+          "to": "subagents",
+          "label": "activation + visible client check"
+        },
+        "companyPhase": "assign",
+        "source": "packages/boot/plugin-manager/README.md",
+        "lines": [
+          107,
+          112
+        ],
+        "code": "",
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "设计与开发：别把暂停键画成摆设",
+        "description": "设计给出清楚的按钮和状态；开发实现番茄钟。岗位对应教学中的子任务，具体执行取决于配置的委派提供方。",
+        "nodes": [
+          "subagents",
+          "fs",
+          "tools"
+        ],
+        "kind": "delegate",
+        "event": "bounded subagent tasks",
+        "insight": "区分检查接口、安装保存、运行时生效与实际使用。像素员工是教学状态的可视化，不是独立运行的真实 Agent。",
+        "payload": {
+          "example": "synthetic",
+          "phase": "work"
+        },
+        "runtime": {
+          "status": "设计与开发：别把暂停键画成摆设",
+          "input": "安装一个像素办公室插件，再用它讲清一项任务的分工与交付。",
+          "output": "设计给出清楚的按钮和状态；开发实现番茄钟。岗位对应教学中的子任务，具体执行取决于配置的委派提供方。",
+          "packet": "bounded subagent tasks",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 6
+        },
+        "flow": {
+          "from": "subagents",
+          "to": "tools",
+          "label": "bounded subagent tasks"
+        },
+        "companyPhase": "work",
+        "source": "packages/preset/agent-presets/README.md",
+        "lines": [
+          34,
+          39
+        ],
+        "code": "",
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "测试发现：暂停后还在偷偷倒数",
+        "description": "测试按明确条件复查暂停行为，发现旧实现仍在计时。这里是编排的失败分支，不能把失败画成已通过。",
+        "nodes": [
+          "subagents",
+          "shell",
+          "tools"
+        ],
+        "kind": "blocked",
+        "event": "test failed (teaching branch)",
+        "insight": "区分检查接口、安装保存、运行时生效与实际使用。像素员工是教学状态的可视化，不是独立运行的真实 Agent。",
+        "payload": {
+          "example": "synthetic",
+          "phase": "bug"
+        },
+        "runtime": {
+          "status": "测试发现：暂停后还在偷偷倒数",
+          "input": "安装一个像素办公室插件，再用它讲清一项任务的分工与交付。",
+          "output": "测试按明确条件复查暂停行为，发现旧实现仍在计时。这里是编排的失败分支，不能把失败画成已通过。",
+          "packet": "test failed (teaching branch)",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 7
+        },
+        "flow": {
+          "from": "subagents",
+          "to": "tools",
+          "label": "test failed (teaching branch)"
+        },
+        "companyPhase": "bug",
+        "source": "docs/tool-execution-pipeline.md",
+        "lines": [
+          26,
+          31
+        ],
+        "code": "",
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "修复后复测，交付可用示例",
+        "description": "开发修正计时状态，再检查开始、暂停、复位。下方可打开本网站的实际番茄钟示例。",
+        "nodes": [
+          "subagents",
+          "tools",
+          "sessions"
+        ],
+        "kind": "tool",
+        "event": "test passed + delivery (teaching)",
+        "insight": "区分检查接口、安装保存、运行时生效与实际使用。像素员工是教学状态的可视化，不是独立运行的真实 Agent。",
+        "payload": {
+          "example": "synthetic",
+          "phase": "done"
+        },
+        "runtime": {
+          "status": "修复后复测，交付可用示例",
+          "input": "安装一个像素办公室插件，再用它讲清一项任务的分工与交付。",
+          "output": "开发修正计时状态，再检查开始、暂停、复位。下方可打开本网站的实际番茄钟示例。",
+          "packet": "test passed + delivery (teaching)",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 8
+        },
+        "flow": {
+          "from": "subagents",
+          "to": "sessions",
+          "label": "test passed + delivery (teaching)"
+        },
+        "companyPhase": "done",
+        "source": "docs/architecture.md",
+        "lines": [
+          11,
+          16
+        ],
+        "code": "",
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      },
+      {
+        "title": "下班：停用与移除也是生命周期",
+        "description": "Plugin Manager 可停用 bundle，停用保留依赖；移除涉及卸载与依赖变更。不要把教学按钮当成对本机 DSH 的操作。",
+        "nodes": [
+          "pluginManager",
+          "sessions"
+        ],
+        "kind": "log",
+        "event": "plugin lifecycle",
+        "insight": "区分检查接口、安装保存、运行时生效与实际使用。像素员工是教学状态的可视化，不是独立运行的真实 Agent。",
+        "payload": {
+          "example": "synthetic",
+          "phase": "closed"
+        },
+        "runtime": {
+          "status": "下班：停用与移除也是生命周期",
+          "input": "安装一个像素办公室插件，再用它讲清一项任务的分工与交付。",
+          "output": "Plugin Manager 可停用 bundle，停用保留依赖；移除涉及卸载与依赖变更。不要把教学按钮当成对本机 DSH 的操作。",
+          "packet": "plugin lifecycle",
+          "synthetic": true,
+          "turn": 1,
+          "phase": 9
+        },
+        "flow": {
+          "from": "pluginManager",
+          "to": "sessions",
+          "label": "plugin lifecycle"
+        },
+        "companyPhase": "closed",
+        "source": "packages/boot/plugin-manager/README.md",
+        "lines": [
+          40,
+          45
+        ],
+        "code": "",
+        "reviewedAt": "2026-09-18",
+        "evidence": "source-backed teaching sequence"
+      }
+    ],
+    "resultIndex": 7,
+    "chapterCount": 9
+  }
+]

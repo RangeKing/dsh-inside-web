@@ -1,0 +1,178 @@
+{
+  "commit": "ddefc45fbc7f8e46dd73185e68295696d1297887",
+  "checkedAt": "2026-09-18",
+  "files": [
+    {
+      "path": "docs/agent-lifecycle.md",
+      "status": "fetched",
+      "sha256": "3f4a7e406d7e150752680f6b8a1ebc7b823c5c0bab3afca052e64bc7055e32e8",
+      "lines": 91
+    },
+    {
+      "path": "docs/architecture.md",
+      "status": "fetched",
+      "sha256": "a381d3b3cb3af59f9be1075b009d5fd0b65b926c2dadd59965af0b1d9d1d2b0a",
+      "lines": 164
+    },
+    {
+      "path": "docs/capability-seams.md",
+      "status": "fetched",
+      "sha256": "eec4107471819e8c39cd24637640262a1da606e553488d97e6e4f90d6492c4ab",
+      "lines": 623
+    },
+    {
+      "path": "docs/subsystems/compaction.md",
+      "status": "fetched",
+      "sha256": "a788a95291714b8c14d9c9b2a968bfc813cc2c53cb9784bdd06a6378c09f8588",
+      "lines": 284
+    },
+    {
+      "path": "docs/subsystems/core.md",
+      "status": "fetched",
+      "sha256": "e03e88c026dc9cc2e98d0d67bd48bb2c1de4f9444cae741f093377599953a399",
+      "lines": 1255
+    },
+    {
+      "path": "docs/subsystems/ptc.md",
+      "status": "absent"
+    },
+    {
+      "path": "docs/subsystems/session.md",
+      "status": "fetched",
+      "sha256": "5e1eb611406fe133ba464be4427dd023bebd62c7629c14eb2965a446c562fe3b",
+      "lines": 1243
+    },
+    {
+      "path": "docs/subsystems/subagent.md",
+      "status": "fetched",
+      "sha256": "2325501b37964f4743547542a5340a8913d25ede2cddc2480c4c562ab33ccfc5",
+      "lines": 783
+    },
+    {
+      "path": "docs/tool-execution-pipeline.md",
+      "status": "fetched",
+      "sha256": "48ad4292cd8af76411ce9ce9ea2a89056f06b55efc7959f11489d10f771c4b97",
+      "lines": 62
+    },
+    {
+      "path": "docs/user/develop/practice/dynamic-cordis.md",
+      "status": "fetched",
+      "sha256": "694c158210ddb681ef7d2f1973a4f4d487111698019a43b509c57a5c02007170",
+      "lines": 15
+    },
+    {
+      "path": "packages/boot/plugin-manager/README.md",
+      "status": "fetched",
+      "sha256": "245ee6d39cc3d6ec85938957cd4464b945722805172c05107215be79ae19fd1e",
+      "lines": 133
+    },
+    {
+      "path": "packages/compaction/compaction-basic/README.md",
+      "status": "fetched",
+      "sha256": "c261f297b60d299d0c64fa0b9a8c85acc853bbed74fccd2cbb167997c654bf5c",
+      "lines": 260
+    },
+    {
+      "path": "packages/core/agent-loop/README.md",
+      "status": "fetched",
+      "sha256": "0a2275673cec2f22cb343cabab7554ef59ae7b6ffb73f0e7a93c8df421f446f8",
+      "lines": 210
+    },
+    {
+      "path": "packages/core/agent-loop/src/agent.ts",
+      "status": "fetched",
+      "sha256": "2b238998e1b63ac7ceffa20190caaaa4806a9ae275112807424d176244dfd014",
+      "lines": 620
+    },
+    {
+      "path": "packages/core/session/src/index.ts",
+      "status": "fetched",
+      "sha256": "c6ded93fde2c64e87a313f27877bbf37390e280ff90c3012ef575181e553e1fe",
+      "lines": 1317
+    },
+    {
+      "path": "packages/core/tools/README.md",
+      "status": "fetched",
+      "sha256": "5e0feb83e90aa8dc33c95d0d90db11da7e5821903f5c819f1235b8321be69f6f",
+      "lines": 241
+    },
+    {
+      "path": "packages/core/tools/src/index.ts",
+      "status": "fetched",
+      "sha256": "e040cf44c7a4c1b74650cc32f67503b8881cc1d5b1f47f1cb38cf0167a9bb3da",
+      "lines": 1955
+    },
+    {
+      "path": "packages/extensions/tool-cordis/README.md",
+      "status": "fetched",
+      "sha256": "b6a0c72e3806e689233a7b8e778f27b557a0b6d320fa604354587010104d0890",
+      "lines": 76
+    },
+    {
+      "path": "packages/fs/tool-fs/README.md",
+      "status": "fetched",
+      "sha256": "6229b33ea2e35d56d00d73153e3289256b9c825623829fa134bfb60870dee28a",
+      "lines": 259
+    },
+    {
+      "path": "packages/preset/agent-presets/README.md",
+      "status": "fetched",
+      "sha256": "0cbe393e46eb2c93cd025e2107ac45c9070029452049374d4d3887cfa54d612b",
+      "lines": 195
+    },
+    {
+      "path": "packages/preset/agent-presets/presets/cordis/agent.cordis.yml",
+      "status": "fetched",
+      "sha256": "d4882736a02aad417d8e93b73ea3b6b48eb39b5280c1a77e224ce73d38512984",
+      "lines": 283
+    },
+    {
+      "path": "packages/preset/agent-presets/presets/cordis/preset.yml",
+      "status": "fetched",
+      "sha256": "c8199388e494731f8d08c738a4220c059a089677d1bbb42d36f760ce9d882b02",
+      "lines": 3
+    },
+    {
+      "path": "packages/preset/agent-presets/presets/minimal/agent.cordis.yml",
+      "status": "fetched",
+      "sha256": "e75af996ab8c4cc966f8c5b54cd8dc354d7ac71bfcedbe07c8896f63bb7f073b",
+      "lines": 69
+    },
+    {
+      "path": "packages/preset/agent-presets/presets/minimal/preset.yml",
+      "status": "fetched",
+      "sha256": "9369a101ebdae504c109d48dbccffeed236966e9cb818ae82277dd4347ad8eb8",
+      "lines": 3
+    },
+    {
+      "path": "packages/preset/agent-presets/presets/ptc/agent.cordis.yml",
+      "status": "fetched",
+      "sha256": "830928ce6e1281bc000afbfc937664d1acf79811d870099fcf0d0951a8203680",
+      "lines": 287
+    },
+    {
+      "path": "packages/preset/agent-presets/presets/ptc/preset.yml",
+      "status": "fetched",
+      "sha256": "1bfc9606aa8537b34bec80d9f54392f159c0ffc045c9b1bb620f076038d5e5de",
+      "lines": 3
+    },
+    {
+      "path": "packages/preset/agent-presets/presets/standard/agent.cordis.yml",
+      "status": "fetched",
+      "sha256": "0934f22b2fdbc158fd2edad33ec5dd2671b5b1f727800dcaab74cee3bd7294af",
+      "lines": 266
+    },
+    {
+      "path": "packages/preset/agent-presets/presets/standard/preset.yml",
+      "status": "fetched",
+      "sha256": "3c61b4ce68e5dd5cb2c099693fdcb30b91d5f22bbbef546e233321b0fa68f0e4",
+      "lines": 3
+    },
+    {
+      "path": "LICENSE",
+      "status": "fetched",
+      "sha256": "ebb4f09972aee8608be255debaf78451a68e95c290f55c240dec2ecfa16ea6be",
+      "lines": 21
+    }
+  ]
+}

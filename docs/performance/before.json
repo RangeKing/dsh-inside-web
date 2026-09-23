@@ -1,0 +1,10 @@
+{
+  "scenario": "6 second camera scroll, 60 target updates at 10 Hz",
+  "updates": 60,
+  "frames": 60,
+  "frameGapP50": 100,
+  "frameGapP95": 101.1,
+  "maxCameraStep": 0.291939258842401,
+  "drawCalls": 466,
+  "triangles": 109040
+}

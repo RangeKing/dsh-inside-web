@@ -1,0 +1,5 @@
+README.md：先了解项目做什么。
+packages/core/agent-loop：执行循环。
+packages/core/system-prompt：本轮上下文。
+packages/core/tools：工具目录与调用管线。
+packages/core/session：追加式会话日志。

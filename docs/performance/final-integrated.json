@@ -1,0 +1,13 @@
+{
+  "scenario": "Final integrated plugin scene; 10-Hz scroll input",
+  "updates": 60,
+  "frames": 397,
+  "frameGapP50": 16.69999999999891,
+  "frameGapP95": 18.599999999998545,
+  "maxCameraVectorStep": 0.051227640208712365,
+  "drawCalls": 22,
+  "triangles": 9268,
+  "reducedIdleFrames": 0,
+  "hiddenFrames": 0,
+  "lifecyclePass": true
+}

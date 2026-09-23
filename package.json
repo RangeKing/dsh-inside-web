@@ -1,0 +1,13 @@
+{
+  "name": "dsh-inside-web",
+  "version": "5.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "serve": "python3 -m http.server 8080 --bind 127.0.0.1",
+    "check": "node --test tests/contracts.test.mjs"
+  },
+  "dependencies": { "three": "0.180.0" },
+  "devDependencies": { "esbuild": "0.25.10" }
+}

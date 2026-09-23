@@ -1,0 +1,59 @@
+{
+  "version": "4.0.0",
+  "generated_at": "2026-09-05T06:44:11Z",
+  "final_build_sha256": "2a41af347f3e55169dcce7a2983f69ce5ed25bc383a88d73447f817eb76970ea",
+  "final_feature_smoke": {
+    "file": "test-v4-report.json",
+    "summary": {
+      "passed": 18,
+      "failed": 0,
+      "total": 18
+    },
+    "build_sha256": "2a41af347f3e55169dcce7a2983f69ce5ed25bc383a88d73447f817eb76970ea"
+  },
+  "regression_suites": {
+    "regression_A": {
+      "file": "test-v3-A.json",
+      "summary": {
+        "passed": 77,
+        "failed": 0,
+        "total": 77
+      },
+      "build_sha256": "2a41af347f3e55169dcce7a2983f69ce5ed25bc383a88d73447f817eb76970ea"
+    },
+    "regression_B": {
+      "file": "test-v3-B.json",
+      "summary": {
+        "passed": 31,
+        "failed": 0,
+        "total": 31
+      },
+      "build_sha256": "2a41af347f3e55169dcce7a2983f69ce5ed25bc383a88d73447f817eb76970ea"
+    },
+    "regression_C": {
+      "file": "test-v3-C.json",
+      "summary": {
+        "passed": 39,
+        "failed": 0,
+        "total": 39
+      },
+      "build_sha256": "2a41af347f3e55169dcce7a2983f69ce5ed25bc383a88d73447f817eb76970ea"
+    },
+    "regression_D": {
+      "file": "test-v3-D.json",
+      "summary": {
+        "passed": 34,
+        "failed": 0,
+        "total": 34
+      },
+      "build_sha256": "2a41af347f3e55169dcce7a2983f69ce5ed25bc383a88d73447f817eb76970ea"
+    }
+  },
+  "result": "pass",
+  "notes": [
+    "v4 feature checks were rerun against the final standalone HTML.",
+    "A/B/C/D regression suites all report zero failures; each suite includes some repeated data-integrity checks.",
+    "Automated browser coverage uses Chromium and the available Canvas software 3D backend.",
+    "Hardware WebGL, Safari, Firefox, and live DSH/model execution are outside this test run."
+  ]
+}

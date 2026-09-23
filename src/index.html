@@ -1,0 +1,105 @@
+<!doctype html>
+<!--
+MIT License
+
+Copyright (c) 2026 DSH Inside contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+# Third-party notices
+
+DSH Inside is an independent educational project, not an official DeepSeek product.
+The service catalog is based on DeepSeek Harness documentation, with short code
+excerpts used in the source inspector. Original UI and renderer code were written
+for this visualizer. No third-party JavaScript libraries, font files, models, or
+image assets are bundled.
+
+Upstream repository: https://github.com/deepseek-ai/deepseek-harness
+Pinned commit: ddefc453908d0406b7a7ef80e3a0e594d86b2215
+License source: LICENSE at that commit.
+
+## DeepSeek Harness
+
+MIT License
+
+Copyright (c) 2026 DeepSeek
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-->
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark"><meta name="description" content="以官方源码为依据，交互式探索 DeepSeek Harness 的任务循环、插件组合与工具执行。">
+<title>DSH Inside — 看见 Harness 内部的每一步</title>
+<style>/*__CSS__*/</style>
+</head>
+<body>
+<a class="skip-link" href="#inspector">跳到文字说明</a>
+<header class="header">
+ <button class="brand" id="home" aria-label="DSH Inside 首页"><svg width="31" height="36" viewBox="0 0 32 36" fill="none" aria-hidden="true"><path d="M16 2 29 9.5 16 17 3 9.5Z" stroke="currentColor"/><path d="m3 16 13 7.5L29 16M3 22.5 16 30l13-7.5" stroke="currentColor"/><path d="M16 17v13" stroke="currentColor" opacity=".45"/></svg><span>DSH <b>INSIDE</b><small>HARNESS, REVEALED.</small></span></button>
+ <nav class="main-nav" aria-label="主导航"><button class="nav" data-mode="home">大肥鲸导览</button><button class="nav active" data-mode="library">案例库</button><button class="nav" data-mode="journey">任务导览</button><button class="nav" data-mode="modes">四种模式<span class="nav-count">4</span></button><button class="nav" data-mode="atlas">接口图鉴<span class="nav-count">82</span></button><button class="nav" data-mode="trace">运行记录</button></nav>
+ <div class="header-actions"><button id="language-toggle" class="preference-button language-toggle" aria-label="Switch to English" data-raw>中 / EN</button><button id="theme-toggle" class="preference-button theme-toggle" aria-label="切换亮色主题"></button><button class="subtle-button header-cases" data-mode="library">案例库 ↗</button><span class="source-status"><i></i>源码对照</span><button class="icon-button" id="help" aria-label="使用说明" title="使用说明">?</button><button class="subtle-button" id="about">关于与来源 <span>↗</span></button></div>
+</header>
+<section id="case-library" class="wide-page" aria-label="案例库"></section>
+<section id="mode-lab" class="wide-page" aria-label="四种模式" hidden></section>
+<main id="workbench" class="workbench">
+ <aside id="sidebar" class="sidebar" aria-label="导览与服务目录"></aside>
+ <section id="stage" class="stage" aria-label="可切换三维与平面视图的 Harness 架构。也可通过接口图鉴访问全部服务。">
+  <div class="case-model-viewport"><canvas id="scene" aria-hidden="true"></canvas><div id="projected-labels" class="projected-labels" aria-hidden="true"></div></div>
+  <canvas id="scene-annotations" aria-hidden="true"></canvas><div id="flow-packet" class="flow-packet" hidden aria-hidden="true"><span class="packet-route"></span><strong class="packet-label"></strong></div><div class="stage-vignette"></div>
+  <div class="stage-top"><div><span class="eyebrow" id="scene-eyebrow">THE ANATOMY OF A TASK</span><p id="scene-caption">按职责展开，只追踪此刻相关的连接。</p></div><span class="mode-pill" id="evidence-tag">教学演示</span></div>
+  <div class="view-tools" role="group" aria-label="视图控制"><button id="view-overview" class="view-button active" title="三维总览" aria-label="切换三维总览">3D</button><button id="view-flat" class="view-button" title="平面视图" aria-label="切换平面视图">平面</button><button id="view-focus" class="view-button" title="独立查看当前服务" aria-label="独立查看当前服务">剖面</button><span class="tool-separator"></span><button id="view-reset" class="view-button" title="复位视角" aria-label="复位视角">↺</button><button id="view-top" class="view-button" title="俯视" aria-label="切换俯视视角">⊞</button></div>
+  <div class="explode-control"><label for="explode">展开层级</label><input id="explode" type="range" min="0" max="1" value="0.8" step="0.01" aria-label="三维层级展开程度"></div>
+  <div id="focus-legend" class="focus-legend" hidden><span>← 调用方</span><span>接口 / 服务</span><span>实现方 →</span></div>
+  <div class="stage-key"><button id="identity-legend" title="组件图例">◇ <span>组件图例</span></button><span class="arrow-key">⟶ <span>当前传递方向</span></span></div><div id="special-visual" class="special-visual"></div>
+  <div id="no-webgl" class="no-webgl" hidden></div>
+  <div class="stage-bottom"><span class="interaction-hint"><span class="tiny-cross">✣</span>拖动旋转 <span>·</span> 滚轮缩放 <span>·</span> 点击组件</span><button id="motion-toggle" class="text-button" aria-pressed="false">减少动态</button></div>
+ </section>
+ <aside id="inspector" class="inspector" aria-label="当前步骤与接口说明" tabindex="-1"></aside>
+</main>
+<footer class="transport" id="transport" aria-label="播放与步骤控制"></footer>
+<div class="bottomline"><span><i></i>本地运行 · 无模型调用 · 日志不上传</span><button id="commit-button">DSH 0.1.6-alpha.2 <span>/</span> ddefc45</button><span class="bottomnote">概念分组 ≠ 固定执行顺序</span></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+<dialog id="modal"><div id="modal-body"></div></dialog>
+<input type="file" id="trace-file" accept=".json,.jsonl,.ndjson,application/json" hidden>
+<script type="application/json" id="catalog-data">/*__CATALOG__*/</script>
+<script type="application/json" id="scenario-data">/*__SCENARIOS__*/</script>
+<script type="application/json" id="modes-data">/*__MODES__*/</script>
+<script type="application/json" id="locale-data">/*__LOCALE__*/</script>
+<script>/*__I18N__*/</script><script>/*__IDENTITY__*/</script><script>/*__ENGINE__*/</script><script>/*__STUDIO__*/</script><script>/*__APP__*/</script>
+</body></html>

@@ -1,0 +1,6363 @@
+{
+  "assets": [
+    {
+      "id": "orca_hull",
+      "path": "assets/models/orca_hull.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/01-orca_hull/orca_hull.glb",
+      "sha256": "5dbec85c6cea482fa5fbf756392cf3e505ac24a8a5c80805afabeb472ef9330e",
+      "bytes": 11097068,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "orca_hull",
+        "version": "0.1.0",
+        "dimensions": [
+          13.930453300476074,
+          10.87088680267334,
+          24.002063751220703
+        ],
+        "manifestDimensions": [
+          13.931468250856012,
+          10.873130084961867,
+          24.0
+        ],
+        "maxDimensionDeviation": 0.00020631430609198295,
+        "pivot": "center-of-mass",
+        "bounds": {
+          "min": [
+            -6.96567964553833,
+            -4.347352504730225,
+            -11.1996431350708
+          ],
+          "max": [
+            6.964773654937744,
+            6.523534297943115,
+            12.802419662475586
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "orca_hull__dorsal",
+          "orca_hull__lights_dorsal",
+          "orca_hull__lights_head",
+          "orca_hull__lights_port",
+          "orca_hull__lights_starboard",
+          "orca_hull__lights_tail",
+          "orca_hull__panel_belly",
+          "orca_hull__panel_head",
+          "orca_hull__panel_spine",
+          "orca_hull__panel_tool_left",
+          "orca_hull__panel_tool_right",
+          "orca_hull__panel_workshop",
+          "orca_hull__pectoral_left",
+          "orca_hull__pectoral_right",
+          "orca_hull__root",
+          "orca_hull__socket_subagent_01",
+          "orca_hull__socket_subagent_01_emissive",
+          "orca_hull__socket_subagent_01_frame",
+          "orca_hull__socket_subagent_01_lock",
+          "orca_hull__socket_subagent_01_lock__02",
+          "orca_hull__socket_subagent_01_lock__03",
+          "orca_hull__socket_subagent_01_lock__04",
+          "orca_hull__socket_subagent_01_lock__05",
+          "orca_hull__socket_subagent_01_lock__06",
+          "orca_hull__socket_subagent_02",
+          "orca_hull__socket_subagent_02_emissive",
+          "orca_hull__socket_subagent_02_frame",
+          "orca_hull__socket_subagent_02_lock",
+          "orca_hull__socket_subagent_02_lock__02",
+          "orca_hull__socket_subagent_02_lock__03",
+          "orca_hull__socket_subagent_02_lock__04",
+          "orca_hull__socket_subagent_02_lock__05",
+          "orca_hull__socket_subagent_02_lock__06",
+          "orca_hull__socket_tool_L_01",
+          "orca_hull__socket_tool_L_01_emissive",
+          "orca_hull__socket_tool_L_01_frame",
+          "orca_hull__socket_tool_L_01_lock",
+          "orca_hull__socket_tool_L_01_lock__02",
+          "orca_hull__socket_tool_L_01_lock__03",
+          "orca_hull__socket_tool_L_01_lock__04",
+          "orca_hull__socket_tool_L_01_lock__05",
+          "orca_hull__socket_tool_L_01_lock__06",
+          "orca_hull__socket_tool_L_02",
+          "orca_hull__socket_tool_L_02_emissive",
+          "orca_hull__socket_tool_L_02_frame",
+          "orca_hull__socket_tool_L_02_lock",
+          "orca_hull__socket_tool_L_02_lock__02",
+          "orca_hull__socket_tool_L_02_lock__03",
+          "orca_hull__socket_tool_L_02_lock__04",
+          "orca_hull__socket_tool_L_02_lock__05",
+          "orca_hull__socket_tool_L_02_lock__06",
+          "orca_hull__socket_tool_L_03",
+          "orca_hull__socket_tool_L_03_emissive",
+          "orca_hull__socket_tool_L_03_frame",
+          "orca_hull__socket_tool_L_03_lock",
+          "orca_hull__socket_tool_L_03_lock__02",
+          "orca_hull__socket_tool_L_03_lock__03",
+          "orca_hull__socket_tool_L_03_lock__04",
+          "orca_hull__socket_tool_L_03_lock__05",
+          "orca_hull__socket_tool_L_03_lock__06",
+          "orca_hull__socket_tool_R_01",
+          "orca_hull__socket_tool_R_01_emissive",
+          "orca_hull__socket_tool_R_01_frame",
+          "orca_hull__socket_tool_R_01_lock",
+          "orca_hull__socket_tool_R_01_lock__02",
+          "orca_hull__socket_tool_R_01_lock__03",
+          "orca_hull__socket_tool_R_01_lock__04",
+          "orca_hull__socket_tool_R_01_lock__05",
+          "orca_hull__socket_tool_R_01_lock__06",
+          "orca_hull__socket_tool_R_02",
+          "orca_hull__socket_tool_R_02_emissive",
+          "orca_hull__socket_tool_R_02_frame",
+          "orca_hull__socket_tool_R_02_lock",
+          "orca_hull__socket_tool_R_02_lock__02",
+          "orca_hull__socket_tool_R_02_lock__03",
+          "orca_hull__socket_tool_R_02_lock__04",
+          "orca_hull__socket_tool_R_02_lock__05",
+          "orca_hull__socket_tool_R_02_lock__06",
+          "orca_hull__socket_tool_R_03",
+          "orca_hull__socket_tool_R_03_emissive",
+          "orca_hull__socket_tool_R_03_frame",
+          "orca_hull__socket_tool_R_03_lock",
+          "orca_hull__socket_tool_R_03_lock__02",
+          "orca_hull__socket_tool_R_03_lock__03",
+          "orca_hull__socket_tool_R_03_lock__04",
+          "orca_hull__socket_tool_R_03_lock__05",
+          "orca_hull__socket_tool_R_03_lock__06",
+          "orca_hull__socket_web",
+          "orca_hull__socket_web_emissive",
+          "orca_hull__socket_web_frame",
+          "orca_hull__socket_web_lock",
+          "orca_hull__socket_web_lock__02",
+          "orca_hull__socket_web_lock__03",
+          "orca_hull__socket_web_lock__04",
+          "orca_hull__socket_web_lock__05",
+          "orca_hull__socket_web_lock__06",
+          "orca_hull__socket_workshop",
+          "orca_hull__socket_workshop_emissive",
+          "orca_hull__socket_workshop_frame",
+          "orca_hull__socket_workshop_lock",
+          "orca_hull__socket_workshop_lock__02",
+          "orca_hull__socket_workshop_lock__03",
+          "orca_hull__socket_workshop_lock__04",
+          "orca_hull__socket_workshop_lock__05",
+          "orca_hull__socket_workshop_lock__06",
+          "orca_hull__tail"
+        ],
+        "connectors": [
+          {
+            "id": "socket_tool_L_01",
+            "node": "orca_hull__socket_tool_L_01",
+            "type": "DCI-M",
+            "position": [
+              -3.001699686050415,
+              0.0,
+              5.399999904632568
+            ],
+            "quaternion": [
+              0.0,
+              -0.7071067690849304,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              -1,
+              0,
+              0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "orca_hull__socket_tool_L_01_frame"
+          },
+          {
+            "id": "socket_tool_L_02",
+            "node": "orca_hull__socket_tool_L_02",
+            "type": "DCI-M",
+            "position": [
+              -2.7924063205718994,
+              0.0,
+              3.399999904632568
+            ],
+            "quaternion": [
+              0.0,
+              -0.7071067690849304,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              -1,
+              0,
+              0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "orca_hull__socket_tool_L_02_frame"
+          },
+          {
+            "id": "socket_tool_L_03",
+            "node": "orca_hull__socket_tool_L_03",
+            "type": "DCI-M",
+            "position": [
+              -2.9482474327087402,
+              0.0,
+              1.400000023841858
+            ],
+            "quaternion": [
+              0.0,
+              -0.7071067690849304,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              -1,
+              0,
+              0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "orca_hull__socket_tool_L_03_frame"
+          },
+          {
+            "id": "socket_tool_R_01",
+            "node": "orca_hull__socket_tool_R_01",
+            "type": "DCI-M",
+            "position": [
+              3.003053903579712,
+              0.0,
+              5.399999904632568
+            ],
+            "quaternion": [
+              0.0,
+              0.7071067690849304,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              1,
+              0,
+              0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "orca_hull__socket_tool_R_01_frame"
+          },
+          {
+            "id": "socket_tool_R_02",
+            "node": "orca_hull__socket_tool_R_02",
+            "type": "DCI-M",
+            "position": [
+              2.7932188510894775,
+              0.0,
+              3.399999904632568
+            ],
+            "quaternion": [
+              0.0,
+              0.7071067690849304,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              1,
+              0,
+              0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "orca_hull__socket_tool_R_02_frame"
+          },
+          {
+            "id": "socket_tool_R_03",
+            "node": "orca_hull__socket_tool_R_03",
+            "type": "DCI-M",
+            "position": [
+              2.9479711055755615,
+              0.0,
+              1.400000023841858
+            ],
+            "quaternion": [
+              0.0,
+              0.7071067690849304,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              1,
+              0,
+              0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "orca_hull__socket_tool_R_03_frame"
+          },
+          {
+            "id": "socket_subagent_01",
+            "node": "orca_hull__socket_subagent_01",
+            "type": "DCI-L",
+            "position": [
+              -1.0,
+              -2.3091750144958496,
+              -0.19999999999999996
+            ],
+            "quaternion": [
+              0.7071067690849304,
+              0.0,
+              -0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              0,
+              -1,
+              0
+            ],
+            "outerDiameter": 1.2,
+            "innerDiameter": 0.82,
+            "depth": 0.22,
+            "frameNode": "orca_hull__socket_subagent_01_frame"
+          },
+          {
+            "id": "socket_subagent_02",
+            "node": "orca_hull__socket_subagent_02",
+            "type": "DCI-L",
+            "position": [
+              1.0,
+              -2.3079943656921387,
+              -0.19999999999999996
+            ],
+            "quaternion": [
+              0.7071067690849304,
+              0.0,
+              -0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              0,
+              -1,
+              0
+            ],
+            "outerDiameter": 1.2,
+            "innerDiameter": 0.82,
+            "depth": 0.22,
+            "frameNode": "orca_hull__socket_subagent_02_frame"
+          },
+          {
+            "id": "socket_web",
+            "node": "orca_hull__socket_web",
+            "type": "DCI-M",
+            "position": [
+              0.0,
+              2.784520387649536,
+              5.3
+            ],
+            "quaternion": [
+              -0.7071067690849304,
+              0.0,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              0,
+              1,
+              0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "orca_hull__socket_web_frame"
+          },
+          {
+            "id": "socket_workshop",
+            "node": "orca_hull__socket_workshop",
+            "type": "DCI-L",
+            "position": [
+              0.0,
+              -1.542008876800537,
+              -3.199999761581421
+            ],
+            "quaternion": [
+              0.7071067690849304,
+              0.0,
+              -0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              0,
+              -1,
+              0
+            ],
+            "outerDiameter": 1.2,
+            "innerDiameter": 0.82,
+            "depth": 0.22,
+            "frameNode": "orca_hull__socket_workshop_frame"
+          }
+        ],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "orca_hull__panel_head",
+            "kind": "slide",
+            "axis": [
+              0.0001684684684732929,
+              -0.10525144636631012,
+              0.9944456219673157
+            ],
+            "amount": 1.4,
+            "pivot": [
+              0.00042313101585023105,
+              -0.26435303688049316,
+              9.125609397888184
+            ]
+          },
+          {
+            "node": "orca_hull__panel_tool_left",
+            "kind": "slide",
+            "axis": [
+              -0.9992424249649048,
+              0.03623104840517044,
+              -0.014205639250576496
+            ],
+            "amount": 1.4,
+            "pivot": [
+              -2.707230806350708,
+              0.09816017001867294,
+              0.6717096567153931
+            ]
+          },
+          {
+            "node": "orca_hull__panel_tool_right",
+            "kind": "slide",
+            "axis": [
+              0.9995922446250916,
+              0.023049727082252502,
+              -0.016854198649525642
+            ],
+            "amount": 1.4,
+            "pivot": [
+              2.712480068206787,
+              0.06254743039608002,
+              0.6475489139556885
+            ]
+          },
+          {
+            "node": "orca_hull__panel_belly",
+            "kind": "slide",
+            "axis": [
+              0.010721308179199696,
+              -0.9918381571769714,
+              0.12705203890800476
+            ],
+            "amount": 1.4,
+            "pivot": [
+              0.023035015910863876,
+              -2.130990743637085,
+              1.7099156379699707
+            ]
+          },
+          {
+            "node": "orca_hull__panel_workshop",
+            "kind": "slide",
+            "axis": [
+              0.0011767592513933778,
+              0.20342706143856049,
+              -0.9790893793106079
+            ],
+            "amount": 1.4,
+            "pivot": [
+              0.0018930953228846192,
+              0.32726049423217773,
+              -4.450321674346924
+            ]
+          },
+          {
+            "node": "orca_hull__panel_spine",
+            "kind": "slide",
+            "axis": [
+              0.004730620887130499,
+              0.9932342767715454,
+              0.1160312071442604
+            ],
+            "amount": 1.4,
+            "pivot": [
+              0.009481026791036129,
+              1.990622639656067,
+              1.5751590728759766
+            ]
+          },
+          {
+            "node": "orca_hull__pectoral_left",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.1,
+            "pivot": [
+              -2.5,
+              -2.4537646770477295,
+              6.042415142059326
+            ]
+          },
+          {
+            "node": "orca_hull__pectoral_right",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.1,
+            "pivot": [
+              2.5,
+              -2.4865849018096924,
+              6.040604591369629
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 49144,
+          "LOD1": 18437,
+          "LOD2": 7274
+        },
+        "geometryValidation": {
+          "triangles": 49144,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 28.32243522644043,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "01-orca-hull.png"
+        },
+        "referenceDeviations": [
+          "Replaces the procedural hull with the user-supplied textured model. Its silhouette and painted panel design are retained.",
+          "Uniform 24m normalization changes the old 7.2m-wide / 7m-high envelope; the manifest records the measured new envelope.",
+          "Semantic panel cuts follow anatomical regions; these are not individually reconstructed source armor hinges. DCI sockets are recessed below the exterior."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed",
+          "loadDisposeSmoke": {
+            "geometries": [
+              95,
+              21,
+              95
+            ],
+            "textures": [
+              4,
+              1,
+              4
+            ],
+            "sequence": [
+              "orca_hull",
+              "agent_loop",
+              "orca_hull"
+            ],
+            "scope": "single switch cycle in local Three.js viewer"
+          }
+        },
+        "sha256": "5dbec85c6cea482fa5fbf756392cf3e505ac24a8a5c80805afabeb472ef9330e",
+        "source": {
+          "file": "assets/sources/orca_hull/source.glb",
+          "sha256": "151f5c34704b9d9ad0ad57d0294cffeb74a9d1dfb40fea44b43afaee043aaeff",
+          "sourceTriangles": 1500000,
+          "sourceBytes": 76377700,
+          "normalization": "uniform length=24m; original proportions preserved",
+          "scaleFactor": 21.696658487758363,
+          "textureResolution": 2048,
+          "removedTinyIslands": 0,
+          "surfaceErrorMetres": {
+            "sampleCount": 5000,
+            "p95": 0.001562474324600771,
+            "max": 0.005094153340905905
+          },
+          "independentLightBanks": 5
+        }
+      }
+    },
+    {
+      "id": "agent_loop",
+      "path": "assets/models/agent_loop.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/02-agent_loop/agent_loop.glb",
+      "sha256": "e8bdf6f012ae1b3e0ced8f7fde182bb0e707615e5122ecbb2091b46b89848b73",
+      "bytes": 30812,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "agent_loop",
+        "version": "0.1.0",
+        "dimensions": [
+          4.0,
+          4.0,
+          2.200000047683716
+        ],
+        "manifestDimensions": [
+          4.0,
+          4.0,
+          2.2
+        ],
+        "maxDimensionDeviation": 2.1674416201216733e-08,
+        "pivot": "center",
+        "bounds": {
+          "min": [
+            -2.0,
+            -2.0,
+            -1.100000023841858
+          ],
+          "max": [
+            2.0,
+            2.0,
+            1.100000023841858
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "agent_loop__axle",
+          "agent_loop__axle__02",
+          "agent_loop__core",
+          "agent_loop__ring_execution",
+          "agent_loop__ring_execution_armor",
+          "agent_loop__ring_execution_armor__02",
+          "agent_loop__ring_execution_armor__03",
+          "agent_loop__ring_execution_armor__04",
+          "agent_loop__ring_execution_emissive",
+          "agent_loop__ring_step",
+          "agent_loop__ring_step_armor",
+          "agent_loop__ring_step_armor__02",
+          "agent_loop__ring_step_armor__03",
+          "agent_loop__ring_step_armor__04",
+          "agent_loop__ring_step_emissive",
+          "agent_loop__ring_turn",
+          "agent_loop__ring_turn_armor",
+          "agent_loop__ring_turn_armor__02",
+          "agent_loop__ring_turn_armor__03",
+          "agent_loop__ring_turn_armor__04",
+          "agent_loop__ring_turn_emissive",
+          "agent_loop__root"
+        ],
+        "connectors": [],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "agent_loop__ring_turn",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 6.283185307179586,
+            "pivot": [
+              0.0,
+              0.0,
+              -0.3499999940395355
+            ]
+          },
+          {
+            "node": "agent_loop__ring_step",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 6.283185307179586,
+            "pivot": [
+              0.0,
+              0.0,
+              -0.0
+            ]
+          },
+          {
+            "node": "agent_loop__ring_execution",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 6.283185307179586,
+            "pivot": [
+              0.0,
+              0.0,
+              0.41999998688697815
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 1848,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 1848,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 4.72,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "02-agent-loop-core.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "e8bdf6f012ae1b3e0ced8f7fde182bb0e707615e5122ecbb2091b46b89848b73"
+      }
+    },
+    {
+      "id": "session_spine",
+      "path": "assets/models/session_spine.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/03-session_spine/session_spine.glb",
+      "sha256": "ec9574c73f090b8e996145079d765751dd8d520eff4b53a3095fb88590f684e8",
+      "bytes": 148648,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "session_spine",
+        "version": "0.1.0",
+        "dimensions": [
+          0.699999988079071,
+          0.699999988079071,
+          15.0
+        ],
+        "manifestDimensions": [
+          0.7,
+          0.7,
+          15.0
+        ],
+        "maxDimensionDeviation": 1.7029898443813148e-08,
+        "pivot": "center",
+        "bounds": {
+          "min": [
+            -0.3499999940395355,
+            -0.3499999940395355,
+            -7.5
+          ],
+          "max": [
+            0.3499999940395355,
+            0.3499999940395355,
+            7.5
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "session_spine__coupling",
+          "session_spine__coupling__02",
+          "session_spine__coupling__03",
+          "session_spine__coupling__04",
+          "session_spine__coupling__05",
+          "session_spine__coupling__06",
+          "session_spine__coupling__07",
+          "session_spine__coupling__08",
+          "session_spine__coupling__09",
+          "session_spine__coupling__10",
+          "session_spine__coupling__11",
+          "session_spine__coupling__12",
+          "session_spine__coupling__13",
+          "session_spine__coupling__14",
+          "session_spine__coupling__15",
+          "session_spine__coupling__16",
+          "session_spine__coupling__17",
+          "session_spine__coupling__18",
+          "session_spine__coupling__19",
+          "session_spine__coupling__20",
+          "session_spine__coupling__21",
+          "session_spine__coupling__22",
+          "session_spine__node_armor",
+          "session_spine__node_armor__02",
+          "session_spine__node_armor__03",
+          "session_spine__node_armor__04",
+          "session_spine__node_armor__05",
+          "session_spine__node_armor__06",
+          "session_spine__node_armor__07",
+          "session_spine__node_armor__08",
+          "session_spine__node_armor__09",
+          "session_spine__node_armor__10",
+          "session_spine__node_armor__11",
+          "session_spine__node_armor__12",
+          "session_spine__node_armor__13",
+          "session_spine__node_armor__14",
+          "session_spine__node_armor__15",
+          "session_spine__node_armor__16",
+          "session_spine__node_armor__17",
+          "session_spine__node_armor__18",
+          "session_spine__node_armor__19",
+          "session_spine__node_armor__20",
+          "session_spine__node_armor__21",
+          "session_spine__node_armor__22",
+          "session_spine__node_armor__23",
+          "session_spine__node_armor__24",
+          "session_spine__node_armor__25",
+          "session_spine__node_armor__26",
+          "session_spine__node_armor__27",
+          "session_spine__node_armor__28",
+          "session_spine__node_armor__29",
+          "session_spine__node_armor__30",
+          "session_spine__node_armor__31",
+          "session_spine__node_armor__32",
+          "session_spine__node_armor__33",
+          "session_spine__node_armor__34",
+          "session_spine__node_armor__35",
+          "session_spine__node_armor__36",
+          "session_spine__node_armor__37",
+          "session_spine__node_armor__38",
+          "session_spine__node_armor__39",
+          "session_spine__node_armor__40",
+          "session_spine__node_armor__41",
+          "session_spine__node_armor__42",
+          "session_spine__node_armor__43",
+          "session_spine__node_armor__44",
+          "session_spine__node_armor__45",
+          "session_spine__node_armor__46",
+          "session_spine__node_emissive",
+          "session_spine__node_emissive__02",
+          "session_spine__node_emissive__03",
+          "session_spine__node_emissive__04",
+          "session_spine__node_emissive__05",
+          "session_spine__node_emissive__06",
+          "session_spine__node_emissive__07",
+          "session_spine__node_emissive__08",
+          "session_spine__node_emissive__09",
+          "session_spine__node_emissive__10",
+          "session_spine__node_emissive__11",
+          "session_spine__node_emissive__12",
+          "session_spine__node_emissive__13",
+          "session_spine__node_emissive__14",
+          "session_spine__node_emissive__15",
+          "session_spine__node_emissive__16",
+          "session_spine__node_emissive__17",
+          "session_spine__node_emissive__18",
+          "session_spine__node_emissive__19",
+          "session_spine__node_emissive__20",
+          "session_spine__node_emissive__21",
+          "session_spine__node_emissive__22",
+          "session_spine__node_emissive__23",
+          "session_spine__node_emissive__24",
+          "session_spine__node_emissive__25",
+          "session_spine__node_emissive__26",
+          "session_spine__node_emissive__27",
+          "session_spine__node_emissive__28",
+          "session_spine__node_emissive__29",
+          "session_spine__node_emissive__30",
+          "session_spine__node_emissive__31",
+          "session_spine__node_emissive__32",
+          "session_spine__node_emissive__33",
+          "session_spine__node_emissive__34",
+          "session_spine__node_emissive__35",
+          "session_spine__node_emissive__36",
+          "session_spine__node_emissive__37",
+          "session_spine__node_emissive__38",
+          "session_spine__node_emissive__39",
+          "session_spine__node_emissive__40",
+          "session_spine__node_emissive__41",
+          "session_spine__node_emissive__42",
+          "session_spine__node_emissive__43",
+          "session_spine__node_emissive__44",
+          "session_spine__node_emissive__45",
+          "session_spine__node_emissive__46",
+          "session_spine__root",
+          "session_spine__session_node_01",
+          "session_spine__session_node_02",
+          "session_spine__session_node_03",
+          "session_spine__session_node_04",
+          "session_spine__session_node_05",
+          "session_spine__session_node_06",
+          "session_spine__session_node_07",
+          "session_spine__session_node_08",
+          "session_spine__session_node_09",
+          "session_spine__session_node_10",
+          "session_spine__session_node_11",
+          "session_spine__session_node_12",
+          "session_spine__session_node_13",
+          "session_spine__session_node_14",
+          "session_spine__session_node_15",
+          "session_spine__session_node_16",
+          "session_spine__session_node_17",
+          "session_spine__session_node_18",
+          "session_spine__session_node_19",
+          "session_spine__session_node_20",
+          "session_spine__session_node_21",
+          "session_spine__session_node_22",
+          "session_spine__session_node_23"
+        ],
+        "connectors": [],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [],
+        "triangleCount": {
+          "LOD0": 4556,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 4556,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 17.7,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "03-session-spine.png"
+        },
+        "referenceDeviations": [
+          "23 linked reusable node units; a runtime may instance node geometry for arbitrary event counts."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "ec9574c73f090b8e996145079d765751dd8d520eff4b53a3095fb88590f684e8"
+      }
+    },
+    {
+      "id": "scope_chamber",
+      "path": "assets/models/scope_chamber.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/04-scope_chamber/scope_chamber.glb",
+      "sha256": "6343bd05932e9f25438c97264da9119d8441ad4981301b5d0fe594d8654f89cb",
+      "bytes": 23744,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "scope_chamber",
+        "version": "0.1.0",
+        "dimensions": [
+          8.0,
+          5.0,
+          9.0
+        ],
+        "manifestDimensions": [
+          8.0,
+          5.0,
+          9.0
+        ],
+        "maxDimensionDeviation": 0.0,
+        "pivot": "center",
+        "bounds": {
+          "min": [
+            -4.0,
+            -2.5,
+            -4.5
+          ],
+          "max": [
+            4.0,
+            2.5,
+            4.500000476837158
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "scope_chamber__anchor",
+          "scope_chamber__anchor__02",
+          "scope_chamber__anchor__03",
+          "scope_chamber__anchor__04",
+          "scope_chamber__anchor__05",
+          "scope_chamber__anchor__06",
+          "scope_chamber__anchor_light",
+          "scope_chamber__anchor_light__02",
+          "scope_chamber__anchor_light__03",
+          "scope_chamber__anchor_light__04",
+          "scope_chamber__anchor_light__05",
+          "scope_chamber__anchor_light__06",
+          "scope_chamber__anchors",
+          "scope_chamber__frame",
+          "scope_chamber__frame_strut",
+          "scope_chamber__frame_strut__02",
+          "scope_chamber__frame_strut__03",
+          "scope_chamber__frame_strut__04",
+          "scope_chamber__frame_strut__05",
+          "scope_chamber__frame_strut__06",
+          "scope_chamber__glass",
+          "scope_chamber__rim",
+          "scope_chamber__rim__02",
+          "scope_chamber__root"
+        ],
+        "connectors": [],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_GLASS_SCOPE",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE"
+        ],
+        "animations": [],
+        "triangleCount": {
+          "LOD0": 716,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 716,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 10.62,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "04-scope-realm-pressure-chamber.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "6343bd05932e9f25438c97264da9119d8441ad4981301b5d0fe594d8654f89cb"
+      }
+    },
+    {
+      "id": "tool_registry",
+      "path": "assets/models/tool_registry.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/05-tool_registry/tool_registry.glb",
+      "sha256": "033a8c5a6505af47463e54809f5225acf9492a4f493dc0778a076f5bebd9ce17",
+      "bytes": 75300,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "tool_registry",
+        "version": "0.1.0",
+        "dimensions": [
+          2.200000047683716,
+          3.0,
+          5.5
+        ],
+        "manifestDimensions": [
+          2.2,
+          3.0,
+          5.5
+        ],
+        "maxDimensionDeviation": 2.1674416201216733e-08,
+        "pivot": "bottom-center",
+        "bounds": {
+          "min": [
+            -1.100000023841858,
+            0.0,
+            -2.75
+          ],
+          "max": [
+            1.100000023841858,
+            3.0,
+            2.75
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "tool_registry__backplane",
+          "tool_registry__cartridge",
+          "tool_registry__cartridge__02",
+          "tool_registry__cartridge__03",
+          "tool_registry__cartridge_emissive",
+          "tool_registry__cartridge_emissive__02",
+          "tool_registry__cartridge_emissive__03",
+          "tool_registry__end_frame",
+          "tool_registry__end_frame__02",
+          "tool_registry__ivory_end",
+          "tool_registry__ivory_end__02",
+          "tool_registry__rail",
+          "tool_registry__rail__02",
+          "tool_registry__root",
+          "tool_registry__slot_01",
+          "tool_registry__slot_02",
+          "tool_registry__slot_03",
+          "tool_registry__slot_04",
+          "tool_registry__slot_05",
+          "tool_registry__slot_06",
+          "tool_registry__slot_DCI-M_01",
+          "tool_registry__slot_DCI-M_01_emissive",
+          "tool_registry__slot_DCI-M_01_frame",
+          "tool_registry__slot_DCI-M_01_lock",
+          "tool_registry__slot_DCI-M_01_lock__02",
+          "tool_registry__slot_DCI-M_01_lock__03",
+          "tool_registry__slot_DCI-M_01_lock__04",
+          "tool_registry__slot_DCI-M_01_lock__05",
+          "tool_registry__slot_DCI-M_01_lock__06",
+          "tool_registry__slot_DCI-M_02",
+          "tool_registry__slot_DCI-M_02_emissive",
+          "tool_registry__slot_DCI-M_02_frame",
+          "tool_registry__slot_DCI-M_02_lock",
+          "tool_registry__slot_DCI-M_02_lock__02",
+          "tool_registry__slot_DCI-M_02_lock__03",
+          "tool_registry__slot_DCI-M_02_lock__04",
+          "tool_registry__slot_DCI-M_02_lock__05",
+          "tool_registry__slot_DCI-M_02_lock__06",
+          "tool_registry__slot_DCI-M_03",
+          "tool_registry__slot_DCI-M_03_emissive",
+          "tool_registry__slot_DCI-M_03_frame",
+          "tool_registry__slot_DCI-M_03_lock",
+          "tool_registry__slot_DCI-M_03_lock__02",
+          "tool_registry__slot_DCI-M_03_lock__03",
+          "tool_registry__slot_DCI-M_03_lock__04",
+          "tool_registry__slot_DCI-M_03_lock__05",
+          "tool_registry__slot_DCI-M_03_lock__06",
+          "tool_registry__slot_DCI-M_04",
+          "tool_registry__slot_DCI-M_04_emissive",
+          "tool_registry__slot_DCI-M_04_frame",
+          "tool_registry__slot_DCI-M_04_lock",
+          "tool_registry__slot_DCI-M_04_lock__02",
+          "tool_registry__slot_DCI-M_04_lock__03",
+          "tool_registry__slot_DCI-M_04_lock__04",
+          "tool_registry__slot_DCI-M_04_lock__05",
+          "tool_registry__slot_DCI-M_04_lock__06",
+          "tool_registry__slot_DCI-M_05",
+          "tool_registry__slot_DCI-M_05_emissive",
+          "tool_registry__slot_DCI-M_05_frame",
+          "tool_registry__slot_DCI-M_05_lock",
+          "tool_registry__slot_DCI-M_05_lock__02",
+          "tool_registry__slot_DCI-M_05_lock__03",
+          "tool_registry__slot_DCI-M_05_lock__04",
+          "tool_registry__slot_DCI-M_05_lock__05",
+          "tool_registry__slot_DCI-M_05_lock__06",
+          "tool_registry__slot_DCI-M_06",
+          "tool_registry__slot_DCI-M_06_emissive",
+          "tool_registry__slot_DCI-M_06_frame",
+          "tool_registry__slot_DCI-M_06_lock",
+          "tool_registry__slot_DCI-M_06_lock__02",
+          "tool_registry__slot_DCI-M_06_lock__03",
+          "tool_registry__slot_DCI-M_06_lock__04",
+          "tool_registry__slot_DCI-M_06_lock__05",
+          "tool_registry__slot_DCI-M_06_lock__06"
+        ],
+        "connectors": [
+          {
+            "id": "slot_DCI-M_01",
+            "node": "tool_registry__slot_DCI-M_01",
+            "type": "DCI-M",
+            "position": [
+              0.85,
+              0.86,
+              -1.65
+            ],
+            "quaternion": [
+              0.0,
+              0.7071067690849304,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              1,
+              0,
+              0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "tool_registry__slot_DCI-M_01_frame"
+          },
+          {
+            "id": "slot_DCI-M_02",
+            "node": "tool_registry__slot_DCI-M_02",
+            "type": "DCI-M",
+            "position": [
+              0.85,
+              0.86,
+              0
+            ],
+            "quaternion": [
+              0.0,
+              0.7071067690849304,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              1,
+              0,
+              0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "tool_registry__slot_DCI-M_02_frame"
+          },
+          {
+            "id": "slot_DCI-M_03",
+            "node": "tool_registry__slot_DCI-M_03",
+            "type": "DCI-M",
+            "position": [
+              0.85,
+              0.86,
+              1.65
+            ],
+            "quaternion": [
+              0.0,
+              0.7071067690849304,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              1,
+              0,
+              0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "tool_registry__slot_DCI-M_03_frame"
+          },
+          {
+            "id": "slot_DCI-M_04",
+            "node": "tool_registry__slot_DCI-M_04",
+            "type": "DCI-M",
+            "position": [
+              0.85,
+              2.12,
+              -1.65
+            ],
+            "quaternion": [
+              0.0,
+              0.7071067690849304,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              1,
+              0,
+              0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "tool_registry__slot_DCI-M_04_frame"
+          },
+          {
+            "id": "slot_DCI-M_05",
+            "node": "tool_registry__slot_DCI-M_05",
+            "type": "DCI-M",
+            "position": [
+              0.85,
+              2.12,
+              0
+            ],
+            "quaternion": [
+              0.0,
+              0.7071067690849304,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              1,
+              0,
+              0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "tool_registry__slot_DCI-M_05_frame"
+          },
+          {
+            "id": "slot_DCI-M_06",
+            "node": "tool_registry__slot_DCI-M_06",
+            "type": "DCI-M",
+            "position": [
+              0.85,
+              2.12,
+              1.65
+            ],
+            "quaternion": [
+              0.0,
+              0.7071067690849304,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              1,
+              0,
+              0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "tool_registry__slot_DCI-M_06_frame"
+          }
+        ],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "tool_registry__cartridge",
+            "kind": "slide",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "amount": 0.8,
+            "pivot": [
+              0.20000000298023224,
+              0.8600000143051147,
+              -1.649999976158142
+            ]
+          },
+          {
+            "node": "tool_registry__cartridge__02",
+            "kind": "slide",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "amount": 0.8,
+            "pivot": [
+              0.20000000298023224,
+              0.8600000143051147,
+              1.649999976158142
+            ]
+          },
+          {
+            "node": "tool_registry__cartridge__03",
+            "kind": "slide",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "amount": 0.8,
+            "pivot": [
+              0.20000000298023224,
+              2.119999885559082,
+              -0.0
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 2444,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 2444,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 6.489999999999999,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "05-tools-registry.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim.",
+          "Ports face +X to preserve the manifest 2.2 × 3 × 5.5 m axes; the reference sheet visual front is this port face, while canonical front preview looks from +Z.",
+          "Ports face +X to preserve the manifest 2.2 × 3 × 5.5 m axes; the reference sheet visual front is this port face, while canonical front preview looks from +Z."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "033a8c5a6505af47463e54809f5225acf9492a4f493dc0778a076f5bebd9ce17"
+      }
+    },
+    {
+      "id": "restrict_gate",
+      "path": "assets/models/restrict_gate.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/06-restrict_gate/restrict_gate.glb",
+      "sha256": "7ffa1b00a29f895e6c713cf4ed575e7c28ea33b5d8cca93f1706dc1fea5e2df1",
+      "bytes": 23496,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "restrict_gate",
+        "version": "0.1.0",
+        "dimensions": [
+          1.100000023841858,
+          1.100000023841858,
+          0.3499999940395355
+        ],
+        "manifestDimensions": [
+          1.1,
+          1.1,
+          0.35
+        ],
+        "maxDimensionDeviation": 2.1674416201216733e-08,
+        "pivot": "aperture-center",
+        "bounds": {
+          "min": [
+            -0.550000011920929,
+            -0.550000011920929,
+            -0.17499999701976776
+          ],
+          "max": [
+            0.550000011920929,
+            0.550000011920929,
+            0.17499999701976776
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "restrict_gate__blade_01",
+          "restrict_gate__blade_02",
+          "restrict_gate__blade_03",
+          "restrict_gate__blade_04",
+          "restrict_gate__blade_05",
+          "restrict_gate__blade_06",
+          "restrict_gate__emissive_ring",
+          "restrict_gate__frame",
+          "restrict_gate__hinge",
+          "restrict_gate__hinge__02",
+          "restrict_gate__hinge__03",
+          "restrict_gate__hinge__04",
+          "restrict_gate__hinge__05",
+          "restrict_gate__hinge__06",
+          "restrict_gate__root"
+        ],
+        "connectors": [],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "restrict_gate__blade_01",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.48,
+            "pivot": [
+              0.38499999046325684,
+              0.0,
+              0.02500000037252903
+            ]
+          },
+          {
+            "node": "restrict_gate__blade_02",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.48,
+            "pivot": [
+              0.19249999523162842,
+              0.3334197700023651,
+              0.02500000037252903
+            ]
+          },
+          {
+            "node": "restrict_gate__blade_03",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.48,
+            "pivot": [
+              -0.19249999523162842,
+              0.3334197700023651,
+              0.02500000037252903
+            ]
+          },
+          {
+            "node": "restrict_gate__blade_04",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.48,
+            "pivot": [
+              -0.38499999046325684,
+              4.7148901177551e-17,
+              0.02500000037252903
+            ]
+          },
+          {
+            "node": "restrict_gate__blade_05",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.48,
+            "pivot": [
+              -0.19249999523162842,
+              -0.3334197700023651,
+              0.02500000037252903
+            ]
+          },
+          {
+            "node": "restrict_gate__blade_06",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.48,
+            "pivot": [
+              0.19249999523162842,
+              -0.3334197700023651,
+              0.02500000037252903
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 1416,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 1416,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 1.2980000281333923,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "06-restrict-gate.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "7ffa1b00a29f895e6c713cf4ed575e7c28ea33b5d8cca93f1706dc1fea5e2df1"
+      }
+    },
+    {
+      "id": "tool_pipeline",
+      "path": "assets/models/tool_pipeline.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/07-tool_pipeline/tool_pipeline.glb",
+      "sha256": "20770be48c82945c7b7b844af3e7f7e5dd012174260472110ce427f0e873f7fa",
+      "bytes": 78080,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "tool_pipeline",
+        "version": "0.1.0",
+        "dimensions": [
+          1.8000000715255737,
+          1.7999999523162842,
+          5.800000190734863
+        ],
+        "manifestDimensions": [
+          1.8,
+          1.8,
+          5.8
+        ],
+        "maxDimensionDeviation": 3.973642982558879e-08,
+        "pivot": "bottom-center",
+        "bounds": {
+          "min": [
+            -0.8999999761581421,
+            2.2351741790771484e-08,
+            -2.9000000953674316
+          ],
+          "max": [
+            0.9000000953674316,
+            1.7999999523162842,
+            2.9000000953674316
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "tool_pipeline__approval",
+          "tool_pipeline__approval_armor",
+          "tool_pipeline__approval_armor__02",
+          "tool_pipeline__approval_armor__03",
+          "tool_pipeline__approval_armor__04",
+          "tool_pipeline__approval_emissive",
+          "tool_pipeline__execute",
+          "tool_pipeline__execute_armor",
+          "tool_pipeline__execute_armor__02",
+          "tool_pipeline__execute_armor__03",
+          "tool_pipeline__execute_armor__04",
+          "tool_pipeline__execute_emissive",
+          "tool_pipeline__foot",
+          "tool_pipeline__foot__02",
+          "tool_pipeline__foot__03",
+          "tool_pipeline__foot__04",
+          "tool_pipeline__foot__05",
+          "tool_pipeline__foot__06",
+          "tool_pipeline__guard",
+          "tool_pipeline__guard_armor",
+          "tool_pipeline__guard_armor__02",
+          "tool_pipeline__guard_armor__03",
+          "tool_pipeline__guard_armor__04",
+          "tool_pipeline__guard_emissive",
+          "tool_pipeline__post",
+          "tool_pipeline__post_armor",
+          "tool_pipeline__post_armor__02",
+          "tool_pipeline__post_armor__03",
+          "tool_pipeline__post_armor__04",
+          "tool_pipeline__post_emissive",
+          "tool_pipeline__pre",
+          "tool_pipeline__pre_armor",
+          "tool_pipeline__pre_armor__02",
+          "tool_pipeline__pre_armor__03",
+          "tool_pipeline__pre_armor__04",
+          "tool_pipeline__pre_emissive",
+          "tool_pipeline__result",
+          "tool_pipeline__result_armor",
+          "tool_pipeline__result_armor__02",
+          "tool_pipeline__result_armor__03",
+          "tool_pipeline__result_armor__04",
+          "tool_pipeline__result_emissive",
+          "tool_pipeline__root",
+          "tool_pipeline__stage_body",
+          "tool_pipeline__stage_body__02",
+          "tool_pipeline__stage_body__03",
+          "tool_pipeline__support",
+          "tool_pipeline__support__02",
+          "tool_pipeline__support__03",
+          "tool_pipeline__support__04",
+          "tool_pipeline__support__05",
+          "tool_pipeline__support__06",
+          "tool_pipeline__support__07",
+          "tool_pipeline__support__08",
+          "tool_pipeline__support__09",
+          "tool_pipeline__support__10",
+          "tool_pipeline__support__11",
+          "tool_pipeline__support__12"
+        ],
+        "connectors": [],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "tool_pipeline__pre",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.15,
+            "pivot": [
+              5.960464477539063e-08,
+              0.9661017060279846,
+              2.577777862548828
+            ]
+          },
+          {
+            "node": "tool_pipeline__guard",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.15,
+            "pivot": [
+              5.960464477539063e-08,
+              0.9661017060279846,
+              1.5466667413711548
+            ]
+          },
+          {
+            "node": "tool_pipeline__approval",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.15,
+            "pivot": [
+              5.960464477539063e-08,
+              0.9661017060279846,
+              0.5155555605888367
+            ]
+          },
+          {
+            "node": "tool_pipeline__execute",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.15,
+            "pivot": [
+              5.960464477539063e-08,
+              0.9661017060279846,
+              -0.5155555605888367
+            ]
+          },
+          {
+            "node": "tool_pipeline__post",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.15,
+            "pivot": [
+              5.960464477539063e-08,
+              0.9661017060279846,
+              -1.5466667413711548
+            ]
+          },
+          {
+            "node": "tool_pipeline__result",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.15,
+            "pivot": [
+              5.960464477539063e-08,
+              0.9661017060279846,
+              -2.577777862548828
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 4284,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 4284,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 6.844000225067139,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "07-tool-pipeline.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "20770be48c82945c7b7b844af3e7f7e5dd012174260472110ce427f0e873f7fa"
+      }
+    },
+    {
+      "id": "capability_seam",
+      "path": "assets/models/capability_seam.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/08-capability_seam/capability_seam.glb",
+      "sha256": "f84c1f3915ae7c8ef56c6b92814ed7d842f7213459cacc80cf2b046dd227a680",
+      "bytes": 34892,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "capability_seam",
+        "version": "0.1.0",
+        "dimensions": [
+          1.600000023841858,
+          1.6000001430511475,
+          2.4000000953674316
+        ],
+        "manifestDimensions": [
+          1.6,
+          1.6,
+          2.4
+        ],
+        "maxDimensionDeviation": 8.940696710757479e-08,
+        "pivot": "definition-interface-center",
+        "bounds": {
+          "min": [
+            -0.800000011920929,
+            -0.800000011920929,
+            -1.2000000476837158
+          ],
+          "max": [
+            0.800000011920929,
+            0.8000000715255737,
+            1.2000000476837158
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "capability_seam__consumer",
+          "capability_seam__consumer_DCI-M",
+          "capability_seam__consumer_DCI-M_emissive",
+          "capability_seam__consumer_DCI-M_frame",
+          "capability_seam__consumer_DCI-M_lock",
+          "capability_seam__consumer_DCI-M_lock__02",
+          "capability_seam__consumer_DCI-M_lock__03",
+          "capability_seam__consumer_DCI-M_lock__04",
+          "capability_seam__consumer_DCI-M_lock__05",
+          "capability_seam__consumer_DCI-M_lock__06",
+          "capability_seam__definition",
+          "capability_seam__emissive",
+          "capability_seam__emissive__02",
+          "capability_seam__emissive__03",
+          "capability_seam__ivory_armor",
+          "capability_seam__ivory_armor__02",
+          "capability_seam__ivory_armor__03",
+          "capability_seam__ivory_armor__04",
+          "capability_seam__ivory_armor__05",
+          "capability_seam__ivory_armor__06",
+          "capability_seam__provider",
+          "capability_seam__provider_DCI-M",
+          "capability_seam__provider_DCI-M_emissive",
+          "capability_seam__provider_DCI-M_frame",
+          "capability_seam__provider_DCI-M_lock",
+          "capability_seam__provider_DCI-M_lock__02",
+          "capability_seam__provider_DCI-M_lock__03",
+          "capability_seam__provider_DCI-M_lock__04",
+          "capability_seam__provider_DCI-M_lock__05",
+          "capability_seam__provider_DCI-M_lock__06",
+          "capability_seam__root"
+        ],
+        "connectors": [
+          {
+            "id": "provider_DCI-M",
+            "node": "capability_seam__provider_DCI-M",
+            "type": "DCI-M",
+            "position": [
+              0,
+              0,
+              0.36
+            ],
+            "quaternion": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "forward": [
+              0,
+              0,
+              1
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "capability_seam__provider_DCI-M_frame"
+          },
+          {
+            "id": "consumer_DCI-M",
+            "node": "capability_seam__consumer_DCI-M",
+            "type": "DCI-M",
+            "position": [
+              0,
+              0,
+              -0.36
+            ],
+            "quaternion": [
+              0.7071067690849304,
+              0.7071067690849304,
+              -0.0,
+              -4.371138828673793e-08
+            ],
+            "forward": [
+              0,
+              0,
+              -1
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "capability_seam__consumer_DCI-M_frame"
+          }
+        ],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "capability_seam__provider",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.45,
+            "pivot": [
+              0.0,
+              -0.007430315017700195,
+              0.8541020154953003
+            ]
+          },
+          {
+            "node": "capability_seam__definition",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.45,
+            "pivot": [
+              0.0,
+              -0.007430315017700195,
+              0.023946762084960938
+            ]
+          },
+          {
+            "node": "capability_seam__consumer",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.45,
+            "pivot": [
+              0.0,
+              -0.007430315017700195,
+              -0.8274945616722107
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 960,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 960,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 2.832000112533569,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "08-capability-seam.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "f84c1f3915ae7c8ef56c6b92814ed7d842f7213459cacc80cf2b046dd227a680"
+      }
+    },
+    {
+      "id": "subagent_orca",
+      "path": "assets/models/subagent_orca.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/09-subagent_orca/subagent_orca.glb",
+      "sha256": "e168ca151f897c13069bd818a3491f7ff3141aa48fbcbb1c2e653edeffb5c3d7",
+      "bytes": 68268,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "subagent_orca",
+        "version": "0.1.0",
+        "dimensions": [
+          1.6000001430511475,
+          1.5,
+          4.199999809265137
+        ],
+        "manifestDimensions": [
+          1.6,
+          1.5,
+          4.2
+        ],
+        "maxDimensionDeviation": 8.940696710757479e-08,
+        "pivot": "center-of-mass",
+        "bounds": {
+          "min": [
+            -0.8000000715255737,
+            -0.75,
+            -2.0999999046325684
+          ],
+          "max": [
+            0.8000000715255737,
+            0.75,
+            2.0999999046325684
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "subagent_orca__dock_DCI-L",
+          "subagent_orca__dock_DCI-L_emissive",
+          "subagent_orca__dock_DCI-L_frame",
+          "subagent_orca__dock_DCI-L_lock",
+          "subagent_orca__dock_DCI-L_lock__02",
+          "subagent_orca__dock_DCI-L_lock__03",
+          "subagent_orca__dock_DCI-L_lock__04",
+          "subagent_orca__dock_DCI-L_lock__05",
+          "subagent_orca__dock_DCI-L_lock__06",
+          "subagent_orca__dorsal",
+          "subagent_orca__eye_patch",
+          "subagent_orca__eye_patch__02",
+          "subagent_orca__fluke_left",
+          "subagent_orca__fluke_right",
+          "subagent_orca__hatch_emissive",
+          "subagent_orca__hatch_emissive__02",
+          "subagent_orca__hatch_emissive__03",
+          "subagent_orca__hatch_emissive__04",
+          "subagent_orca__panel_belly",
+          "subagent_orca__panel_head",
+          "subagent_orca__panel_spine",
+          "subagent_orca__panel_tool_left",
+          "subagent_orca__panel_tool_right",
+          "subagent_orca__panel_workshop",
+          "subagent_orca__pectoral_left",
+          "subagent_orca__pectoral_right",
+          "subagent_orca__peduncle",
+          "subagent_orca__root",
+          "subagent_orca__sensor",
+          "subagent_orca__sensor__02",
+          "subagent_orca__service_hatch",
+          "subagent_orca__service_hatch__02",
+          "subagent_orca__service_hatch__03",
+          "subagent_orca__service_hatch__04"
+        ],
+        "connectors": [
+          {
+            "id": "dock_DCI-L",
+            "node": "subagent_orca__dock_DCI-L",
+            "type": "DCI-L",
+            "position": [
+              0.0,
+              0.10498940199613571,
+              0.75
+            ],
+            "quaternion": [
+              -0.7071067690849304,
+              0.0,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              0,
+              1,
+              0
+            ],
+            "outerDiameter": 1.2,
+            "innerDiameter": 0.82,
+            "depth": 0.22,
+            "frameNode": "subagent_orca__dock_DCI-L_frame"
+          }
+        ],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "subagent_orca__panel_head",
+            "kind": "slide",
+            "axis": [
+              1.9100146811390495e-12,
+              -1.042867903144895e-09,
+              1.0
+            ],
+            "amount": 1.4,
+            "pivot": [
+              4.311679051988149e-12,
+              -0.2819148600101471,
+              1.7777073383331299
+            ]
+          },
+          {
+            "node": "subagent_orca__panel_tool_left",
+            "kind": "slide",
+            "axis": [
+              -0.7612500786781311,
+              0.06261593103408813,
+              0.6454280614852905
+            ],
+            "amount": 1.4,
+            "pivot": [
+              -0.4783324897289276,
+              -0.2442443072795868,
+              0.31937500834465027
+            ]
+          },
+          {
+            "node": "subagent_orca__panel_tool_right",
+            "kind": "slide",
+            "axis": [
+              0.7612500786781311,
+              0.06261593848466873,
+              0.6454280614852905
+            ],
+            "amount": 1.4,
+            "pivot": [
+              0.4783324897289276,
+              -0.2442443072795868,
+              0.31937500834465027
+            ]
+          },
+          {
+            "node": "subagent_orca__panel_belly",
+            "kind": "slide",
+            "axis": [
+              -5.88364823528309e-09,
+              -0.7746675610542297,
+              0.6323687434196472
+            ],
+            "amount": 1.4,
+            "pivot": [
+              -2.3547517269406626e-09,
+              -0.578758955001831,
+              0.19930551946163177
+            ]
+          },
+          {
+            "node": "subagent_orca__panel_workshop",
+            "kind": "slide",
+            "axis": [
+              8.629771897084026e-10,
+              0.031956322491168976,
+              -0.9994893074035645
+            ],
+            "amount": 1.4,
+            "pivot": [
+              9.691812907774988e-10,
+              -0.24755296111106873,
+              -0.8839635848999023
+            ]
+          },
+          {
+            "node": "subagent_orca__panel_spine",
+            "kind": "slide",
+            "axis": [
+              -4.058400726592026e-09,
+              0.611129641532898,
+              0.7915304899215698
+            ],
+            "amount": 1.4,
+            "pivot": [
+              -2.3723243369744296e-09,
+              0.0601174533367157,
+              0.3643655478954315
+            ]
+          },
+          {
+            "node": "subagent_orca__pectoral_left",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.12,
+            "pivot": [
+              -0.444444477558136,
+              -0.4308510422706604,
+              0.699999988079071
+            ]
+          },
+          {
+            "node": "subagent_orca__pectoral_right",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.12,
+            "pivot": [
+              0.444444477558136,
+              -0.4308510422706604,
+              0.699999988079071
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 3096,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 3096,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 4.955999774932861,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "09-subagent-mini-orca.png"
+        },
+        "referenceDeviations": [
+          "Hull retopology follows the supplied image; original posed STL is preserved separately. Hatches and socket coordinates are authored where the manifest supplies names only."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "e168ca151f897c13069bd818a3491f7ff3141aa48fbcbb1c2e653edeffb5c3d7"
+      }
+    },
+    {
+      "id": "cordis_extension",
+      "path": "assets/models/cordis_extension.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/10-cordis_extension/cordis_extension.glb",
+      "sha256": "e0feb02664499a199eeeb017ba610472ddc2e6bb6cbfb42421d8ca10b1e91210",
+      "bytes": 32716,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "cordis_extension",
+        "version": "0.1.0",
+        "dimensions": [
+          1.7999999523162842,
+          1.7999999523162842,
+          2.4000000953674316
+        ],
+        "manifestDimensions": [
+          1.8,
+          1.8,
+          2.4
+        ],
+        "maxDimensionDeviation": 3.973642988726785e-08,
+        "pivot": "connector-center",
+        "bounds": {
+          "min": [
+            -0.8999999761581421,
+            -0.8999999761581421,
+            -0.08000011742115021
+          ],
+          "max": [
+            0.8999999761581421,
+            0.8999999761581421,
+            2.319999933242798
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "cordis_extension__armor_A",
+          "cordis_extension__armor_B",
+          "cordis_extension__armor_C",
+          "cordis_extension__armor_emissive",
+          "cordis_extension__armor_emissive__02",
+          "cordis_extension__armor_emissive__03",
+          "cordis_extension__armor_ivory",
+          "cordis_extension__armor_ivory__02",
+          "cordis_extension__armor_ivory__03",
+          "cordis_extension__connector",
+          "cordis_extension__connector_emissive",
+          "cordis_extension__connector_frame",
+          "cordis_extension__connector_housing",
+          "cordis_extension__connector_lock",
+          "cordis_extension__connector_lock__02",
+          "cordis_extension__connector_lock__03",
+          "cordis_extension__connector_lock__04",
+          "cordis_extension__connector_lock__05",
+          "cordis_extension__connector_lock__06",
+          "cordis_extension__core",
+          "cordis_extension__frame",
+          "cordis_extension__frame_arm",
+          "cordis_extension__frame_arm__02",
+          "cordis_extension__frame_arm__03",
+          "cordis_extension__root"
+        ],
+        "connectors": [
+          {
+            "id": "primary_DCI-M",
+            "node": "cordis_extension__connector",
+            "type": "DCI-M",
+            "position": [
+              0,
+              0,
+              0.0
+            ],
+            "quaternion": [
+              0.7071067690849304,
+              0.7071067690849304,
+              -0.0,
+              -4.371138828673793e-08
+            ],
+            "forward": [
+              0,
+              0,
+              -1
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "cordis_extension__connector_frame"
+          }
+        ],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "cordis_extension__armor_A",
+            "kind": "rotate",
+            "axis": [
+              -1.0,
+              6.123234262925839e-17,
+              0.0
+            ],
+            "amount": 0.48,
+            "pivot": [
+              3.175397479080814e-17,
+              0.5010290145874023,
+              0.8773769736289978
+            ]
+          },
+          {
+            "node": "cordis_extension__armor_B",
+            "kind": "rotate",
+            "axis": [
+              0.5,
+              -0.8660253882408142,
+              0.0
+            ],
+            "amount": 0.48,
+            "pivot": [
+              -0.4491049349308014,
+              -0.37805935740470886,
+              0.8773769736289978
+            ]
+          },
+          {
+            "node": "cordis_extension__armor_C",
+            "kind": "rotate",
+            "axis": [
+              0.5,
+              0.8660253882408142,
+              0.0
+            ],
+            "amount": 0.48,
+            "pivot": [
+              0.4491049349308014,
+              -0.37805935740470886,
+              0.8773769736289978
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 964,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 964,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 2.832000112533569,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "10-cordis-runtime-extension-module.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "e0feb02664499a199eeeb017ba610472ddc2e6bb6cbfb42421d8ca10b1e91210"
+      }
+    },
+    {
+      "id": "llm_core",
+      "path": "assets/models/llm_core.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/11-llm_core/llm_core.glb",
+      "sha256": "75a5e9b4f34b83284cd429fbe8094cdb17fe39917ae72994c44603280c036860",
+      "bytes": 37236,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "llm_core",
+        "version": "0.1.0",
+        "dimensions": [
+          3.4000000953674316,
+          3.3999998569488525,
+          3.0
+        ],
+        "manifestDimensions": [
+          3.4,
+          3.4,
+          3.0
+        ],
+        "maxDimensionDeviation": 4.2073866874152845e-08,
+        "pivot": "center",
+        "bounds": {
+          "min": [
+            -1.6999999284744263,
+            -1.7000000476837158,
+            -1.5
+          ],
+          "max": [
+            1.7000001668930054,
+            1.6999998092651367,
+            1.5
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "llm_core__core",
+          "llm_core__input",
+          "llm_core__outer_ring",
+          "llm_core__outer_ring_armor",
+          "llm_core__outer_ring_armor__02",
+          "llm_core__outer_ring_armor__03",
+          "llm_core__outer_ring_armor__04",
+          "llm_core__outer_ring_armor__05",
+          "llm_core__outer_ring_armor__06",
+          "llm_core__outer_ring_emissive",
+          "llm_core__output",
+          "llm_core__root",
+          "llm_core__shield_01",
+          "llm_core__shield_02",
+          "llm_core__shield_03",
+          "llm_core__shield_04",
+          "llm_core__shield_05",
+          "llm_core__shield_06",
+          "llm_core__shield_emissive",
+          "llm_core__shield_emissive__02",
+          "llm_core__shield_emissive__03",
+          "llm_core__shield_emissive__04",
+          "llm_core__shield_emissive__05",
+          "llm_core__shield_emissive__06"
+        ],
+        "connectors": [],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "llm_core__outer_ring",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.25,
+            "pivot": [
+              1.1920928955078125e-07,
+              -1.1920928955078125e-07,
+              -0.3289036154747009
+            ]
+          },
+          {
+            "node": "llm_core__shield_01",
+            "kind": "rotate",
+            "axis": [
+              -0.0,
+              1.0,
+              0.0
+            ],
+            "amount": 0.16,
+            "pivot": [
+              1.4512196779251099,
+              -1.1920928955078125e-07,
+              -0.3887042701244354
+            ]
+          },
+          {
+            "node": "llm_core__shield_02",
+            "kind": "rotate",
+            "axis": [
+              -0.8660253882408142,
+              0.5,
+              0.0
+            ],
+            "amount": 0.16,
+            "pivot": [
+              0.7256098985671997,
+              1.3045190572738647,
+              -0.3887042701244354
+            ]
+          },
+          {
+            "node": "llm_core__shield_03",
+            "kind": "rotate",
+            "axis": [
+              -0.8660253882408142,
+              -0.5,
+              0.0
+            ],
+            "amount": 0.16,
+            "pivot": [
+              -0.7256096601486206,
+              1.3045190572738647,
+              -0.3887042701244354
+            ]
+          },
+          {
+            "node": "llm_core__shield_04",
+            "kind": "rotate",
+            "axis": [
+              -1.2246468525851679e-16,
+              -1.0,
+              0.0
+            ],
+            "amount": 0.16,
+            "pivot": [
+              -1.4512194395065308,
+              -1.1920928955078125e-07,
+              -0.3887042701244354
+            ]
+          },
+          {
+            "node": "llm_core__shield_05",
+            "kind": "rotate",
+            "axis": [
+              0.8660253882408142,
+              -0.5,
+              0.0
+            ],
+            "amount": 0.16,
+            "pivot": [
+              -0.7256096601486206,
+              -1.3045192956924438,
+              -0.3887042701244354
+            ]
+          },
+          {
+            "node": "llm_core__shield_06",
+            "kind": "rotate",
+            "axis": [
+              0.8660253882408142,
+              0.5,
+              0.0
+            ],
+            "amount": 0.16,
+            "pivot": [
+              0.7256098985671997,
+              -1.3045192956924438,
+              -0.3887042701244354
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 944,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 944,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 4.012000112533569,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "11-llm-request-core.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "75a5e9b4f34b83284cd429fbe8094cdb17fe39917ae72994c44603280c036860"
+      }
+    },
+    {
+      "id": "workflow_rail",
+      "path": "assets/models/workflow_rail.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/12-workflow_rail/workflow_rail.glb",
+      "sha256": "9f6c807e00802fb3b581abcbcf8687cb0a0e2b9d4a427f816235d15949496916",
+      "bytes": 30864,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "workflow_rail",
+        "version": "0.1.0",
+        "dimensions": [
+          4.0,
+          0.9999999403953552,
+          5.0
+        ],
+        "manifestDimensions": [
+          4.0,
+          1.0,
+          5.0
+        ],
+        "maxDimensionDeviation": 5.960464477539063e-08,
+        "pivot": "bottom-center",
+        "bounds": {
+          "min": [
+            -2.0,
+            1.4901161193847656e-08,
+            -2.5
+          ],
+          "max": [
+            2.0,
+            0.9999999403953552,
+            2.5
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "workflow_rail__entry",
+          "workflow_rail__entry__02",
+          "workflow_rail__junction_0",
+          "workflow_rail__junction_3",
+          "workflow_rail__node_foot",
+          "workflow_rail__node_foot__02",
+          "workflow_rail__node_foot__03",
+          "workflow_rail__node_foot__04",
+          "workflow_rail__node_signal",
+          "workflow_rail__node_signal__02",
+          "workflow_rail__node_signal__03",
+          "workflow_rail__node_signal__04",
+          "workflow_rail__rail",
+          "workflow_rail__rail__02",
+          "workflow_rail__rail__03",
+          "workflow_rail__rail__04",
+          "workflow_rail__rail__05",
+          "workflow_rail__rail__06",
+          "workflow_rail__root",
+          "workflow_rail__workflow_node_1",
+          "workflow_rail__workflow_node_2",
+          "workflow_rail__workflow_node_4",
+          "workflow_rail__workflow_node_5"
+        ],
+        "connectors": [],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "workflow_rail__workflow_node_1",
+            "kind": "slide",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "amount": 0.2,
+            "pivot": [
+              -1.5802468061447144,
+              0.5147058963775635,
+              0.8490565419197083
+            ]
+          },
+          {
+            "node": "workflow_rail__workflow_node_2",
+            "kind": "slide",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "amount": 0.2,
+            "pivot": [
+              -1.5802468061447144,
+              0.5147058963775635,
+              -0.8490565419197083
+            ]
+          },
+          {
+            "node": "workflow_rail__workflow_node_4",
+            "kind": "slide",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "amount": 0.2,
+            "pivot": [
+              1.5802468061447144,
+              0.5147058963775635,
+              -0.8490565419197083
+            ]
+          },
+          {
+            "node": "workflow_rail__workflow_node_5",
+            "kind": "slide",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "amount": 0.2,
+            "pivot": [
+              1.5802468061447144,
+              0.5147058963775635,
+              0.8490565419197083
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 760,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 760,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 5.8999999999999995,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "12-workflow-rail-system.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim.",
+          "Primary layout lies in XZ as dimensioned by the manifest; its broad face is visible in canonical top view.",
+          "Primary layout lies in XZ as dimensioned by the manifest; its broad face is visible in canonical top view."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "9f6c807e00802fb3b581abcbcf8687cb0a0e2b9d4a427f816235d15949496916"
+      }
+    },
+    {
+      "id": "compaction_chamber",
+      "path": "assets/models/compaction_chamber.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/13-compaction_chamber/compaction_chamber.glb",
+      "sha256": "e58c61d654d6b9c5221738aac806caf9286d81e09baa7ec9bb309ecbcabb7f49",
+      "bytes": 41884,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "compaction_chamber",
+        "version": "0.1.0",
+        "dimensions": [
+          2.200000047683716,
+          2.200000047683716,
+          4.5
+        ],
+        "manifestDimensions": [
+          2.2,
+          2.2,
+          4.5
+        ],
+        "maxDimensionDeviation": 2.1674416201216733e-08,
+        "pivot": "bottom-center",
+        "bounds": {
+          "min": [
+            -1.100000023841858,
+            0.0,
+            -2.249999761581421
+          ],
+          "max": [
+            1.100000023841858,
+            2.200000047683716,
+            2.25
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "compaction_chamber__compression_piston",
+          "compaction_chamber__compression_piston__02",
+          "compaction_chamber__compression_piston__03",
+          "compaction_chamber__compression_piston__04",
+          "compaction_chamber__foot",
+          "compaction_chamber__foot__02",
+          "compaction_chamber__foot__03",
+          "compaction_chamber__input",
+          "compaction_chamber__output",
+          "compaction_chamber__ring_A",
+          "compaction_chamber__ring_A_armor",
+          "compaction_chamber__ring_A_armor__02",
+          "compaction_chamber__ring_A_armor__03",
+          "compaction_chamber__ring_A_armor__04",
+          "compaction_chamber__ring_A_emissive",
+          "compaction_chamber__ring_B",
+          "compaction_chamber__ring_B_armor",
+          "compaction_chamber__ring_B_armor__02",
+          "compaction_chamber__ring_B_armor__03",
+          "compaction_chamber__ring_B_armor__04",
+          "compaction_chamber__ring_B_emissive",
+          "compaction_chamber__ring_C",
+          "compaction_chamber__ring_C_armor",
+          "compaction_chamber__ring_C_armor__02",
+          "compaction_chamber__ring_C_armor__03",
+          "compaction_chamber__ring_C_armor__04",
+          "compaction_chamber__ring_C_emissive",
+          "compaction_chamber__root"
+        ],
+        "connectors": [],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "compaction_chamber__ring_A",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.12,
+            "pivot": [
+              0.0,
+              1.1361502408981323,
+              1.791666865348816
+            ]
+          },
+          {
+            "node": "compaction_chamber__ring_B",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.12,
+            "pivot": [
+              0.0,
+              1.1361502408981323,
+              0.33333343267440796
+            ]
+          },
+          {
+            "node": "compaction_chamber__ring_C",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.12,
+            "pivot": [
+              0.0,
+              1.1361502408981323,
+              -1.125
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 2224,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 2224,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 5.31,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "13-compaction-chamber.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "e58c61d654d6b9c5221738aac806caf9286d81e09baa7ec9bb309ecbcabb7f49"
+      }
+    },
+    {
+      "id": "skill_cartridge",
+      "path": "assets/models/skill_cartridge.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/14-skill_cartridge/skill_cartridge.glb",
+      "sha256": "64ebac6540733b100a4906d673396c09d8062b287e9114e84e27348627db18a3",
+      "bytes": 15136,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "skill_cartridge",
+        "version": "0.1.0",
+        "dimensions": [
+          0.8000000715255737,
+          0.2200000286102295,
+          1.0
+        ],
+        "manifestDimensions": [
+          0.8,
+          0.22,
+          1.0
+        ],
+        "maxDimensionDeviation": 1.300464976867149e-07,
+        "pivot": "connector-center",
+        "bounds": {
+          "min": [
+            -0.4000000059604645,
+            -0.17000000178813934,
+            -0.3499999940395355
+          ],
+          "max": [
+            0.40000006556510925,
+            0.05000002682209015,
+            0.6500000357627869
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "skill_cartridge__body",
+          "skill_cartridge__connector_base",
+          "skill_cartridge__emissive",
+          "skill_cartridge__ivory_face",
+          "skill_cartridge__primary_DCI-S",
+          "skill_cartridge__primary_DCI-S_emissive",
+          "skill_cartridge__primary_DCI-S_frame",
+          "skill_cartridge__primary_DCI-S_lock",
+          "skill_cartridge__primary_DCI-S_lock__02",
+          "skill_cartridge__primary_DCI-S_lock__03",
+          "skill_cartridge__primary_DCI-S_lock__04",
+          "skill_cartridge__primary_DCI-S_lock__05",
+          "skill_cartridge__primary_DCI-S_lock__06",
+          "skill_cartridge__root"
+        ],
+        "connectors": [
+          {
+            "id": "primary_DCI-S",
+            "node": "skill_cartridge__primary_DCI-S",
+            "type": "DCI-S",
+            "position": [
+              0,
+              0,
+              0
+            ],
+            "quaternion": [
+              -0.7071067690849304,
+              0.0,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              0,
+              1,
+              0
+            ],
+            "outerDiameter": 0.36,
+            "innerDiameter": 0.22,
+            "depth": 0.1,
+            "frameNode": "skill_cartridge__primary_DCI-S_frame"
+          }
+        ],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [],
+        "triangleCount": {
+          "LOD0": 532,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 532,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 1.18,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "14-skill-cartridge.png"
+        },
+        "referenceDeviations": [
+          "The 0.22 m height is smaller than the DCI-S diameter; the standard connector is mounted through +Y rather than resized.",
+          "Primary layout lies in XZ as dimensioned by the manifest; its broad face is visible in canonical top view.",
+          "Primary layout lies in XZ as dimensioned by the manifest; its broad face is visible in canonical top view."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "64ebac6540733b100a4906d673396c09d8062b287e9114e84e27348627db18a3"
+      }
+    },
+    {
+      "id": "shell_execution_bay",
+      "path": "assets/models/shell_execution_bay.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/15-shell_execution_bay/shell_execution_bay.glb",
+      "sha256": "11333337a30f2c53f1a0d462a9af641e3b05f36994c0a6eacd6954cbf109fb1b",
+      "bytes": 42564,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "shell_execution_bay",
+        "version": "0.1.0",
+        "dimensions": [
+          2.5,
+          2.4000000953674316,
+          3.4000000953674316
+        ],
+        "manifestDimensions": [
+          2.5,
+          2.4,
+          3.4
+        ],
+        "maxDimensionDeviation": 3.973642988726785e-08,
+        "pivot": "bottom-center",
+        "bounds": {
+          "min": [
+            -1.25,
+            0.0,
+            -1.7000000476837158
+          ],
+          "max": [
+            1.25,
+            2.4000000953674316,
+            1.7000000476837158
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "shell_execution_bay__arm_left",
+          "shell_execution_bay__arm_right",
+          "shell_execution_bay__axial_rail",
+          "shell_execution_bay__axial_rail__02",
+          "shell_execution_bay__axial_rail__03",
+          "shell_execution_bay__axial_rail__04",
+          "shell_execution_bay__base",
+          "shell_execution_bay__body",
+          "shell_execution_bay__command_port",
+          "shell_execution_bay__emissive",
+          "shell_execution_bay__end_frame",
+          "shell_execution_bay__end_frame__02",
+          "shell_execution_bay__execution_core",
+          "shell_execution_bay__gripper",
+          "shell_execution_bay__gripper__02",
+          "shell_execution_bay__gripper__03",
+          "shell_execution_bay__gripper__04",
+          "shell_execution_bay__ivory_rim",
+          "shell_execution_bay__ivory_rim__02",
+          "shell_execution_bay__maintenance_door",
+          "shell_execution_bay__primary_DCI-M",
+          "shell_execution_bay__primary_DCI-M_emissive",
+          "shell_execution_bay__primary_DCI-M_frame",
+          "shell_execution_bay__primary_DCI-M_lock",
+          "shell_execution_bay__primary_DCI-M_lock__02",
+          "shell_execution_bay__primary_DCI-M_lock__03",
+          "shell_execution_bay__primary_DCI-M_lock__04",
+          "shell_execution_bay__primary_DCI-M_lock__05",
+          "shell_execution_bay__primary_DCI-M_lock__06",
+          "shell_execution_bay__roof",
+          "shell_execution_bay__root",
+          "shell_execution_bay__side_armor",
+          "shell_execution_bay__side_armor__02",
+          "shell_execution_bay__side_armor__03",
+          "shell_execution_bay__side_armor__04"
+        ],
+        "connectors": [
+          {
+            "id": "primary_DCI-M",
+            "node": "shell_execution_bay__primary_DCI-M",
+            "type": "DCI-M",
+            "position": [
+              0,
+              1.2,
+              -1.6199999999999999
+            ],
+            "quaternion": [
+              0.7071067690849304,
+              0.7071067690849304,
+              -0.0,
+              -4.371138828673793e-08
+            ],
+            "forward": [
+              0,
+              0,
+              -1
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "shell_execution_bay__primary_DCI-M_frame"
+          }
+        ],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "shell_execution_bay__maintenance_door",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.85,
+            "pivot": [
+              -1.135779619216919,
+              1.2765958309173584,
+              -0.07335841655731201
+            ]
+          },
+          {
+            "node": "shell_execution_bay__arm_left",
+            "kind": "rotate",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "amount": 0.25,
+            "pivot": [
+              -1.0719717741012573,
+              1.634042501449585,
+              -0.5071295499801636
+            ]
+          },
+          {
+            "node": "shell_execution_bay__arm_right",
+            "kind": "rotate",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "amount": 0.25,
+            "pivot": [
+              1.0719717741012573,
+              1.634042501449585,
+              -0.5071295499801636
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 1408,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 1408,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 4.012000112533569,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "15-shell-terminal-execution-bay.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "11333337a30f2c53f1a0d462a9af641e3b05f36994c0a6eacd6954cbf109fb1b"
+      }
+    },
+    {
+      "id": "ptc_core",
+      "path": "assets/models/ptc_core.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/16-ptc_core/ptc_core.glb",
+      "sha256": "69b5d478fd3c2e5fa86a7ce7f2d845f3c06370d352ecfa57992b0af5a674823b",
+      "bytes": 85292,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "ptc_core",
+        "version": "0.1.0",
+        "dimensions": [
+          4.0,
+          4.0,
+          3.000000238418579
+        ],
+        "manifestDimensions": [
+          4.0,
+          4.0,
+          3.0
+        ],
+        "maxDimensionDeviation": 7.947285970052083e-08,
+        "pivot": "center",
+        "bounds": {
+          "min": [
+            -2.0,
+            -2.0,
+            -1.5
+          ],
+          "max": [
+            2.0,
+            1.9999998807907104,
+            1.500000238418579
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "ptc_core__DCI-M_01",
+          "ptc_core__DCI-M_01_emissive",
+          "ptc_core__DCI-M_01_frame",
+          "ptc_core__DCI-M_01_lock",
+          "ptc_core__DCI-M_01_lock__02",
+          "ptc_core__DCI-M_01_lock__03",
+          "ptc_core__DCI-M_01_lock__04",
+          "ptc_core__DCI-M_01_lock__05",
+          "ptc_core__DCI-M_01_lock__06",
+          "ptc_core__DCI-M_02",
+          "ptc_core__DCI-M_02_emissive",
+          "ptc_core__DCI-M_02_frame",
+          "ptc_core__DCI-M_02_lock",
+          "ptc_core__DCI-M_02_lock__02",
+          "ptc_core__DCI-M_02_lock__03",
+          "ptc_core__DCI-M_02_lock__04",
+          "ptc_core__DCI-M_02_lock__05",
+          "ptc_core__DCI-M_02_lock__06",
+          "ptc_core__DCI-M_03",
+          "ptc_core__DCI-M_03_emissive",
+          "ptc_core__DCI-M_03_frame",
+          "ptc_core__DCI-M_03_lock",
+          "ptc_core__DCI-M_03_lock__02",
+          "ptc_core__DCI-M_03_lock__03",
+          "ptc_core__DCI-M_03_lock__04",
+          "ptc_core__DCI-M_03_lock__05",
+          "ptc_core__DCI-M_03_lock__06",
+          "ptc_core__DCI-M_04",
+          "ptc_core__DCI-M_04_emissive",
+          "ptc_core__DCI-M_04_frame",
+          "ptc_core__DCI-M_04_lock",
+          "ptc_core__DCI-M_04_lock__02",
+          "ptc_core__DCI-M_04_lock__03",
+          "ptc_core__DCI-M_04_lock__04",
+          "ptc_core__DCI-M_04_lock__05",
+          "ptc_core__DCI-M_04_lock__06",
+          "ptc_core__DCI-M_05",
+          "ptc_core__DCI-M_05_emissive",
+          "ptc_core__DCI-M_05_frame",
+          "ptc_core__DCI-M_05_lock",
+          "ptc_core__DCI-M_05_lock__02",
+          "ptc_core__DCI-M_05_lock__03",
+          "ptc_core__DCI-M_05_lock__04",
+          "ptc_core__DCI-M_05_lock__05",
+          "ptc_core__DCI-M_05_lock__06",
+          "ptc_core__DCI-M_06",
+          "ptc_core__DCI-M_06_emissive",
+          "ptc_core__DCI-M_06_frame",
+          "ptc_core__DCI-M_06_lock",
+          "ptc_core__DCI-M_06_lock__02",
+          "ptc_core__DCI-M_06_lock__03",
+          "ptc_core__DCI-M_06_lock__04",
+          "ptc_core__DCI-M_06_lock__05",
+          "ptc_core__DCI-M_06_lock__06",
+          "ptc_core__bus",
+          "ptc_core__bus__02",
+          "ptc_core__bus__03",
+          "ptc_core__bus__04",
+          "ptc_core__bus__05",
+          "ptc_core__bus__06",
+          "ptc_core__control_ring",
+          "ptc_core__control_ring_armor",
+          "ptc_core__control_ring_armor__02",
+          "ptc_core__control_ring_armor__03",
+          "ptc_core__control_ring_armor__04",
+          "ptc_core__control_ring_armor__05",
+          "ptc_core__control_ring_armor__06",
+          "ptc_core__control_ring_emissive",
+          "ptc_core__core",
+          "ptc_core__radial_arm",
+          "ptc_core__radial_arm__02",
+          "ptc_core__radial_arm__03",
+          "ptc_core__radial_arm__04",
+          "ptc_core__radial_arm__05",
+          "ptc_core__radial_arm__06",
+          "ptc_core__radial_housing",
+          "ptc_core__radial_housing__02",
+          "ptc_core__radial_housing__03",
+          "ptc_core__radial_housing__04",
+          "ptc_core__radial_housing__05",
+          "ptc_core__radial_housing__06",
+          "ptc_core__root"
+        ],
+        "connectors": [
+          {
+            "id": "DCI-M_01",
+            "node": "ptc_core__DCI-M_01",
+            "type": "DCI-M",
+            "position": [
+              1.1021821673266511e-16,
+              1.7999999523162842,
+              0.0
+            ],
+            "quaternion": [
+              -0.7071067690849304,
+              4.329780301713277e-17,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              6.123234262925839e-17,
+              1.0,
+              0.0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "ptc_core__DCI-M_01_frame"
+          },
+          {
+            "id": "DCI-M_02",
+            "node": "ptc_core__DCI-M_02",
+            "type": "DCI-M",
+            "position": [
+              -1.5588456392288208,
+              0.8999999761581421,
+              0.0
+            ],
+            "quaternion": [
+              -0.3535533845424652,
+              -0.6123723983764648,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              -0.8660253882408142,
+              0.5,
+              0.0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "ptc_core__DCI-M_02_frame"
+          },
+          {
+            "id": "DCI-M_03",
+            "node": "ptc_core__DCI-M_03",
+            "type": "DCI-M",
+            "position": [
+              -1.5588456392288208,
+              -0.8999999761581421,
+              0.0
+            ],
+            "quaternion": [
+              0.3535533845424652,
+              -0.6123723983764648,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              -0.8660253882408142,
+              -0.5,
+              0.0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "ptc_core__DCI-M_03_frame"
+          },
+          {
+            "id": "DCI-M_04",
+            "node": "ptc_core__DCI-M_04",
+            "type": "DCI-M",
+            "position": [
+              -3.306546104933259e-16,
+              -1.7999999523162842,
+              0.0
+            ],
+            "quaternion": [
+              0.7071067690849304,
+              -1.2989340243395341e-16,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              -1.8369701465288538e-16,
+              -1.0,
+              0.0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "ptc_core__DCI-M_04_frame"
+          },
+          {
+            "id": "DCI-M_05",
+            "node": "ptc_core__DCI-M_05",
+            "type": "DCI-M",
+            "position": [
+              1.5588456392288208,
+              -0.8999999761581421,
+              0.0
+            ],
+            "quaternion": [
+              0.3535533845424652,
+              0.6123723983764648,
+              -0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              0.8660253882408142,
+              -0.5,
+              0.0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "ptc_core__DCI-M_05_frame"
+          },
+          {
+            "id": "DCI-M_06",
+            "node": "ptc_core__DCI-M_06",
+            "type": "DCI-M",
+            "position": [
+              1.5588456392288208,
+              0.8999999761581421,
+              0.0
+            ],
+            "quaternion": [
+              -0.3535533845424652,
+              0.6123723983764648,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              0.8660253882408142,
+              0.5,
+              0.0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "ptc_core__DCI-M_06_frame"
+          }
+        ],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [],
+        "triangleCount": {
+          "LOD0": 3040,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 3040,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 4.72,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "16-programmable-tool-controller.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "69b5d478fd3c2e5fa86a7ce7f2d845f3c06370d352ecfa57992b0af5a674823b"
+      }
+    },
+    {
+      "id": "filesystem_bay",
+      "path": "assets/models/filesystem_bay.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/17-filesystem_bay/filesystem_bay.glb",
+      "sha256": "4d75abf046015f43c0b5bd92a41f83c8bc5765bf7ba259950b01d67a368bfbcd",
+      "bytes": 58048,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "filesystem_bay",
+        "version": "0.1.0",
+        "dimensions": [
+          3.200000286102295,
+          2.4000000953674316,
+          3.999999761581421
+        ],
+        "manifestDimensions": [
+          3.2,
+          2.4,
+          4.0
+        ],
+        "maxDimensionDeviation": 8.940696710757479e-08,
+        "pivot": "bottom-center",
+        "bounds": {
+          "min": [
+            -1.6000001430511475,
+            0.0,
+            -2.0
+          ],
+          "max": [
+            1.6000001430511475,
+            2.4000000953674316,
+            1.999999761581421
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "filesystem_bay__arm_joint",
+          "filesystem_bay__arm_tool",
+          "filesystem_bay__backplane",
+          "filesystem_bay__cell_emissive",
+          "filesystem_bay__cell_emissive__02",
+          "filesystem_bay__cell_emissive__03",
+          "filesystem_bay__cell_emissive__04",
+          "filesystem_bay__cell_emissive__05",
+          "filesystem_bay__cell_emissive__06",
+          "filesystem_bay__cell_emissive__07",
+          "filesystem_bay__cell_emissive__08",
+          "filesystem_bay__cell_emissive__09",
+          "filesystem_bay__cell_emissive__10",
+          "filesystem_bay__cell_emissive__11",
+          "filesystem_bay__cell_emissive__12",
+          "filesystem_bay__gantry",
+          "filesystem_bay__primary_DCI-M",
+          "filesystem_bay__primary_DCI-M_emissive",
+          "filesystem_bay__primary_DCI-M_frame",
+          "filesystem_bay__primary_DCI-M_lock",
+          "filesystem_bay__primary_DCI-M_lock__02",
+          "filesystem_bay__primary_DCI-M_lock__03",
+          "filesystem_bay__primary_DCI-M_lock__04",
+          "filesystem_bay__primary_DCI-M_lock__05",
+          "filesystem_bay__primary_DCI-M_lock__06",
+          "filesystem_bay__root",
+          "filesystem_bay__shelf",
+          "filesystem_bay__shelf__02",
+          "filesystem_bay__side_armor",
+          "filesystem_bay__side_armor__02",
+          "filesystem_bay__side_frame",
+          "filesystem_bay__side_frame__02",
+          "filesystem_bay__storage_cell_01",
+          "filesystem_bay__storage_cell_02",
+          "filesystem_bay__storage_cell_03",
+          "filesystem_bay__storage_cell_04",
+          "filesystem_bay__storage_cell_05",
+          "filesystem_bay__storage_cell_06",
+          "filesystem_bay__storage_cell_07",
+          "filesystem_bay__storage_cell_08",
+          "filesystem_bay__storage_cell_09",
+          "filesystem_bay__storage_cell_10",
+          "filesystem_bay__storage_cell_11",
+          "filesystem_bay__storage_cell_12"
+        ],
+        "connectors": [
+          {
+            "id": "primary_DCI-M",
+            "node": "filesystem_bay__primary_DCI-M",
+            "type": "DCI-M",
+            "position": [
+              0,
+              1.2,
+              -1.9
+            ],
+            "quaternion": [
+              0.7071067690849304,
+              0.7071067690849304,
+              -0.0,
+              -4.371138828673793e-08
+            ],
+            "forward": [
+              0,
+              0,
+              -1
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "filesystem_bay__primary_DCI-M_frame"
+          }
+        ],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "filesystem_bay__storage_cell_01",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.55,
+            "pivot": [
+              -0.9907121062278748,
+              0.550000011920929,
+              0.6666665077209473
+            ]
+          },
+          {
+            "node": "filesystem_bay__storage_cell_02",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.55,
+            "pivot": [
+              -0.3269349932670593,
+              0.550000011920929,
+              0.6666665077209473
+            ]
+          },
+          {
+            "node": "filesystem_bay__storage_cell_03",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.55,
+            "pivot": [
+              0.3269349932670593,
+              0.550000011920929,
+              0.6666665077209473
+            ]
+          },
+          {
+            "node": "filesystem_bay__storage_cell_04",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.55,
+            "pivot": [
+              0.9907121062278748,
+              0.550000011920929,
+              0.6666665077209473
+            ]
+          },
+          {
+            "node": "filesystem_bay__storage_cell_05",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.55,
+            "pivot": [
+              -0.9907121062278748,
+              1.149999976158142,
+              0.6666665077209473
+            ]
+          },
+          {
+            "node": "filesystem_bay__storage_cell_06",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.55,
+            "pivot": [
+              -0.3269349932670593,
+              1.149999976158142,
+              0.6666665077209473
+            ]
+          },
+          {
+            "node": "filesystem_bay__storage_cell_07",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.55,
+            "pivot": [
+              0.3269349932670593,
+              1.149999976158142,
+              0.6666665077209473
+            ]
+          },
+          {
+            "node": "filesystem_bay__storage_cell_08",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.55,
+            "pivot": [
+              0.9907121062278748,
+              1.149999976158142,
+              0.6666665077209473
+            ]
+          },
+          {
+            "node": "filesystem_bay__storage_cell_09",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.55,
+            "pivot": [
+              -0.9907121062278748,
+              1.75,
+              0.6666665077209473
+            ]
+          },
+          {
+            "node": "filesystem_bay__storage_cell_10",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.55,
+            "pivot": [
+              -0.3269349932670593,
+              1.75,
+              0.6666665077209473
+            ]
+          },
+          {
+            "node": "filesystem_bay__storage_cell_11",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.55,
+            "pivot": [
+              0.3269349932670593,
+              1.75,
+              0.6666665077209473
+            ]
+          },
+          {
+            "node": "filesystem_bay__storage_cell_12",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.55,
+            "pivot": [
+              0.9907121062278748,
+              1.75,
+              0.6666665077209473
+            ]
+          },
+          {
+            "node": "filesystem_bay__arm_joint",
+            "kind": "slide",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "amount": 0.6,
+            "pivot": [
+              0.0,
+              1.149999976158142,
+              1.7333331108093262
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 1088,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 1088,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 4.7199997186660765,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "17-filesystem-storage-bay.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "4d75abf046015f43c0b5bd92a41f83c8bc5765bf7ba259950b01d67a368bfbcd"
+      }
+    },
+    {
+      "id": "web_sonar",
+      "path": "assets/models/web_sonar.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/18-web_sonar/web_sonar.glb",
+      "sha256": "808f852aa0cf5be7807bd61cfff50da9736ff777d5fa503996341b18bd6eeb3e",
+      "bytes": 14412,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "web_sonar",
+        "version": "0.1.0",
+        "dimensions": [
+          3.5,
+          1.5,
+          2.5
+        ],
+        "manifestDimensions": [
+          3.5,
+          1.5,
+          2.5
+        ],
+        "maxDimensionDeviation": 0.0,
+        "pivot": "base-center",
+        "bounds": {
+          "min": [
+            -1.75,
+            0.0,
+            -1.25
+          ],
+          "max": [
+            1.75,
+            1.5,
+            1.25
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "web_sonar__base",
+          "web_sonar__emitter",
+          "web_sonar__ivory_base",
+          "web_sonar__root",
+          "web_sonar__sensor_01",
+          "web_sonar__sensor_02",
+          "web_sonar__sensor_03",
+          "web_sonar__sensor_emissive",
+          "web_sonar__sensor_emissive__02",
+          "web_sonar__sensor_emissive__03"
+        ],
+        "connectors": [],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "web_sonar__sensor_01",
+            "kind": "rotate",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "amount": 0.2,
+            "pivot": [
+              -1.1566067934036255,
+              0.2896551191806793,
+              -0.0
+            ]
+          },
+          {
+            "node": "web_sonar__sensor_02",
+            "kind": "rotate",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "amount": 0.2,
+            "pivot": [
+              0.0,
+              0.2896551191806793,
+              -0.20000000298023224
+            ]
+          },
+          {
+            "node": "web_sonar__sensor_03",
+            "kind": "rotate",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "amount": 0.2,
+            "pivot": [
+              1.1566067934036255,
+              0.2896551191806793,
+              -0.0
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 312,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 312,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 4.13,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "18-web-sonar-array.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "808f852aa0cf5be7807bd61cfff50da9736ff777d5fa503996341b18bd6eeb3e"
+      }
+    },
+    {
+      "id": "sandbox_chamber",
+      "path": "assets/models/sandbox_chamber.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/19-sandbox_chamber/sandbox_chamber.glb",
+      "sha256": "53d64be501fdf84931711215c7f6aa26087d8cc6eaa8aa15895cd6169ddd9670",
+      "bytes": 33956,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "sandbox_chamber",
+        "version": "0.1.0",
+        "dimensions": [
+          2.8000001907348633,
+          2.799999952316284,
+          3.5
+        ],
+        "manifestDimensions": [
+          2.8,
+          2.8,
+          3.5
+        ],
+        "maxDimensionDeviation": 6.811959409245918e-08,
+        "pivot": "bottom-center",
+        "bounds": {
+          "min": [
+            -1.4000000953674316,
+            0.0,
+            -1.75
+          ],
+          "max": [
+            1.4000000953674316,
+            2.799999952316284,
+            1.75
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "sandbox_chamber__axial_rail",
+          "sandbox_chamber__axial_rail__02",
+          "sandbox_chamber__axial_rail__03",
+          "sandbox_chamber__axial_rail__04",
+          "sandbox_chamber__base",
+          "sandbox_chamber__core",
+          "sandbox_chamber__door",
+          "sandbox_chamber__emissive",
+          "sandbox_chamber__end_frame",
+          "sandbox_chamber__end_frame__02",
+          "sandbox_chamber__ivory_rim",
+          "sandbox_chamber__ivory_rim__02",
+          "sandbox_chamber__lock",
+          "sandbox_chamber__lock__02",
+          "sandbox_chamber__locks",
+          "sandbox_chamber__primary_DCI-M",
+          "sandbox_chamber__primary_DCI-M_emissive",
+          "sandbox_chamber__primary_DCI-M_frame",
+          "sandbox_chamber__primary_DCI-M_lock",
+          "sandbox_chamber__primary_DCI-M_lock__02",
+          "sandbox_chamber__primary_DCI-M_lock__03",
+          "sandbox_chamber__primary_DCI-M_lock__04",
+          "sandbox_chamber__primary_DCI-M_lock__05",
+          "sandbox_chamber__primary_DCI-M_lock__06",
+          "sandbox_chamber__roof",
+          "sandbox_chamber__root",
+          "sandbox_chamber__shell",
+          "sandbox_chamber__side_armor",
+          "sandbox_chamber__side_armor__02",
+          "sandbox_chamber__side_armor__03",
+          "sandbox_chamber__side_armor__04"
+        ],
+        "connectors": [
+          {
+            "id": "primary_DCI-M",
+            "node": "sandbox_chamber__primary_DCI-M",
+            "type": "DCI-M",
+            "position": [
+              0,
+              1.4,
+              -1.67
+            ],
+            "quaternion": [
+              0.7071067690849304,
+              0.7071067690849304,
+              -0.0,
+              -4.371138828673793e-08
+            ],
+            "forward": [
+              0,
+              0,
+              -1
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "sandbox_chamber__primary_DCI-M_frame"
+          }
+        ],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "sandbox_chamber__door",
+            "kind": "slide",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "amount": 1.54,
+            "pivot": [
+              0.0,
+              1.4893616437911987,
+              1.6061643362045288
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 1168,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 1168,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 4.13,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "19-sandbox-containment-chamber.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "53d64be501fdf84931711215c7f6aa26087d8cc6eaa8aa15895cd6169ddd9670"
+      }
+    },
+    {
+      "id": "job_drone",
+      "path": "assets/models/job_drone.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/20-job_drone/job_drone.glb",
+      "sha256": "ac9c31aa5420201dfafee4c04bd0b1c33a5c0a6f0040bd3ee284504d81570e62",
+      "bytes": 14148,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "job_drone",
+        "version": "0.1.0",
+        "dimensions": [
+          1.0,
+          0.550000011920929,
+          1.399999976158142
+        ],
+        "manifestDimensions": [
+          1.0,
+          0.55,
+          1.4
+        ],
+        "maxDimensionDeviation": 2.1674416201216733e-08,
+        "pivot": "center",
+        "bounds": {
+          "min": [
+            -0.5,
+            -0.2750000059604645,
+            -0.6999999284744263
+          ],
+          "max": [
+            0.5,
+            0.2750000059604645,
+            0.7000000476837158
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "job_drone__body",
+          "job_drone__ivory_wing",
+          "job_drone__ivory_wing__02",
+          "job_drone__root",
+          "job_drone__sensor",
+          "job_drone__thruster",
+          "job_drone__thruster__02",
+          "job_drone__thruster_emissive",
+          "job_drone__thruster_emissive__02",
+          "job_drone__wing_emissive",
+          "job_drone__wing_emissive__02"
+        ],
+        "connectors": [],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "job_drone__ivory_wing",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.08,
+            "pivot": [
+              -0.38944727182388306,
+              -0.04230770096182823,
+              -0.008235238492488861
+            ]
+          },
+          {
+            "node": "job_drone__ivory_wing__02",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.08,
+            "pivot": [
+              0.38944727182388306,
+              -0.04230770096182823,
+              -0.008235238492488861
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 252,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 252,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 1.6519999718666076,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "20-job-worker-drone.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "ac9c31aa5420201dfafee4c04bd0b1c33a5c0a6f0040bd3ee284504d81570e62"
+      }
+    },
+    {
+      "id": "approval_airlock",
+      "path": "assets/models/approval_airlock.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/21-approval_airlock/approval_airlock.glb",
+      "sha256": "752844071f2dc539b061e4eec62445aa476fb0ab5867e100e5f3c3152a1a3dc7",
+      "bytes": 36296,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "approval_airlock",
+        "version": "0.1.0",
+        "dimensions": [
+          1.9999998807907104,
+          2.0,
+          3.0
+        ],
+        "manifestDimensions": [
+          2.0,
+          2.0,
+          3.0
+        ],
+        "maxDimensionDeviation": 5.960464477539063e-08,
+        "pivot": "bottom-center",
+        "bounds": {
+          "min": [
+            -1.0,
+            0.0,
+            -1.5
+          ],
+          "max": [
+            0.9999998807907104,
+            2.0,
+            1.5
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "approval_airlock__axial_support",
+          "approval_airlock__axial_support__02",
+          "approval_airlock__axial_support__03",
+          "approval_airlock__axial_support__04",
+          "approval_airlock__door_in",
+          "approval_airlock__door_out",
+          "approval_airlock__foot",
+          "approval_airlock__lock_emissive",
+          "approval_airlock__lock_emissive__02",
+          "approval_airlock__lock_in",
+          "approval_airlock__lock_out",
+          "approval_airlock__portal_frame",
+          "approval_airlock__portal_frame__02",
+          "approval_airlock__portal_frame_armor",
+          "approval_airlock__portal_frame_armor__02",
+          "approval_airlock__portal_frame_armor__03",
+          "approval_airlock__portal_frame_armor__04",
+          "approval_airlock__portal_frame_armor__05",
+          "approval_airlock__portal_frame_armor__06",
+          "approval_airlock__portal_frame_armor__07",
+          "approval_airlock__portal_frame_armor__08",
+          "approval_airlock__portal_frame_emissive",
+          "approval_airlock__portal_frame_emissive__02",
+          "approval_airlock__root",
+          "approval_airlock__side_shell",
+          "approval_airlock__side_shell__02"
+        ],
+        "connectors": [],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "approval_airlock__door_out",
+            "kind": "slide",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "amount": 0.8,
+            "pivot": [
+              -5.960464477539063e-08,
+              1.0761849880218506,
+              -1.25
+            ]
+          },
+          {
+            "node": "approval_airlock__lock_out",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.5,
+            "pivot": [
+              -5.960464477539063e-08,
+              1.0761849880218506,
+              -1.350000023841858
+            ]
+          },
+          {
+            "node": "approval_airlock__door_in",
+            "kind": "slide",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "amount": 0.8,
+            "pivot": [
+              -5.960464477539063e-08,
+              1.0761849880218506,
+              1.25
+            ]
+          },
+          {
+            "node": "approval_airlock__lock_in",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.5,
+            "pivot": [
+              -5.960464477539063e-08,
+              1.0761849880218506,
+              1.350000023841858
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 1596,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 1596,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 3.54,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "21-approval-interaction-airlock.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "752844071f2dc539b061e4eec62445aa476fb0ab5867e100e5f3c3152a1a3dc7"
+      }
+    },
+    {
+      "id": "goal_core",
+      "path": "assets/models/goal_core.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/22-goal_core/goal_core.glb",
+      "sha256": "a62144a51615c3ccab7f9711084f9cabc223ed4590cf573509f53d79195fda6a",
+      "bytes": 26236,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "goal_core",
+        "version": "0.1.0",
+        "dimensions": [
+          1.2000000476837158,
+          1.2000000476837158,
+          1.6000001430511475
+        ],
+        "manifestDimensions": [
+          1.2,
+          1.2,
+          1.6
+        ],
+        "maxDimensionDeviation": 8.940696710757479e-08,
+        "pivot": "center",
+        "bounds": {
+          "min": [
+            -0.6000000238418579,
+            -0.6000000238418579,
+            -0.800000011920929
+          ],
+          "max": [
+            0.6000000238418579,
+            0.6000000238418579,
+            0.8000000715255737
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "goal_core__antenna",
+          "goal_core__antenna__02",
+          "goal_core__antenna__03",
+          "goal_core__antenna_arm",
+          "goal_core__antenna_arm__02",
+          "goal_core__antenna_arm__03",
+          "goal_core__base",
+          "goal_core__base_ivory",
+          "goal_core__beacon",
+          "goal_core__beacon__02",
+          "goal_core__beacon__03",
+          "goal_core__beacon_emissive",
+          "goal_core__beacon_emissive__02",
+          "goal_core__beacon_emissive__03",
+          "goal_core__core",
+          "goal_core__frame",
+          "goal_core__root"
+        ],
+        "connectors": [],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "goal_core__antenna",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.12,
+            "pivot": [
+              3.038066637679045e-17,
+              0.47755104303359985,
+              -0.15252918004989624
+            ]
+          },
+          {
+            "node": "goal_core__antenna__02",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.12,
+            "pivot": [
+              -0.4296818673610687,
+              -0.15428569912910461,
+              -0.15252918004989624
+            ]
+          },
+          {
+            "node": "goal_core__antenna__03",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.12,
+            "pivot": [
+              0.4296818673610687,
+              -0.15428569912910461,
+              -0.15252918004989624
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 1276,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 1276,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 1.8880001688003538,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "22-goal-navigation-core.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "a62144a51615c3ccab7f9711084f9cabc223ed4590cf573509f53d79195fda6a"
+      }
+    },
+    {
+      "id": "plan_rail",
+      "path": "assets/models/plan_rail.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/23-plan_rail/plan_rail.glb",
+      "sha256": "578af5e5a1f832c91a404b434fdaf3ba96e75a5ac3caee018f148a23f3460401",
+      "bytes": 34536,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "plan_rail",
+        "version": "0.1.0",
+        "dimensions": [
+          3.8000001907348633,
+          0.699999988079071,
+          1.2000000476837158
+        ],
+        "manifestDimensions": [
+          3.8,
+          0.7,
+          1.2
+        ],
+        "maxDimensionDeviation": 5.0193385120759395e-08,
+        "pivot": "bottom-center",
+        "bounds": {
+          "min": [
+            -1.9000000953674316,
+            0.0,
+            -0.6000000238418579
+          ],
+          "max": [
+            1.9000000953674316,
+            0.699999988079071,
+            0.6000000238418579
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "plan_rail__end",
+          "plan_rail__end__02",
+          "plan_rail__ivory_end",
+          "plan_rail__ivory_end__02",
+          "plan_rail__node_emissive",
+          "plan_rail__node_emissive__02",
+          "plan_rail__node_emissive__03",
+          "plan_rail__node_emissive__04",
+          "plan_rail__node_emissive__05",
+          "plan_rail__node_emissive__06",
+          "plan_rail__node_ivory",
+          "plan_rail__node_ivory__02",
+          "plan_rail__node_ivory__03",
+          "plan_rail__node_ivory__04",
+          "plan_rail__node_ivory__05",
+          "plan_rail__node_ivory__06",
+          "plan_rail__plan_node_01",
+          "plan_rail__plan_node_02",
+          "plan_rail__plan_node_03",
+          "plan_rail__plan_node_04",
+          "plan_rail__plan_node_05",
+          "plan_rail__plan_node_06",
+          "plan_rail__rail",
+          "plan_rail__rail__02",
+          "plan_rail__root"
+        ],
+        "connectors": [],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "plan_rail__plan_node_01",
+            "kind": "slide",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "amount": 0.1,
+            "pivot": [
+              -1.3493472337722778,
+              0.3400000035762787,
+              -0.0
+            ]
+          },
+          {
+            "node": "plan_rail__plan_node_02",
+            "kind": "slide",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "amount": 0.1,
+            "pivot": [
+              -0.8096083402633667,
+              0.3400000035762787,
+              -0.0
+            ]
+          },
+          {
+            "node": "plan_rail__plan_node_03",
+            "kind": "slide",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "amount": 0.1,
+            "pivot": [
+              -0.26986947655677795,
+              0.3400000035762787,
+              -0.0
+            ]
+          },
+          {
+            "node": "plan_rail__plan_node_04",
+            "kind": "slide",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "amount": 0.1,
+            "pivot": [
+              0.26986947655677795,
+              0.3400000035762787,
+              -0.0
+            ]
+          },
+          {
+            "node": "plan_rail__plan_node_05",
+            "kind": "slide",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "amount": 0.1,
+            "pivot": [
+              0.8096083402633667,
+              0.3400000035762787,
+              -0.0
+            ]
+          },
+          {
+            "node": "plan_rail__plan_node_06",
+            "kind": "slide",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "amount": 0.1,
+            "pivot": [
+              1.3493472337722778,
+              0.3400000035762787,
+              -0.0
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 816,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 816,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 4.484000225067138,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "23-plan-rail.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim.",
+          "Primary layout lies in XZ as dimensioned by the manifest; its broad face is visible in canonical top view.",
+          "Primary layout lies in XZ as dimensioned by the manifest; its broad face is visible in canonical top view."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "578af5e5a1f832c91a404b434fdaf3ba96e75a5ac3caee018f148a23f3460401"
+      }
+    },
+    {
+      "id": "todo_queue",
+      "path": "assets/models/todo_queue.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/24-todo_queue/todo_queue.glb",
+      "sha256": "e11cb4731c75d54de94bab9cd6af01aad87ced89f5d10c1e8ec6ee894ad383d9",
+      "bytes": 22980,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "todo_queue",
+        "version": "0.1.0",
+        "dimensions": [
+          1.399999976158142,
+          1.7999999523162842,
+          1.0
+        ],
+        "manifestDimensions": [
+          1.4,
+          1.8,
+          1.0
+        ],
+        "maxDimensionDeviation": 2.6490953258178568e-08,
+        "pivot": "bottom-center",
+        "bounds": {
+          "min": [
+            -0.699999988079071,
+            0.0,
+            -0.5
+          ],
+          "max": [
+            0.699999988079071,
+            1.7999999523162842,
+            0.5
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "todo_queue__base",
+          "todo_queue__root",
+          "todo_queue__task_emissive",
+          "todo_queue__task_emissive__02",
+          "todo_queue__task_emissive__03",
+          "todo_queue__task_emissive__04",
+          "todo_queue__task_emissive__05",
+          "todo_queue__task_slab_01",
+          "todo_queue__task_slab_02",
+          "todo_queue__task_slab_03",
+          "todo_queue__task_slab_04",
+          "todo_queue__task_slab_05",
+          "todo_queue__upright",
+          "todo_queue__upright__02",
+          "todo_queue__upright_emissive",
+          "todo_queue__upright_emissive__02"
+        ],
+        "connectors": [],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "todo_queue__task_slab_01",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.4,
+            "pivot": [
+              0.0,
+              0.32254335284233093,
+              0.07999999821186066
+            ]
+          },
+          {
+            "node": "todo_queue__task_slab_02",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.4,
+            "pivot": [
+              0.0,
+              0.613872766494751,
+              0.07999999821186066
+            ]
+          },
+          {
+            "node": "todo_queue__task_slab_03",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.4,
+            "pivot": [
+              0.0,
+              0.9052022695541382,
+              0.07999999821186066
+            ]
+          },
+          {
+            "node": "todo_queue__task_slab_04",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.4,
+            "pivot": [
+              0.0,
+              1.1965316534042358,
+              0.07999999821186066
+            ]
+          },
+          {
+            "node": "todo_queue__task_slab_05",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.4,
+            "pivot": [
+              0.0,
+              1.487861156463623,
+              0.07999999821186066
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 436,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 436,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 2.123999943733215,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "24-todo-queue.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "e11cb4731c75d54de94bab9cd6af01aad87ced89f5d10c1e8ec6ee894ad383d9"
+      }
+    },
+    {
+      "id": "context_storage",
+      "path": "assets/models/context_storage.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/25-context_storage/context_storage.glb",
+      "sha256": "28009939442d569ba0d1bfd3adcb8a78e46e307224795b15bd104d65d6129257",
+      "bytes": 38060,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "context_storage",
+        "version": "0.1.0",
+        "dimensions": [
+          3.0,
+          3.0,
+          3.999999761581421
+        ],
+        "manifestDimensions": [
+          3.0,
+          3.0,
+          4.0
+        ],
+        "maxDimensionDeviation": 5.960464477539063e-08,
+        "pivot": "bottom-center",
+        "bounds": {
+          "min": [
+            -1.5,
+            0.0,
+            -2.0
+          ],
+          "max": [
+            1.5,
+            3.0,
+            1.999999761581421
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "context_storage__cargo_band",
+          "context_storage__cargo_band__02",
+          "context_storage__cargo_band__03",
+          "context_storage__cargo_band__04",
+          "context_storage__cargo_band__05",
+          "context_storage__cargo_band__06",
+          "context_storage__cargo_band__07",
+          "context_storage__cargo_band__08",
+          "context_storage__cargo_cell",
+          "context_storage__cargo_cell__02",
+          "context_storage__cargo_cell__03",
+          "context_storage__cargo_cell__04",
+          "context_storage__cargo_emissive",
+          "context_storage__cargo_emissive__02",
+          "context_storage__cargo_emissive__03",
+          "context_storage__cargo_emissive__04",
+          "context_storage__column",
+          "context_storage__column__02",
+          "context_storage__column__03",
+          "context_storage__column__04",
+          "context_storage__end_rail",
+          "context_storage__end_rail__02",
+          "context_storage__end_rail__03",
+          "context_storage__end_rail__04",
+          "context_storage__floor_rail",
+          "context_storage__floor_rail__02",
+          "context_storage__frame",
+          "context_storage__frame__02",
+          "context_storage__frame__03",
+          "context_storage__frame__04",
+          "context_storage__root"
+        ],
+        "connectors": [],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "context_storage__cargo_cell",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.8,
+            "pivot": [
+              -0.8245033025741577,
+              0.7551724314689636,
+              -1.1920928955078125e-07
+            ]
+          },
+          {
+            "node": "context_storage__cargo_cell__02",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.8,
+            "pivot": [
+              0.8245033025741577,
+              0.7551724314689636,
+              -1.1920928955078125e-07
+            ]
+          },
+          {
+            "node": "context_storage__cargo_cell__03",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.8,
+            "pivot": [
+              -0.8245033025741577,
+              1.996551752090454,
+              -1.1920928955078125e-07
+            ]
+          },
+          {
+            "node": "context_storage__cargo_cell__04",
+            "kind": "slide",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.8,
+            "pivot": [
+              0.8245033025741577,
+              1.996551752090454,
+              -1.1920928955078125e-07
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 1192,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 1192,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 4.7199997186660765,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "25-context-spill-cargo-bay.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "28009939442d569ba0d1bfd3adcb8a78e46e307224795b15bd104d65d6129257"
+      }
+    },
+    {
+      "id": "credentials_vault",
+      "path": "assets/models/credentials_vault.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/26-credentials_vault/credentials_vault.glb",
+      "sha256": "cc2785cfa364ad120af7961eaa98099db6b610f96823ec94647c80fbeb0d29fc",
+      "bytes": 17676,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "credentials_vault",
+        "version": "0.1.0",
+        "dimensions": [
+          0.800000011920929,
+          0.8000000715255737,
+          1.0
+        ],
+        "manifestDimensions": [
+          0.8,
+          0.8,
+          1.0
+        ],
+        "maxDimensionDeviation": 8.940696710757479e-08,
+        "pivot": "bottom-center",
+        "bounds": {
+          "min": [
+            -0.4000000059604645,
+            0.0,
+            -0.5
+          ],
+          "max": [
+            0.4000000059604645,
+            0.8000000715255737,
+            0.5
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "credentials_vault__armor_A",
+          "credentials_vault__armor_B",
+          "credentials_vault__base",
+          "credentials_vault__core",
+          "credentials_vault__primary_DCI-S",
+          "credentials_vault__primary_DCI-S_emissive",
+          "credentials_vault__primary_DCI-S_frame",
+          "credentials_vault__primary_DCI-S_lock",
+          "credentials_vault__primary_DCI-S_lock__02",
+          "credentials_vault__primary_DCI-S_lock__03",
+          "credentials_vault__primary_DCI-S_lock__04",
+          "credentials_vault__primary_DCI-S_lock__05",
+          "credentials_vault__primary_DCI-S_lock__06",
+          "credentials_vault__root",
+          "credentials_vault__seam_emissive"
+        ],
+        "connectors": [
+          {
+            "id": "primary_DCI-S",
+            "node": "credentials_vault__primary_DCI-S",
+            "type": "DCI-S",
+            "position": [
+              0,
+              0.4,
+              -0.45
+            ],
+            "quaternion": [
+              0.7071067690849304,
+              0.7071067690849304,
+              -0.0,
+              -4.371138828673793e-08
+            ],
+            "forward": [
+              0,
+              0,
+              -1
+            ],
+            "outerDiameter": 0.36,
+            "innerDiameter": 0.22,
+            "depth": 0.1,
+            "frameNode": "credentials_vault__primary_DCI-S_frame"
+          }
+        ],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "credentials_vault__armor_A",
+            "kind": "slide",
+            "axis": [
+              -1,
+              0,
+              0
+            ],
+            "amount": 0.18,
+            "pivot": [
+              -0.30000001192092896,
+              0.4210526645183563,
+              0.30000001192092896
+            ]
+          },
+          {
+            "node": "credentials_vault__armor_B",
+            "kind": "slide",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "amount": 0.18,
+            "pivot": [
+              0.30000001192092896,
+              0.4210526645183563,
+              0.30000001192092896
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 396,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 396,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 1.18,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "26-credentials-vault.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "cc2785cfa364ad120af7961eaa98099db6b610f96823ec94647c80fbeb0d29fc"
+      }
+    },
+    {
+      "id": "protocol_adapter",
+      "path": "assets/models/protocol_adapter.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/27-protocol_adapter/protocol_adapter.glb",
+      "sha256": "1f7e065edbf2cb332810ab4fe9b12ce1ab30ac955f2cd3fea8f743759588c0d4",
+      "bytes": 42684,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "protocol_adapter",
+        "version": "0.1.0",
+        "dimensions": [
+          1.2000000476837158,
+          1.2000000476837158,
+          1.2000000476837158
+        ],
+        "manifestDimensions": [
+          1.2,
+          1.2,
+          1.2
+        ],
+        "maxDimensionDeviation": 3.973642988726785e-08,
+        "pivot": "center",
+        "bounds": {
+          "min": [
+            -0.6000000238418579,
+            -0.6000000238418579,
+            -0.6000000238418579
+          ],
+          "max": [
+            0.6000000238418579,
+            0.6000000238418579,
+            0.6000000238418579
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "protocol_adapter__adapter_core",
+          "protocol_adapter__port_neck",
+          "protocol_adapter__port_neck__02",
+          "protocol_adapter__port_neck__03",
+          "protocol_adapter__port_neck__04",
+          "protocol_adapter__port_negX",
+          "protocol_adapter__port_negX_emissive",
+          "protocol_adapter__port_negX_frame",
+          "protocol_adapter__port_negX_lock",
+          "protocol_adapter__port_negX_lock__02",
+          "protocol_adapter__port_negX_lock__03",
+          "protocol_adapter__port_negX_lock__04",
+          "protocol_adapter__port_negX_lock__05",
+          "protocol_adapter__port_negX_lock__06",
+          "protocol_adapter__port_negZ",
+          "protocol_adapter__port_negZ_emissive",
+          "protocol_adapter__port_negZ_frame",
+          "protocol_adapter__port_negZ_lock",
+          "protocol_adapter__port_negZ_lock__02",
+          "protocol_adapter__port_negZ_lock__03",
+          "protocol_adapter__port_negZ_lock__04",
+          "protocol_adapter__port_negZ_lock__05",
+          "protocol_adapter__port_negZ_lock__06",
+          "protocol_adapter__port_posX",
+          "protocol_adapter__port_posX_emissive",
+          "protocol_adapter__port_posX_frame",
+          "protocol_adapter__port_posX_lock",
+          "protocol_adapter__port_posX_lock__02",
+          "protocol_adapter__port_posX_lock__03",
+          "protocol_adapter__port_posX_lock__04",
+          "protocol_adapter__port_posX_lock__05",
+          "protocol_adapter__port_posX_lock__06",
+          "protocol_adapter__port_posZ",
+          "protocol_adapter__port_posZ_emissive",
+          "protocol_adapter__port_posZ_frame",
+          "protocol_adapter__port_posZ_lock",
+          "protocol_adapter__port_posZ_lock__02",
+          "protocol_adapter__port_posZ_lock__03",
+          "protocol_adapter__port_posZ_lock__04",
+          "protocol_adapter__port_posZ_lock__05",
+          "protocol_adapter__port_posZ_lock__06",
+          "protocol_adapter__root",
+          "protocol_adapter__status_emissive"
+        ],
+        "connectors": [
+          {
+            "id": "port_posX",
+            "node": "protocol_adapter__port_posX",
+            "type": "DCI-S",
+            "position": [
+              0.5400000214576721,
+              0.0,
+              0.0
+            ],
+            "quaternion": [
+              0.0,
+              0.7071067690849304,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              1,
+              0,
+              0
+            ],
+            "outerDiameter": 0.36,
+            "innerDiameter": 0.22,
+            "depth": 0.1,
+            "frameNode": "protocol_adapter__port_posX_frame"
+          },
+          {
+            "id": "port_negX",
+            "node": "protocol_adapter__port_negX",
+            "type": "DCI-S",
+            "position": [
+              -0.5400000214576721,
+              0.0,
+              0.0
+            ],
+            "quaternion": [
+              0.0,
+              -0.7071067690849304,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              -1,
+              0,
+              0
+            ],
+            "outerDiameter": 0.36,
+            "innerDiameter": 0.22,
+            "depth": 0.1,
+            "frameNode": "protocol_adapter__port_negX_frame"
+          },
+          {
+            "id": "port_posZ",
+            "node": "protocol_adapter__port_posZ",
+            "type": "DCI-S",
+            "position": [
+              0.0,
+              0.0,
+              0.5400000214576721
+            ],
+            "quaternion": [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "forward": [
+              0,
+              0,
+              1
+            ],
+            "outerDiameter": 0.36,
+            "innerDiameter": 0.22,
+            "depth": 0.1,
+            "frameNode": "protocol_adapter__port_posZ_frame"
+          },
+          {
+            "id": "port_negZ",
+            "node": "protocol_adapter__port_negZ",
+            "type": "DCI-S",
+            "position": [
+              0.0,
+              0.0,
+              -0.5400000214576721
+            ],
+            "quaternion": [
+              0.7071067690849304,
+              0.7071067690849304,
+              -0.0,
+              -4.371138828673793e-08
+            ],
+            "forward": [
+              0,
+              0,
+              -1
+            ],
+            "outerDiameter": 0.36,
+            "innerDiameter": 0.22,
+            "depth": 0.1,
+            "frameNode": "protocol_adapter__port_negZ_frame"
+          }
+        ],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [],
+        "triangleCount": {
+          "LOD0": 1440,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 1440,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 1.4160000562667845,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "27-protocol-adapter-hub.png"
+        },
+        "referenceDeviations": [
+          "Manifest specifies four port directions but no connector size: DCI-S selected to fit the 1.2 m adapter envelope."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "1f7e065edbf2cb332810ab4fe9b12ce1ab30ac955f2cd3fea8f743759588c0d4"
+      }
+    },
+    {
+      "id": "support_node",
+      "path": "assets/models/support_node.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/28-support_node/support_node.glb",
+      "sha256": "2cbae29d1e08ac197e8b3de69fbc7adb1480ef61b3f2da7d6a14cccf9df16531",
+      "bytes": 5832,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "support_node",
+        "version": "0.1.0",
+        "dimensions": [
+          0.44999995827674866,
+          0.44999998807907104,
+          0.5499999523162842
+        ],
+        "manifestDimensions": [
+          0.45,
+          0.45,
+          0.55
+        ],
+        "maxDimensionDeviation": 9.271833634194593e-08,
+        "pivot": "bottom-center",
+        "bounds": {
+          "min": [
+            -0.22499999403953552,
+            1.4901161193847656e-08,
+            -0.2750000059604645
+          ],
+          "max": [
+            0.22499996423721313,
+            0.44999998807907104,
+            0.2749999761581421
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "support_node__body",
+          "support_node__emissive",
+          "support_node__ivory_cap",
+          "support_node__ivory_cap__02",
+          "support_node__root"
+        ],
+        "connectors": [],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_IVORY"
+        ],
+        "animations": [],
+        "triangleCount": {
+          "LOD0": 128,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 128,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 0.6489999437332153,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "28-system-support-node.png"
+        },
+        "referenceDeviations": [
+          "Secondary panel contours, locks and surface detailing are simplified relative to the source image; no pixel-identical silhouette claim."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "2cbae29d1e08ac197e8b3de69fbc7adb1480ef61b3f2da7d6a14cccf9df16531"
+      }
+    },
+    {
+      "id": "cordis_workshop",
+      "path": "assets/models/cordis_workshop.glb",
+      "source": "/Users/rangeking/Code/dsh-inside/assets/production/33-cordis_workshop/cordis_workshop.glb",
+      "sha256": "8193b493cc017fdf6f48410b4325c589863b87bea10a01a5d7dfbbb598896978",
+      "bytes": 94584,
+      "licenseStatus": "external redistribution not yet verified; local reference reuse",
+      "units": "meters",
+      "axes": "X right, Y up, Z nose",
+      "metadata": {
+        "id": "cordis_workshop",
+        "version": "0.1.0",
+        "dimensions": [
+          5.0,
+          3.000000238418579,
+          5.0
+        ],
+        "manifestDimensions": [
+          5.0,
+          3.0,
+          5.0
+        ],
+        "maxDimensionDeviation": 7.947285970052083e-08,
+        "pivot": "bottom-center",
+        "bounds": {
+          "min": [
+            -2.5,
+            0.0,
+            -2.5
+          ],
+          "max": [
+            2.5,
+            3.000000238418579,
+            2.5
+          ]
+        },
+        "coordinateSystem": {
+          "handedness": "right",
+          "x": "orca-right",
+          "y": "dorsal-up",
+          "z": "nose-forward"
+        },
+        "units": "meters",
+        "nodes": [
+          "cordis_workshop__arm_01_base",
+          "cordis_workshop__arm_01_bearing",
+          "cordis_workshop__arm_01_bearing__02",
+          "cordis_workshop__arm_01_bearing__03",
+          "cordis_workshop__arm_01_finger",
+          "cordis_workshop__arm_01_finger__02",
+          "cordis_workshop__arm_01_joint",
+          "cordis_workshop__arm_01_tool",
+          "cordis_workshop__arm_02_base",
+          "cordis_workshop__arm_02_bearing",
+          "cordis_workshop__arm_02_bearing__02",
+          "cordis_workshop__arm_02_bearing__03",
+          "cordis_workshop__arm_02_finger",
+          "cordis_workshop__arm_02_finger__02",
+          "cordis_workshop__arm_02_joint",
+          "cordis_workshop__arm_02_tool",
+          "cordis_workshop__arm_03_base",
+          "cordis_workshop__arm_03_bearing",
+          "cordis_workshop__arm_03_bearing__02",
+          "cordis_workshop__arm_03_bearing__03",
+          "cordis_workshop__arm_03_finger",
+          "cordis_workshop__arm_03_finger__02",
+          "cordis_workshop__arm_03_joint",
+          "cordis_workshop__arm_03_tool",
+          "cordis_workshop__bearing_emissive",
+          "cordis_workshop__bearing_emissive__02",
+          "cordis_workshop__bearing_emissive__03",
+          "cordis_workshop__bearing_emissive__04",
+          "cordis_workshop__bearing_emissive__05",
+          "cordis_workshop__bearing_emissive__06",
+          "cordis_workshop__bearing_emissive__07",
+          "cordis_workshop__bearing_emissive__08",
+          "cordis_workshop__bearing_emissive__09",
+          "cordis_workshop__canopy",
+          "cordis_workshop__canopy_ivory",
+          "cordis_workshop__core_emissive",
+          "cordis_workshop__deck_inlay",
+          "cordis_workshop__dock_01",
+          "cordis_workshop__dock_01_emissive",
+          "cordis_workshop__dock_01_frame",
+          "cordis_workshop__dock_01_lock",
+          "cordis_workshop__dock_01_lock__02",
+          "cordis_workshop__dock_01_lock__03",
+          "cordis_workshop__dock_01_lock__04",
+          "cordis_workshop__dock_01_lock__05",
+          "cordis_workshop__dock_01_lock__06",
+          "cordis_workshop__dock_02",
+          "cordis_workshop__dock_02_emissive",
+          "cordis_workshop__dock_02_frame",
+          "cordis_workshop__dock_02_lock",
+          "cordis_workshop__dock_02_lock__02",
+          "cordis_workshop__dock_02_lock__03",
+          "cordis_workshop__dock_02_lock__04",
+          "cordis_workshop__dock_02_lock__05",
+          "cordis_workshop__dock_02_lock__06",
+          "cordis_workshop__dock_03",
+          "cordis_workshop__dock_03_emissive",
+          "cordis_workshop__dock_03_frame",
+          "cordis_workshop__dock_03_lock",
+          "cordis_workshop__dock_03_lock__02",
+          "cordis_workshop__dock_03_lock__03",
+          "cordis_workshop__dock_03_lock__04",
+          "cordis_workshop__dock_03_lock__05",
+          "cordis_workshop__dock_03_lock__06",
+          "cordis_workshop__floor",
+          "cordis_workshop__manufacturing_core",
+          "cordis_workshop__rail",
+          "cordis_workshop__rail_emissive",
+          "cordis_workshop__root",
+          "cordis_workshop__shell_emissive",
+          "cordis_workshop__shell_emissive__02",
+          "cordis_workshop__shell_ivory",
+          "cordis_workshop__shell_ivory__02",
+          "cordis_workshop__shell_left",
+          "cordis_workshop__shell_right"
+        ],
+        "connectors": [
+          {
+            "id": "dock_01_DCI-M",
+            "node": "cordis_workshop__dock_01",
+            "type": "DCI-M",
+            "position": [
+              -1.25,
+              0.46,
+              -1.1
+            ],
+            "quaternion": [
+              -0.7071067690849304,
+              0.0,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              0,
+              1,
+              0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "cordis_workshop__dock_01_frame"
+          },
+          {
+            "id": "dock_02_DCI-M",
+            "node": "cordis_workshop__dock_02",
+            "type": "DCI-M",
+            "position": [
+              0,
+              0.46,
+              -1.1
+            ],
+            "quaternion": [
+              -0.7071067690849304,
+              0.0,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              0,
+              1,
+              0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "cordis_workshop__dock_02_frame"
+          },
+          {
+            "id": "dock_03_DCI-M",
+            "node": "cordis_workshop__dock_03",
+            "type": "DCI-M",
+            "position": [
+              1.25,
+              0.46,
+              -1.1
+            ],
+            "quaternion": [
+              -0.7071067690849304,
+              0.0,
+              0.0,
+              0.7071068286895752
+            ],
+            "forward": [
+              0,
+              1,
+              0
+            ],
+            "outerDiameter": 0.72,
+            "innerDiameter": 0.48,
+            "depth": 0.16,
+            "frameNode": "cordis_workshop__dock_03_frame"
+          }
+        ],
+        "materials": [
+          "MAT_EMISSIVE_CYAN",
+          "MAT_HULL_DARK",
+          "MAT_HULL_GRAPHITE",
+          "MAT_IVORY"
+        ],
+        "animations": [
+          {
+            "node": "cordis_workshop__shell_left",
+            "kind": "slide",
+            "axis": [
+              -1,
+              0,
+              0
+            ],
+            "amount": 0.8,
+            "pivot": [
+              -1.9092742204666138,
+              1.2962456941604614,
+              -0.07731962203979492
+            ]
+          },
+          {
+            "node": "cordis_workshop__shell_right",
+            "kind": "slide",
+            "axis": [
+              1,
+              0,
+              0
+            ],
+            "amount": 0.8,
+            "pivot": [
+              1.9092742204666138,
+              1.2962456941604614,
+              -0.07731962203979492
+            ]
+          },
+          {
+            "node": "cordis_workshop__arm_01_base",
+            "kind": "rotate",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "amount": 0.2,
+            "pivot": [
+              1.3531646728515625,
+              0.39931753277778625,
+              0.7216494679450989
+            ]
+          },
+          {
+            "node": "cordis_workshop__arm_01_joint",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.18,
+            "pivot": [
+              1.1366584300994873,
+              1.61774742603302,
+              0.5938143730163574
+            ]
+          },
+          {
+            "node": "cordis_workshop__arm_01_tool",
+            "kind": "rotate",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "amount": 0.35,
+            "pivot": [
+              0.4194810390472412,
+              1.3515359163284302,
+              0.17036080360412598
+            ]
+          },
+          {
+            "node": "cordis_workshop__arm_02_base",
+            "kind": "rotate",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "amount": 0.2,
+            "pivot": [
+              -1.3531646728515625,
+              0.39931753277778625,
+              0.7216494679450989
+            ]
+          },
+          {
+            "node": "cordis_workshop__arm_02_joint",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.18,
+            "pivot": [
+              -1.1366584300994873,
+              1.61774742603302,
+              0.5938143730163574
+            ]
+          },
+          {
+            "node": "cordis_workshop__arm_02_tool",
+            "kind": "rotate",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "amount": 0.35,
+            "pivot": [
+              -0.4194810390472412,
+              1.3515359163284302,
+              0.17036080360412598
+            ]
+          },
+          {
+            "node": "cordis_workshop__arm_03_base",
+            "kind": "rotate",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "amount": 0.2,
+            "pivot": [
+              -2.870265903582171e-16,
+              0.39931753277778625,
+              -1.6752578020095825
+            ]
+          },
+          {
+            "node": "cordis_workshop__arm_03_joint",
+            "kind": "rotate",
+            "axis": [
+              0,
+              0,
+              1
+            ],
+            "amount": 0.18,
+            "pivot": [
+              -2.4110234331244063e-16,
+              1.61774742603302,
+              -1.4195876121520996
+            ]
+          },
+          {
+            "node": "cordis_workshop__arm_03_tool",
+            "kind": "rotate",
+            "axis": [
+              0,
+              1,
+              0
+            ],
+            "amount": 0.35,
+            "pivot": [
+              -8.897824354044289e-17,
+              1.3515359163284302,
+              -0.5726804733276367
+            ]
+          }
+        ],
+        "triangleCount": {
+          "LOD0": 3896,
+          "LOD1": null,
+          "LOD2": null
+        },
+        "geometryValidation": {
+          "triangles": 3896,
+          "orphanVertices": 0,
+          "degenerateFaces": 0,
+          "duplicateFacesWithinMesh": 0
+        },
+        "preview": {
+          "orthographicScale": 5.8999999999999995,
+          "resolution": [
+            800,
+            800
+          ],
+          "sameModelFrame": 1,
+          "reference": "33-cordis-deep-sea-workshop.png"
+        },
+        "referenceDeviations": [
+          "Workshop docks use DCI-M per the current manifest, superseding the previous hero-pack DCI-L."
+        ],
+        "sourceKind": "design-asset",
+        "runtimeIntegration": "not performed",
+        "validation": {
+          "blenderGeometry": "passed",
+          "cleanViewer": "passed",
+          "visualReview": "reviewed-with-simplifications",
+          "blenderRoundTrip": "passed",
+          "nativePivotCycles": "passed",
+          "dciMetrology": "passed"
+        },
+        "sha256": "8193b493cc017fdf6f48410b4325c589863b87bea10a01a5d7dfbbb598896978"
+      }
+    }
+  ],
+  "origin": "dsh-inside production",
+  "copiedAt": "2026-09-18"
+}

@@ -1,0 +1,9 @@
+{
+  "meta": {"_dshInside":{"kind":"synthetic"}},
+  "events": [
+    {"type":"turn/start","seq":0,"time":1789776000000,"data":{"turn":1}},
+    {"type":"tool/ptc-dispatch","seq":1,"time":1789776001000,"data":{"example":"Synthetic PTC dispatch"}},
+    {"type":"example/unknown","seq":2,"time":1789776002000,"data":{"example":"Preserve this unknown event","api_key":"synthetic-test-only"}},
+    {"type":"turn/end","seq":3,"time":1789776003000,"data":{"turn":1}}
+  ]
+}
