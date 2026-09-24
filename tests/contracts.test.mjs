@@ -143,7 +143,8 @@ test('install lesson separates inspect, install, apply, choose, review, disable,
 test('homepage footnotes cite audited rc.1 snapshots at valid lines; preset table has four columns',async()=>{
  const {NOTES,PRESETS}=await import('../src/home-content.js');const registry=json('docs/upstream-0.1.7-rc.1/registry.json');
  assert.equal(registry.commit,'46a7f68b0922371ce7144b668b90e377d8e799f4');
- for(const note of NOTES){const entry=registry.files.find(f=>f.path===note.path);assert.ok(entry,note.path);const bytes=readFileSync('docs/upstream-0.1.7-rc.1/'+note.path);assert.equal(createHash('sha256').update(bytes).digest('hex'),entry.sha256);
+ for(const note of NOTES.filter(n=>n.url)){assert.match(note.url,/^https:\/\/www\.gov\.cn\//);assert.equal(createHash('sha256').update(readFileSync(note.snapshot)).digest('hex'),note.sha256);}
+ for(const note of NOTES.filter(n=>!n.url)){const entry=registry.files.find(f=>f.path===note.path);assert.ok(entry,note.path);const bytes=readFileSync('docs/upstream-0.1.7-rc.1/'+note.path);assert.equal(createHash('sha256').update(bytes).digest('hex'),entry.sha256);
    if(note.lines){const [a,b=a]=note.lines.split('-').map(Number);assert.ok(a>=1&&b>=a&&b<=bytes.toString('utf8').split('\n').length,note.id);}}
  for(const row of PRESETS)assert.equal(row.length,5);
 });
@@ -155,4 +156,14 @@ test('material refinement swaps named finishes to physical materials and keeps b
  refineMaterials(root);const [a,b,c]=root.children.map(m=>m.material);
  assert.ok(a.isMeshPhysicalMaterial);assert.equal(a,b,'shared source stays shared');assert.equal(a.color.getHex(),0x112233);assert.equal(c,other);
  assert.deepEqual(root.userData.materials,[a,other]);
+});
+
+test('the homepage request thread matches the 2026 holiday notice: take Sep 28-30 off for 13 days',()=>{
+ const notice=readFileSync('docs/external/gov-2026-holidays.html','utf8');
+ assert.ok(notice.includes('9月25日（周五）至27日（周日）放假，共3天'));assert.ok(notice.includes('10月1日（周四）至7日（周三）放假调休，共7天。9月20日（周日）、10月10日（周六）上班'));
+ const day=d=>new Date(Date.UTC(2026,d[0]-1,d[1])),off=new Set();
+ for(let t=day([9,25]);t<=day([10,7]);t=new Date(+t+864e5))off.add(t.toISOString().slice(0,10));
+ const leave=['2026-09-28','2026-09-29','2026-09-30'];for(const d of leave)assert.ok([1,2,3].includes(new Date(d).getUTCDay()),'leave days are Mon-Wed');
+ assert.equal(off.size,13);const home=readFileSync('src/home.js','utf8');assert.ok(home.includes('请 9 月 28–30 日三天假')&&home.includes('共 13 天')&&home.includes('10 月 10 日（周六）调休上班'));
+ assert.doesNotMatch(home,/替你发送|已发送|sent it for you/);
 });

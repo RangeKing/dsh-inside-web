@@ -532,6 +532,16 @@ html[data-theme="light"] .lesson-package span{color:#9a5b00;border-color:#9a5b00
 }
 .chapter-0 h1{font-size:clamp(56px,6.2vw,96px)}
 @media(max-width:760px){.chapter-0 h1,html[lang="en"] .chapter-0 h1{font-size:40px;letter-spacing:-1.5px}}
+.request-extra{grid-column:2;margin:8px 0 0;font-size:12px;color:var(--soft)}
+@media(max-width:760px){.request-extra{grid-column:1}}
+/* 请3休13 answer is longer than the old one: wider, tighter card so the whale stays visible. */
+.chapter-6 .chapter-detail{max-width:820px;width:86%}
+.chapter-6 .request-result{max-width:820px;grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr);padding:14px 20px}
+.chapter-6 .request-reply{font-size:15px;line-height:1.5;margin-bottom:6px}
+.chapter-6 .request-list li{padding:3px 9px}
+.chapter-6 .request-extra{margin-top:6px}
+.chapter-6 .request-result small{margin-top:8px}
+@media(max-width:760px){.chapter-6 .chapter-detail{width:92%}.chapter-6 .request-result{grid-template-columns:1fr}.chapter-6 .request-reply{font-size:14px}}
 </style></head>
 <body>
 <a class="skip-link" href="#inspector">跳到文字说明</a>
@@ -742,7 +752,7 @@ html[data-theme="light"] .lesson-package span{color:#9a5b00;border-color:#9a5b00
  function draw(ctx,id,x,y,size,color){const info=resolve(id);ctx.save();ctx.translate(x-size/2,y-size/2);ctx.scale(size/24,size/24);ctx.strokeStyle=color;ctx.lineWidth=1.65;ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke(paths[info.glyph]);ctx.restore();}
  window.DSHIdentity={resolve,svg,draw,specs};
 })();
-</script><script src="build/experience.js?v=7e4c9c4dd58c"></script><script>/* Learning paths and preset comparison, original UI. No external dependencies. */
+</script><script src="build/experience.js?v=e5e7545f898d"></script><script>/* Learning paths and preset comparison, original UI. No external dependencies. */
 (() => {
  'use strict';
  const E=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
