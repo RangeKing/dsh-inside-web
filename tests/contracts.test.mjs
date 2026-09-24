@@ -167,3 +167,10 @@ test('the homepage request thread matches the 2026 holiday notice: take Sep 28-3
  assert.equal(off.size,13);const home=readFileSync('src/home.js','utf8');assert.ok(home.includes('请 9 月 28–30 日三天假')&&home.includes('共 13 天')&&home.includes('10 月 10 日（周六）调休上班'));
  assert.doesNotMatch(home,/替你发送|已发送|sent it for you/);
 });
+
+test('every pixel-company phase has its own recorded office scene',()=>{
+ const prov=json('assets/image-provenance.json'),phases=[...new Set(scenarios.find(s=>s.id==='pixel-company').steps.map(s=>s.companyPhase))];
+ assert.equal(phases.length,9);const company=readFileSync('src/company.js','utf8');
+ for(const phase of phases){const entry=prov.assets.find(a=>a.path===`assets/office/${phase}.webp`);assert.ok(entry,phase);
+   assert.equal(createHash('sha256').update(readFileSync(entry.path)).digest('hex'),entry.sha256);assert.ok(company.includes(`${phase}:[`),'alt text for '+phase);}
+});
