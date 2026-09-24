@@ -8,10 +8,15 @@ edges catch light; the hull's organic panels get one subdivision level and
 recomputed smooth normals. Object names, materials and transforms are kept,
 so the site's node mapping (asset_id__part) and shell panels still work.
 
-The hull's source texture is a fragmented atlas with baked per-island shading,
-which reads as facets. Hull faces are instead assigned to the existing
-MAT_HULL_DARK / MAT_IVORY materials by sampling that texture (with a majority
-filter over neighbouring faces), and the textures are dropped.
+The hull keeps its original geometry. Its source colour texture has baked
+lighting and speckle, and its normal / roughness maps add a glitter of tiny
+facets; together they read as spikes. The hull texture is therefore rebuilt in
+texture space (three classes: dark, ivory, cyan, taken as the texture's own
+median colours; speckle removed with a small blur-and-threshold, borders
+anti-aliased), the normal and metallic-roughness maps are dropped, and
+normals are smoothed only across faces less than 22 degrees apart so panel
+edges stay crisp. Face-level material zoning (tried on 2026-09-24) produced
+jagged dark/ivory borders and was removed.
 """
 import sys
 import math
@@ -55,10 +60,11 @@ def smooth_normals(obj, angle_deg: float) -> None:
 
 
 def refine_hard_surface(obj) -> None:
-    dims = max(obj.dimensions) or 1.0
+    dims = sorted(d for d in obj.dimensions if d > 1e-4) or [1.0]
     smooth_normals(obj, 30)
     bevel = obj.modifiers.new('refine_bevel', 'BEVEL')
-    bevel.width = min(max(dims * 0.035, 0.008), 0.09)
+    # Size from the thinnest side, so rails and plates do not grow slivers.
+    bevel.width = min(max(dims[-1] * 0.035, 0.006), 0.09, dims[0] * 0.18)
     bevel.segments = SEGMENTS
     bevel.limit_method = 'ANGLE'
     bevel.angle_limit = math.radians(40)
@@ -69,7 +75,7 @@ def refine_hard_surface(obj) -> None:
 
 
 def refine_organic(obj) -> None:
-    smooth_normals(obj, 60)
+    smooth_normals(obj, HULL_SMOOTH_ANGLE)
     if SUBDIVIDE_HULL is False:
         return
     sub = obj.modifiers.new('refine_subsurf', 'SUBSURF')
@@ -78,90 +84,67 @@ def refine_organic(obj) -> None:
     sub.use_limit_surface = False
 
 
-DARK = (0.032, 0.038, 0.05, 1.0)
-IVORY_THRESHOLD = 0.42
+HULL_SMOOTH_ANGLE = 22
 
 
-def base_image(mat):
-    if not mat or not mat.use_nodes:
-        return None
-    for node in mat.node_tree.nodes:
-        if node.type == 'TEX_IMAGE' and node.image and 'normal' not in node.image.name and 'metal' not in node.image.name:
-            return node.image
-    return None
+def clean_hull_texture(img):
+    """Rebuild the baked hull texture as flat dark / ivory / cyan zones in texture space."""
+    w, h = img.size
+    px = np.empty(w * h * 4, dtype=np.float32)
+    img.pixels.foreach_get(px)
+    px = px.reshape(h, w, 4)
+    rgb = px[..., :3]
+    lum = 0.2126 * rgb[..., 0] + 0.7152 * rgb[..., 1] + 0.0722 * rgb[..., 2]
+    cyan = (rgb[..., 2] - rgb[..., 0] > 0.35) & (rgb[..., 2] > 0.45)
+    ivory = (lum > 0.40) & ~cyan
+    dark = ~ivory & ~cyan & (lum > 0.01)
+    palette = [np.median(rgb[m], axis=0) for m in (dark, ivory, cyan)]
+
+    def blur(mask, passes):
+        a = mask.astype(np.float32)
+        for _ in range(passes):
+            a = (a + np.roll(a, 1, 0) + np.roll(a, -1, 0) + np.roll(a, 1, 1) + np.roll(a, -1, 1)) / 5
+        return a
+    ivory_w = np.clip((blur(ivory, 2) - 0.35) / 0.3, 0, 1)[..., None]
+    cyan_w = np.clip((blur(cyan, 1) - 0.3) / 0.3, 0, 1)[..., None]
+    col = palette[0] * (1 - ivory_w) + palette[1] * ivory_w
+    col = col * (1 - cyan_w) + palette[2] * cyan_w
+    out = np.concatenate([col, np.ones((h, w, 1))], axis=2).astype(np.float32)
+    path = bpy.app.tempdir + 'hull_basecolor_zones.png'
+    tmp = bpy.data.images.new('hull_basecolor_zones', w, h, alpha=False)
+    tmp.pixels.foreach_set(out.ravel())
+    tmp.filepath_raw = path
+    tmp.file_format = 'PNG'
+    tmp.save()
+    clean = bpy.data.images.load(path)
+    clean.name = 'hull_basecolor_zones'
+    print('HULL_PALETTE', [p.round(3).tolist() for p in palette])
+    return clean
 
 
-_pixels = {}
+def refine_hull_materials() -> None:
+    """Swap in the cleaned colour texture; drop normal and metallic-roughness maps."""
+    for mat in {m for o in bpy.data.objects if o.type == 'MESH' for m in o.data.materials if m and m.use_nodes}:
+        nodes = mat.node_tree.nodes
+        for node in [n for n in nodes if n.type == 'TEX_IMAGE' and n.image]:
+            name = node.image.name
+            if 'normal' in name or 'metal' in name:
+                nodes.remove(node)
+        for node in [n for n in nodes if n.type in ('NORMAL_MAP', 'SEPARATE_COLOR', 'SEPARATE_RGB')]:
+            nodes.remove(node)
+        for node in [n for n in nodes if n.type == 'TEX_IMAGE' and n.image]:
+            if node.image.name not in _cleaned:
+                _cleaned[node.image.name] = clean_hull_texture(node.image)
+            node.image = _cleaned[node.image.name]
 
 
-def luminance_sampler(img):
-    if img.name not in _pixels:
-        w, h = img.size
-        px = np.empty(w * h * 4, dtype=np.float32)
-        img.pixels.foreach_get(px)
-        px = px.reshape(h, w, 4)
-        _pixels[img.name] = (0.2126 * px[..., 0] + 0.7152 * px[..., 1] + 0.0722 * px[..., 2], w, h)
-    lum, w, h = _pixels[img.name]
-
-    def sample(u, v):
-        x = min(w - 1, max(0, int((u % 1.0) * w)))
-        y = min(h - 1, max(0, int((v % 1.0) * h)))
-        return float(lum[y, x])
-    return sample
-
-
-def zone_materials(obj, ivory) -> bool:
-    """Replace a baked texture with dark / ivory material zones per face."""
-    mesh = obj.data
-    img = base_image(mesh.materials[0]) if mesh.materials else None
-    if img is None or not mesh.uv_layers:
-        return False
-    sample = luminance_sampler(img)
-    uv = mesh.uv_layers.active.data
-    labels = []
-    for poly in mesh.polygons:
-        pts = [uv[i].uv for i in poly.loop_indices]
-        cu = sum(p.x for p in pts) / len(pts)
-        cv = sum(p.y for p in pts) / len(pts)
-        values = [sample(cu, cv)] + [sample(p.x * .6 + cu * .4, p.y * .6 + cv * .4) for p in pts]
-        labels.append(sorted(values)[len(values) // 2] > IVORY_THRESHOLD)
-    # Majority filter over edge-adjacent faces removes texture speckle.
-    edge_faces = {}
-    for poly in mesh.polygons:
-        for key in poly.edge_keys:
-            edge_faces.setdefault(key, []).append(poly.index)
-    neighbours = [set() for _ in mesh.polygons]
-    for faces in edge_faces.values():
-        for a in faces:
-            neighbours[a].update(f for f in faces if f != a)
-    for _ in range(3):
-        labels = [(sum(labels[n] for n in neighbours[i]) + labels[i] * 1.5) / (len(neighbours[i]) + 1.5) > .5 for i in range(len(labels))]
-    if ivory.name not in [m.name for m in mesh.materials if m]:
-        mesh.materials.append(ivory)
-    slot = [m.name for m in mesh.materials].index(ivory.name)
-    for poly, is_ivory in zip(mesh.polygons, labels):
-        poly.material_index = slot if is_ivory else 0
-    return True
-
-
-def strip_textures(mat, color) -> None:
-    bsdf = next(n for n in mat.node_tree.nodes if n.type == 'BSDF_PRINCIPLED')
-    for node in [n for n in mat.node_tree.nodes if n.type in ('TEX_IMAGE', 'NORMAL_MAP', 'SEPARATE_COLOR', 'SEPARATE_RGB')]:
-        mat.node_tree.nodes.remove(node)
-    bsdf.inputs['Base Color'].default_value = color
-    bsdf.inputs['Metallic'].default_value = 0.18
-    bsdf.inputs['Roughness'].default_value = 0.48
+_cleaned = {}
 
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.gltf(filepath=src)
 if asset_id == 'orca_hull':
-    ivory = bpy.data.materials['MAT_IVORY']
-    textured = {o.data.materials[0] for o in bpy.data.objects if o.type == 'MESH' and o.data.materials and base_image(o.data.materials[0])}
-    for obj in [o for o in bpy.data.objects if o.type == 'MESH']:
-        zone_materials(obj, ivory)
-    for mat in textured:
-        strip_textures(mat, DARK)
+    refine_hull_materials()
 for obj in [o for o in bpy.data.objects if o.type == 'MESH']:
     weld(obj)
     if 'emissive' in obj.name or 'lights' in obj.name or len(obj.data.polygons) < 4:
@@ -178,7 +161,7 @@ for obj in [o for o in bpy.data.objects if o.type == 'MESH']:
 bpy.ops.export_scene.gltf(
     filepath=dst, export_format='GLB', export_apply=True, export_yup=True,
     export_draco_mesh_compression_enable=True, export_draco_mesh_compression_level=6,
-    export_draco_position_quantization=14, export_draco_normal_quantization=10,
+    export_draco_position_quantization=14, export_draco_normal_quantization=10, export_image_format='AUTO',
     export_normals=True, export_texcoords=True, export_materials='EXPORT',
     export_extras=False, export_cameras=False, export_lights=False,
 )

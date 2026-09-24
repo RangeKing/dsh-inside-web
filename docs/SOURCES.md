@@ -26,7 +26,7 @@ The case-by-case audit and distinction between current package contracts and sta
 
 The 82 service rows are parsed from the pinned official catalog. Their visual grouping and physical locations are original teaching design. Task scripts, sample outputs, pixel-office roles, and playback timing are illustrative, not measurements or recordings of a live run.
 
-Models: copied from the local dsh-inside production assets. The hull and 12 homepage modules were then refined with `scripts/blender/refine_models.py` (2026-09-24): welded vertices, rebuilt smooth normals, angle-limited bevels on hard-surface parts, and the hull's baked texture atlas replaced by dark / ivory material zones sampled from it. `../assets/manifest.json` records each input hash, output hash, bevel segments and triangle count. Public redistribution rights remain unverified; refinement does not change that status.
+Models: copied from the local dsh-inside production assets. The hull and 12 homepage modules were then refined with `scripts/blender/refine_models.py` (2026-09-24): welded vertices, rebuilt smooth normals and angle-limited bevels on hard-surface parts. The hull keeps its original geometry; its colour texture was rebuilt in texture space as dark / ivory / cyan zones taken from the texture's own colours, and its normal and metallic-roughness maps were removed. `../assets/manifest.json` records each input hash, output hash, bevel segments and triangle count. Public redistribution rights remain unverified; refinement does not change that status.
 
 Pixel office: generated with the built-in imagegen tool for this project. `../assets/pixel-office.png` is illustration, not evidence of an official DSH interface. The website draws labels and state separately.
 
