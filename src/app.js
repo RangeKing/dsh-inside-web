@@ -195,7 +195,7 @@
     function renderSpecial(){
       const el=$('#special-visual');el.innerHTML='';el.classList.remove('company-mode');delete el.dataset.raw;if(state.focus||state.flat||state.mode!=='journey')return;
       const st=current();
-      if(currentScenario().company){window.DSHExperience.renderCompany(el,st);return;}
+      if(currentScenario().company){window.DSHExperience.renderCompany(el,st,{reduced:state.reduced});return;}
       delete el.dataset.raw;
       if(st.ribbon)el.innerHTML=`<div class="context-ribbon ${st.kind==='blocked'?'denied':''}"><span>${esc(st.ribbon)}</span></div>`;
       else if(st.kind==='delegate')el.innerHTML='<div class="context-ribbon"><b>PARENT</b><span>⇄</span><b>venue-01 / budget-01</b><i></i><span>独立子会话</span></div>';
