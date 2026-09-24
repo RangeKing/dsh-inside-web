@@ -542,6 +542,7 @@ html[data-theme="light"] .lesson-package span{color:#9a5b00;border-color:#9a5b00
 .chapter-6 .request-extra{margin-top:6px}
 .chapter-6 .request-result small{margin-top:8px}
 @media(max-width:760px){.chapter-6 .chapter-detail{width:92%}.chapter-6 .request-result{grid-template-columns:1fr}.chapter-6 .request-reply{font-size:14px}}
+@media(max-width:760px){:is(.chapter-1,.chapter-4,.chapter-6) .request-thread{margin-top:0}}
 </style></head>
 <body>
 <a class="skip-link" href="#inspector">跳到文字说明</a>
@@ -752,7 +753,7 @@ html[data-theme="light"] .lesson-package span{color:#9a5b00;border-color:#9a5b00
  function draw(ctx,id,x,y,size,color){const info=resolve(id);ctx.save();ctx.translate(x-size/2,y-size/2);ctx.scale(size/24,size/24);ctx.strokeStyle=color;ctx.lineWidth=1.65;ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke(paths[info.glyph]);ctx.restore();}
  window.DSHIdentity={resolve,svg,draw,specs};
 })();
-</script><script src="build/experience.js?v=e5e7545f898d"></script><script>/* Learning paths and preset comparison, original UI. No external dependencies. */
+</script><script src="build/experience.js?v=cd39c4e566dc"></script><script>/* Learning paths and preset comparison, original UI. No external dependencies. */
 (() => {
  'use strict';
  const E=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

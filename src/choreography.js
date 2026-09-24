@@ -8,7 +8,7 @@ const shots=[
  {camera:[0,16,29],screen:[0,-.01],yaw:0,open:1,m:1.95,lesson:true},
  {camera:[27,18,23],screen:[-.235,0],yaw:.32,open:1,m:1.55},
  {camera:[0,17,30],screen:[0,-.01],yaw:0,open:1,m:1.95,lesson:true},
- {camera:[26,32,33],screen:[0,0],yaw:-.08,open:1,m:1.55},
+ {camera:[26,32,33],screen:[0,0],yaw:-.08,open:1,m:1.55,my:.05},
  {camera:[32,21,34],screen:[.18,0],yaw:-.32,open:1,m:1.55},
  {camera:[38,13.8,26.5],screen:[0,-.02],yaw:-.1,open:0,m:1.95},
 ];

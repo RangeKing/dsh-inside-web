@@ -226,3 +226,4 @@ html[data-theme="light"] .lesson-package span{color:#9a5b00;border-color:#9a5b00
 .chapter-6 .request-extra{margin-top:6px}
 .chapter-6 .request-result small{margin-top:8px}
 @media(max-width:760px){.chapter-6 .chapter-detail{width:92%}.chapter-6 .request-result{grid-template-columns:1fr}.chapter-6 .request-reply{font-size:14px}}
+@media(max-width:760px){:is(.chapter-1,.chapter-4,.chapter-6) .request-thread{margin-top:0}}

@@ -32,8 +32,8 @@ export const PRESETS=[
  [['插件管理器工具','Plugin Manager tool'],0,['关闭','Off'],['关闭','Off'],['有 profile 时开启','On with a profile']],
 ];
 export const HIGHLIGHTS=[
- {chapter:2,title:['你说一句话','You ask once'],body:['模型自己决定读哪些文件、调哪个工具。','The model decides which files to read and which tool to call.']},
- {chapter:3,title:['动手前先过关','Checks before acting'],body:['写文件这类操作，可以设成先问你。','Writes can be set to ask you first.']},
- {chapter:4,title:['能力可以装卸','Plug in, pull out'],body:['插件装上、选用、停用、移除，各是一步。','Install, choose, disable and remove are separate steps.']},
- {chapter:5,title:['记得住，分得开','Remembers, delegates'],body:['会话记录留痕，大任务可以分给子 Agent。','The session log keeps the trail; big jobs can go to subagents.']},
+ {chapter:2,title:['你只管说一句','Just say it once'],body:['模型自己决定读哪些文件、调哪个工具。','The model decides which files to read and which tool to call.']},
+ {chapter:3,title:['动手前先敲门','Knocks before it acts'],body:['写文件这类操作，可以设成先问你。','Writes can be set to ask you first.']},
+ {chapter:4,title:['插件即插即拔','Plug in, pull out'],body:['插件装上、选用、停用、移除，各是一步。','Install, choose, disable and remove are separate steps.']},
+ {chapter:5,title:['记性好，还会叫帮手','Good memory, brings friends'],body:['会话记录留痕，大任务可以分给子 Agent。','The session log keeps the trail; big jobs can go to subagents.']},
 ];
