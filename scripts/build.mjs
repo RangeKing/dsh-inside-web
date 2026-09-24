@@ -13,7 +13,7 @@ for (const [marker, path] of Object.entries({CSS:'src/styles.css', CATALOG:'data
   let value = await read(path);
   if (path.endsWith('.json')) {
     let data=JSON.parse(value);
-    if(marker==='LOCALE') data={...data,...JSON.parse(await read('data/locale-v5.json'))};
+    if(marker==='LOCALE') data={...data,...JSON.parse(await read('data/locale-v5.json')),...JSON.parse(await read('data/locale-cases.json'))};
     value=JSON.stringify(data).replaceAll('<', '\\u003c');
   }
   else if (path.endsWith('.js')) value = value.replaceAll('</script', '<\\/script');

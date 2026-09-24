@@ -11,10 +11,10 @@ const catalog=json('data/catalog.json'),scenarios=json('data/scenarios.json'),as
 const ids=new Set(catalog.services.map(s=>s.id));
 const allSteps=scenarios.flatMap(s=>[s.steps,...Object.values(s.presetRoutes||{}),...Object.values(s.variants||{}).map(v=>v.steps)].flat());
 
-test('all 8 cases and alternate paths refer to current services and valid pinned source ranges',()=>{
-  assert.equal(scenarios.length,8);assert.equal(new Set(scenarios.map(s=>s.id)).size,8);
-  for(const scenario of scenarios)assert.equal(scenario.reviewedCommit,catalog.meta.commit);
-  for(const step of allSteps){for(const id of step.nodes)assert.ok(ids.has(id),id);const lines=readFileSync('docs/upstream/'+step.source,'utf8').split('\n');assert.ok(step.lines[0]>=1&&step.lines[1]<=lines.length);assert.ok(step.lines[0]<=step.lines[1]);}
+test('all 6 cases and alternate paths use audited rc.1 sources independently of the atlas',()=>{
+  assert.equal(scenarios.length,6);assert.equal(new Set(scenarios.map(s=>s.id)).size,6);
+  for(const scenario of scenarios)assert.equal(scenario.reviewedCommit,'46a7f68b0922371ce7144b668b90e377d8e799f4');
+  for(const step of allSteps){for(const id of step.nodes)assert.ok(ids.has(id),id);const lines=readFileSync('docs/upstream-0.1.7-rc.1/'+step.source,'utf8').split('\n');assert.ok(step.lines[0]>=1&&step.lines[1]<=lines.length);assert.ok(step.lines[0]<=step.lines[1]);for(const ref of step.supportingSources||[]){const refLines=readFileSync('docs/upstream-0.1.7-rc.1/'+ref.source,'utf8').split('\n');assert.ok(ref.lines[0]>=1&&ref.lines[1]>=ref.lines[0]&&ref.lines[1]<=refLines.length);}}
 });
 test('service catalog matches every row of the current upstream table',()=>{
   const lines=readFileSync('docs/upstream/docs/capability-seams.md','utf8').split('\n');
@@ -34,10 +34,6 @@ test('each copied model has the recorded hash, a valid GLB scene and semantic no
 });
 test('timer handles pause, resume, repeated starts, long gaps and reset without drift',()=>{
   const timer=new Timer(10000);timer.start(100);timer.start(500);assert.equal(timer.read(1100),9000);timer.pause(1600);assert.equal(timer.read(99999),8500);timer.start(100000);assert.equal(timer.read(101000),7500);timer.pause(101000);timer.reset();assert.equal(timer.read(999999),10000);assert.equal(timer.deadline,null);timer.start(1000000);assert.equal(timer.read(1020000),0);assert.equal(timer.deadline,null);
-});
-test('registration fixtures independently reproduce the displayed duplicate counts',()=>{
-  const rows=scenarios.find(s=>s.id==='registration').files.filter(f=>f.path.endsWith('.csv')).flatMap(f=>f.content.trim().split('\n').slice(1).map(l=>l.split(',')[0]));
-  assert.equal(rows.length,12);assert.equal(new Set(rows).size,9);const duplicates=[...new Set(rows.filter((id,i)=>rows.indexOf(id)!==i))].sort();assert.deepEqual(duplicates,['S02','S03','S07']);
 });
 test('built inline scripts parse, use local resources, and expose no forbidden public naming',()=>{
   const html=readFileSync('index.html','utf8');for(const m of html.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(m[1]);
@@ -158,19 +154,84 @@ test('material refinement swaps named finishes to physical materials and keeps b
  assert.deepEqual(root.userData.materials,[a,other]);
 });
 
-test('the homepage request thread matches the 2026 holiday notice: take Sep 28-30 off for 13 days',()=>{
- const notice=readFileSync('docs/external/gov-2026-holidays.html','utf8');
- assert.ok(notice.includes('9月25日（周五）至27日（周日）放假，共3天'));assert.ok(notice.includes('10月1日（周四）至7日（周三）放假调休，共7天。9月20日（周日）、10月10日（周六）上班'));
- const day=d=>new Date(Date.UTC(2026,d[0]-1,d[1])),off=new Set();
- for(let t=day([9,25]);t<=day([10,7]);t=new Date(+t+864e5))off.add(t.toISOString().slice(0,10));
- const leave=['2026-09-28','2026-09-29','2026-09-30'];for(const d of leave)assert.ok([1,2,3].includes(new Date(d).getUTCDay()),'leave days are Mon-Wed');
- assert.equal(off.size,13);const home=readFileSync('src/home.js','utf8');assert.ok(home.includes('请 9 月 28–30 日三天假')&&home.includes('共 13 天')&&home.includes('10 月 10 日（周六）调休上班'));
- assert.doesNotMatch(home,/替你发送|已发送|sent it for you/);
-});
-
 test('every pixel-company phase has its own recorded office scene',()=>{
  const prov=json('assets/image-provenance.json'),phases=[...new Set(scenarios.find(s=>s.id==='pixel-company').steps.map(s=>s.companyPhase))];
  assert.equal(phases.length,9);const company=readFileSync('src/company.js','utf8');
  for(const phase of phases){const entry=prov.assets.find(a=>a.path===`assets/office/${phase}.webp`);assert.ok(entry,phase);
    assert.equal(createHash('sha256').update(readFileSync(entry.path)).digest('hex'),entry.sha256);assert.ok(company.includes(`${phase}:[`),'alt text for '+phase);}
+});
+
+test('branches preserve the shared prefix, stop at a decision and cannot report unverified paths as complete',async()=>{
+ const {pathFor,branchPosition,stopsAtDecision,resolveCaseId}=await import('../src/case-paths.js');
+ for(const s of scenarios){
+  assert.equal(Object.keys(s.variants).length,2);assert.deepEqual(pathFor(s,'unknown').steps,s.steps);
+  assert.ok(stopsAtDecision(s,s.decision.index,false));assert.ok(!stopsAtDecision(s,s.decision.index,true));
+  for(const [id,v] of Object.entries(s.variants)){
+   assert.deepEqual(v.steps.slice(0,s.decision.index+1),s.steps.slice(0,s.decision.index+1));
+   assert.equal(branchPosition(s,id,999),v.steps.length-1);assert.equal(branchPosition(s,id,-1),0);
+   assert.ok(v.files.length);assert.equal(v.steps.at(-1).outcome==='verified',v.success);
+  }
+ }
+ assert.equal(resolveCaseId('dinner'),'repair-site');assert.equal(resolveCaseId('make-tool'),'pixel-company');
+});
+
+test('every new case string is bilingual, including both outcomes, prerequisites and decisions',()=>{
+ const messages={...json('data/locale.json'),...json('data/locale-v5.json'),...json('data/locale-cases.json')};
+ const check=x=>{if(typeof x==='string'&&/[\u3400-\u9fff]/.test(x))assert.ok(messages[x],x);};
+ for(const s of scenarios){
+  for(const key of ['name','label','story','task','prompt','environment','difficulty','learn','output','programSketch'])check(s[key]);
+  s.features.forEach(check);check(s.decision.question);
+  for(const v of Object.values(s.variants)){check(v.name);for(const step of v.steps){for(const key of ['title','description','insight'])check(step[key]);Object.values(step.runtime).forEach(check);}
+   for(const f of v.files)assert.ok(f.contentEn,f.path);
+  }
+  for(const f of s.files)assert.ok(f.contentEn,f.path);
+ }
+});
+
+test('data pipeline accounts for every source row without silently resolving conflicts',()=>{
+ const s=scenarios.find(s=>s.id==='data-pipeline');
+ const rows=s.files.filter(f=>f.path.endsWith('.csv')).flatMap(f=>f.content.trim().split('\n').slice(1).map((line,i)=>{const [id,value]=line.split(',');return {file:f.path,row:i+2,id,value};}));
+ const grouped=Map.groupBy(rows,r=>r.id),valid=[],exceptions=[];let repeats=0;
+ for(const [id,rs] of grouped){
+  if(rs.some(r=>!/^\d+$/.test(r.value))){exceptions.push(...rs.map(r=>({...r,reason:'invalid_amount'})));continue;}
+  if(new Set(rs.map(r=>r.value)).size>1){exceptions.push(...rs.map(r=>({...r,reason:'conflict'})));continue;}
+  valid.push({id,amount:Number(rs[0].value)});repeats+=rs.length-1;
+ }
+ assert.equal(rows.length,9);assert.equal(valid.length,5);assert.equal(repeats,1);assert.equal(exceptions.length,3);
+ assert.equal(valid.reduce((a,r)=>a+r.amount,0),220);
+ assert.equal(rows.length,valid.length+repeats+exceptions.length);
+ const outputs=s.variants.quarantine.files;
+ assert.equal(outputs.find(f=>f.path==='clean.csv').content,'id,amount\n'+valid.map(r=>`${r.id},${r.amount}`).join('\n')+'\n');
+ const recorded=outputs.find(f=>f.path==='exceptions.csv').content.trim().split('\n').slice(1).sort();
+ assert.deepEqual(recorded,exceptions.map(r=>`${r.file},${r.row},${r.id},${r.value},${r.reason}`).sort());
+});
+
+test('archive manifests preserve each original path and hash, including identical-content files',()=>{
+ const s=scenarios.find(s=>s.id==='archive-files'),files=s.files.filter(f=>f.path.startsWith('inbox/'));
+ const manifest=s.files.find(f=>f.path==='inventory.csv').content.trim().split('\n').slice(1);
+ assert.equal(manifest.length,files.length);
+ for(const line of manifest){const [path,bytes,hash]=line.split(','),file=files.find(f=>f.path===path);assert.ok(file);assert.equal(Buffer.byteLength(file.content),Number(bytes));assert.equal(createHash('sha256').update(file.content).digest('hex'),hash);}
+ const plan=JSON.parse(s.files.find(f=>f.path==='archive-plan.json').content);
+ assert.equal(plan.delete.length,0);assert.deepEqual(plan.moves.map(m=>m[0]).sort(),files.map(f=>f.path).sort());assert.equal(new Set(plan.moves.map(m=>m[1])).size,files.length);
+});
+
+test('concurrent edit retains the external change and incident citations match the source fixtures',()=>{
+ const s=scenarios.find(s=>s.id==='shared-project');const before=JSON.parse(s.files[0].content),external=JSON.parse(s.files[1].content),after=JSON.parse(s.variants.reread.files[0].content);
+ assert.equal(before.retries,2);assert.equal(external.retries,4);assert.equal(after.retries,external.retries);assert.equal(after.timeoutMs,8000);
+ const incident=scenarios.find(s=>s.id==='incident-report'),lines=incident.files.find(f=>f.path==='timeline.log').content.trim().split('\n');
+ assert.match(lines[0],/\[prod\].*C17.*8000 -> 500/);assert.match(lines[1],/R42.*1200.*timeout/);assert.match(lines[2],/C18.*500 -> 8000/);assert.match(lines[3],/R43.*1100.*ok/);
+ assert.match(incident.variants.sources.files[0].content,/最可能|尚需/);assert.match(incident.variants.summary.files[0].content,/未确定/);
+});
+
+test('repair fixture reproduces ENOENT before the fix and serves the expected page after the fix',async()=>{
+ const {mkdtempSync,mkdirSync,writeFileSync,rmSync}=await import('node:fs');const {tmpdir}=await import('node:os');const {join}=await import('node:path');const {spawn,spawnSync}=await import('node:child_process');const {once}=await import('node:events');
+ const s=scenarios.find(s=>s.id==='repair-site'),dir=mkdtempSync(join(tmpdir(),'dsh-repair-fixture-'));let child;
+ try{
+  mkdirSync(join(dir,'public'));for(const f of s.files.filter(f=>/server.mjs|public\/index.html/.test(f.path)))writeFileSync(join(dir,f.path),f.content);
+  const before=spawnSync(process.execPath,['server.mjs'],{cwd:dir,encoding:'utf8',timeout:5000});assert.notEqual(before.status,0);assert.match(before.stderr,/ENOENT/);
+  writeFileSync(join(dir,'server.mjs'),s.variants.verify.files.find(f=>f.path==='server.mjs').content);
+  child=spawn(process.execPath,['server.mjs'],{cwd:dir,env:{...process.env,PORT:'0'},stdio:['ignore','pipe','pipe']});
+  const port=await new Promise((resolve,reject)=>{const timeout=setTimeout(()=>reject(new Error('fixture startup timed out')),5000);child.stdout.once('data',chunk=>{clearTimeout(timeout);resolve(Number(String(chunk).trim()));});child.once('error',e=>{clearTimeout(timeout);reject(e);});child.once('exit',code=>{clearTimeout(timeout);reject(new Error('fixture exited '+code));});});
+  const response=await fetch(`http://127.0.0.1:${port}/`);assert.equal(response.status,200);assert.match(await response.text(),/<title>Big Whale<\/title>/);
+ }finally{if(child&&child.exitCode===null){const exited=once(child,'exit');child.kill();await exited;}rmSync(dir,{recursive:true,force:true});}
 });

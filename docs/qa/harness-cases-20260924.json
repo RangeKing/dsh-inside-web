@@ -1,0 +1,171 @@
+{
+  "date": "2026-09-24",
+  "scope": "Six execution cases and homepage repair narrative",
+  "kind": "local teaching-site validation; not a real DSH run",
+  "build": "passed",
+  "nodeTests": {
+    "passed": 23,
+    "failed": 0
+  },
+  "diffCheck": "passed",
+  "upstream": {
+    "startHead": "46a7f68b0922371ce7144b668b90e377d8e799f4",
+    "deliveryHead": "46a7f68b0922371ce7144b668b90e377d8e799f4",
+    "tag": "dsh-v0.1.7-rc.1",
+    "snapshotHashesChecked": 31,
+    "hashMismatches": 0,
+    "atlasRetainedCommit": "ddefc45fbc7f8e46dd73185e68295696d1297887"
+  },
+  "browser": {
+    "host": "Codex in-app Chromium browser through CUA",
+    "desktop": "default viewport, English dark theme; Chinese repair UI and homepage",
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "coverage": "all cases and both branches in Chinese light theme; English data case; Chinese dark homepage"
+    },
+    "horizontalOverflow": false,
+    "consoleErrorsInInspectedLogs": [],
+    "cases": [
+      {
+        "id": "repair-site",
+        "branches": [
+          {
+            "id": "verify",
+            "expectedComplete": true,
+            "desktopChecked": true,
+            "mobileChecked": true
+          },
+          {
+            "id": "skip",
+            "expectedComplete": false,
+            "desktopChecked": true,
+            "mobileChecked": true
+          }
+        ],
+        "graphicsOffReadable": true
+      },
+      {
+        "id": "archive-files",
+        "branches": [
+          {
+            "id": "approve",
+            "expectedComplete": true,
+            "desktopChecked": true,
+            "mobileChecked": true
+          },
+          {
+            "id": "refuse",
+            "expectedComplete": false,
+            "desktopChecked": true,
+            "mobileChecked": true
+          }
+        ],
+        "graphicsOffReadable": true
+      },
+      {
+        "id": "shared-project",
+        "branches": [
+          {
+            "id": "reread",
+            "expectedComplete": true,
+            "desktopChecked": true,
+            "mobileChecked": true
+          },
+          {
+            "id": "retry",
+            "expectedComplete": false,
+            "desktopChecked": true,
+            "mobileChecked": true
+          }
+        ],
+        "graphicsOffReadable": true
+      },
+      {
+        "id": "data-pipeline",
+        "branches": [
+          {
+            "id": "quarantine",
+            "expectedComplete": true,
+            "desktopChecked": true,
+            "mobileChecked": true
+          },
+          {
+            "id": "guess",
+            "expectedComplete": false,
+            "desktopChecked": true,
+            "mobileChecked": true
+          }
+        ],
+        "graphicsOffReadable": true
+      },
+      {
+        "id": "incident-report",
+        "branches": [
+          {
+            "id": "sources",
+            "expectedComplete": true,
+            "desktopChecked": true,
+            "mobileChecked": true
+          },
+          {
+            "id": "summary",
+            "expectedComplete": false,
+            "desktopChecked": true,
+            "mobileChecked": true
+          }
+        ],
+        "graphicsOffReadable": true
+      },
+      {
+        "id": "pixel-company",
+        "branches": [
+          {
+            "id": "activate",
+            "expectedComplete": true,
+            "desktopChecked": true,
+            "mobileChecked": true
+          },
+          {
+            "id": "skip",
+            "expectedComplete": false,
+            "desktopChecked": true,
+            "mobileChecked": true
+          }
+        ],
+        "graphicsOffReadable": true
+      }
+    ],
+    "interactions": [
+      "decision autoplay pause and resume",
+      "Enter selects a branch",
+      "ArrowLeft changes step",
+      "branch deep-link reload",
+      "legacy dinner route resolves to repair case",
+      "current-step rc.1 source link distinct from old atlas link",
+      "result files modal",
+      "mobile flat view",
+      "less-motion control",
+      "all four preset descriptions in English",
+      "office restart-required overlay and locked sample",
+      "delivered timer start/pause/reset UI",
+      "homepage final lesson seek and reverse chapter jump"
+    ]
+  },
+  "independentFixtures": [
+    "broken repair script reproduces ENOENT; fixed script serves HTTP 200 and expected title",
+    "CSV reconciliation: 9 source rows = 5 valid + 1 duplicate + 3 exceptions; valid total 220",
+    "archive file bytes match recorded SHA-256 and distinct paths",
+    "concurrent edit preserves retries=4 while timeoutMs becomes 8000",
+    "incident chronology matches cited lines; uncertainty retained"
+  ],
+  "limitations": [
+    "No model calls or real DSH execution",
+    "No actual office plugin installation or runtime validation",
+    "No remote push or deployment",
+    "Responsive emulation, not a physical phone or cross-browser matrix",
+    "Reduced motion checked via page controls and unit contracts, not an OS preference toggle",
+    "Service atlas retained its separately labeled earlier baseline"
+  ],
+  "backup": "archive/pre-harness-cases-20260924.tar.gz"
+}

@@ -14,15 +14,14 @@
     "strengths": "用少量工具完成读取、编辑与命令计算。",
     "limits": "没有压缩、技能与子任务工具。编辑器使用局部 fs-local；不要把“极简”理解为最严格的文件隔离。",
     "delta": "完整固定提示词；不注入运行时上下文。",
-    "source": "packages/preset/agent-presets/presets/minimal/agent.cordis.yml",
-    "snippet": "text: You are a helpful software engineer assistant.\ncomplete: true\nincludeRuntimeContext: false\n# persistent shell + str_replace_editor\n# Context compaction is absent.",
+    "source": "packages/bundle/web-app/presets/minimal.patch.yml",
+    "snippet": "# Agent preset minimal: one `@deepseek-ai/dsh-agent-preset` declaration inserted\n# after the web patch. Edits saved from the Web editor override this row's\n# `config.plugins` by id from the profile patch.\n- insert:\n    - id: preset-minimal\n      name: '@deepseek-ai/dsh-agent-preset'\n      config:\n        id: minimal\n        order: 3\n        plugins:\n          - id: persona\n            name: '@deepseek-ai/dsh-persona'\n            config:\n              prefix: You are a helpful software engineer assistant.\n              complete: true\n              includeRuntimeContext: false\n          - id: persistent-shell\n            name: cordis:group\n            group: true\n            isolate:\n              terminals: true\n            config:",
     "nodes": [
       "systemPrompt",
       "tools",
       "terminals",
       "fs"
     ],
-    "route": "查看小票 → shell 计算 → 转账建议",
     "cells": [
       "2 个工具入口",
       "完整固定",
@@ -32,7 +31,8 @@
       "未挂载",
       "未挂载"
     ],
-    "reviewedCommit": "ddefc45fbc7f8e46dd73185e68295696d1297887"
+    "reviewedCommit": "46a7f68b0922371ce7144b668b90e377d8e799f4",
+    "reviewedAt": "2026-09-24"
   },
   {
     "id": "standard",
@@ -52,8 +52,8 @@
     "strengths": "适合多步骤任务：文件、搜索、计划、委派、上下文整理。",
     "limits": "能力由预设与宿主共同提供。列出工具不表示已获执行许可。",
     "delta": "可组合提示词；多项能力按需使用。",
-    "source": "packages/preset/agent-presets/presets/standard/agent.cordis.yml",
-    "snippet": "- name: '@deepseek-ai/dsh-tool-fs'\n- name: '@deepseek-ai/dsh-tool-bash'\n# ... compaction, skills, delegation ...",
+    "source": "packages/bundle/web-app/presets/standard.patch.yml",
+    "snippet": "# Agent preset standard: one `@deepseek-ai/dsh-agent-preset` declaration inserted\n# after the web patch. Edits saved from the Web editor override this row's\n# `config.plugins` by id from the profile patch.\n- insert:\n    - id: preset-standard\n      name: '@deepseek-ai/dsh-agent-preset'\n      config:\n        id: standard\n        order: 1\n        plugins:\n          - id: persona\n            name: '@deepseek-ai/dsh-persona'\n            config:\n              suffix: Your working directory is {{cwd}}.\n              prefix: You are a coding agent powered by the {{model}} model.\n          - id: agent-instructions\n            name: '@deepseek-ai/dsh-agent-instructions'\n            config:\n              maxBytes: 65536\n          - id: tool-bash\n            name: '@deepseek-ai/dsh-tool-bash'\n            disabled: !!js process.platform === 'win32'",
     "nodes": [
       "systemPrompt",
       "tools",
@@ -63,7 +63,6 @@
       "compaction",
       "skills"
     ],
-    "route": "read 三张小票 → shell 计算 → 转账建议",
     "cells": [
       "多个原生工具",
       "按插件组合",
@@ -73,7 +72,8 @@
       "已挂载",
       "未挂载"
     ],
-    "reviewedCommit": "ddefc45fbc7f8e46dd73185e68295696d1297887"
+    "reviewedCommit": "46a7f68b0922371ce7144b668b90e377d8e799f4",
+    "reviewedAt": "2026-09-24"
   },
   {
     "id": "ptc",
@@ -89,8 +89,8 @@
     "strengths": "在程序内组合、循环、过滤或汇总，只返回需要的结果。",
     "limits": "内部工具仍受执行管线约束。workflow 工具在该预设中禁用；工作流引擎仍可供 ralph 使用。",
     "delta": "主要继承 Standard 的能力；改变的是模型可见的工具呈现。",
-    "source": "packages/preset/agent-presets/presets/ptc/agent.cordis.yml",
-    "snippet": "# PTC：tools 管理 run_code 呈现，ptcRuntime 运行程序。\n# 内部子调用仍通过工具执行管线。",
+    "source": "packages/bundle/web-app/presets/ptc.patch.yml",
+    "snippet": "# Agent preset ptc: one `@deepseek-ai/dsh-agent-preset` declaration inserted\n# after the web patch. Edits saved from the Web editor override this row's\n# `config.plugins` by id from the profile patch.\n- insert:\n    - id: preset-ptc\n      name: '@deepseek-ai/dsh-agent-preset'\n      config:\n        id: ptc\n        order: 2\n        plugins:\n          - id: persona\n            name: '@deepseek-ai/dsh-persona'\n            config:\n              suffix: Your working directory is {{cwd}}.\n              prefix: You are a coding agent powered by the {{model}} model.\n          - id: agent-instructions\n            name: '@deepseek-ai/dsh-agent-instructions'\n            config:\n              maxBytes: 65536\n          - id: tool-bash\n            name: '@deepseek-ai/dsh-tool-bash'\n            disabled: !!js process.platform === 'win32'",
     "nodes": [
       "tools",
       "ptcRuntime",
@@ -98,7 +98,6 @@
       "compaction",
       "subagents"
     ],
-    "route": "run_code → SDK 读表 → 程序内计算 → 精简结果",
     "cells": [
       "仅 run_code",
       "可组合 + 工具 SDK",
@@ -108,7 +107,8 @@
       "工具禁用，保留引擎",
       "未挂载"
     ],
-    "reviewedCommit": "ddefc45fbc7f8e46dd73185e68295696d1297887"
+    "reviewedCommit": "46a7f68b0922371ce7144b668b90e377d8e799f4",
+    "reviewedAt": "2026-09-24"
   },
   {
     "id": "cordis",
@@ -127,8 +127,8 @@
     "strengths": "制作或安装可复用的工具与界面，例如像素办公室。",
     "limits": "变更属于当前 Profile；保存、Host 生效和浏览器同步分别检查。",
     "delta": "Creator 增加只读检查与插件管理；安装能力不等于所有操作都已授权。",
-    "source": "packages/preset/agent-presets/presets/cordis/agent.cordis.yml",
-    "snippet": "- id: tool-cordis\n  name: '@deepseek-ai/dsh-tool-cordis'\n- id: tool-plugin-manager\n  name: '@deepseek-ai/dsh-plugin-manager/tools'",
+    "source": "packages/bundle/web-app/presets/cordis.patch.yml",
+    "snippet": "# Agent preset cordis: one `@deepseek-ai/dsh-agent-preset` declaration inserted\n# after the web patch. Edits saved from the Web editor override this row's\n# `config.plugins` by id from the profile patch.\n- insert:\n    - id: preset-cordis\n      name: '@deepseek-ai/dsh-agent-preset'\n      config:\n        id: cordis\n        order: 4\n        plugins:\n          # Same persona as `standard`: tool descriptions and the skill catalog carry\n          # the operating detail, and the skills own the preset-authoring rules.\n          - id: persona\n            name: '@deepseek-ai/dsh-persona'\n            config:\n              suffix: Your working directory is {{cwd}}.\n              prefix: >-\n                You are a coding agent powered by the {{model}} model.\n          - id: agent-instructions\n            name: '@deepseek-ai/dsh-agent-instructions'\n            config:\n              maxBytes: 65536",
     "nodes": [
       "tools",
       "cordisInspect",
@@ -137,7 +137,6 @@
       "skills",
       "compaction"
     ],
-    "route": "读取小票 → 用现有工具计算 → 汇报；需要复用时再安装插件",
     "cells": [
       "原生工具 + 检查 + 插件管理",
       "加入插件开发指导",
@@ -147,6 +146,7 @@
       "已挂载",
       "只读检查与持久插件管理"
     ],
-    "reviewedCommit": "ddefc45fbc7f8e46dd73185e68295696d1297887"
+    "reviewedCommit": "46a7f68b0922371ce7144b668b90e377d8e799f4",
+    "reviewedAt": "2026-09-24"
   }
 ]

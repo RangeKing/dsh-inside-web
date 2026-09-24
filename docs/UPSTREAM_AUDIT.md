@@ -1,5 +1,7 @@
 # DSH 版本与案例核验
 
+当前六案例基线为 0.1.7-rc.1 / 46a7f68（2026-09-24），见本文最后的“六个执行案例重构”记录。下文早期八案例的结论为历史核验，不是当前六例的版本声明。接口图鉴仍保留 ddefc45 基线。
+
 核验日期：2026-09-18。基线：`dsh-v0.1.6-alpha.2`，提交 `ddefc45fbc7f8e46dd73185e68295696d1297887`（提交时间 2026-09-17T13:19:19Z）。首次核对时 GitHub HEAD 与此标签一致；交付前再次检查见 QA 记录。
 
 旧网站：`0.1.3-alpha.1 / d347e703908d0406b7a7ef80e3a0e594d86b2215`。本次从保留的 v4 单文件恢复生成源，再迁移内容。
@@ -75,3 +77,24 @@
 | auto-review/package.json | 版本号 0.1.7-alpha.2 → 0.1.7-rc.1；README 未变。 |
 
 发布说明中与首页相关的条目（插件管理页支持安装、配置、启停和运行时卸载；实验性 Auto review；可选插件启动失败不影响其余插件）与上述源码一致，没有推翻现有表述。八个案例与服务表仍锁定 `ddefc45`，本次未迁移。
+
+
+## 2026-09-24 六个执行案例重构
+
+开工 `git ls-remote` 得到 HEAD 与 `dsh-v0.1.7-rc.1` 均为 `46a7f68b0922371ce7144b668b90e377d8e799f4`。按下表重新核对所用主张后，为六案例和步骤写入此提交；没有改写接口图鉴的旧基线。三个新增参考包的快照已获取并记入 rc.1 registry。
+
+| 范围 | rc.1 原文依据 | 本轮采用与边界 |
+|---|---|---|
+| 修复网站 / 首页 | architecture.md:86；tool-bash/README.md:12,55；tool-fs/README.md:40–51 | 模型请求、工具结果、下一步循环；非零 Shell 退出由 Agent 判断；edit 后另做验证。修复与测试输出是原创样本。 |
+| 文件归档 | tool-execution-pipeline.md:6–15,40–57；tool-bash/README.md:55 | 配置审批时在工具本体前阻止；拒绝仍有结果。移动脚本的“不覆盖/不删除”和哈希清单是本例方案，非 DSH 通用自动保证。 |
+| 共享项目 | tool-fs/README.md:70–74；fs-observation-policy/README.md:12 | 启用观察策略，旧版本被 FS_STALE_VERSION 拒绝，重读再修改。仅针对文件工具，不推广到 Shell。 |
+| 脏表格 | core/tools/README.md:64,125–133；tool-execution-pipeline.md:63 | run_code 使用生成 SDK；内部调用仍经过工具管线；部分效果不能盲目重放整个程序。归一化、去重、异常隔离与核对属于教学任务规则。 |
+| 调查故障 | subsystems/subagent.md:5–9,39；compaction-basic/README.md:90,113；tool-fs/README.md:40–51 | 委派是可选能力，由配置提供方支撑；父任务整合并核查。裁剪足够可免摘要；本例有损摘要是编排，不根据短样本推算真实压力。 |
+| 公司接口与制作 | tool-cordis/README.md:16,38,57 | 只读 inspect_list/query，Client 查询依赖连接页面；无退休的临时定义工具。办公室包、界面和任务板为教学设计。 |
+| 公司安装与生效 | plugin-manager/README.md:14,31,40–42,61–67,92–94,115 | 管理器操作要求逐次审批或 Full access；本地包先查兼容；HMR 关闭时需重启；enabled 不等于加载成功；保存、运行时与 Client 分开确认。 |
+| 公司返工和关闭 | tool-bash/README.md:55；plugin-manager/README.md:40,92 | 失败测试推动返工，三个按钮分别验收；停用留依赖，移除另作处理，Profile 级影响明确。未真实安装或卸载插件。 |
+| 四预设 | web-app/presets/{minimal,standard,ptc,cordis}.patch.yml | 重核工具、压缩、委派、workflow 和 plugin-manager 行；来源迁到实际 web-app 路径，去掉分账路线。 |
+
+阅读差异：生成的 tool-execution-pipeline 文档仍称 PTC 子调用 serialized；当前 core/tools 包文档说明 per-run pool 与可配置并发上限。本案例明确顺序读取，不据旧生成用语声称 PTC 永远串行或一定并行。
+
+接口图鉴、旧原始日志格式与当前所有上游行为的全面迁移不在本轮内。相关服务面板保留旧目录提交，步骤“源码”页单独使用 rc.1；来源窗口明确区分二者。真实 DSH 执行、真实模型效果、办公室插件安装与公开上线均未进行。

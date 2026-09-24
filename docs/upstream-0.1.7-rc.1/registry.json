@@ -198,6 +198,27 @@
    "sha256": "0233d9615cde02a8f86c19afd4ea6c4bd88789b733c18f8266aa04b5f81cace3",
    "lines": 73,
    "changedSince0010283": false
+  },
+  {
+   "path": "packages/shell/tool-bash/README.md",
+   "status": "fetched",
+   "sha256": "fad27ab7270bbcb67755794cb0f2e14ebf38d077a5e046ee4bd633c447a0bb26",
+   "lines": 226,
+   "checkedAt": "2026-09-24"
+  },
+  {
+   "path": "packages/core/tools/README.md",
+   "status": "fetched",
+   "sha256": "80924cd89152eb33749ed01c96a20f4f6a9d555d75638d45c7d1339ab59efa10",
+   "lines": 247,
+   "checkedAt": "2026-09-24"
+  },
+  {
+   "path": "packages/fs/fs-observation-policy/README.md",
+   "status": "fetched",
+   "sha256": "7b01f52f4825c4c3f84079b2e64dc7575edfff1f5aee4b80df767b0f6b5bd32f",
+   "lines": 141,
+   "checkedAt": "2026-09-24"
   }
  ]
 }

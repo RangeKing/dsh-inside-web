@@ -6,15 +6,15 @@
     const catalog = JSON.parse($('#catalog-data').textContent), scenarios = JSON.parse($('#scenario-data').textContent);
     const services = catalog.services, byid = Object.fromEntries(services.map(s => [s.id, s]));
     const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-    const sourceUrl = (path, lines) => `https://github.com/${catalog.meta.repository}/blob/${catalog.meta.commit}/${path}${lines ? `#L${lines[0]}-L${lines[1]}` : ''}`;
+    const sourceUrl = (path, lines, commit=catalog.meta.commit) => `https://github.com/${catalog.meta.repository}/blob/${commit}/${path}${lines ? `#L${lines[0]}-L${lines[1]}` : ''}`;
     const docUrl = s => sourceUrl('docs/capability-seams.md', [s.sourceLine, s.sourceLine]);
     const link = (url, label, cls = '') => `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer" class="${cls}">${label}</a>`;
-    const state = { mode: 'home', scenario: 'meet-dsh', preset:'standard', caseFilter:'all', summaryVariant:'lost', index: 0, selected: 'sessionController', focus: false, flat: false, tab: 'plain', playing: false, speed: 1, filter: 'all', query: '', providers: {}, trace: null, reduced: matchMedia('(prefers-reduced-motion: reduce)').matches };
+    const state = { mode: 'home', scenario: 'repair-site', preset:'standard', caseFilter:'all', summaryVariant:'verify', decisionAcknowledged:false, index: 0, selected: 'sessionController', focus: false, flat: false, tab: 'plain', playing: false, speed: 1, filter: 'all', query: '', providers: {}, trace: null, reduced: matchMedia('(prefers-reduced-motion: reduce)').matches };
     let renderError = null, playTimer = null, toastTimer = null, renderer = null, lastFocus = null;
     const roleNames = { seam: '可替换能力接口', core: '核心服务', bundle: '组合点' };
-    const typeNames = { input: '任务入口', runtime: '执行调度', log: '会话记录', context: '上下文准备', model: '模型交互', guard: '执行边界', tool: '工具执行', parallel: '并行与顺序', blocked: '拒绝分支', delegate: '子任务', record: '日志原文' };
+    const typeNames = { input: '任务入口', runtime: '执行调度', log: '会话记录', context: '上下文准备', model: '模型交互', guard: '执行边界', tool: '工具执行', parallel: '并行与顺序', blocked: '未完成 / 分岔反馈', delegate: '子任务', record: '日志原文' };
     function currentScenario() { return scenarios.find(s => s.id === state.scenario) || scenarios[0]; }
-    function steps() { if(state.mode==='trace')return state.trace?.steps||[]; const sc=currentScenario();return sc.presetRoutes?.[state.preset]||sc.variants?.[state.summaryVariant]?.steps||sc.steps; }
+    function steps() { if(state.mode==='trace')return state.trace?.steps||[]; const sc=currentScenario();return window.DSHCasePaths.pathFor(sc,state.summaryVariant).steps; }
     function current() { return steps()[state.index] || null; }
     function say(text) { $('#announcer').textContent = text; }
     function toast(text) { clearTimeout(toastTimer); $('#toast').textContent = text; $('#toast').classList.add('show'); toastTimer = setTimeout(() => $('#toast').classList.remove('show'), 4000); }
@@ -28,8 +28,8 @@
     }
     catch { } }
     function setPlaying(value) { state.playing = !!value && steps().length > 0 && ['journey','trace'].includes(state.mode); clearTimeout(playTimer); if (state.playing) {
-        if (state.index >= steps().length - 1)
-            jump(0, false);
+        if (state.index >= steps().length - 1) { state.decisionAcknowledged=false; jump(0, false);if(state.mode==='journey')renderSidebar(); }
+        if(state.mode==='journey'&&window.DSHCasePaths.stopsAtDecision(currentScenario(),state.index,state.decisionAcknowledged)){state.playing=false;renderInspector();renderTransport();syncScene();return;}
         schedulePlay();
     } renderTransport(); const b = $('#sidebar-start'); if (b)
         b.innerHTML = `${state.playing ? '暂停，看看这一步' : '开始任务导览'}<span class="key">SPACE</span>`; syncScene(); }
@@ -41,7 +41,7 @@
         syncScene();
         say('导览结束。你可以选择另一个场景，或独立查看接口。');
         return;
-    } jump(state.index + 1, false); schedulePlay(); }, 4600 / state.speed); }
+    } jump(state.index + 1, false); if(state.mode==='journey'&&window.DSHCasePaths.stopsAtDecision(currentScenario(),state.index,state.decisionAcknowledged)){state.playing=false;renderInspector();renderTransport();syncScene();say(T('到达关键分岔，请选择接下来的做法。'));return;} schedulePlay(); }, 4600 / state.speed); }
     function jump(index, pause = true, drag = false) { const arr = steps(); if (!arr.length)
         return; if (pause) {
         state.playing = false;
@@ -55,7 +55,7 @@
         renderChapters(); say(`${state.index + 1} / ${arr.length}，${s.title}`); const b = $('#sidebar-start'); if (b)
         b.innerHTML = `${state.playing ? '暂停，看看这一步' : '开始任务导览'}<span class="key">SPACE</span>`; }
     function setMode(mode) { if (!['home','library','modes','journey','atlas','trace'].includes(mode))
-        return; state.playing = false; clearTimeout(playTimer); state.mode = mode; state.index = 0; state.focus = mode === 'atlas'; if(mode==='journey'&&!currentScenario().presetRoutes?.[state.preset])state.preset=currentScenario().preset; if (mode === 'journey')
+        return; state.playing = false; clearTimeout(playTimer); state.mode = mode; state.index = 0; state.focus = mode === 'atlas'; if(mode==='journey')state.preset=currentScenario().preset; if (mode === 'journey')
         state.selected = current().nodes[1] || current().nodes[0]; if (mode === 'trace')
         state.selected = state.trace?.steps[0]?.nodes[0] || 'sessions'; if (!byid[state.selected])
         state.selected = 'llm'; renderAll(); if(mode!=='home')window.scrollTo(0,0); updateHash(); say(mode === 'atlas' ? '接口图鉴，可以按中文名称或 ctx key 搜索。' : mode === 'trace' ? '运行记录，仅在本地读取文件。' : '任务导览'); }
@@ -66,8 +66,9 @@
     } state.selected = id; renderInspector(); renderTransport(); if (state.mode === 'atlas')
         renderCatalogResults(); syncScene(); updateHash(); say(`${byid[id].title}，ctx.${id}，${roleNames[byid[id].role]}`); }
     function scenarioChange(id) { if (!scenarios.some(s => s.id === id))
-        return; state.scenario = id; state.preset=currentScenario().preset||'standard';state.summaryVariant=currentScenario().defaultVariant||'lost'; state.index = 0; state.playing = false; clearTimeout(playTimer); state.selected = current().nodes[1] || current().nodes[0]; state.focus = false; state.flat = false; renderAll(); updateHash(); }
+        return; state.scenario = id; state.preset=currentScenario().preset||'standard';state.summaryVariant=currentScenario().defaultVariant;state.decisionAcknowledged=false; state.index = 0; state.playing = false; clearTimeout(playTimer); state.selected = current().nodes[1] || current().nodes[0]; state.focus = false; state.flat = false; renderAll(); updateHash(); }
     function renderAll() {
+       const legacyBaseline=['atlas','trace'].includes(state.mode);$('#commit-button').textContent=legacyBaseline?T('接口图鉴')+' · DSH '+catalog.meta.version+' / '+catalog.meta.commit.slice(0,7):T('教学案例')+' · DSH 0.1.7-rc.1 / 46a7f68';
        const wide=['home','library','modes'].includes(state.mode);document.body.dataset.view=state.mode;
        $('#case-library').hidden=state.mode!=='library';$('#mode-lab').hidden=state.mode!=='modes';$('#workbench').hidden=wide;$('#transport').hidden=wide;window.DSHExperience.setMode(state.mode);
        $$('.nav').forEach(b=>{const active=b.dataset.mode===state.mode;b.classList.toggle('active',active);b.setAttribute('aria-current',active?'page':'false');});
@@ -82,15 +83,13 @@
       const sc=currentScenario(),m=window.DSHStudy.preset(state.preset);
       el.innerHTML=`<button class="back-to-library" data-mode="library">← <span>返回案例库</span></button><div class="case-side-meta"><span class="case-number">${String(sc.rank).padStart(2,'0')}</span><span>${esc(sc.difficulty)}</span><button class="preset-badge" data-open-preset="${m.id}" style="--preset-color:${m.color}">${esc(T(m.name))} ↗</button></div>
         <h1 class="case-side-title">${esc(sc.name)}</h1><p class="lead">${esc(sc.story)}</p>
-        <div class="case-side-features"><span class="eyebrow">这个案例会展示什么</span><div>${sc.features.map(f=>`<span>${esc(f)}</span>`).join('')}</div></div>
+        <p class="case-requirements">${esc(T(sc.environment))}</p><div class="case-side-features"><span class="eyebrow">这个案例会展示什么</span><div>${sc.features.map(f=>`<span>${esc(f)}</span>`).join('')}</div></div>
         <details class="case-brief"><summary>${esc(T('任务与资料'))}<span aria-hidden="true">＋</span></summary><div class="mission"><label class="field-label" for="scenario">选择案例</label><select id="scenario" class="scenario-select">${scenarios.map(x=>`<option value="${x.id}" ${x.id===sc.id?'selected':''}>${String(x.rank).padStart(2,'0')} · ${esc(x.name)}</option>`).join('')}</select>
         <div class="prompt-card"><div class="prompt-card-head"><span>任务提示词</span><button id="copy-prompt" title="复制当前语言的提示词" aria-label="复制提示词">⧉</button></div><p id="mission-prompt">${esc(T(sc.prompt))}</p></div>
         <div class="mission-actions"><button id="view-fixtures" class="text-button">查看案例资料</button><button id="jump-result" class="text-button">直接查看最终结果 →</button></div>
-        ${sc.archive?'<button class="outline-button archive-cta" id="open-archive">打开档案阅览室</button>':''}
-        ${sc.calculator?'<button class="outline-button archive-cta" id="open-calculator">试用分账面板</button>':''}
         <button class="start-button" id="sidebar-start">${state.playing?'暂停在当前步骤':'开始播放导览'}<span class="key">SPACE</span></button></div></details>
-        ${sc.presetRoutes?`<div class="route-switch"><span class="eyebrow">切换预设进行对照</span><div>${window.DSHStudy.presets.map(p=>`<button data-route-preset="${p.id}" class="${state.preset===p.id?'selected':''}" aria-pressed="${state.preset===p.id}">${esc(T(p.name))}</button>`).join('')}</div><p>每条路线都是独立的教学演示，不会修改真实 DSH 配置。</p></div>`:''}
-        ${sc.variants?`<div class="branch-switch"><span class="eyebrow">摘要分支</span>${Object.entries(sc.variants).map(([id,v])=>`<button data-summary-branch="${id}" class="${state.summaryVariant===id?'selected':''}" aria-pressed="${state.summaryVariant===id}">${esc(v.name)}</button>`).join('')}</div>`:''}
+
+        ${decisionMarkup(sc)}
         <div class="chapters" id="chapters"></div><div class="sidebar-bottom"><span class="local-demo-label"><i></i>教学任务 · 无真实工具执行</span><p class="source-note">框架路径与示例数据分开标注。</p></div>`;
       renderChapters();$('#scenario').onchange=e=>scenarioChange(e.target.value);$('#sidebar-start').onclick=()=>setPlaying(!state.playing);
     }
@@ -132,18 +131,19 @@
         html += `<div class="step-heading"><span class="step-index">${String(state.index + 1).padStart(2, '0')}</span><span class="step-kind">${typeNames[st.kind] || st.kind}</span></div><h2>${esc(st.title)}</h2>`;
         html+=`<p class="case-learning-note">${esc(currentScenario().learn)}</p>`;
         if(st.runtime){
-          const r=st.runtime,final=state.index>=steps().length-1;
-          html+=`<div class="live-status ${st.kind==='blocked'?'denied':final?'complete':''}"><i></i><span>${esc(r.status)}</span><small>DEMO</small></div>
+          const r=st.runtime,final=state.index>=steps().length-1,verified=final&&window.DSHCasePaths.pathFor(currentScenario(),state.summaryVariant).success;
+          html+=`<div class="live-status ${st.kind==='blocked'?'denied':verified?'complete':''}"><i></i><span>${esc(r.status)}</span><small>DEMO</small></div>
             <div class="runtime-card"><div class="runtime-label"><span>这一步收到</span><small>INPUT</small></div><pre class="sample-code input-code">${esc(T(r.input))}</pre>
-            <div class="runtime-arrow">↓</div><div class="runtime-label"><span>${final?'最终输出':'产生的状态 / 结果'}</span><small>${final?'ANSWER':'OUTPUT'}</small></div><pre class="sample-code output-code ${final?'final-output':''}">${esc(T(r.output))}</pre></div>`;
+            <div class="runtime-arrow">↓</div><div class="runtime-label"><span>${final?'本路径结果':'产生的状态 / 结果'}</span><small>${final?'ANSWER':'OUTPUT'}</small></div><pre class="sample-code output-code ${verified?'final-output':''}">${esc(T(r.output))}</pre></div>`;
         }
+        if(state.index===currentScenario().decision?.index)html+=decisionMarkup(currentScenario(),true);
         html+=`<details class="step-explainer" ${state.tab==='code'?'open':''}><summary>为什么经过这些组件？</summary><p class="step-description">${esc(st.description)}</p><div class="event-chip">${esc(st.event)}</div><div class="insight"><b>这一刻，值得留意</b>${esc(st.insight)}</div></details>`;
         if (state.tab === 'code') {
-            html += `<div class="code-caption"><span>${st.code ? '核对过的语句 / 标识' : '代码或文档依据'}</span><span>${esc(catalog.meta.commit.slice(0, 7))}</span></div>${st.code ? `<pre data-raw>${esc(st.code)}</pre>` : ''}${link(sourceUrl(st.source, st.lines), `查看对应源码 / 文档 ↗`)}<div class="source-path">${esc(st.source)}<br>L${st.lines[0]}–L${st.lines[1]}</div>${Object.keys(st.payload).length ? `<h4 class="subheading" style="margin-top:18px">本页教学数据，非真实执行结果</h4><pre>${esc(JSON.stringify({ ...st.payload, input:T(st.payload.input), output:T(st.payload.output), ...(state.index === 0 ? { task: T(currentScenario().task) } : {}) }, null, 2))}</pre>` : ''}`;
+            html += `<div class="code-caption"><span>${st.code ? '核对过的语句 / 标识' : '代码或文档依据'}</span><span>${esc((st.reviewedCommit||currentScenario().reviewedCommit).slice(0, 7))}</span></div>${st.code ? `<pre data-raw>${esc(st.code)}</pre>` : ''}${link(sourceUrl(st.source, st.lines, st.reviewedCommit||currentScenario().reviewedCommit), `查看对应源码 / 文档 ↗`)}<div class="source-path">${esc(st.source)}<br>L${st.lines[0]}–L${st.lines[1]}</div>${(st.supportingSources||[]).map(ref=>link(sourceUrl(ref.source,ref.lines,currentScenario().reviewedCommit),esc(ref.source)+' : '+ref.lines.join('–'))).join('<br>')}${Object.keys(st.payload).length ? `<h4 class="subheading" style="margin-top:18px">本页教学数据，非真实执行结果</h4><pre>${esc(JSON.stringify({ ...st.payload, input:T(st.payload.input), output:T(st.payload.output), ...(state.index === 0 ? { task: T(currentScenario().task) } : {}) }, null, 2))}</pre>` : ''}`;
         }
         html += `<div class="divider"></div><h4 class="subheading">相关服务 · 点击查看职责</h4><div class="related-nodes">${st.nodes.map(id => `<button class="node-chip ${id === s.id ? 'active' : ''}" data-service="${id}">ctx.${esc(id)}</button>`).join('')}</div>${servicePanel(s, false)}`;
-        if(state.index===steps().length-1){const next=scenarios.find(x=>x.rank===currentScenario().rank+1);html+=`<div class="case-next"><button data-mode="library" class="outline-button">返回案例库</button>${next?`<button data-open-case="${next.id}" class="outline-button">下一个案例 →</button>`:''}</div>`;}
-        if(currentScenario().archive)html+=`<div class="minimal-warning"><b>换成 Minimal 会怎样？</b><p>Minimal 没有压缩能力；本例的压缩分支无法照搬。可以新建采用其他预设的会话，或改用分块检索策略。</p><button class="text-button" id="learning-notes">查看完整学习说明</button></div>`;
+        if(state.index===steps().length-1){html+=`<button class="outline-button result-files" id="view-deliverables">${esc(T('查看本路径结果文件'))} ↗</button>`;const next=scenarios.find(x=>x.rank===currentScenario().rank+1);html+=`<div class="case-next"><button data-mode="library" class="outline-button">返回案例库</button>${next?`<button data-open-case="${next.id}" class="outline-button">下一个案例 →</button>`:''}</div>`;}
+
         el.innerHTML = html;
     }
     function renderTransport() {
@@ -190,7 +190,7 @@
         }
     }
     function syncScene() { if(['home','library','modes'].includes(state.mode)){renderer?.setState({playing:false,flow:null});return;} const st = current(); const active = state.mode === 'atlas' ? [] : st?.nodes || []; if (renderer)
-        renderer.setState({ selected: state.selected, active, focus: state.focus, flat: state.flat, reduced: state.reduced, playing: state.playing, providers: state.providers, trace: state.mode === 'trace', flow:state.mode==='journey'?st?.flow:null, stepKey:state.mode+':'+state.scenario+':'+state.index, speed:state.speed, theme:window.DSHLocale.theme, language:window.DSHLocale.language }); $('#view-overview').classList.toggle('active', !state.focus && !state.flat); $('#view-flat').classList.toggle('active', !state.focus && state.flat); $('#view-focus').classList.toggle('active', state.focus); $('#view-overview').setAttribute('aria-pressed', String(!state.focus && !state.flat)); $('#view-flat').setAttribute('aria-pressed', String(!state.focus && state.flat)); $('#view-focus').setAttribute('aria-pressed', String(state.focus)); $('#focus-legend').hidden = !state.focus; $('.explode-control').hidden = state.focus || state.flat; $('#motion-toggle').textContent = state.reduced ? '恢复动态' : '减少动态'; $('#motion-toggle').setAttribute('aria-pressed', String(state.reduced)); $('#evidence-tag').textContent = state.mode === 'trace' ? (state.trace?.synthetic ? '教学样本' : '本地日志') : state.mode === 'atlas' ? '静态结构' : '教学演示'; $('#evidence-tag').classList.toggle('trace', state.mode === 'trace'); $('#scene-eyebrow').textContent = state.focus ? 'ONE SERVICE. EVERY CONNECTION.' : state.mode === 'trace' ? 'YOUR SESSION, IN VIEW.' : 'THE ANATOMY OF A TASK'; $('.stage-key').classList.toggle('focus-key',state.focus); $('#scene-caption').textContent = state.focus ? '把一个服务单独展开，查看它的调用方、声明包和实现方。' : state.mode === 'trace' ? '只定位日志能够支持的相关服务，不补画日志中没有的调用。' : state.flat ? '平面视图固定布局与方向，适合逐步阅读完整任务流程。' : '三维视图保留空间层级，并持续连接上一阶段与当前阶段。'; $('#stage').dataset.layout=state.focus?'focus':state.flat?'flat':'3d'; $('.interaction-hint').innerHTML=state.flat?'平面模式 <span>·</span> 滚轮缩放 <span>·</span> 点击组件':'<span class="tiny-cross">✣</span>拖动旋转 <span>·</span> 滚轮缩放 <span>·</span> 点击组件'; if(state.mode==='journey')$('#evidence-tag').innerHTML=`<span>${esc(T('教学演示'))}</span> · ${esc(T(window.DSHStudy.preset(state.preset).name))}`;renderSpecial(); if (renderError)
+        renderer.setState({ selected: state.selected, active, focus: state.focus, flat: state.flat, reduced: state.reduced, playing: state.playing, providers: state.providers, trace: state.mode === 'trace', flow:state.mode==='journey'?st?.flow:null, stepKey:state.mode+':'+state.scenario+':'+state.summaryVariant+':'+state.index, speed:state.speed, theme:window.DSHLocale.theme, language:window.DSHLocale.language }); $('#view-overview').classList.toggle('active', !state.focus && !state.flat); $('#view-flat').classList.toggle('active', !state.focus && state.flat); $('#view-focus').classList.toggle('active', state.focus); $('#view-overview').setAttribute('aria-pressed', String(!state.focus && !state.flat)); $('#view-flat').setAttribute('aria-pressed', String(!state.focus && state.flat)); $('#view-focus').setAttribute('aria-pressed', String(state.focus)); $('#focus-legend').hidden = !state.focus; $('.explode-control').hidden = state.focus || state.flat; $('#motion-toggle').textContent = state.reduced ? '恢复动态' : '减少动态'; $('#motion-toggle').setAttribute('aria-pressed', String(state.reduced)); $('#evidence-tag').textContent = state.mode === 'trace' ? (state.trace?.synthetic ? '教学样本' : '本地日志') : state.mode === 'atlas' ? '静态结构' : '教学演示'; $('#evidence-tag').classList.toggle('trace', state.mode === 'trace'); $('#scene-eyebrow').textContent = state.focus ? 'ONE SERVICE. EVERY CONNECTION.' : state.mode === 'trace' ? 'YOUR SESSION, IN VIEW.' : 'THE ANATOMY OF A TASK'; $('.stage-key').classList.toggle('focus-key',state.focus); $('#scene-caption').textContent = state.focus ? '把一个服务单独展开，查看它的调用方、声明包和实现方。' : state.mode === 'trace' ? '只定位日志能够支持的相关服务，不补画日志中没有的调用。' : state.flat ? '平面视图固定布局与方向，适合逐步阅读完整任务流程。' : '三维视图保留空间层级，并持续连接上一阶段与当前阶段。'; $('#stage').dataset.layout=state.focus?'focus':state.flat?'flat':'3d'; $('.interaction-hint').innerHTML=state.flat?'平面模式 <span>·</span> 滚轮缩放 <span>·</span> 点击组件':'<span class="tiny-cross">✣</span>拖动旋转 <span>·</span> 滚轮缩放 <span>·</span> 点击组件'; if(state.mode==='journey')$('#evidence-tag').innerHTML=`<span>${esc(T('教学演示'))}</span> · ${esc(T(window.DSHStudy.preset(state.preset).name))}`;renderSpecial(); if (renderError)
         renderFallback(); }
     function renderSpecial(){
       const el=$('#special-visual');el.innerHTML='';el.classList.remove('company-mode');delete el.dataset.raw;if(state.focus||state.flat||state.mode!=='journey')return;
@@ -198,7 +198,7 @@
       if(currentScenario().company){window.DSHExperience.renderCompany(el,st,{reduced:state.reduced});return;}
       delete el.dataset.raw;
       if(st.ribbon)el.innerHTML=`<div class="context-ribbon ${st.kind==='blocked'?'denied':''}"><span>${esc(st.ribbon)}</span></div>`;
-      else if(st.kind==='delegate')el.innerHTML='<div class="context-ribbon"><b>PARENT</b><span>⇄</span><b>venue-01 / budget-01</b><i></i><span>独立子会话</span></div>';
+      else if(st.kind==='delegate')el.innerHTML='<div class="context-ribbon"><b>PARENT</b><span>⇄</span><b>logs / changes</b><i></i><span>独立子会话</span></div>';
     }
     function renderFallback() { const el = $('#no-webgl'); el.hidden = false; $('#scene').style.opacity = '0'; $('#projected-labels').style.display = 'none'; el.innerHTML = `<p class="fallback-note">当前浏览器的图形画布不可用，已切换为文字组件视图。全部导览、搜索、源码和日志功能仍可使用。</p><div class="fallback-grid">${catalog.groups.map(g => { const related = services.filter(s => s.group === g.id); const active = current()?.nodes || []; return `<button class="fallback-item ${related.some(s => active.includes(s.id)) ? 'active' : ''}" data-service="${related.find(s => active.includes(s.id))?.id || related[0].id}">${g.name}<br><small>${related.length} 个服务</small></button>`; }).join('')}</div>`; }
     function focusToggle(on) { state.focus = typeof on === 'boolean' ? on : !state.focus; if(state.focus) state.flat=false; state.playing = false; clearTimeout(playTimer); syncScene(); renderTransport(); }
@@ -216,40 +216,32 @@
     function showModal(content) { const dlg = $('#modal'); lastFocus = document.activeElement;dlg.classList.remove('archive-modal'); $('#modal-body').innerHTML = `<div class="modal-content">${content}</div>`; if (!dlg.open)
         dlg.showModal(); $('#modal-body').querySelector('[data-close]')?.focus(); }
     const modalHead = t => `<div class="modal-heading"><span class="eyebrow">${t}</span><button data-close aria-label="关闭">×</button></div>`;
-    function showAbout() { showModal(`${modalHead('ABOUT DSH INSIDE')}<h2>把系统打开。<br>让复杂性变得可读。</h2><p>DSH Inside 是基于 DeepSeek Harness 官方源码制作的独立交互式导览。通过逐步任务导览和单服务剖面，把复杂关系拆成可连续阅读的过程。</p><div class="modal-stats"><div><strong>${services.length}</strong><small>官方表中的服务</small></div><div><strong>${services.filter(s=>s.role==='seam').length}</strong><small>标为 seam 的接口</small></div><div><strong>08</strong><small>教学任务场景</small></div></div><h3>证据与范围</h3><p>服务名称、角色、声明包、实现方及直接消费者来自 capability-seams.md。任务主链核对了 agent-loop、tools 和 session 的关键源码。大肥鲸的空间布局、中文讲解、任务示例和播放速度为本项目设计。</p><p>教学动画没有真实模型输出或性能测量。提供方切换仅改变结构示意。日志模式展示本地导入的事件，不代表拥有全部 seam 的实测调用轨迹，也不尝试恢复会话。</p><h3>固定源码版本</h3><p>DSH ${catalog.meta.version}<br><code style="font-size:10px;overflow-wrap:anywhere">${catalog.meta.commit}</code><br>核验日期：${catalog.meta.reviewedAt}</p><div class="source-table">${[['docs/capability-seams.md', '当前服务的职责、角色、声明与实现'], ['packages/core/agent-loop/src/agent.ts', 'turn / step / request / tool-call 主执行链'], ['docs/tool-execution-pipeline.md', '工具策略、守卫与结果处理'], ['packages/core/tools/src/index.ts', '前置、执行包装、后置、最终结果事件'], ['packages/core/session/src/index.ts', '追加式会话、事件观察与刷写检查点'], ['docs/subsystems/session.md', 'SessionEvent 与持久记录边界']].map(([p, t]) => link(sourceUrl(p), `${esc(p)}<br><span style="font-family:var(--sans);color:#7e96b0">${esc(t)}</span>`)).join('')}</div><p class="modal-footnote">本项目与 DeepSeek 官方无隶属关系。网页无需外部字体、脚本或模型密钥；只有主动打开源码链接时才访问 GitHub。</p><button class="close-cta" data-close>继续探索</button>`); }
-    function showHelp() { showModal(`${modalHead('A SMALL FIELD GUIDE')}<h2>先看一次任务。<br>再拆开一个接口。</h2><h3>案例库与四种模式</h3><p>先看案例的资料、目标和能力标签。四种模式页用同一顿饭展示不同工具组织方式；分账案例内也能切换独立路线。长文案例提供可搜索的全文与两种摘要分支。</p><h3>01 / 任务导览</h3><p>选择场景并播放，跟随亮起的组件。拖动底部时间轴回到任一步；切换“源码”查看该步骤的代码依据。播放速度仅用于讲解。</p><h3>02 / 接口图鉴</h3><p>搜索中文、ctx key 或包名。“剖面”列出所选服务的声明、消费者和实现方。点击提供方只切换结构示意，不改变真实配置。</p><h3>03 / 运行记录</h3><p>载入标准化的 SessionEvent。文件留在当前页面内存中，不上传、不自动保存。未知事件继续显示并提示解释限制。</p><h3>3D / 平面视图</h3><p>3D 视图支持拖动旋转、滚轮缩放和触屏双指缩放；“平面”会显示本步骤的二维组件关系，适合连续阅读任务步骤。点击组件可查看职责，“展开层级”只影响 3D 视图。</p><div class="keyboard-grid"><kbd>SPACE</kbd><span>播放 / 暂停</span><kbd>← →</kbd><span>前后步骤 / 前后服务</span><kbd>/</kbd><span>搜索接口</span><kbd>F</kbd><span>总览 / 单接口剖面</span><kbd>P</kbd><span>3D / 平面切换</span><kbd>R</kbd><span>复位视角</span><kbd>ESC</kbd><span>关闭说明 / 返回总览</span></div><p class="modal-footnote">可点击“减少动态”。模型无法显示时提供文字组件视图；平面关系图可随时使用。</p><button class="close-cta" data-close>开始探索</button>`); }
-    function openCase(id,preset=null){
+    function showAbout() { showModal(`${modalHead('ABOUT DSH INSIDE')}<h2>把系统打开。<br>让复杂性变得可读。</h2><p>DSH Inside 是基于 DeepSeek Harness 官方源码制作的独立交互式导览。通过逐步任务导览和单服务剖面，把复杂关系拆成可连续阅读的过程。</p><div class="modal-stats"><div><strong>${services.length}</strong><small>官方表中的服务</small></div><div><strong>${services.filter(s=>s.role==='seam').length}</strong><small>标为 seam 的接口</small></div><div><strong>${scenarios.length}</strong><small>教学任务场景</small></div></div><h3>证据与范围</h3><p>服务名称、角色、声明包、实现方及直接消费者来自 capability-seams.md。任务主链核对了 agent-loop、tools 和 session 的关键源码。大肥鲸的空间布局、中文讲解、任务示例和播放速度为本项目设计。</p><p>教学动画没有真实模型输出或性能测量。提供方切换仅改变结构示意。日志模式展示本地导入的事件，不代表拥有全部 seam 的实测调用轨迹，也不尝试恢复会话。</p><h3>来源基线分别记录</h3><p>首页、六个案例与预设：0.1.7-rc.1 / 46a7f68，2026-09-24 核验。下列接口图鉴仍使用独立旧基线；步骤源码链接使用各自核验提交。</p><h3>接口图鉴基线</h3><p>DSH ${catalog.meta.version}<br><code style="font-size:10px;overflow-wrap:anywhere">${catalog.meta.commit}</code><br>核验日期：${catalog.meta.reviewedAt}</p><div class="source-table">${[['docs/capability-seams.md', '当前服务的职责、角色、声明与实现'], ['packages/core/agent-loop/src/agent.ts', 'turn / step / request / tool-call 主执行链'], ['docs/tool-execution-pipeline.md', '工具策略、守卫与结果处理'], ['packages/core/tools/src/index.ts', '前置、执行包装、后置、最终结果事件'], ['packages/core/session/src/index.ts', '追加式会话、事件观察与刷写检查点'], ['docs/subsystems/session.md', 'SessionEvent 与持久记录边界']].map(([p, t]) => link(sourceUrl(p), `${esc(p)}<br><span style="font-family:var(--sans);color:#7e96b0">${esc(t)}</span>`)).join('')}</div><p class="modal-footnote">本项目与 DeepSeek 官方无隶属关系。网页无需外部字体、脚本或模型密钥；只有主动打开源码链接时才访问 GitHub。</p><button class="close-cta" data-close>继续探索</button>`); }
+    function showHelp() { showModal(`${modalHead('A SMALL FIELD GUIDE')}<h2>先看一次任务。<br>再拆开一个接口。</h2><h3>案例库与四种模式</h3><p>每个案例都有资料、能力前提、关键分岔和结果文件。播放会在分岔处暂停；选择后可以继续，也可以随时切换另一条路径。四种预设单独对照，不是能力排行榜。</p><h3>01 / 任务导览</h3><p>选择场景并播放，跟随亮起的组件。拖动底部时间轴回到任一步；切换“源码”查看该步骤的代码依据。播放速度仅用于讲解。</p><h3>02 / 接口图鉴</h3><p>搜索中文、ctx key 或包名。“剖面”列出所选服务的声明、消费者和实现方。点击提供方只切换结构示意，不改变真实配置。</p><h3>03 / 运行记录</h3><p>载入标准化的 SessionEvent。文件留在当前页面内存中，不上传、不自动保存。未知事件继续显示并提示解释限制。</p><h3>3D / 平面视图</h3><p>3D 视图支持拖动旋转、滚轮缩放和触屏双指缩放；“平面”会显示本步骤的二维组件关系，适合连续阅读任务步骤。点击组件可查看职责，“展开层级”只影响 3D 视图。</p><div class="keyboard-grid"><kbd>SPACE</kbd><span>播放 / 暂停</span><kbd>← →</kbd><span>前后步骤 / 前后服务</span><kbd>/</kbd><span>搜索接口</span><kbd>F</kbd><span>总览 / 单接口剖面</span><kbd>P</kbd><span>3D / 平面切换</span><kbd>R</kbd><span>复位视角</span><kbd>ESC</kbd><span>关闭说明 / 返回总览</span></div><p class="modal-footnote">可点击“减少动态”。模型无法显示时提供文字组件视图；平面关系图可随时使用。</p><button class="close-cta" data-close>开始探索</button>`); }
+    function openCase(id){
+       id=window.DSHCasePaths.resolveCaseId(id);
        if(!scenarios.some(s=>s.id===id))return;state.mode='journey';scenarioChange(id);
-       if(preset&&currentScenario().presetRoutes?.[preset])changeRoute(preset);window.scrollTo(0,0);
+       window.scrollTo(0,0);
     }
-    function changeRoute(id){
-       if(!currentScenario().presetRoutes?.[id])return;state.preset=id;state.index=0;state.playing=false;clearTimeout(playTimer);state.focus=false;state.selected=current().nodes[1]||current().nodes[0];renderAll();updateHash();
+    function decisionMarkup(sc,inline=false){
+      if(!sc.decision)return '';
+      return `<section class="branch-switch ${inline?'decision-inline':''}" aria-label="${esc(T('关键分岔'))}"><span class="eyebrow">${esc(T('关键分岔'))}</span><p>${esc(T(sc.decision.question))}</p>${Object.entries(sc.variants).map(([id,v])=>`<button data-summary-branch="${id}" class="${state.decisionAcknowledged&&state.summaryVariant===id?'selected':''}" aria-pressed="${state.decisionAcknowledged&&state.summaryVariant===id}">${esc(T(v.name))}</button>`).join('')}<small>${esc(T(!state.decisionAcknowledged?'选择一种做法，再继续播放；也可以逐步预览。':'切换会回到分岔处；所有结果都是教学编排。'))}</small></section>`;
+    }
+    function chooseBranch(id){
+      if(!currentScenario().variants?.[id])return;
+      state.playing=false;clearTimeout(playTimer);state.summaryVariant=id;state.decisionAcknowledged=true;
+      state.index=window.DSHCasePaths.branchPosition(currentScenario(),id,currentScenario().decision.index);
+      state.selected=current().nodes[1]||current().nodes[0];state.focus=false;
+      renderAll();updateHash();
+      $('#inspector [data-summary-branch="'+id+'"]')?.focus({preventScroll:true});
+      say(T(currentScenario().variants[id].name));
+    }
+    function showDeliverables(){
+      const sc=currentScenario(),path=window.DSHCasePaths.pathFor(sc,state.summaryVariant);
+      showModal(`${modalHead('DELIVERABLES')}<h2>${esc(T(sc.name))}</h2><p>${esc(T(path.name))}</p><p class="fixture-notice">${esc(T('以下为当前分岔的教学结果文件，不是真实 DSH 执行记录。'))}</p>${path.files.map(f=>`<h3>${esc(f.path)}</h3><pre data-raw>${esc(window.DSHLocale.language==='en'?f.contentEn||f.content:f.content)}</pre>`).join('')}<button class="close-cta" data-close>${esc(T('返回任务'))}</button>`);
     }
     function showFixtures(){
-       const sc=currentScenario();showModal(`${modalHead('MATERIALS')}<h2>${esc(sc.name)}</h2><p>${esc(sc.story)}</p><p>${esc(sc.learn)}</p><p class="fixture-notice">先认识这些资料，再看执行过程。</p>${sc.files.map(f=>`<div class="fixture-type">${f.origin==='upstream'?'官方源码节选':'本页原创样本'}${f.sourceUrl?` · ${link(f.sourceUrl,'↗ SOURCE')}`:''}</div><h3>${esc(f.path)}</h3><pre data-raw>${esc(window.DSHLocale.language==='en'&&f.contentEn?f.contentEn:f.content)}</pre>`).join('')}${sc.programSketch?`<h3>程序流程示意</h3><pre>${esc(T(sc.programSketch))}</pre>`:''}${sc.archive?'<button class="outline-button" id="open-archive">打开档案阅览室</button>':''}<button class="close-cta" data-close>返回任务</button>`);
-    }
-    const archiveView={page:0,size:20,total:0};
-    function showArchive(){showModal(window.DSHStudy.archiveShell());$('#modal').classList.add('archive-modal');archiveView.page=0;$('#archive-search').addEventListener('input',()=>{archiveView.page=0;renderArchiveRecords();});renderArchiveRecords();}
-    function renderArchiveRecords(){
-      const input=$('#archive-search');if(!input)return;
-      const q=input.value.trim().toLowerCase(),all=window.DSHStudy.records(window.DSHLocale.language);
-      const exact=/^#?\d{1,4}$/.test(q)?Number(q.replace('#','')):null;
-      const found=all.filter(r=>!q||(exact!==null?r.n===exact:r.text.toLowerCase().includes(q)));archiveView.total=found.length;
-      const pages=Math.max(1,Math.ceil(found.length/archiveView.size));archiveView.page=Math.min(archiveView.page,pages-1);
-      $('#archive-records').innerHTML=found.slice(archiveView.page*archiveView.size,(archiveView.page+1)*archiveView.size).map(r=>`<article class="archive-record ${r.needle?'needle':''}"><h3>${esc(r.title)}</h3><pre data-raw>${esc(r.text)}</pre></article>`).join('')||`<p>${esc(T('搜索没有结果。'))}</p>`;
-      $('#archive-count').textContent=`${found.length.toLocaleString()} / 1,200 ${T('条记录')} · ${window.DSHStudy.corpus(window.DSHLocale.language).length.toLocaleString()} ${T('字 / characters')}`;
-      $('#archive-page').textContent=`${archiveView.page+1} / ${pages}`;$('#archive-prev').disabled=archiveView.page===0;$('#archive-next').disabled=archiveView.page===pages-1;
-    }
-    function archivePage(delta){archiveView.page=Math.max(0,archiveView.page+delta);renderArchiveRecords();$('#modal .modal-content').scrollTop=0;}
-    function downloadArchive(){download(`farstar-1200-${window.DSHLocale.language}.txt`,window.DSHStudy.corpus(window.DSHLocale.language),'text/plain;charset=utf-8');}
-    function showCalculator(){showModal(`${modalHead('LOCAL PREVIEW')}<h2>本地分账预览</h2><p>这只是本页的算术组件，不会启动或修改 DSH 插件。</p><div class="calculator-inputs">${[96,54,30].map((n,i)=>`<label>${['A · An','B · Bo','C · Chen'][i]}<input id="calc-${i}" type="number" min="0" max="1000000" step="0.01" value="${n}"></label>`).join('')}</div><button id="calc-run" class="close-cta">重新计算</button><pre id="calc-result" class="calculator-result" aria-live="polite"></pre><p class="modal-footnote">DEMO / local arithmetic</p>`);calculateDinner();}
-    function calculateDinner(){
-      const raw=[0,1,2].map(i=>$('#calc-'+i)?.value),values=raw.map(v=>Number(v));
-      if(raw.some(v=>!/^\d+(\.\d{1,2})?$/.test(v))||values.some(v=>!Number.isFinite(v)||v<0||v>1000000)){$('#calc-result').textContent=T('所有金额都应是非负数，最多两位小数。');return;}
-      const cents=values.map(v=>Math.round(v*100)),total=cents.reduce((a,b)=>a+b,0),base=Math.floor(total/3),shares=cents.map((_,i)=>base+(i<total%3?1:0)),balances=cents.map((v,i)=>v-shares[i]),debt=[],credit=[];
-      balances.forEach((v,i)=>{if(v<0)debt.push({i,n:-v});if(v>0)credit.push({i,n:v});});const transfers=[];let a=0,b=0;
-      while(a<debt.length&&b<credit.length){const d=debt[a],c=credit[b],n=Math.min(d.n,c.n);transfers.push(`${['An','Bo','Chen'][d.i]} → ${['An','Bo','Chen'][c.i]}: ¥${(n/100).toFixed(2)}`);d.n-=n;c.n-=n;if(!d.n)a++;if(!c.n)b++;}
-      $('#calc-result').textContent=`${T('合计')}: ¥${(total/100).toFixed(2)}\n${T('均摊')}: ${shares.map(v=>'¥'+(v/100).toFixed(2)).join(' / ')}\n\n${transfers.join('\n')||T('没有需要转账的差额。')}`;
+       const sc=currentScenario();showModal(`${modalHead('MATERIALS')}<h2>${esc(sc.name)}</h2><p>${esc(sc.story)}</p><p>${esc(sc.learn)}</p><p class="fixture-notice">先认识这些资料，再看执行过程。</p>${sc.files.map(f=>`<div class="fixture-type">${f.origin==='upstream'?'官方源码节选':'本页原创样本'}${f.sourceUrl?` · ${link(f.sourceUrl,'↗ SOURCE')}`:''}</div><h3>${esc(f.path)}</h3><pre data-raw>${esc(window.DSHLocale.language==='en'&&f.contentEn?f.contentEn:f.content)}</pre>`).join('')}${sc.programSketch?`<h3>程序流程示意</h3><pre>${esc(T(sc.programSketch))}</pre>`:''}<button class="close-cta" data-close>返回任务</button>`);
     }
     function showIdentity(){
        const examples=['llm','agentLoop','tools','fs','shell','approval','sessions','subagents','systemPrompt'];
@@ -378,11 +370,8 @@
         return; if(b.dataset.openCase){openCase(b.dataset.openCase);return;}
        if(b.dataset.openPreset){state.preset=b.dataset.openPreset;setMode('modes');return;}
        if(b.dataset.choosePreset){state.preset=b.dataset.choosePreset;renderAll();updateHash();return;}
-       if(b.dataset.demoPreset){openCase('dinner',b.dataset.demoPreset);return;}
-       if(b.dataset.routePreset){changeRoute(b.dataset.routePreset);return;}
-       if(b.dataset.caseFilter){state.caseFilter=b.dataset.caseFilter;renderAll();return;}
-       if(b.dataset.summaryBranch){state.summaryVariant=b.dataset.summaryBranch;state.playing=false;clearTimeout(playTimer);renderAll();updateHash();return;}
-       if(b.dataset.archiveQ!==undefined){$('#archive-search').value=b.dataset.archiveQ;archiveView.page=0;renderArchiveRecords();return;}
+              if(b.dataset.caseFilter){state.caseFilter=b.dataset.caseFilter;renderAll();return;}
+       if(b.dataset.summaryBranch){chooseBranch(b.dataset.summaryBranch);return;}
        if (b.dataset.mode) setMode(b.dataset.mode); if (b.dataset.service)
         selectService(b.dataset.service); if (b.dataset.jump !== undefined && !b.disabled)
         jump(Number(b.dataset.jump)); if (b.dataset.filter) {
@@ -402,7 +391,7 @@
         syncScene();
         toast(`正在观察 ${b.dataset.provider}。这是结构演示，未更改真实配置。`);
     } if (b.hasAttribute('data-close'))
-        $('#modal').close(); const actions = { 'open-archive':showArchive,'download-archive':downloadArchive,'archive-prev':()=>archivePage(-1),'archive-next':()=>archivePage(1),'learning-notes':()=>showModal(`${modalHead('READING NOTES')}${window.DSHStudy.learningNotes()}`),'open-calculator':showCalculator,'calc-run':calculateDinner, 'copy-prompt':copyPrompt, 'view-fixtures':showFixtures, 'jump-result':()=>jump(steps().length-1), 'identity-legend':showIdentity, home: () => setMode('home'), help: showHelp, about: showAbout, 'commit-button': showAbout, 'view-overview': () => {state.flat=false;focusToggle(false);}, 'view-flat': () => flatToggle(true), 'view-focus': () => focusToggle(true), 'view-reset': () => { renderer?.reset(); toast('视角已复位'); }, 'view-top': () => renderer?.top(), 'motion-toggle': () => { state.reduced = !state.reduced; syncScene(); }, 'prev-step': () => jump(state.index - 1), 'next-step': () => jump(state.index + 1), play: () => setPlaying(!state.playing), 'prev-service': () => serviceMove(-1), 'next-service': () => serviceMove(1), 'export-state': exportState, 'related-journey': findRelated, 'import-log': () => $('#trace-file').click(), 'replace-log': () => $('#trace-file').click(), 'import-footer': () => $('#trace-file').click(), 'sample-log': downloadSample, 'sample-footer': downloadSample, 'sample-modal': downloadSample, 'example-format': showFormat, 'clear-log': () => { state.trace = null; state.index = 0; state.playing = false; state.focus = false; clearTimeout(playTimer); renderAll(); toast('已从页面内存清除日志'); } }; actions[b.id]?.(); });
+        $('#modal').close(); const actions = { 'copy-prompt':copyPrompt, 'view-fixtures':showFixtures,'view-deliverables':showDeliverables, 'jump-result':()=>jump(steps().length-1), 'identity-legend':showIdentity, home: () => setMode('home'), help: showHelp, about: showAbout, 'commit-button': showAbout, 'view-overview': () => {state.flat=false;focusToggle(false);}, 'view-flat': () => flatToggle(true), 'view-focus': () => focusToggle(true), 'view-reset': () => { renderer?.reset(); toast('视角已复位'); }, 'view-top': () => renderer?.top(), 'motion-toggle': () => { state.reduced = !state.reduced; syncScene(); }, 'prev-step': () => jump(state.index - 1), 'next-step': () => jump(state.index + 1), play: () => setPlaying(!state.playing), 'prev-service': () => serviceMove(-1), 'next-service': () => serviceMove(1), 'export-state': exportState, 'related-journey': findRelated, 'import-log': () => $('#trace-file').click(), 'replace-log': () => $('#trace-file').click(), 'import-footer': () => $('#trace-file').click(), 'sample-log': downloadSample, 'sample-footer': downloadSample, 'sample-modal': downloadSample, 'example-format': showFormat, 'clear-log': () => { state.trace = null; state.index = 0; state.playing = false; state.focus = false; clearTimeout(playTimer); renderAll(); toast('已从页面内存清除日志'); } }; actions[b.id]?.(); });
     $('#explode').addEventListener('input', e => renderer?.setState({ explosion: Number(e.target.value) }));
     $('#trace-file').addEventListener('change', e => importFile(e.target.files[0]));
     $('#modal').addEventListener('close', () => { lastFocus?.focus?.(); });
@@ -429,12 +418,12 @@
         renderer?.reset(); if (k === 'escape') { state.flat=false; focusToggle(false); } if (k === '?')
         showHelp(); });
     function initFromHash(){
-      const q=new URLSearchParams(location.hash.slice(1));if(!q.has('view'))state.mode='home';if(q.get('task')==='make-tool')q.set('task','pixel-company');
+      const q=new URLSearchParams(location.hash.slice(1));if(!q.has('view'))state.mode='home';q.set('task',window.DSHCasePaths.resolveCaseId(q.get('task')));
       if(scenarios.some(s=>s.id===q.get('task')))state.scenario=q.get('task');
       if(['home','library','modes','journey','atlas','trace'].includes(q.get('view')))state.mode=q.get('view');
       state.preset=currentScenario().preset;
-      if(window.DSHStudy.presets.some(m=>m.id===q.get('preset'))&&(state.mode==='modes'||currentScenario().presetRoutes))state.preset=q.get('preset');
-      if(currentScenario().variants?.[q.get('branch')])state.summaryVariant=q.get('branch');
+      if(window.DSHStudy.presets.some(m=>m.id===q.get('preset'))&&state.mode==='modes')state.preset=q.get('preset');
+      state.summaryVariant=currentScenario().variants?.[q.get('branch')]?q.get('branch'):currentScenario().defaultVariant;state.decisionAcknowledged=false;
       if(state.mode==='atlas'&&byid[q.get('seam')])state.selected=q.get('seam');
       else if(state.mode==='journey'){state.index=Math.max(0,Math.min(steps().length-1,(parseInt(q.get('step'))||1)-1));state.selected=current().nodes[1]||current().nodes[0];}
       state.focus=state.mode==='atlas';
@@ -471,5 +460,5 @@
     } });
     syncScene();
     // Read-only test surface; no traces are persisted or sent outside this document.
-    window.DSHInside = { version:'5.0.0',presets:window.DSHStudy.presets,setMode,openCase,changeRoute,getSteps:steps, catalog, scenarios, setLanguage:window.DSHLocale.setLanguage, setTheme:window.DSHLocale.setTheme, parseTrace, sampleEvents, getState: () => ({ ...state, language:window.DSHLocale.language, theme:window.DSHLocale.theme, trace: state.trace ? { events: state.trace.events.length, synthetic: state.trace.synthetic } : null }), getRenderer: () => renderer, goTo: (id, index = 0) => { setMode('journey'); scenarioChange(id); jump(index); }, select: (id) => { setMode('atlas'); selectService(id); }, getDiagnostics: () => ({ services: services.length, seams: services.filter(s => s.role === 'seam').length, webgl: !renderError && !renderer?.software, backend: renderError ? 'text-fallback' : renderer?.software ? 'canvas-3d' : 'webgl', error: renderError?.message || null, frames: renderer?.frames || 0, glyphs:window.DSHIdentity?Object.keys(window.DSHIdentity.specs).length:0, arrows:renderer?.frameArrows?.length||0, language:window.DSHLocale.language, theme:window.DSHLocale.theme, flat:state.flat, transition:renderer?.transitionT ?? 1, activeStrengths:renderer?.points?.filter(p=>p.selectable&&!p.pseudo).slice(0,80).map(p=>[p.id,p.strength])||[] }) };
+    window.DSHInside = { version:'5.0.0',presets:window.DSHStudy.presets,setMode,openCase,getSteps:steps, catalog, scenarios, setLanguage:window.DSHLocale.setLanguage, setTheme:window.DSHLocale.setTheme, parseTrace, sampleEvents, getState: () => ({ ...state, language:window.DSHLocale.language, theme:window.DSHLocale.theme, trace: state.trace ? { events: state.trace.events.length, synthetic: state.trace.synthetic } : null }), getRenderer: () => renderer, goTo: (id, index = 0) => { setMode('journey'); scenarioChange(id); jump(index); }, select: (id) => { setMode('atlas'); selectService(id); }, getDiagnostics: () => ({ services: services.length, seams: services.filter(s => s.role === 'seam').length, webgl: !renderError && !renderer?.software, backend: renderError ? 'text-fallback' : renderer?.software ? 'canvas-3d' : 'webgl', error: renderError?.message || null, frames: renderer?.frames || 0, glyphs:window.DSHIdentity?Object.keys(window.DSHIdentity.specs).length:0, arrows:renderer?.frameArrows?.length||0, language:window.DSHLocale.language, theme:window.DSHLocale.theme, flat:state.flat, transition:renderer?.transitionT ?? 1, activeStrengths:renderer?.points?.filter(p=>p.selectable&&!p.pseudo).slice(0,80).map(p=>[p.id,p.strength])||[] }) };
 })();

@@ -1,6 +1,10 @@
 # Sources
 
-Current teaching baseline: DeepSeek Harness `0.1.6-alpha.2`, commit `ddefc45fbc7f8e46dd73185e68295696d1297887`, reviewed 2026-09-18.
+Current homepage, six execution cases and preset comparison: DeepSeek Harness `0.1.7-rc.1`, commit `46a7f68b0922371ce7144b668b90e377d8e799f4`, reviewed 2026-09-24. Each case and step records its own audited commit and source ranges; service-atlas links retain their separate earlier baseline. Start-of-work HEAD matched rc.1. See `HARNESS_CASES.md` and the final QA drift check.
+
+The six cases additionally use the pinned [Shell tool](https://github.com/deepseek-ai/deepseek-harness/blob/46a7f68b0922371ce7144b668b90e377d8e799f4/packages/shell/tool-bash/README.md), [Tools / PTC](https://github.com/deepseek-ai/deepseek-harness/blob/46a7f68b0922371ce7144b668b90e377d8e799f4/packages/core/tools/README.md), and [File observation policy](https://github.com/deepseek-ai/deepseek-harness/blob/46a7f68b0922371ce7144b668b90e377d8e799f4/packages/fs/fs-observation-policy/README.md) references. New snapshot hashes are recorded in `upstream-0.1.7-rc.1/registry.json`.
+
+Service atlas baseline (the former eight cases are archived): DeepSeek Harness `0.1.6-alpha.2`, commit `ddefc45fbc7f8e46dd73185e68295696d1297887`, reviewed 2026-09-18.
 
 - [Architecture](https://github.com/deepseek-ai/deepseek-harness/blob/ddefc45fbc7f8e46dd73185e68295696d1297887/docs/architecture.md)
 - [Service catalog](https://github.com/deepseek-ai/deepseek-harness/blob/ddefc45fbc7f8e46dd73185e68295696d1297887/docs/capability-seams.md)
@@ -30,7 +34,7 @@ Models: copied from the local dsh-inside production assets. The hull and 12 home
 
 Pixel office: generated with the built-in imagegen tool for this project. `../assets/pixel-office.png` is illustration, not evidence of an official DSH interface. The website draws labels and state separately.
 
-Long-context teaching references: [Lost in the Middle](https://arxiv.org/abs/2307.03172) and [RULER](https://arxiv.org/abs/2404.06654) motivate evidence retrieval tasks, not performance claims about current DeepSeek models. This site runs neither benchmark. The 1,200-record corpus is original deterministic teaching material; its illustrative pressure percentages are not measured token counts.
+Historical long-context teaching references (retained for the archived voyage case, no longer a current case): [Lost in the Middle](https://arxiv.org/abs/2307.03172) and [RULER](https://arxiv.org/abs/2404.06654) motivate evidence retrieval tasks, not performance claims about current DeepSeek models. This site runs neither benchmark. The 1,200-record corpus is original deterministic teaching material; its illustrative pressure percentages are not measured token counts.
 
 
-Holiday dates in the homepage request thread: [国务院办公厅关于2026年部分节假日安排的通知（国办发明电〔2025〕7号）](https://www.gov.cn/zhengce/content/202511/content_7047090.htm), retrieved 2026-09-24; snapshot `external/gov-2026-holidays.html`, SHA-256 `36fe1206ceb7685bc8827350d9552d60fff8393919f6afd0d1b0161c97628c0d`. The 请3休13 framing and the Kanas / Zhangjiajie destinations follow coverage of the 2026 holiday travel forecast ([腾讯新闻](https://news.qq.com/rain/a/20260918A05TRC00)); the calendar, travel notes, leave request and reply are original teaching material.
+Historical holiday request thread (replaced by website repair on 2026-09-24): [国务院办公厅关于2026年部分节假日安排的通知（国办发明电〔2025〕7号）](https://www.gov.cn/zhengce/content/202511/content_7047090.htm), retrieved 2026-09-24; snapshot `external/gov-2026-holidays.html`, SHA-256 `36fe1206ceb7685bc8827350d9552d60fff8393919f6afd0d1b0161c97628c0d`. The 请3休13 framing and the Kanas / Zhangjiajie destinations follow coverage of the 2026 holiday travel forecast ([腾讯新闻](https://news.qq.com/rain/a/20260918A05TRC00)); the calendar, travel notes, leave request and reply are original teaching material.

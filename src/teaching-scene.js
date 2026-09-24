@@ -8,17 +8,17 @@ const definitions={
  old:{asset:'llm_core',size:3,label:['原模型适配插件','Original model adapter'],note:['提供方 A','Provider A']},
  next:{asset:'llm_core',size:3,label:['新模型适配插件','Replacement adapter'],note:['提供方 B','Provider B']},
  record:{asset:'session_spine',size:4,label:['会话记录插件','Session log plugin'],note:['保留输入与执行结果','Keeps inputs and results']},
- input:{asset:'support_node',size:1.3,label:['用户输入','User input'],note:['请 3 休 13 怎么排？','How to take 3 and get 13?']},
+ input:{asset:'support_node',size:1.3,label:['用户输入','User input'],note:['把打不开的网页修好','Fix the page that will not open']},
  loop:{asset:'agent_loop',size:3,label:['执行循环','Agent loop'],note:['组织下一步','Coordinates the next step']},
  model:{asset:'llm_core',size:3,label:['模型适配插件','Model adapter'],note:['发送请求，接收回复','Sends requests, receives replies']},
  tool:{asset:'tool_registry',size:3,label:['工具与检查','Tools & checks'],note:['通过必要检查后执行','Executes after required checks']},
  memory:{asset:'session_spine',size:3.4,label:['会话记录','Session log'],note:['上下文与工具结果','Context and tool results']},
  manager:{asset:'cordis_workshop',size:3.6,label:['插件管理器','Plugin Manager'],note:['读包、安装、开关、移除','Inspect, install, toggle, remove']},
  bundle:{asset:'cordis_extension',size:2.6,label:['Auto review 组合包','Auto review bundle'],note:['实验功能 · 需显式安装','Experimental · installed explicitly']},
- iloop:{asset:'agent_loop',size:3,label:['执行循环','Agent loop'],note:['发出写请假条的 write','Sends the write call']},
+ iloop:{asset:'agent_loop',size:3,label:['执行循环','Agent loop'],note:['发出修改路径的 edit','Sends the edit call']},
  airlock:{asset:'approval_airlock',size:2.8,label:['人工审批','Ask the user'],note:['写入前先问你','Asks before writes']},
- itool:{asset:'tool_registry',size:3,label:['文件工具','File tools'],note:['执行 write','Runs write']},
- output:{asset:'support_node',size:1.3,label:['最终输出','Final answer'],note:['请假条写好了','Leave request ready']},
+ itool:{asset:'tool_registry',size:3,label:['文件工具','File tools'],note:['执行 edit','Runs edit']},
+ output:{asset:'support_node',size:1.3,label:['最终输出','Final answer'],note:['修复后，页面检查通过','Page checks pass after repair']},
 };
 const pluginPositions={consumer:[-7,0,0],port:[0,0,0],old:[3.2,0,0],next:[7,0,-6],record:[-7,0,-5]};
 const loopPositions={input:[-10,0,0],loop:[-4,0,0],memory:[-4,0,5],model:[3.5,0,-3.8],tool:[3.5,0,3.8],output:[10,0,0]};

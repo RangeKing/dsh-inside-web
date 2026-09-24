@@ -8,7 +8,7 @@ const SCENES={
  queued:['办公室还没开张：灯暗着，大肥鲸在会议桌前读第一张订单。','The office is still closed: lights down, the whale reads the first order at the meeting table.'],
  inspect:['大肥鲸拿着放大镜，检查墙上的接口面板。','The whale checks the interface panel on the wall with a magnifying glass.'],
  build:['工作台上，办公室插件正被打包进木箱。','On the workbench, the office plugin is packed into a crate.'],
- install:['插头接上，办公室一片片亮起来。','The plug goes in and the office lights up one area at a time.'],
+ install:['办公室插件安装已保存；等待重启与运行时检查。','Office installation saved; awaiting restart and runtime checks.'],
  assign:['四位员工围着任务板领活，目标是一个番茄钟。','Four crew members gather at the task board; the goal is a tomato timer.'],
  work:['设计画番茄钟，开发写代码，测试在一旁待命。','Design draws the timer, development writes code, testing stands by.'],
  bug:['红灯亮起：测试指着屏幕，番茄钟里爬出一只 bug。','A red light flashes: testing points at a bug crawling out of the timer.'],
@@ -25,10 +25,10 @@ export function renderCompany(root,step,{reduced=false}={}){
   const names=[['协调','Coordinator'],['设计','Designer'],['开发','Developer'],['测试','Tester']];
   const status=index<4?['—','—','—','—']:index===4?[text('分派中','Assigning'),'—','—','—']:index===5?[text('跟进','Tracking'),text('完成','Done'),text('编写','Building'),text('待检查','Queued')]:index===6?[text('跟进','Tracking'),text('完成','Done'),text('返工','Rework'),text('发现问题','Issue found')]:index>=7?[text('已交付','Delivered'),text('完成','Done'),text('完成','Done'),text('通过','Passed')]:[];
   // Crossfade from the previous phase's scene; reduced motion swaps instantly.
-  const previous=!reduced&&lastPhase&&lastPhase!==phase&&PHASES.includes(lastPhase)?`<img class="office-frame previous" src="${art(lastPhase)}" alt="" aria-hidden="true">`:'';
+  const previous=!reduced&&lastPhase&&PHASES.indexOf(lastPhase)===index-1?`<img class="office-frame previous" src="${art(lastPhase)}" alt="" aria-hidden="true">`:'';
   const scene=SCENES[phase]||SCENES.queued;
   const panel=document.createElement('section');panel.className='pixel-office';panel.dataset.phase=phase;panel.classList.toggle('reduced',reduced);
-  panel.innerHTML=`<div class="office-art">${previous}<img class="office-frame current" src="${art(PHASES.includes(phase)?phase:'queued')}" alt=""><span class="office-caption">${text('大肥鲸像素公司 / AI 生成教学插图','BIG WHALE CO. / AI-GENERATED ART')}</span><span class="office-phase">${String(index+1).padStart(2,'0')} / ${PHASES.length}</span></div><div class="office-board"><h3>${text('第一单：一个不偷跑的番茄钟','ORDER 01: A timer that actually pauses')}</h3><ul>${names.map((n,i)=>`<li class="${i===active?'active':''}">${text(...n)} <span>${status[i]||'—'}</span></li>`).join('')}</ul><p class="office-step"></p><div class="office-actions"><button class="office-timer"></button><p class="image-credit">${text('场景图：AI 生成的教学插图。角色与状态为教学编排，不是真实运行监控。','Scenes: AI-generated teaching illustrations. Roles and states are scripted, not live monitoring.')}</p></div></div>`;
+  panel.innerHTML=`<div class="office-art">${previous}<img class="office-frame current" src="${art(PHASES.includes(phase)?phase:'queued')}" alt=""><span class="office-caption">${text('大肥鲸像素公司 / AI 生成教学插图','BIG WHALE CO. / AI-GENERATED ART')}</span><span class="office-activation">${phase==='install'?text('已保存 · 待重启，尚未生效','Saved · restart required, not active'):''}</span><span class="office-phase">${String(index+1).padStart(2,'0')} / ${PHASES.length}</span></div><div class="office-board"><h3>${text('第一单：一个不偷跑的番茄钟','ORDER 01: A timer that actually pauses')}</h3><ul>${names.map((n,i)=>`<li class="${i===active?'active':''}">${text(...n)} <span>${status[i]||'—'}</span></li>`).join('')}</ul><p class="office-step"></p><div class="office-actions"><button class="office-timer"></button><p class="image-credit">${text('场景图：AI 生成的教学插图。角色与状态为教学编排，不是真实运行监控。','Scenes: AI-generated teaching illustrations. Roles and states are scripted, not live monitoring.')}</p></div></div>`;
   panel.querySelector('.office-frame.current').alt=text(...scene);
   panel.querySelector('.office-step').textContent=window.DSHLocale.t(step.description);
   const button=panel.querySelector('.office-timer');button.textContent=text('打开番茄钟示例 ↗','Open the timer sample ↗');button.onclick=showTimer;button.disabled=index<7;if(index<7)button.textContent=text('交付步骤解锁番茄钟','Timer unlocks at delivery');
