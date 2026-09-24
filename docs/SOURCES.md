@@ -31,3 +31,6 @@ Models: copied from the local dsh-inside production assets. The hull and 12 home
 Pixel office: generated with the built-in imagegen tool for this project. `../assets/pixel-office.png` is illustration, not evidence of an official DSH interface. The website draws labels and state separately.
 
 Long-context teaching references: [Lost in the Middle](https://arxiv.org/abs/2307.03172) and [RULER](https://arxiv.org/abs/2404.06654) motivate evidence retrieval tasks, not performance claims about current DeepSeek models. This site runs neither benchmark. The 1,200-record corpus is original deterministic teaching material; its illustrative pressure percentages are not measured token counts.
+
+
+Holiday dates in the homepage request thread: [国务院办公厅关于2026年部分节假日安排的通知（国办发明电〔2025〕7号）](https://www.gov.cn/zhengce/content/202511/content_7047090.htm), retrieved 2026-09-24; snapshot `external/gov-2026-holidays.html`, SHA-256 `36fe1206ceb7685bc8827350d9552d60fff8393919f6afd0d1b0161c97628c0d`. The 请3休13 framing and the Kanas / Zhangjiajie destinations follow coverage of the 2026 holiday travel forecast ([腾讯新闻](https://news.qq.com/rain/a/20260918A05TRC00)); the calendar, travel notes, leave request and reply are original teaching material.

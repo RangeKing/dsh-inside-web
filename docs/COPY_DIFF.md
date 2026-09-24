@@ -43,3 +43,31 @@
 2. **63 处步骤提示是同一句图例说明**（“亮起的是这一步用到的组件……”），在每一步重复出现。可以改成只在第一步显示，或挪进图例；这会改变案例页的信息结构。
 3. **像素公司的 learn 和 9 处步骤提示是同一句话**（“区分检查接口、安装保存、运行时生效与实际使用……”），导语和步骤里各出现一次。
 4. **案例步骤仍按 `ddefc45` 核验**。首页已按 `0010283` 复核；案例要迁移到新提交，需要逐条重新核对来源行号，本次没有做。
+
+## 2026-09-24 第二轮：主线换成“请 3 休 13”，口吻更轻松
+
+规则放宽：标题和旁白可以用谐音、双关和海洋梗，笑点要落在具体机制上；正文仍然只写事实。案例步骤未改。
+
+### 首页主线
+
+| 位置 | 原 | 新 |
+|---|---|---|
+| 请求 | 帮我看看采购单还缺什么，顺便把缺的补进去。 | 帮我排个请 3 休 13 的方案，顺便把请假条写好。 |
+| 附件 | 采购单.txt · 周末菜单.txt | 2026放假通知.txt · 我的日历.txt |
+| 工具 | read → edit | read → write（新建文件不需要先 read，见 tool-fs README:48） |
+| 结果 | 已补上番茄和鸡蛋 | 请 9/28–30，连休 9/25–10/7 共 13 天；请假条已写好，发送键留给你；10/10 周六补班 |
+
+日期出自国务院办公厅《关于2026年部分节假日安排的通知》（国办发明电〔2025〕7号），快照见 `docs/external/gov-2026-holidays.html`，契约测试会从原文重算这 13 天。DSH 自带工具里没有发邮件，所以页面不写“已发送”。喀纳斯和张家界取自节前出游预测报告中的热门目的地；攻略笔记属于教学资料，不写价格。
+
+### 案例导语
+
+| 案例 | 原中文（标题 / 简介） | 新中文 | 原英文 | 新英文 | 语义检查 |
+|---|---|---|---|---|---|
+| meet-dsh | DSH 是怎么完成一项任务的？ / 从官方介绍出发，用一个完整任务认识模型、工具、执行循环和会话记录。 | 第一次下水：大肥鲸怎么把一件事办完？ / 从官方介绍出发，跟一个完整任务走一遍：模型出主意，工具动手，执行循环催进度，会话记录记账。 | How does DSH complete a task? / Start with the official introduction and follow one complete task to understand the model, tools, execution loop, and session record. | First dive: how does the whale get a job done? / Start from the official introduction and follow one complete task: the model decides, tools act, the loop keeps it moving, and the session log keeps the books. | 分工四项与 learn 一致：模型决定下一步、工具执行、Agent Loop 推进、会话保存。 |
+| dinner | 三人聚餐后，怎样算清转账？ / 读取三张小票，计算均摊金额，再生成一份可以直接照着转账的结果。 | 饭吃完了，账怎么算？三个人，三张小票 / 读三张小票，算出每人该摊多少，再给出一份照着转就行的转账方案，一分钱也算得清。 | After dinner, how should three people settle up? / Read three receipts, calculate the equal split, and produce a transfer plan that can be followed directly. | Dinner’s done. Who owes whom? Three people, three receipts / Read three receipts, work out each share, and produce a transfer plan you can follow as is, down to the cent. | 动作不变；“一分钱也算得清”对应资料里 96/54/30 元与 6/30 元转账结果。 |
+| photos | 整理照片前先确认：用户拒绝后会发生什么？ / 系统先列出移动方案并请求批准；用户拒绝后，文件操作停止在真正执行之前。 | 它想挪你的照片，你说“不行”，然后呢？ / 系统先列出移动方案、请你批准；你一拒绝，文件操作就停在真正执行之前，一张照片都不动。 | Before organizing photos: what happens after the user refuses? / The system first proposes the moves and requests approval. If the user declines, the file operation stops before execution. | It wants to move your photos. You say no. Then what? / It proposes the moves and asks for approval. Once you decline, the file operation stops before it runs; not a single photo moves. | “停在真正执行之前”保留；“一张都不动”与步骤“原有文件都还在”一致。 |
+| shopping | 修改共享采购单时，怎样保留家人的更新？ / 任务只要求把牛奶改成 4 盒，但家人同时加入了鸡蛋。系统需要先发现版本冲突，再基于最新内容重试。 | 共享采购单撞车：你改牛奶，家人加鸡蛋 / 任务只要把牛奶改成 4 盒，偏偏家人同时加了鸡蛋。系统得先发现版本冲突，再基于最新内容重试，鸡蛋一个都不能丢。 | How do you preserve a family member’s changes to a shared shopping list? / The task only changes milk to four cartons, while a family member adds eggs at the same time. The system must detect the version conflict and retry against the latest content. | Shared-list collision: you change the milk, family adds eggs / The task only changes milk to four cartons, but a family member adds eggs at the same moment. The system has to catch the version conflict and retry on the latest content, without losing a single egg. | “只要”“先发现冲突再重试”保留；“鸡蛋不能丢”即原标题“保留家人的更新”。 |
+| registration | 合并三张报名表，找出重复报名的人 / 让一段程序连续读取、合并和去重三张表，只把最终统计结果交回主模型。 | 三张报名表，谁报了两次？ / 让一段程序一口气读完、合并、去重三张表，只把最后的统计交回主模型，中间数据留在程序里。 | Merge three registration sheets and find duplicate sign-ups / Use one program to read, merge, and deduplicate three sheets, returning only the final statistics to the main model. | Three sign-up sheets. Who signed up twice? / One program reads, merges and dedupes all three sheets in one go; only the final tally goes back to the main model, and the intermediate data stays inside the program. | “只把最终统计交回主模型”保留；“中间数据留在程序里”对应 learn“在内部处理中间数据”。 |
+| welcome-event | 迎新活动能否按计划举办？让两个子 Agent 分别核对 / 一个子 Agent 核对场地容量，另一个核对预算，主 Agent 最后汇总两份证据。 | 迎新会办得成吗？派两个子 Agent 去摸底 / 一个子 Agent 查场地坐不坐得下，一个查预算够不够，主 Agent 把两份证据汇总。剧透：两边都有问题。 | Can the welcome event go ahead? Ask two subagents to verify it / One subagent checks venue capacity, another checks the budget, and the main agent combines both pieces of evidence. | Can the welcome party happen? Send two subagents to find out / One subagent checks whether the venue fits everyone, another checks the budget, and the main agent combines both. Spoiler: both come back with problems. | 剧透与资料一致：80/120 人缺 40 位，1560/1500 元超 60 元。 |
+| voyage | 从 1200 份航行档案中找出三条关键线索 / 在大量记录中找到改道目的地、批准人和原因；当摘要漏掉细节时，回到原始记录重新核对。 | 1200 份航行档案里，藏着三条关键线索 / 找出改道目的地、批准人和原因；摘要漏了细节，就回原始记录再核一遍，不凭印象破案。 | Find three key clues in 1,200 voyage records / Find the reroute destination, approver, and reason across many records; if the summary omits a detail, return to the original record and verify it. | Three key clues hidden in 1,200 voyage records / Find the reroute destination, approver and reason; when the summary drops a detail, go back to the original record instead of solving the case from memory. | 三条线索与“摘要漏细节时回查原文”保留。 |
+| pixel-company | 把 DSH 变成一家像素风 AI 公司 / 老板只带来一句需求，办公室却要忙起来。先把像素办公室装成插件，再让设计、开发、测试按任务板分工；发现一个暂停 bug，修好再交付。 | 大肥鲸开公司：像素办公室接到第一单 / 老板只带来一句需求，办公室就忙开了：先把像素办公室装成插件，再让设计、开发、测试按任务板分工；测出一个暂停 bug，修好再交付。 | Turn DSH into a pixel-art AI company / One request gets the office moving. Install the office plugin, then assign design, development and testing. Find a pause bug, fix it, and deliver. | The whale opens a company: a pixel office takes its first order / The boss brings one request and the office gets busy: install the pixel office as a plugin, split the work among design, development and testing, catch a pause bug, fix it, then deliver. | 顺序不变：安装插件 → 分工 → 发现 bug → 修复交付。 |
